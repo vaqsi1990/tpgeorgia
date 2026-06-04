@@ -1,0 +1,43 @@
+{
+  "Metadata": {
+    "title": "TP Georgia",
+    "description": "TP Georgia"
+  },
+  "HomePage": {
+    "title": "To get started, edit the page.tsx file.",
+    "descriptionBefore": "Looking for a starting point or more instructions? Head over to",
+    "descriptionBetween": "or the",
+    "descriptionAfter": "center.",
+    "templates": "Templates",
+    "learning": "Learning",
+    "deployNow": "Deploy Now",
+    "documentation": "Documentation"
+  },
+  "LocaleSwitcher": {
+    "label": "Language"
+  },
+  "Hero": {
+    "title": "The best moment of life",
+    "ariaLabel": "Featured images",
+    "slideAlt": "Hero slide {number}",
+    "prev": "Previous slide",
+    "next": "Next slide",
+    "goToSlide": "Go to slide {number}"
+  },
+  "Header": {
+    "logoAlt": "TP Georgia",
+    "mainNav": "Main navigation",
+    "search": "Search",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "pages": "Pages",
+      "destinations": "Destinations",
+      "tours": "Tours",
+      "blogs": "Blogs",
+      "contact": "Contact"
+    }
+  }
+}

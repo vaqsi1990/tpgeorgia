@@ -1,0 +1,43 @@
+{
+  "Metadata": {
+    "title": "TP Georgia",
+    "description": "TP Georgia"
+  },
+  "HomePage": {
+    "title": "დასაწყებად შეცვალეთ page.tsx ფაილი.",
+    "descriptionBefore": "გჭირდებათ საწყისი წერტილი თუ მეტი ინსტრუქცია? გადადით",
+    "descriptionBetween": "ან",
+    "descriptionAfter": "ცენტრში.",
+    "templates": "შაბლონები",
+    "learning": "სწავლა",
+    "deployNow": "გამოქვეყნება",
+    "documentation": "დოკუმენტაცია"
+  },
+  "LocaleSwitcher": {
+    "label": "ენა"
+  },
+  "Hero": {
+    "title": "სიცოცხლის საუკეთესო წამი",
+    "ariaLabel": "გამორჩეული სურათები",
+    "slideAlt": "ჰერო სლაიდი {number}",
+    "prev": "წინა სლაიდი",
+    "next": "შემდეგი სლაიდი",
+    "goToSlide": "გადასვლა სლაიდზე {number}"
+  },
+  "Header": {
+    "logoAlt": "TP Georgia",
+    "mainNav": "მთავარი ნავიგაცია",
+    "search": "ძებნა",
+    "openMenu": "მენიუს გახსნა",
+    "closeMenu": "მენიუს დახურვა",
+    "nav": {
+      "home": "მთავარი",
+      "about": "ჩვენს შესახებ",
+      "pages": "გვერდები",
+      "destinations": "მიმართულებები",
+      "tours": "ტურები",
+      "blogs": "ბლოგი",
+      "contact": "კონტაქტი"
+    }
+  }
+}

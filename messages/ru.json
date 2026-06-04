@@ -1,0 +1,43 @@
+{
+  "Metadata": {
+    "title": "TP Georgia",
+    "description": "TP Georgia"
+  },
+  "HomePage": {
+    "title": "Для начала отредактируйте файл page.tsx.",
+    "descriptionBefore": "Нужна отправная точка или больше инструкций? Перейдите в",
+    "descriptionBetween": "или в",
+    "descriptionAfter": "центр.",
+    "templates": "Шаблоны",
+    "learning": "Обучение",
+    "deployNow": "Развернуть",
+    "documentation": "Документация"
+  },
+  "LocaleSwitcher": {
+    "label": "Язык"
+  },
+  "Hero": {
+    "title": "Лучший момент жизни",
+    "ariaLabel": "Избранные изображения",
+    "slideAlt": "Слайд {number}",
+    "prev": "Предыдущий слайд",
+    "next": "Следующий слайд",
+    "goToSlide": "Перейти к слайду {number}"
+  },
+  "Header": {
+    "logoAlt": "TP Georgia",
+    "mainNav": "Главная навигация",
+    "search": "Поиск",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "nav": {
+      "home": "Главная",
+      "about": "О нас",
+      "pages": "Страницы",
+      "destinations": "Направления",
+      "tours": "Туры",
+      "blogs": "Блог",
+      "contact": "Контакты"
+    }
+  }
+}

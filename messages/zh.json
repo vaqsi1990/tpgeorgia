@@ -1,0 +1,43 @@
+{
+  "Metadata": {
+    "title": "TP Georgia",
+    "description": "TP Georgia"
+  },
+  "HomePage": {
+    "title": "要开始，请编辑 page.tsx 文件。",
+    "descriptionBefore": "需要起点或更多说明？请前往",
+    "descriptionBetween": "或",
+    "descriptionAfter": "中心。",
+    "templates": "模板",
+    "learning": "学习",
+    "deployNow": "立即部署",
+    "documentation": "文档"
+  },
+  "LocaleSwitcher": {
+    "label": "语言"
+  },
+  "Hero": {
+    "title": "生命中最美好的时刻",
+    "ariaLabel": "精选图片",
+    "slideAlt": "轮播图 {number}",
+    "prev": "上一张",
+    "next": "下一张",
+    "goToSlide": "跳转到第 {number} 张"
+  },
+  "Header": {
+    "logoAlt": "TP Georgia",
+    "mainNav": "主导航",
+    "search": "搜索",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "nav": {
+      "home": "首页",
+      "about": "关于我们",
+      "pages": "页面",
+      "destinations": "目的地",
+      "tours": "旅游",
+      "blogs": "博客",
+      "contact": "联系我们"
+    }
+  }
+}
