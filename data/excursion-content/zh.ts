@@ -162,7 +162,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
     highlights: [
       "08:00 从巴统出发",
       "瓦尼考古博物馆",
-      "加拉ktion与季齐安·塔比泽故居博物馆",
+      "塔比泽兄弟故居博物馆",
       "迪哈什卡里戈尔代阿巴诺浴场",
       "库塔伊西城市游览",
       "格拉提学院",
