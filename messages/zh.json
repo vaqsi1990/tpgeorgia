@@ -24,6 +24,35 @@
     "next": "下一张",
     "goToSlide": "跳转到第 {number} 张"
   },
+  "Excursions": {
+    "subtitle": "发现你的格鲁吉亚",
+    "title": "教育游学",
+    "description": "为五至十二年级学生设计的文化游学——历史、传统与实践体验融为一体。",
+    "grade": "年级",
+    "duration": "时长",
+    "type": "类型",
+    "cultural": "文化游学",
+    "price": "价格",
+    "priceFrom": "起价 {price} 拉里",
+    "priceOnRequest": "价格面议",
+    "priceNote": "视学生人数而定",
+    "highlightsTitle": "行程亮点",
+    "includesTitle": "费用包含",
+    "showMore": "查看详情",
+    "showLess": "收起",
+    "showMoreCatalog": "查看全部",
+    "showLessCatalog": "收起部分",
+    "durations": {
+      "7hours": "7 小时",
+      "8hours": "8 小时",
+      "9hours": "9 小时",
+      "10hours": "10 小时",
+      "11hours": "11 小时",
+      "12hours": "12 小时",
+      "1night2days": "1 晚 / 2 天",
+      "2nights3days": "2 晚 / 3 天"
+    }
+  },
   "WhyUs": {
     "title": "我们的旅行有何特色？",
     "items": {

@@ -24,6 +24,35 @@
     "next": "Next slide",
     "goToSlide": "Go to slide {number}"
   },
+  "Excursions": {
+    "subtitle": "Discover Your Georgia",
+    "title": "Educational Excursions",
+    "description": "Cultural and educational trips for grades V–XII — history, tradition, and hands-on learning in one program.",
+    "grade": "Grade",
+    "duration": "Duration",
+    "type": "Type",
+    "cultural": "Cultural & educational",
+    "price": "Price",
+    "priceFrom": "From {price} GEL",
+    "priceOnRequest": "Price on request",
+    "priceNote": "Depends on the number of students",
+    "highlightsTitle": "You will visit",
+    "includesTitle": "Included in the price",
+    "showMore": "View details",
+    "showLess": "Show less",
+    "showMoreCatalog": "View all",
+    "showLessCatalog": "Show fewer",
+    "durations": {
+      "7hours": "7 hours",
+      "8hours": "8 hours",
+      "9hours": "9 hours",
+      "10hours": "10 hours",
+      "11hours": "11 hours",
+      "12hours": "12 hours",
+      "1night2days": "1 night / 2 days",
+      "2nights3days": "2 nights / 3 days"
+    }
+  },
   "WhyUs": {
     "title": "What sets our tours apart?",
     "items": {
