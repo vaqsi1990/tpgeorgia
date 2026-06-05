@@ -25,8 +25,8 @@ const socialLinks: {
   href: string;
   Icon: IconType;
 }[] = [
-  { name: "Facebook", href: "https://facebook.com", Icon: FaFacebook },
-  { name: "Whatsapp", href: "https://whatsapp.com", Icon: FaWhatsapp },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61583758856391", Icon: FaFacebook },
+  { name: "Whatsapp", href: "https://wa.me/995555338807", Icon: FaWhatsapp },
 ];
 
 function IconButton({
