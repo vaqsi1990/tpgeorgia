@@ -7,7 +7,7 @@ export default async function Excursions() {
   return (
     <section
       id="excursions"
-      className="bg-brand/[0.03] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24"
+      className="bg-white text-black pb-20"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="mb-10 text-center sm:mb-14">
