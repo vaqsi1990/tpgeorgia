@@ -15,7 +15,7 @@ export default async function WhyUs() {
   return (
     <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
       <div className="mx-auto w-full max-w-7xl">
-        <h2 className="font-afacad  mb-10 text-center text-3xl font-semibold tracking-tight sm:mb-12 sm:text-4xl lg:text-[2.5rem]">
+        <h2 className="font-afacad text-black mb-10 text-center text-3xl font-semibold tracking-tight sm:mb-12 sm:text-4xl lg:text-[2.5rem]">
           {t("title")}
         </h2>
 
@@ -23,15 +23,15 @@ export default async function WhyUs() {
           {itemKeys.map((key) => (
             <li
               key={key}
-              className="flex items-start gap-3 rounded-2xl border border-brand/10 bg-brand/[0.03] px-5 py-4 sm:gap-4 sm:px-6 sm:py-5"
+              className="flex items-start gap-3 rounded-2xl border border-black bg-brand/[0.03] text-black px-5 py-4 sm:gap-4 sm:px-6 sm:py-5"
             >
               <span
-                className=" mt-0.5 shrink-0 text-lg font-semibold sm:text-xl"
+                className=" mt-0.5 shrink-0 text-lg font-semibold text-black sm:text-xl"
                 aria-hidden
               >
                 ✔
               </span>
-              <span className=" text-[15px] md:text-[18px] leading-relaxed font-medium ">
+              <span className=" text-[15px] md:text-[18px] leading-relaxed font-medium text-black">
                 {t(`items.${key}`)}
               </span>
             </li>
