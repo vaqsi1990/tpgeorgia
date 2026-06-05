@@ -207,9 +207,9 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={name}
-                  className=" flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-brand/10"
+                  className=" flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black"
                 >
-                  <Icon className="h-7 w-7" aria-hidden />
+                  <Icon className="h-7 w-7 text-black" aria-hidden />
                 </a>
               ))}
             </div>

@@ -53,13 +53,13 @@ export default function ExcursionCard({
         </h3>
 
         <dl className="mb-4 grid gap-2 text-[16px]">
-          <div className="flex justify-between gap-3 border-b border-black/5 pb-2">
+          <div className="flex justify-between gap-3 border-b border-black pb-2">
             <dt className="text-black">{t("duration")}</dt>
             <dd className="text-right font-medium text-black">
               {t(`durations.${excursion.durationKey}` as const)}
             </dd>
           </div>
-          <div className="flex justify-between gap-3 border-b border-black/5 pb-2">
+          <div className="flex justify-between gap-3 border-b border-black pb-2">
             <dt className="text-black">{t("type")}</dt>
             <dd className="text-right font-medium text-black">{t("cultural")}</dd>
           </div>
@@ -69,12 +69,12 @@ export default function ExcursionCard({
           </div>
         </dl>
 
-        <p className="text-[16px] text-black">{t("priceNote")}</p>
+       
 
         {isOpen ? (
           <div
             id={`excursion-details-${excursion.id}`}
-            className="excursion-details-open mt-4 space-y-4 border-t border-black/10 pt-4"
+            className="excursion-details-open mt-4 space-y-4 border-t border-black pt-4"
           >
             <div>
               <h4 className="mb-2 text-[16px] font-semibold text-black">
@@ -129,7 +129,7 @@ export default function ExcursionCard({
             if (isOpen) onClose();
             else onOpen();
           }}
-          className={`w-full rounded-xl border border-brand/20 py-2.5 text-[16px] font-medium text-black transition-colors hover:bg-brand/5 ${isOpen ? "mt-4" : stretchCard ? "mt-auto" : "mt-4"}`}
+          className={`w-full rounded-xl cursor-pointer border border-black py-2.5 text-[16px] font-medium text-black transition-colors hover:bg-brand/5 ${isOpen ? "mt-4" : stretchCard ? "mt-auto" : "mt-4"}`}
           aria-expanded={isOpen}
           aria-controls={`excursion-details-${excursion.id}`}
         >
