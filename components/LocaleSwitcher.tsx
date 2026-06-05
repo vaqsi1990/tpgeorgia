@@ -28,7 +28,7 @@ export function LocaleSwitcher({ variant = "default" }: LocaleSwitcherProps) {
 
   const triggerClass =
     variant === "header"
-      ? "text-brand flex h-9 min-w-9 items-center justify-center gap-1 rounded-full border border-brand/20 bg-transparent px-2 transition-colors hover:border-brand/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand/50"
+      ? " flex h-9 min-w-9 items-center justify-center gap-1 rounded-full border border-brand/20 bg-transparent px-2 transition-colors hover:border-brand/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand/50"
       : "flex h-9 items-center gap-1 rounded-md border border-zinc-200 bg-white px-2 transition-colors hover:border-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:border-zinc-500";
 
   const panelClass =
@@ -38,7 +38,7 @@ export function LocaleSwitcher({ variant = "default" }: LocaleSwitcherProps) {
 
   const optionClass =
     variant === "header"
-      ? "text-brand flex w-full items-center justify-center px-3 py-2 transition-colors hover:bg-brand/5"
+      ? " flex w-full items-center justify-center px-3 py-2 transition-colors hover:bg-brand/5"
       : "flex w-full items-center justify-center px-3 py-2 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800";
 
   const activeOptionClass =

@@ -24,6 +24,17 @@
     "next": "下一张",
     "goToSlide": "跳转到第 {number} 张"
   },
+  "WhyUs": {
+    "title": "我们的旅行有何特色？",
+    "items": {
+      "routes": "根据学生年龄专业规划的路线",
+      "guides": "专业持证导游",
+      "students": "绍塔·鲁斯塔维利国立大学旅游学院学生参与",
+      "games": "游览过程中的互动游戏和问答",
+      "program": "适合年龄的课程安排",
+      "organization": "全程组织保障"
+    }
+  },
   "Header": {
     "logoAlt": "TP Georgia",
     "mainNav": "主导航",

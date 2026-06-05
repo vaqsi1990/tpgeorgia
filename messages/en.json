@@ -24,6 +24,17 @@
     "next": "Next slide",
     "goToSlide": "Go to slide {number}"
   },
+  "WhyUs": {
+    "title": "What sets our tours apart?",
+    "items": {
+      "routes": "Professionally planned routes tailored to students' age",
+      "guides": "Professional, certified guides",
+      "students": "Involvement of Shota Rustaveli State University tourism faculty students",
+      "games": "Interactive games and quizzes during excursions",
+      "program": "Age-appropriate program",
+      "organization": "Full organizational support"
+    }
+  },
   "Header": {
     "logoAlt": "TP Georgia",
     "mainNav": "Main navigation",

@@ -45,7 +45,7 @@ function IconButton({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className={`text-brand flex h-9 w-12 items-center justify-center rounded-full transition-colors hover:bg-brand/10 ${className}`}
+      className={` flex h-9 w-12 items-center justify-center rounded-full transition-colors hover:bg-brand/10 ${className}`}
     >
       {children}
     </button>
@@ -105,7 +105,7 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={name}
-                  className="text-brand flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-brand/10"
+                  className=" flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-brand/10"
                 >
                   <Icon className="h-8 w-8" aria-hidden />
                 </a>
@@ -123,7 +123,7 @@ export default function Header() {
             >
               <svg
                 viewBox="0 0 24 24"
-                className="text-brand h-[22px] w-[22px]"
+                className=" h-[22px] w-[22px]"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -170,7 +170,7 @@ export default function Header() {
           >
             <svg
               viewBox="0 0 24 24"
-              className="text-brand h-[22px] w-[22px]"
+              className=" h-[22px] w-[22px]"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -190,7 +190,7 @@ export default function Header() {
               key={item.key}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className="text-brand rounded-lg px-3 py-3 text-[15px] font-medium transition-colors hover:bg-brand/5"
+              className=" rounded-lg px-3 py-3 text-[15px] font-medium transition-colors hover:bg-brand/5"
             >
               {t(`nav.${item.key}`)}
             </Link>
@@ -207,7 +207,7 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={name}
-                  className="text-brand flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-brand/10"
+                  className=" flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-brand/10"
                 >
                   <Icon className="h-7 w-7" aria-hidden />
                 </a>
