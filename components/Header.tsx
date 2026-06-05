@@ -45,7 +45,7 @@ function IconButton({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className={` flex h-9 w-12 items-center justify-center rounded-full transition-colors hover:bg-brand/10 ${className}`}
+      className={` flex h-9 w-12 text-black items-center justify-center rounded-full transition-colors hover:bg-brand/10 ${className}`}
     >
       {children}
     </button>
@@ -190,14 +190,14 @@ export default function Header() {
               key={item.key}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className=" rounded-lg px-3 py-3 text-[15px] font-medium transition-colors hover:bg-brand/5"
+              className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
             >
               {t(`nav.${item.key}`)}
             </Link>
           ))}
         </nav>
 
-        <div className="border-t border-brand/10 px-5 py-5">
+        <div className="border-t border-black px-5 py-5">
           <div className="flex items-center justify-between gap-4">
             <div className="flex gap-1">
               {socialLinks.map(({ name, href, Icon }) => (
