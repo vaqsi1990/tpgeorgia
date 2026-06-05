@@ -71,7 +71,7 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="absolute top-0 right-0 left-0 z-50 w-full px-4 pt-4 sm:px-6 sm:pt-5 lg:px-10 lg:pt-6">
+    <header className="fixed top-0 right-0 left-0 z-50 w-full px-4 pt-4 sm:px-6 sm:pt-5 lg:px-10 lg:pt-6">
       <div className="mx-auto w-full max-w-7xl overflow-visible rounded-[2.5rem] bg-white/95 shadow-[0_8px_32px_rgba(15,79,79,0.12)] backdrop-blur-sm">
         <div className="flex items-center justify-between gap-4 px-5 py-3.5 sm:px-8 sm:py-4 lg:px-10">
          
