@@ -151,17 +151,8 @@ export default function GalleryContent({ images }: GalleryContentProps) {
     >
       {(open) => (
         <div className="lg:grid lg:grid-cols-[minmax(240px,300px)_1fr] lg:items-start lg:gap-10 xl:gap-14">
-          <aside className="mb-10 lg:sticky lg:top-36 lg:mb-0 lg:self-start">
-            <nav
-              aria-label={t("breadcrumb.label")}
-              className="mb-6 flex flex-wrap items-center gap-2 text-[13px] text-black/55 sm:text-[14px]"
-            >
-              <Link href="/" className="transition-colors hover:text-brand">
-                {tHeader("nav.home")}
-              </Link>
-              <span aria-hidden>/</span>
-              <span className="text-black">{tHeader("nav.gallery")}</span>
-            </nav>
+          <aside className="mb-10 lg:sticky lg:top-60 lg:mb-0 lg:self-start">
+          
 
           
             
@@ -175,7 +166,7 @@ export default function GalleryContent({ images }: GalleryContentProps) {
               </footer>
             </blockquote>
 
-            <p className="font-figtree text-[13px] text-black/45">{t("hero.hint")}</p>
+            <p className="font-figtree text-[15px] text-black/45">{t("hero.hint")}</p>
 
             <div className="mt-8 hidden gap-2 lg:grid lg:grid-cols-3">
               {images.slice(0, 3).map((image, index) => (

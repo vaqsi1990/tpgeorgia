@@ -3,15 +3,21 @@
 import ExcursionCard from "@/components/ExcursionCard";
 import { getExcursionContent } from "@/data/excursion-content";
 import { excursionMeta, type ExcursionId } from "@/data/excursions";
+import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-const INITIAL_VISIBLE = 6;
+type ExcursionsListProps = {
+  limit?: number;
+  showAllLink?: boolean;
+};
 
-export default function ExcursionsList() {
+export default function ExcursionsList({
+  limit,
+  showAllLink = false,
+}: ExcursionsListProps = {}) {
   const t = useTranslations("Excursions");
   const locale = useLocale();
-  const [showAll, setShowAll] = useState(false);
   const [openId, setOpenId] = useState<ExcursionId | null>(null);
   const [isReady, setIsReady] = useState(false);
 
@@ -28,8 +34,10 @@ export default function ExcursionsList() {
     [locale],
   );
 
-  const visibleItems = showAll ? items : items.slice(0, INITIAL_VISIBLE);
-  const hiddenCount = items.length - INITIAL_VISIBLE;
+  const visibleItems =
+    limit !== undefined ? items.slice(0, limit) : items;
+  const hiddenCount =
+    limit !== undefined ? Math.max(0, items.length - limit) : 0;
 
   const handleOpen = useCallback((id: ExcursionId) => {
     setOpenId(id);
@@ -62,19 +70,14 @@ export default function ExcursionsList() {
         ))}
       </div>
 
-      {hiddenCount > 0 && (
+      {hiddenCount > 0 && showAllLink && (
         <div className="mt-10 flex justify-center">
-          <button
-            type="button"
-            onClick={() => {
-              setShowAll((open) => !open);
-              setOpenId(null);
-            }}
-            className="cursor-pointer rounded-xl border border-black/20 bg-white px-8 py-3 text-[15px] font-medium text-black shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-colors hover:bg-brand/5 md:text-[20px]"
-            aria-expanded={showAll}
+          <Link
+            href="/excursions"
+            className="rounded-xl border border-black/20 bg-white px-8 py-3 text-[15px] font-medium text-black shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-colors hover:bg-brand/5 md:text-[20px]"
           >
-            {showAll ? t("showLessCatalog") : t("showMoreCatalog")}
-          </button>
+            {t("showMoreCatalog")}
+          </Link>
         </div>
       )}
     </>

@@ -36,7 +36,7 @@ export default function ExcursionCard({
         stretchCard && !isOpen ? "h-full" : ""
       }`}
     >
-      <div className="bg-brand flex shrink-0 items-center justify-between rounded-t-2xl px-5 py-3 sm:px-6">
+      <div className="bg-[#38ab8a] flex shrink-0 items-center justify-between rounded-t-2xl px-5 py-3 sm:px-6">
         <span className="font-afacad text-lg font-semibold text-white/90">
           {String(index + 1).padStart(2, "0")}
         </span>

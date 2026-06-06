@@ -19,7 +19,7 @@ export default async function Excursions() {
           </p>
         </div>
 
-        <ExcursionsList />
+        <ExcursionsList limit={6} showAllLink />
       </div>
     </section>
   );
