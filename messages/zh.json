@@ -64,6 +64,65 @@
       "organization": "全程组织保障"
     }
   },
+  "About": {
+    "metadata": {
+      "title": "关于我们 | TP Georgia",
+      "description": "TP Georgia — 您在格鲁吉亚值得信赖的难忘旅行与体验服务提供商。"
+    },
+    "hero": {
+      "title": "欢迎来到格鲁吉亚",
+      "tagline": "真实情感 • 卓越地点 • 难忘回忆"
+    },
+    "intro": {
+      "sectionTitle": "关于我们",
+      "subtitle": "您值得信赖的难忘旅行与体验服务提供商",
+      "description": "凭借在旅游业超过 12 年的经验，我们打造的旅程将向您展示真实的格鲁吉亚——真实、令人震撼，并以自身的伟大而与众不同。"
+    },
+    "whyUs": {
+      "title": "为什么选择我们？",
+      "localExperience": {
+        "title": "本地体验",
+        "description": "我们热爱格鲁吉亚，也希望与您分享这份热爱。因此，我们提供的地点与体验，在常规旅游项目中难得一见。通过美丽的自然、丰富的文化、悠久的传统和真挚的好客之道，发现格鲁吉亚。我们的目标不仅是带您参观著名景点，还要带您走进那些常常游离于常规旅游路线之外的地点。家庭酒窖、本地工坊、烹饪体验课、山村、悠久传统与原汁原味的体验，让您有机会亲眼看见并亲身感受真正的格鲁吉亚文化、日常生活，以及那份让格鲁吉亚成为独特国家的待客之道。我们打造的旅程，帮助您更深入地了解我们的国家、文化与人民。"
+      },
+      "qualityService": {
+        "title": "优质服务",
+        "description": "舒适交通、专业导游、可靠组织，以及对每位客人的个性化关怀。"
+      },
+      "tailoredTravel": {
+        "title": "为您量身定制的旅行",
+        "description": "个人或团体游、家庭度假、学校游学、企业出行——我们将帮助您打造最适合您的行程。"
+      }
+    }
+  },
+  "Gallery": {
+    "metadata": {
+      "title": "画廊 | TP Georgia",
+      "description": "浏览我们在格鲁吉亚之旅和游学中的照片——难忘的时刻与美丽的目的地。"
+    },
+    "breadcrumb": {
+      "label": "面包屑导航"
+    },
+    "hero": {
+      "title": "画廊",
+      "subtitle": "一次穿越我们之旅与学游的视觉旅程——来自格鲁吉亚各地的真实瞬间。",
+      "photoCount": "{count} 张照片",
+      "hint": "点击任意图片查看大图"
+    },
+    "aside": {
+      "quote": "格鲁吉亚不仅是一个目的地——它是一种你带回家的心情。",
+      "attribution": "TP Georgia"
+    },
+    "grid": {
+      "label": "照片画廊"
+    },
+    "imageAlt": "格鲁吉亚旅行照片 {number}",
+    "lightbox": {
+      "close": "关闭",
+      "prev": "上一张",
+      "next": "下一张",
+      "counter": "{current} / {total}"
+    }
+  },
   "Header": {
     "logoAlt": "TP Georgia",
     "mainNav": "主导航",
@@ -76,6 +135,13 @@
       "pages": "页面",
       "destinations": "目的地",
       "tours": "旅游",
+      "toursDropdown": {
+        "batumi": "巴统",
+        "tbilisi": "第比利斯",
+        "kutaisi": "库塔伊西"
+      },
+      "gallery": "画廊",
+      "schoolExcursions": "学校游学",
       "blogs": "博客",
       "contact": "联系我们"
     }

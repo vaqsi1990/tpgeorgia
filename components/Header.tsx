@@ -13,12 +13,23 @@ import { FaFacebook, FaWhatsapp } from "react-icons/fa";
 const navItems = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
-  { key: "tours", href: "/tours" },
+  { key: "gallery", href: "/gallery" },
+  { key: "schoolExcursions", href: "/excursions" },
+
   { key: "contact", href: "/contact" },
+] as const;
+
+const tourDestinations = [
+  { key: "batumi", href: "/tours/batumi" },
+  { key: "tbilisi", href: "/tours/tbilisi" },
+  { key: "kutaisi", href: "/tours/kutaisi" },
 ] as const;
 
 const navLinkClass =
   "text-black whitespace-nowrap font-figtree text-[15px] md:text-[18px] font-medium transition-opacity hover:opacity-70";
+
+const dropdownItemClass =
+  "block rounded-lg px-4 py-2.5 text-[15px] font-medium text-black transition-colors hover:bg-brand/5 md:text-[16px]";
 
 const socialLinks: {
   name: string;
@@ -55,6 +66,7 @@ function IconButton({
 export default function Header() {
   const t = useTranslations("Header");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileToursOpen, setMobileToursOpen] = useState(false);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -76,16 +88,7 @@ export default function Header() {
         <div className="flex items-center justify-between gap-4 px-5 py-3.5 sm:px-8 sm:py-4 lg:px-10">
          
 
-          <nav
-            className="hidden shrink-0 items-center gap-4 lg:flex lg:gap-5 xl:gap-6"
-            aria-label={t("mainNav")}
-          >
-            {navItems.map((item) => (
-              <Link key={item.key} href={item.href} className={navLinkClass}>
-                {t(`nav.${item.key}`)}
-              </Link>
-            ))}
-          </nav>
+       
           <Link href="/" className="shrink-0">
             <Image
               src="/images/logo.png"
@@ -96,6 +99,67 @@ export default function Header() {
               priority
             />
           </Link>
+          <nav
+            className="hidden shrink-0 items-center gap-4 lg:flex lg:gap-5 xl:gap-6"
+            aria-label={t("mainNav")}
+          >
+            <Link href="/" className={navLinkClass}>
+              {t("nav.home")}
+            </Link>
+            <Link href="/about" className={navLinkClass}>
+              {t("nav.about")}
+            </Link>
+
+            <div className="group relative flex items-center gap-0.5">
+              <Link href="/tours" className={navLinkClass}>
+                {t("nav.tours")}
+              </Link>
+              <button
+                type="button"
+                className="flex items-center rounded p-0.5 transition-opacity hover:opacity-70"
+                aria-haspopup="true"
+                aria-expanded={false}
+                aria-label={t("nav.tours")}
+              >
+                <svg
+                  viewBox="0 0 20 20"
+                  className="h-4 w-4 transition-transform group-hover:rotate-180"
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              <div className="invisible absolute top-full left-1/2 z-50 min-w-[11rem] -translate-x-1/2 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div className="overflow-hidden rounded-xl border border-black/10 bg-white py-1 shadow-[0_8px_32px_rgba(15,79,79,0.12)]">
+                  {tourDestinations.map((item) => (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      className={dropdownItemClass}
+                    >
+                      {t(
+                        `nav.toursDropdown.${item.key}` as
+                          | "nav.toursDropdown.batumi"
+                          | "nav.toursDropdown.tbilisi"
+                          | "nav.toursDropdown.kutaisi",
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {navItems.slice(2).map((item) => (
+              <Link key={item.key} href={item.href} className={navLinkClass}>
+                {t(`nav.${item.key}`)}
+              </Link>
+            ))}
+          </nav>
           <div className="flex items-center gap-1 sm:gap-2">
             <div className="hidden items-center gap-0.5 lg:flex">
               {socialLinks.map(({ name, href, Icon }) => (
@@ -185,7 +249,76 @@ export default function Header() {
           className="flex flex-1 flex-col gap-1 overflow-y-auto px-5 py-4"
           aria-label={t("mainNav")}
         >
-          {navItems.map((item) => (
+          <Link
+            href="/"
+            onClick={() => setMobileOpen(false)}
+            className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+          >
+            {t("nav.home")}
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setMobileOpen(false)}
+            className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+          >
+            {t("nav.about")}
+          </Link>
+
+          <div>
+            <div className="flex items-center rounded-lg transition-colors hover:bg-brand/5">
+              <Link
+                href="/tours"
+                onClick={() => setMobileOpen(false)}
+                className="flex-1 rounded-lg px-3 py-3 text-[15px] font-medium text-black"
+              >
+                {t("nav.tours")}
+              </Link>
+              <button
+                type="button"
+                onClick={() => setMobileToursOpen((open) => !open)}
+                className="rounded-lg px-3 py-3"
+                aria-expanded={mobileToursOpen}
+                aria-label={t("nav.tours")}
+              >
+                <svg
+                  viewBox="0 0 20 20"
+                  className={`h-4 w-4 transition-transform ${mobileToursOpen ? "rotate-180" : ""}`}
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            {mobileToursOpen ? (
+              <div className="ml-3 flex flex-col gap-0.5 border-l border-black/10 pl-3">
+                {tourDestinations.map((item) => (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileToursOpen(false);
+                    }}
+                    className="rounded-lg px-3 py-2.5 text-[15px] font-medium text-black/80 transition-colors hover:bg-brand/5"
+                  >
+                    {t(
+                      `nav.toursDropdown.${item.key}` as
+                        | "nav.toursDropdown.batumi"
+                        | "nav.toursDropdown.tbilisi"
+                        | "nav.toursDropdown.kutaisi",
+                    )}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+          {navItems.slice(2).map((item) => (
             <Link
               key={item.key}
               href={item.href}

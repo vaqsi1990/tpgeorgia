@@ -43,3 +43,83 @@ body {
   animation: excursion-details-open 0.3s ease-out forwards;
   overflow: hidden;
 }
+
+@keyframes gallery-float-a {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-2deg);
+  }
+}
+
+@keyframes gallery-float-b {
+  0%,
+  100% {
+    transform: translateY(0) rotate(3deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(3deg);
+  }
+}
+
+@keyframes gallery-float-c {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes gallery-scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@keyframes gallery-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.gallery-float-a {
+  animation: gallery-float-a 5s ease-in-out infinite;
+}
+
+.gallery-float-b {
+  animation: gallery-float-b 6s ease-in-out infinite;
+}
+
+.gallery-float-c {
+  animation: gallery-float-c 4.5s ease-in-out infinite;
+}
+
+.gallery-scroll-hint {
+  animation: gallery-scroll-hint 2s ease-in-out infinite;
+}
+
+.gallery-marquee-track {
+  animation: gallery-marquee 40s linear infinite;
+}
+
+.gallery-scroll-x {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.gallery-scroll-x::-webkit-scrollbar {
+  display: none;
+}

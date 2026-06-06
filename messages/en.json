@@ -64,6 +64,65 @@
       "organization": "Full organizational support"
     }
   },
+  "About": {
+    "metadata": {
+      "title": "About Us | TP Georgia",
+      "description": "TP Georgia — your trusted provider of unforgettable journeys and experiences in Georgia."
+    },
+    "hero": {
+      "title": "Welcome to Georgia",
+      "tagline": "Real emotions • Outstanding places • Unforgettable memories"
+    },
+    "intro": {
+      "sectionTitle": "About Us",
+      "subtitle": "Your trusted provider of unforgettable journeys and experiences",
+      "description": "With more than 12 years of experience in tourism, we create journeys that show you Georgia as it truly is — authentic, impressive, and distinguished by its greatness."
+    },
+    "whyUs": {
+      "title": "Why Us?",
+      "localExperience": {
+        "title": "Local Experience",
+        "description": "We love Georgia and want to share that love with you. That is why we offer places and experiences you will rarely find in typical tourist programs. Discover Georgia through its beautiful nature, rich culture, centuries-old traditions, and heartfelt hospitality. Our goal is to show you not only famous landmarks, but also the places that often remain beyond standard tourist routes. Family maranis, local workshops, culinary master classes, mountain villages, centuries-old traditions, and authentic experiences give you the chance to see and personally feel real Georgian culture, everyday life, and the unique hospitality that makes Georgia a special country. We create journeys that help you get to know our country, its culture, and its people more deeply."
+      },
+      "qualityService": {
+        "title": "Quality Service",
+        "description": "Comfortable transport, professional guides, reliable organization, and an individual approach to every guest."
+      },
+      "tailoredTravel": {
+        "title": "Travel Tailored to You",
+        "description": "Individual or group tours, family vacations, school excursions, corporate trips — we will help you create the best program for you."
+      }
+    }
+  },
+  "Gallery": {
+    "metadata": {
+      "title": "Gallery | TP Georgia",
+      "description": "Browse photos from our tours and excursions across Georgia — memorable moments and beautiful destinations."
+    },
+    "breadcrumb": {
+      "label": "Breadcrumb"
+    },
+    "hero": {
+      "title": "Gallery",
+      "subtitle": "A visual journey through our tours and school excursions — real moments from across Georgia.",
+      "photoCount": "{count} photos",
+      "hint": "Click any image to view full size"
+    },
+    "aside": {
+      "quote": "Georgia is not just a destination — it is a feeling you carry home.",
+      "attribution": "TP Georgia"
+    },
+    "grid": {
+      "label": "Photo gallery"
+    },
+    "imageAlt": "Georgia travel photo {number}",
+    "lightbox": {
+      "close": "Close",
+      "prev": "Previous image",
+      "next": "Next image",
+      "counter": "{current} / {total}"
+    }
+  },
   "Header": {
     "logoAlt": "TP Georgia",
     "mainNav": "Main navigation",
@@ -76,6 +135,13 @@
       "pages": "Pages",
       "destinations": "Destinations",
       "tours": "Tours",
+      "toursDropdown": {
+        "batumi": "Batumi",
+        "tbilisi": "Tbilisi",
+        "kutaisi": "Kutaisi"
+      },
+      "gallery": "Gallery",
+      "schoolExcursions": "School Excursions",
       "blogs": "Blogs",
       "contact": "Contact"
     }
