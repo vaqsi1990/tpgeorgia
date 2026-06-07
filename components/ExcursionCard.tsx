@@ -40,7 +40,7 @@ export default function ExcursionCard({
         <span className="font-afacad text-lg font-semibold text-white/90">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="rounded-full bg-white/15 px-3 py-1 text-[16px] font-medium text-white">
+        <span className="rounded-full bg-white/15 px-3 py-1 text-[16px] md:text-[18px] font-medium text-white">
           {excursion.grades} {t("grade")}
         </span>
       </div>
@@ -52,7 +52,7 @@ export default function ExcursionCard({
           {content.title}
         </h3>
 
-        <dl className="mb-4 grid gap-2 text-[16px]">
+        <dl className="mb-4 grid gap-2 text-[16px] md:text-[18px]">
           <div className="flex justify-between gap-3 border-b border-black pb-2">
             <dt className="text-black">{t("duration")}</dt>
             <dd className="text-right font-medium text-black">
@@ -84,11 +84,12 @@ export default function ExcursionCard({
                 {content.highlights.map((item, i) => (
                   <li
                     key={`${excursion.id}-highlight-${i}`}
-                    className="flex items-start gap-2 text-[16px] text-black"
+                    className="flex items-start gap-2 text-[16px] md:text-[18px] text-black"
                   >
-                    <span className="mt-0.5 shrink-0" aria-hidden>
-                      📍
-                    </span>
+                    <span
+                      className="mt-2.5 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-white"
+                      aria-hidden
+                    />
                     {item}
                   </li>
                 ))}
@@ -129,7 +130,7 @@ export default function ExcursionCard({
             if (isOpen) onClose();
             else onOpen();
           }}
-          className={`w-full rounded-xl cursor-pointer border border-black py-2.5 text-[16px] font-medium text-black transition-colors hover:bg-brand/5 ${isOpen ? "mt-4" : stretchCard ? "mt-auto" : "mt-4"}`}
+          className={`w-full rounded-xl cursor-pointer border border-black py-2.5 text-[16px] md:text-[18px] font-medium text-black transition-colors hover:bg-brand/5 ${isOpen ? "mt-4" : stretchCard ? "mt-auto" : "mt-4"}`}
           aria-expanded={isOpen}
           aria-controls={`excursion-details-${excursion.id}`}
         >

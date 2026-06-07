@@ -23,7 +23,7 @@ export default async function WhyUs() {
           {itemKeys.map((key) => (
             <li
               key={key}
-              className="flex items-start gap-3 rounded-2xl border border-black bg-brand/[0.03] text-black px-5 py-4 sm:gap-4 sm:px-6 sm:py-5"
+              className="flex items-start gap-3 rounded-2xl border border-2 border-[#38ab8a] text-black px-5 py-4 sm:gap-4 sm:px-6 sm:py-5"
             >
               <span
                 className=" mt-0.5 shrink-0 text-lg font-semibold text-black sm:text-xl"
