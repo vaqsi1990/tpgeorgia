@@ -83,12 +83,9 @@
       "longDay": "მთელი დღე",
       "multiDay": "მრავალდღიანი"
     },
-    "filterPriceOptions": {
-      "under150": "150 ₾-მდე",
-      "mid": "150–250 ₾",
-      "over250": "250+ ₾",
-      "onRequest": "მოთხოვნით"
-    },
+    "filterPriceMin": "მინიმუმი",
+    "filterPriceMax": "მაქსიმუმი",
+    "filterPriceHint": "ფასის დიაპაზონი: {min}–{max} ₾",
     "noResults": "თქვენი ფილტრებით ტური ვერ მოიძებნა. სცადეთ სხვა პარამეტრები.",
     "destinations": {
       "batumi": {

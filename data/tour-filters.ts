@@ -3,27 +3,34 @@ import {
   toursByDestination,
   type TourDestination,
 } from "@/data/tour-destinations";
-import type { TourDurationKey, TourId, TourMeta } from "@/data/tours";
+import { tourMeta, type TourDurationKey, type TourId, type TourMeta } from "@/data/tours";
 
 export type TourDestinationFilter = TourDestination | "all";
 export type TourDurationFilter = "all" | "short" | "longDay" | "multiDay";
-export type TourPriceFilter =
-  | "all"
-  | "under150"
-  | "mid"
-  | "over250"
-  | "onRequest";
 
 export type TourFilters = {
   destination: TourDestinationFilter;
   duration: TourDurationFilter;
-  price: TourPriceFilter;
+  priceMin: number | null;
+  priceMax: number | null;
 };
 
 export const defaultTourFilters: TourFilters = {
   destination: "all",
   duration: "all",
-  price: "all",
+  priceMin: null,
+  priceMax: null,
+};
+
+const pricedTours = tourMeta.filter((tour) => tour.priceFrom > 0);
+
+export const tourPriceBounds = {
+  min: pricedTours.length
+    ? Math.min(...pricedTours.map((tour) => tour.priceFrom))
+    : 0,
+  max: pricedTours.length
+    ? Math.max(...pricedTours.map((tour) => tour.priceFrom))
+    : 0,
 };
 
 const shortDurations = new Set<TourDurationKey>([
@@ -53,6 +60,30 @@ export function getTourDestination(id: TourId): TourDestination | null {
   return tourDestinationById.get(id) ?? null;
 }
 
+function matchesPriceRange(
+  tour: TourMeta,
+  priceMin: number | null,
+  priceMax: number | null,
+): boolean {
+  if (priceMin === null && priceMax === null) {
+    return true;
+  }
+
+  if (tour.priceFrom === 0) {
+    return false;
+  }
+
+  if (priceMin !== null && tour.priceFrom < priceMin) {
+    return false;
+  }
+
+  if (priceMax !== null && tour.priceFrom > priceMax) {
+    return false;
+  }
+
+  return true;
+}
+
 export function matchesTourFilters(
   tour: TourMeta,
   filters: TourFilters,
@@ -77,22 +108,8 @@ export function matchesTourFilters(
     }
   }
 
-  if (filters.price !== "all") {
-    if (filters.price === "onRequest" && tour.priceFrom !== 0) {
-      return false;
-    }
-    if (filters.price === "under150" && (tour.priceFrom === 0 || tour.priceFrom >= 150)) {
-      return false;
-    }
-    if (
-      filters.price === "mid" &&
-      (tour.priceFrom < 150 || tour.priceFrom > 250)
-    ) {
-      return false;
-    }
-    if (filters.price === "over250" && tour.priceFrom <= 250) {
-      return false;
-    }
+  if (!matchesPriceRange(tour, filters.priceMin, filters.priceMax)) {
+    return false;
   }
 
   return true;
@@ -102,6 +119,7 @@ export function hasActiveFilters(filters: TourFilters): boolean {
   return (
     filters.destination !== "all" ||
     filters.duration !== "all" ||
-    filters.price !== "all"
+    filters.priceMin !== null ||
+    filters.priceMax !== null
   );
 }

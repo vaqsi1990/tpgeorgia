@@ -83,12 +83,9 @@
       "longDay": "全天",
       "multiDay": "多日游"
     },
-    "filterPriceOptions": {
-      "under150": "150 拉里以内",
-      "mid": "150–250 拉里",
-      "over250": "250 拉里以上",
-      "onRequest": "面议"
-    },
+    "filterPriceMin": "最低价",
+    "filterPriceMax": "最高价",
+    "filterPriceHint": "价格范围：{min}–{max} 拉里",
     "noResults": "没有符合筛选条件的旅游，请尝试调整条件。",
     "destinations": {
       "batumi": {

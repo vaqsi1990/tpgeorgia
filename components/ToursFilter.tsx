@@ -4,9 +4,9 @@ import { tourDestinationIds } from "@/data/tour-destinations";
 import {
   defaultTourFilters,
   hasActiveFilters,
+  tourPriceBounds,
   type TourDurationFilter,
   type TourFilters,
-  type TourPriceFilter,
 } from "@/data/tour-filters";
 import { useTranslations } from "next-intl";
 
@@ -22,6 +22,9 @@ const optionClass = (isActive: boolean) =>
       : "border-black/10 bg-white text-black hover:border-[#38ab8a]/40 hover:bg-brand/5"
   }`;
 
+const inputClass =
+  "w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-[14px] text-black outline-none transition-colors placeholder:text-black/40 focus:border-[#38ab8a] md:text-[15px]";
+
 function FilterGroup({
   label,
   children,
@@ -34,9 +37,22 @@ function FilterGroup({
       <h3 className="text-[14px] font-semibold text-black md:text-[15px]">
         {label}
       </h3>
-      <div className="flex flex-col gap-2">{children}</div>
+      {children}
     </div>
   );
+}
+
+function parsePriceInput(value: string): number | null {
+  if (value.trim() === "") {
+    return null;
+  }
+
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    return null;
+  }
+
+  return Math.round(parsed);
 }
 
 export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
@@ -51,8 +67,12 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
     onChange({ ...filters, duration });
   };
 
-  const setPrice = (price: TourPriceFilter) => {
-    onChange({ ...filters, price });
+  const setPriceMin = (value: string) => {
+    onChange({ ...filters, priceMin: parsePriceInput(value) });
+  };
+
+  const setPriceMax = (value: string) => {
+    onChange({ ...filters, priceMax: parsePriceInput(value) });
   };
 
   const durationOptions: TourDurationFilter[] = [
@@ -60,14 +80,6 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
     "short",
     "longDay",
     "multiDay",
-  ];
-
-  const priceOptions: TourPriceFilter[] = [
-    "all",
-    "under150",
-    "mid",
-    "over250",
-    "onRequest",
   ];
 
   return (
@@ -91,59 +103,97 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
       </div>
 
       <div className="space-y-5">
+        <FilterGroup label={t("filterPrice")}>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label
+                htmlFor="tour-price-min"
+                className="mb-1.5 block text-[13px] text-black/70"
+              >
+                {t("filterPriceMin")}
+              </label>
+              <input
+                id="tour-price-min"
+                type="number"
+                min={0}
+                max={tourPriceBounds.max}
+                step={1}
+                value={filters.priceMin ?? ""}
+                onChange={(e) => setPriceMin(e.target.value)}
+                placeholder={String(tourPriceBounds.min)}
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="tour-price-max"
+                className="mb-1.5 block text-[13px] text-black/70"
+              >
+                {t("filterPriceMax")}
+              </label>
+              <input
+                id="tour-price-max"
+                type="number"
+                min={0}
+                max={tourPriceBounds.max}
+                step={1}
+                value={filters.priceMax ?? ""}
+                onChange={(e) => setPriceMax(e.target.value)}
+                placeholder={String(tourPriceBounds.max)}
+                className={inputClass}
+              />
+            </div>
+          </div>
+          <p className="text-[12px] leading-relaxed text-black/55 md:text-[13px]">
+            {t("filterPriceHint", {
+              min: tourPriceBounds.min,
+              max: tourPriceBounds.max,
+            })}
+          </p>
+        </FilterGroup>
+
         <FilterGroup label={t("filterCity")}>
-          <button
-            type="button"
-            onClick={() => setDestination("all")}
-            className={optionClass(filters.destination === "all")}
-          >
-            {t("filterAll")}
-          </button>
-          {tourDestinationIds.map((destination) => (
+          <div className="flex flex-col gap-2">
             <button
-              key={destination}
               type="button"
-              onClick={() => setDestination(destination)}
-              className={optionClass(filters.destination === destination)}
+              onClick={() => setDestination("all")}
+              className={optionClass(filters.destination === "all")}
             >
-              {tHeader(
-                `nav.toursDropdown.${destination}` as
-                  | "nav.toursDropdown.batumi"
-                  | "nav.toursDropdown.tbilisi"
-                  | "nav.toursDropdown.kutaisi",
-              )}
+              {t("filterAll")}
             </button>
-          ))}
+            {tourDestinationIds.map((destination) => (
+              <button
+                key={destination}
+                type="button"
+                onClick={() => setDestination(destination)}
+                className={optionClass(filters.destination === destination)}
+              >
+                {tHeader(
+                  `nav.toursDropdown.${destination}` as
+                    | "nav.toursDropdown.batumi"
+                    | "nav.toursDropdown.tbilisi"
+                    | "nav.toursDropdown.kutaisi",
+                )}
+              </button>
+            ))}
+          </div>
         </FilterGroup>
 
         <FilterGroup label={t("filterDuration")}>
-          {durationOptions.map((duration) => (
-            <button
-              key={duration}
-              type="button"
-              onClick={() => setDuration(duration)}
-              className={optionClass(filters.duration === duration)}
-            >
-              {duration === "all"
-                ? t("filterAll")
-                : t(`filterDurationOptions.${duration}`)}
-            </button>
-          ))}
-        </FilterGroup>
-
-        <FilterGroup label={t("filterPrice")}>
-          {priceOptions.map((price) => (
-            <button
-              key={price}
-              type="button"
-              onClick={() => setPrice(price)}
-              className={optionClass(filters.price === price)}
-            >
-              {price === "all"
-                ? t("filterAll")
-                : t(`filterPriceOptions.${price}`)}
-            </button>
-          ))}
+          <div className="flex flex-col gap-2">
+            {durationOptions.map((duration) => (
+              <button
+                key={duration}
+                type="button"
+                onClick={() => setDuration(duration)}
+                className={optionClass(filters.duration === duration)}
+              >
+                {duration === "all"
+                  ? t("filterAll")
+                  : t(`filterDurationOptions.${duration}`)}
+              </button>
+            ))}
+          </div>
         </FilterGroup>
       </div>
     </aside>

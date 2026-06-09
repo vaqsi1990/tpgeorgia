@@ -83,12 +83,9 @@
       "longDay": "Полный день",
       "multiDay": "Многодневные"
     },
-    "filterPriceOptions": {
-      "under150": "До 150 лари",
-      "mid": "150–250 лари",
-      "over250": "250+ лари",
-      "onRequest": "По запросу"
-    },
+    "filterPriceMin": "Минимум",
+    "filterPriceMax": "Максимум",
+    "filterPriceHint": "Диапазон цен: {min}–{max} лари",
     "noResults": "По вашим фильтрам туры не найдены. Попробуйте изменить параметры.",
     "destinations": {
       "batumi": {

@@ -83,12 +83,9 @@
       "longDay": "Full day",
       "multiDay": "Multi-day"
     },
-    "filterPriceOptions": {
-      "under150": "Up to 150 GEL",
-      "mid": "150–250 GEL",
-      "over250": "250+ GEL",
-      "onRequest": "On request"
-    },
+    "filterPriceMin": "Minimum",
+    "filterPriceMax": "Maximum",
+    "filterPriceHint": "Price range: {min}–{max} GEL",
     "noResults": "No tours match your filters. Try changing the criteria.",
     "destinations": {
       "batumi": {
