@@ -32,10 +32,19 @@ export default function ExcursionCard({
 
   return (
     <article
-      className={`flex w-full flex-col rounded-2xl border border-black/10 bg-white shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow] hover:shadow-[0_8px_32px_rgba(15,79,79,0.1)] ${
+      className={`relative flex w-full flex-col rounded-2xl border border-black/10 bg-white shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow] hover:shadow-[0_8px_32px_rgba(15,79,79,0.1)] ${
         stretchCard && !isOpen ? "h-full" : ""
       }`}
     >
+      {excursion.popular ? (
+        <span
+          className="absolute -right-1.5 -top-4 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:size-11 sm:text-[10px]"
+          aria-label={t("popularBadge")}
+        >
+          {t("popularBadge")}
+        </span>
+      ) : null}
+
       <div className="bg-[#38ab8a] flex shrink-0 items-center justify-between rounded-t-2xl px-5 py-3 sm:px-6">
         <span className="font-afacad text-lg font-semibold text-white/90">
           {String(index + 1).padStart(2, "0")}

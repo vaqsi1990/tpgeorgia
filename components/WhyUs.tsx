@@ -1,3 +1,6 @@
+import ParallaxSection from "@/components/ParallaxSection";
+import SectionHeader from "@/components/SectionHeader";
+import WhyUsGrid from "@/components/WhyUsGrid";
 import { getTranslations } from "next-intl/server";
 
 const itemKeys = [
@@ -11,33 +14,20 @@ const itemKeys = [
 
 export default async function WhyUs() {
   const t = await getTranslations("WhyUs");
+  const items = itemKeys.map((key) => ({
+    key,
+    text: t(`items.${key}`),
+  }));
 
   return (
-    <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+    <ParallaxSection
+      tone="mint"
+      className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24"
+    >
       <div className="mx-auto w-full max-w-7xl">
-        <h2 className="font-afacad text-black mb-10 text-center text-3xl font-semibold tracking-tight sm:mb-12 sm:text-4xl lg:text-[2.5rem]">
-          {t("title")}
-        </h2>
-
-        <ul className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
-          {itemKeys.map((key) => (
-            <li
-              key={key}
-              className="flex items-start gap-3 rounded-2xl border border-2 border-[#38ab8a] text-black px-5 py-4 sm:gap-4 sm:px-6 sm:py-5"
-            >
-              <span
-                className=" mt-0.5 shrink-0 text-lg font-semibold text-black sm:text-xl"
-                aria-hidden
-              >
-                ✔
-              </span>
-              <span className=" text-[15px] md:text-[18px] leading-relaxed font-medium text-black">
-                {t(`items.${key}`)}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <SectionHeader title={t("title")} />
+        <WhyUsGrid items={items} />
       </div>
-    </section>
+    </ParallaxSection>
   );
 }

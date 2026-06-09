@@ -42,6 +42,29 @@
     "showLess": "Свернуть",
     "showMoreCatalog": "Показать все",
     "showLessCatalog": "Показать меньше",
+    "popularBadge": "Топ",
+    "filterLabel": "Фильтр",
+    "filterAll": "Все",
+    "filterExpand": "Развернуть фильтр",
+    "filterCollapse": "Свернуть фильтр",
+    "filterClear": "Сбросить фильтры",
+    "filterGrade": "Класс",
+    "filterDuration": "Длительность",
+    "filterPrice": "Стоимость",
+    "filterGradeOptions": {
+      "vToViii": "V–VIII класс",
+      "viToXii": "VI–XII класс",
+      "ixToXii": "IX–XII класс"
+    },
+    "filterDurationOptions": {
+      "short": "7–9 часов",
+      "longDay": "10–12 часов",
+      "multiDay": "Несколько дней"
+    },
+    "filterPriceMin": "Минимум",
+    "filterPriceMax": "Максимум",
+    "filterPriceHint": "Диапазон цен: {min}–{max} лари",
+    "noResults": "По вашим фильтрам экскурсии не найдены. Попробуйте другие параметры.",
     "videoAlt": "Видео школьных экскурсий",
     "durations": {
       "7hours": "7 часов",

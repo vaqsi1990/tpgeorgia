@@ -42,6 +42,29 @@
     "showLess": "收起",
     "showMoreCatalog": "查看全部",
     "showLessCatalog": "收起部分",
+    "popularBadge": "精选",
+    "filterLabel": "筛选",
+    "filterAll": "全部",
+    "filterExpand": "展开筛选",
+    "filterCollapse": "收起筛选",
+    "filterClear": "清除筛选",
+    "filterGrade": "年级",
+    "filterDuration": "时长",
+    "filterPrice": "价格",
+    "filterGradeOptions": {
+      "vToViii": "五至八年级",
+      "viToXii": "六至十二年级",
+      "ixToXii": "九至十二年级"
+    },
+    "filterDurationOptions": {
+      "short": "7–9 小时",
+      "longDay": "10–12 小时",
+      "multiDay": "多日"
+    },
+    "filterPriceMin": "最低价",
+    "filterPriceMax": "最高价",
+    "filterPriceHint": "价格范围：{min}–{max} 拉里",
+    "noResults": "没有符合筛选条件的游学。请尝试其他选项。",
     "videoAlt": "学校游学视频",
     "durations": {
       "7hours": "7 小时",

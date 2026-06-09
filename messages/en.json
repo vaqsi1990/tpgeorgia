@@ -42,6 +42,29 @@
     "showLess": "Show less",
     "showMoreCatalog": "View all",
     "showLessCatalog": "Show fewer",
+    "popularBadge": "Top",
+    "filterLabel": "Filter",
+    "filterAll": "All",
+    "filterExpand": "Expand filter",
+    "filterCollapse": "Collapse filter",
+    "filterClear": "Clear filters",
+    "filterGrade": "Grade",
+    "filterDuration": "Duration",
+    "filterPrice": "Price",
+    "filterGradeOptions": {
+      "vToViii": "Grades V–VIII",
+      "viToXii": "Grades VI–XII",
+      "ixToXii": "Grades IX–XII"
+    },
+    "filterDurationOptions": {
+      "short": "7–9 hours",
+      "longDay": "10–12 hours",
+      "multiDay": "Multi-day"
+    },
+    "filterPriceMin": "Minimum",
+    "filterPriceMax": "Maximum",
+    "filterPriceHint": "Price range: {min}–{max} GEL",
+    "noResults": "No excursions match your filters. Try different options.",
     "videoAlt": "School excursions video",
     "durations": {
       "7hours": "7 hours",

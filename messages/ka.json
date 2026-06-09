@@ -42,6 +42,29 @@
     "showLess": "ჩაკეცვა",
     "showMoreCatalog": "ყველას ნახვა",
     "showLessCatalog": "ნაკლების ჩვენება",
+    "popularBadge": "ტოპ",
+    "filterLabel": "ფილტრი",
+    "filterAll": "ყველა",
+    "filterExpand": "ფილტრის გახსნა",
+    "filterCollapse": "ფილტრის დაკეცვა",
+    "filterClear": "ფილტრის გასუფთავება",
+    "filterGrade": "კლასი",
+    "filterDuration": "ხანგრძლივობა",
+    "filterPrice": "ფასი",
+    "filterGradeOptions": {
+      "vToViii": "V–VIII კლასი",
+      "viToXii": "VI–XII კლასი",
+      "ixToXii": "IX–XII კლასი"
+    },
+    "filterDurationOptions": {
+      "short": "7–9 საათი",
+      "longDay": "10–12 საათი",
+      "multiDay": "მრავალდღიანი"
+    },
+    "filterPriceMin": "მინიმუმი",
+    "filterPriceMax": "მაქსიმუმი",
+    "filterPriceHint": "ფასის დიაპაზონი: {min}–{max} ₾",
+    "noResults": "თქვენი ფილტრებით ექსკურსია ვერ მოიძებნა. სცადეთ სხვა პარამეტრები.",
     "videoAlt": "სასკოლო ექსკურსიების ვიდეო",
     "durations": {
       "7hours": "7 საათი",
