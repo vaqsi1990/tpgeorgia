@@ -9,6 +9,7 @@ import {
   type TourFilters,
 } from "@/data/tour-filters";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 type ToursFilterProps = {
   filters: TourFilters;
@@ -58,6 +59,7 @@ function parsePriceInput(value: string): number | null {
 export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
   const t = useTranslations("Tours");
   const tHeader = useTranslations("Header");
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const setDestination = (destination: TourFilters["destination"]) => {
     onChange({ ...filters, destination });
@@ -87,10 +89,40 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
       className="rounded-2xl border border-black/10 bg-brand/[0.03] p-4 sm:p-5 lg:sticky lg:top-28 lg:self-start"
       aria-label={t("filterLabel")}
     >
-      <div className="mb-5 flex items-center justify-between gap-3 border-b border-black/10 pb-4">
-        <h2 className="font-afacad text-lg font-semibold text-black md:text-xl">
-          {t("filterLabel")}
-        </h2>
+      <div
+        className={`flex items-center justify-between gap-3 ${
+          isExpanded ? "mb-5 border-b border-black/10 pb-4" : "lg:mb-5 lg:border-b lg:border-black/10 lg:pb-4"
+        }`}
+      >
+        <button
+          type="button"
+          onClick={() => setIsExpanded((open) => !open)}
+          className="flex min-w-0 flex-1 items-center gap-2 text-left lg:pointer-events-none"
+          aria-expanded={isExpanded}
+          aria-controls="tours-filter-panel"
+          aria-label={isExpanded ? t("filterCollapse") : t("filterExpand")}
+        >
+          <h2 className="font-afacad text-lg font-semibold text-black md:text-xl">
+            {t("filterLabel")}
+          </h2>
+          {hasActiveFilters(filters) && !isExpanded ? (
+            <span className="size-2 shrink-0 rounded-full bg-[#38ab8a]" aria-hidden />
+          ) : null}
+          <svg
+            viewBox="0 0 20 20"
+            className={`ml-auto size-5 shrink-0 text-black/60 transition-transform lg:hidden ${
+              isExpanded ? "rotate-180" : ""
+            }`}
+            fill="currentColor"
+            aria-hidden
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
         {hasActiveFilters(filters) ? (
           <button
             type="button"
@@ -102,7 +134,10 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
         ) : null}
       </div>
 
-      <div className="space-y-5">
+      <div
+        id="tours-filter-panel"
+        className={`space-y-5 ${isExpanded ? "block" : "hidden lg:block"}`}
+      >
         <FilterGroup label={t("filterPrice")}>
           <div className="grid grid-cols-2 gap-2">
             <div>

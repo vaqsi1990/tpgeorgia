@@ -75,6 +75,8 @@
     "showAll": "Смотреть все туры",
     "filterLabel": "Фильтр",
     "filterAll": "Все",
+    "filterExpand": "Показать фильтры",
+    "filterCollapse": "Скрыть фильтры",
     "filterClear": "Сбросить фильтры",
     "filterCity": "Город",
     "filterDuration": "Длительность",

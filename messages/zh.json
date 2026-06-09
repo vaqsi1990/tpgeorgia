@@ -75,6 +75,8 @@
     "showAll": "查看全部旅游",
     "filterLabel": "筛选旅游",
     "filterAll": "全部",
+    "filterExpand": "展开筛选",
+    "filterCollapse": "收起筛选",
     "filterClear": "清除筛选",
     "filterCity": "城市",
     "filterDuration": "时长",

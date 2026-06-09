@@ -75,6 +75,8 @@
     "showAll": "View all tours",
     "filterLabel": "Filter",
     "filterAll": "All",
+    "filterExpand": "Show filters",
+    "filterCollapse": "Hide filters",
     "filterClear": "Clear filters",
     "filterCity": "City",
     "filterDuration": "Duration",
