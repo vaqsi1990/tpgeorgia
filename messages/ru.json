@@ -63,6 +63,7 @@
     "price": "Стоимость",
     "priceFrom": "от {price} ₾",
     "priceOnRequest": "Цена по запросу",
+    "popularBadge": "Топ",
     "minPeople": "Мин. группа",
     "minPeopleValue": "{count} человек",
     "outlineTitle": "Краткий маршрут",

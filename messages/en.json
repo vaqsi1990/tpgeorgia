@@ -63,6 +63,7 @@
     "price": "Price",
     "priceFrom": "From {price} GEL",
     "priceOnRequest": "Price on request",
+    "popularBadge": "Top",
     "minPeople": "Min. group",
     "minPeopleValue": "{count} people",
     "outlineTitle": "Route overview",
