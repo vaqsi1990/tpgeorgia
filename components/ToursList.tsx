@@ -2,6 +2,10 @@
 
 import TourCard from "@/components/TourCard";
 import { getTourContent } from "@/data/tour-content";
+import {
+  toursByDestination,
+  type TourDestination,
+} from "@/data/tour-destinations";
 import { tourMeta, type TourId } from "@/data/tours";
 import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
@@ -10,11 +14,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 type ToursListProps = {
   limit?: number;
   showAllLink?: boolean;
+  destination?: TourDestination;
 };
 
 export default function ToursList({
   limit,
   showAllLink = false,
+  destination,
 }: ToursListProps = {}) {
   const t = useTranslations("Tours");
   const locale = useLocale();
@@ -25,14 +31,18 @@ export default function ToursList({
     setIsReady(true);
   }, []);
 
-  const items = useMemo(
-    () =>
-      tourMeta.map((tour) => ({
+  const items = useMemo(() => {
+    const allowedIds = destination
+      ? new Set(toursByDestination[destination])
+      : null;
+
+    return tourMeta
+      .filter((tour) => !allowedIds || allowedIds.has(tour.id))
+      .map((tour) => ({
         tour,
         content: getTourContent(locale, tour.id),
-      })),
-    [locale],
-  );
+      }));
+  }, [destination, locale]);
 
   const visibleItems = limit !== undefined ? items.slice(0, limit) : items;
   const hiddenCount =

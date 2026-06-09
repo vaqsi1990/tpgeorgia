@@ -72,6 +72,20 @@
     "showMore": "查看详情",
     "showLess": "收起",
     "showAll": "查看全部旅游",
+    "destinations": {
+      "batumi": {
+        "title": "巴统出发旅游",
+        "description": "从巴统出发的一日游与多日游——黑海海岸、阿贾拉山脉与西格鲁吉亚。"
+      },
+      "tbilisi": {
+        "title": "第比利斯出发旅游",
+        "description": "从首都出发的格鲁吉亚多日探索之旅——文化、葡萄酒、山脉与黑海。"
+      },
+      "kutaisi": {
+        "title": "库塔伊西与伊梅列季旅游",
+        "description": "探索库塔伊西与伊梅列季地区的洞穴、峡谷、瀑布与风味。"
+      }
+    },
     "durations": {
       "4hours": "4 小时",
       "6hours": "6 小时",

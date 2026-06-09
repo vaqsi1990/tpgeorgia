@@ -72,6 +72,20 @@
     "showMore": "View details",
     "showLess": "Show less",
     "showAll": "View all tours",
+    "destinations": {
+      "batumi": {
+        "title": "Tours from Batumi",
+        "description": "Day trips and multi-day journeys starting from Batumi — the Black Sea coast, Adjara mountains, and western Georgia."
+      },
+      "tbilisi": {
+        "title": "Tours from Tbilisi",
+        "description": "Multi-day discovery journeys across Georgia starting from the capital — culture, wine, mountains, and the Black Sea."
+      },
+      "kutaisi": {
+        "title": "Tours to Kutaisi & Imereti",
+        "description": "Explore western Georgia's caves, canyons, waterfalls, and flavors on tours to the Kutaisi and Imereti region."
+      }
+    },
     "durations": {
       "4hours": "4 hours",
       "6hours": "6 hours",
