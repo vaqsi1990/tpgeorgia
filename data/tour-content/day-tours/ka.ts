@@ -3,7 +3,7 @@ import type { TourContent } from "../types";
 
 export const dayTourContentKa: Record<string, TourContent> = {
   eveningCity: {
-    title: "საღამოს სიტი ტური",
+    title: "საღამოს სითი ტური",
     routeLabel: "ბათუმი",
     subtitle: "არქიტექტურა • ბულვარი • იახტით სეირნობა (სურვილისამებრ)",
     outline: [
