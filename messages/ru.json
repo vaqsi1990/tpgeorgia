@@ -53,6 +53,35 @@
       "2nights3days": "2 ночи / 3 дня"
     }
   },
+  "Tours": {
+    "title": "Туры",
+    "description": "Экскурсии из Батуми и многодневные путешествия по Грузии — море, горы, культура и традиции.",
+    "startTime": "Начало",
+    "duration": "Длительность",
+    "durationDays": "{days} дней / {nights} ночей",
+    "price": "Стоимость",
+    "priceFrom": "от {price} ₾",
+    "priceOnRequest": "Цена по запросу",
+    "minPeople": "Мин. группа",
+    "minPeopleValue": "{count} человек",
+    "outlineTitle": "Краткий маршрут",
+    "includesTitle": "Включено",
+    "highlightsTitle": "Основные моменты тура",
+    "clothingNote": "Одежда: {note}",
+    "showMore": "Подробнее",
+    "showLess": "Свернуть",
+    "showAll": "Смотреть все туры",
+    "durations": {
+      "4hours": "4 часа",
+      "6hours": "6 часов",
+      "7hours": "7 часов",
+      "10hours": "10 часов",
+      "12hours": "12 часов",
+      "fullDay": "Весь день",
+      "2nights3days": "2 ночи / 3 дня",
+      "11nights12days": "12 дней / 11 ночей"
+    }
+  },
   "WhyUs": {
     "title": "Чем отличаются наши туры?",
     "items": {

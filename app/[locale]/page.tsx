@@ -1,5 +1,6 @@
 import Excursions from "@/components/Excursions";
 import Hero from "@/components/Hero";
+import Tours from "@/components/Tours";
 import WhyUs from "@/components/WhyUs";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -24,6 +25,7 @@ export default async function HomePage({ params }: Props) {
     <>
       <Hero />
       <WhyUs />
+      <Tours />
       <Excursions />
     </>
   );

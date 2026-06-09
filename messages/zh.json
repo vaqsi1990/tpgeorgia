@@ -53,6 +53,35 @@
       "2nights3days": "2 晚 / 3 天"
     }
   },
+  "Tours": {
+    "title": "旅游",
+    "description": "从巴统出发的短途游览及格鲁吉亚多日游——海洋、山脉、文化与传统。",
+    "startTime": "出发时间",
+    "duration": "时长",
+    "durationDays": "{days} 天 / {nights} 晚",
+    "price": "价格",
+    "priceFrom": "{price} 拉里起",
+    "priceOnRequest": "价格面议",
+    "minPeople": "最少人数",
+    "minPeopleValue": "{count} 人",
+    "outlineTitle": "路线概览",
+    "includesTitle": "费用包含",
+    "highlightsTitle": "行程亮点",
+    "clothingNote": "着装建议：{note}",
+    "showMore": "查看详情",
+    "showLess": "收起",
+    "showAll": "查看全部旅游",
+    "durations": {
+      "4hours": "4 小时",
+      "6hours": "6 小时",
+      "7hours": "7 小时",
+      "10hours": "10 小时",
+      "12hours": "12 小时",
+      "fullDay": "全天",
+      "2nights3days": "2 晚 / 3 天",
+      "11nights12days": "12 天 / 11 晚"
+    }
+  },
   "WhyUs": {
     "title": "我们的旅行有何特色？",
     "items": {

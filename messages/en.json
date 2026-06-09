@@ -53,6 +53,35 @@
       "2nights3days": "2 nights / 3 days"
     }
   },
+  "Tours": {
+    "title": "Tours",
+    "description": "Excursions from Batumi and multi-day journeys across Georgia — sea, mountains, culture, and tradition.",
+    "startTime": "Start",
+    "duration": "Duration",
+    "durationDays": "{days} days / {nights} nights",
+    "price": "Price",
+    "priceFrom": "From {price} GEL",
+    "priceOnRequest": "Price on request",
+    "minPeople": "Min. group",
+    "minPeopleValue": "{count} people",
+    "outlineTitle": "Route overview",
+    "includesTitle": "Included",
+    "highlightsTitle": "Tour highlights",
+    "clothingNote": "Clothing: {note}",
+    "showMore": "View details",
+    "showLess": "Show less",
+    "showAll": "View all tours",
+    "durations": {
+      "4hours": "4 hours",
+      "6hours": "6 hours",
+      "7hours": "7 hours",
+      "10hours": "10 hours",
+      "12hours": "12 hours",
+      "fullDay": "Full day",
+      "2nights3days": "2 nights / 3 days",
+      "11nights12days": "12 days / 11 nights"
+    }
+  },
   "WhyUs": {
     "title": "What sets our tours apart?",
     "items": {

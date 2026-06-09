@@ -53,6 +53,35 @@
       "2nights3days": "2 ღამე / 3 დღე"
     }
   },
+  "Tours": {
+    "title": "ტურები",
+    "description": "ბათუმიდან ექსკურსიები და მრავალდღიანი მოგზაურობები საქართველოში — ზღვა, მთები, კულტურა და ტრადიცია.",
+    "startTime": "დაწყება",
+    "duration": "ხანგრძლივობა",
+    "durationDays": "{days} დღე / {nights} ღამე",
+    "price": "ღირებულება",
+    "priceFrom": "{price} ₾-დან",
+    "priceOnRequest": "ფასი მოთხოვნით",
+    "minPeople": "მინ. ჯგუფი",
+    "minPeopleValue": "{count} ადამიანი",
+    "outlineTitle": "მოკლე მონახაზი",
+    "includesTitle": "ღირებულებაში შედის",
+    "highlightsTitle": "ტურის ღირსშესანიშნაობები",
+    "clothingNote": "ტანსაცმელი: {note}",
+    "showMore": "დეტალურად",
+    "showLess": "ჩაკეცვა",
+    "showAll": "ყველას ნახვა",
+    "durations": {
+      "4hours": "4 საათი",
+      "6hours": "6 საათი",
+      "7hours": "7 საათი",
+      "10hours": "10 საათი",
+      "12hours": "12 საათი",
+      "fullDay": "მთელი დღე",
+      "2nights3days": "2 ღამე / 3 დღე",
+      "11nights12days": "12 დღე / 11 ღამე"
+    }
+  },
   "WhyUs": {
     "title": "რა გამოარჩევს ჩვენს ტურებს?",
     "items": {
