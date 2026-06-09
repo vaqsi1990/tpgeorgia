@@ -72,6 +72,24 @@
     "showMore": "დეტალურად",
     "showLess": "ჩაკეცვა",
     "showAll": "ყველას ნახვა",
+    "filterLabel": " ფილტრი",
+    "filterAll": "ყველა",
+    "filterClear": "ფილტრის გასუფთავება",
+    "filterCity": "ქალაქი",
+    "filterDuration": "ხანგრძლივობა",
+    "filterPrice": "ფასი",
+    "filterDurationOptions": {
+      "short": "7 საათამდე",
+      "longDay": "მთელი დღე",
+      "multiDay": "მრავალდღიანი"
+    },
+    "filterPriceOptions": {
+      "under150": "150 ₾-მდე",
+      "mid": "150–250 ₾",
+      "over250": "250+ ₾",
+      "onRequest": "მოთხოვნით"
+    },
+    "noResults": "თქვენი ფილტრებით ტური ვერ მოიძებნა. სცადეთ სხვა პარამეტრები.",
     "destinations": {
       "batumi": {
         "title": "ტურები ბათუმიდან",

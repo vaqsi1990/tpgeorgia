@@ -72,6 +72,24 @@
     "showMore": "View details",
     "showLess": "Show less",
     "showAll": "View all tours",
+    "filterLabel": "Filter",
+    "filterAll": "All",
+    "filterClear": "Clear filters",
+    "filterCity": "City",
+    "filterDuration": "Duration",
+    "filterPrice": "Price",
+    "filterDurationOptions": {
+      "short": "Up to 7 hours",
+      "longDay": "Full day",
+      "multiDay": "Multi-day"
+    },
+    "filterPriceOptions": {
+      "under150": "Up to 150 GEL",
+      "mid": "150–250 GEL",
+      "over250": "250+ GEL",
+      "onRequest": "On request"
+    },
+    "noResults": "No tours match your filters. Try changing the criteria.",
     "destinations": {
       "batumi": {
         "title": "Tours from Batumi",

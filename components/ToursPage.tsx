@@ -1,7 +1,6 @@
-import ToursList from "@/components/ToursList";
+import ToursPageContent from "@/components/ToursPageContent";
 import type { TourDestination } from "@/data/tour-destinations";
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 
 type ToursPageProps = {
   destination?: TourDestination;
@@ -29,7 +28,7 @@ export default async function ToursPage({ destination }: ToursPageProps = {}) {
           </p>
         </div>
 
-        <ToursList destination={destination} />
+        <ToursPageContent initialDestination={destination} />
       </div>
     </main>
   );

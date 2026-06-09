@@ -72,6 +72,24 @@
     "showMore": "Подробнее",
     "showLess": "Свернуть",
     "showAll": "Смотреть все туры",
+    "filterLabel": "Фильтр",
+    "filterAll": "Все",
+    "filterClear": "Сбросить фильтры",
+    "filterCity": "Город",
+    "filterDuration": "Длительность",
+    "filterPrice": "Цена",
+    "filterDurationOptions": {
+      "short": "До 7 часов",
+      "longDay": "Полный день",
+      "multiDay": "Многодневные"
+    },
+    "filterPriceOptions": {
+      "under150": "До 150 лари",
+      "mid": "150–250 лари",
+      "over250": "250+ лари",
+      "onRequest": "По запросу"
+    },
+    "noResults": "По вашим фильтрам туры не найдены. Попробуйте изменить параметры.",
     "destinations": {
       "batumi": {
         "title": "Туры из Батуми",

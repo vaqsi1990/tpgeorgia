@@ -3,9 +3,10 @@
 import TourCard from "@/components/TourCard";
 import { getTourContent } from "@/data/tour-content";
 import {
-  toursByDestination,
-  type TourDestination,
-} from "@/data/tour-destinations";
+  defaultTourFilters,
+  matchesTourFilters,
+  type TourFilters,
+} from "@/data/tour-filters";
 import { tourMeta, type TourId } from "@/data/tours";
 import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
@@ -14,13 +15,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 type ToursListProps = {
   limit?: number;
   showAllLink?: boolean;
-  destination?: TourDestination;
+  filters?: TourFilters;
 };
 
 export default function ToursList({
   limit,
   showAllLink = false,
-  destination,
+  filters = defaultTourFilters,
 }: ToursListProps = {}) {
   const t = useTranslations("Tours");
   const locale = useLocale();
@@ -31,18 +32,16 @@ export default function ToursList({
     setIsReady(true);
   }, []);
 
-  const items = useMemo(() => {
-    const allowedIds = destination
-      ? new Set(toursByDestination[destination])
-      : null;
-
-    return tourMeta
-      .filter((tour) => !allowedIds || allowedIds.has(tour.id))
-      .map((tour) => ({
-        tour,
-        content: getTourContent(locale, tour.id),
-      }));
-  }, [destination, locale]);
+  const items = useMemo(
+    () =>
+      tourMeta
+        .filter((tour) => matchesTourFilters(tour, filters))
+        .map((tour) => ({
+          tour,
+          content: getTourContent(locale, tour.id),
+        })),
+    [filters, locale],
+  );
 
   const visibleItems = limit !== undefined ? items.slice(0, limit) : items;
   const hiddenCount =
@@ -60,10 +59,16 @@ export default function ToursList({
 
   return (
     <>
+      {visibleItems.length === 0 ? (
+        <p className="rounded-2xl border border-black/10 bg-white px-6 py-10 text-center text-[16px] text-black/70 md:text-[18px]">
+          {t("noResults")}
+        </p>
+      ) : null}
+
       <div
         className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
           stretchCards ? "items-stretch" : "items-start"
-        }`}
+        } ${visibleItems.length === 0 ? "hidden" : ""}`}
       >
         {visibleItems.map((item, index) => (
           <TourCard
