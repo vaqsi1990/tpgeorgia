@@ -10,11 +10,17 @@ import LocaleTabs from "@/components/admin/LocaleTabs";
 import type { ExcursionContent } from "@/data/excursion-content";
 import { routing, type AppLocale } from "@/i18n/routing";
 import {
+  excursionDurationLabels,
+  excursionGradeOptions,
+} from "@/lib/admin-form-options";
+import {
   excursionDurationKeys,
   type StoredExcursionRecord,
 } from "@/lib/admin-types";
+import { slugFromTitles } from "@/lib/slug";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type LocaleExcursionForm = {
   title: string;
@@ -59,8 +65,8 @@ export default function ExcursionForm({
 }) {
   const router = useRouter();
   const isEditing = Boolean(initialExcursion);
+  const recordId = initialExcursion?.id;
   const [locale, setLocale] = useState<AppLocale>("ka");
-  const [id, setId] = useState(initialExcursion?.id ?? "");
   const [durationKey, setDurationKey] = useState(
     initialExcursion?.meta.durationKey ?? excursionDurationKeys[0],
   );
@@ -86,6 +92,18 @@ export default function ExcursionForm({
   const [saving, setSaving] = useState(false);
 
   const form = localeForms[locale];
+  const generatedSlug = useMemo(
+    () =>
+      slugFromTitles(
+        routing.locales.map((loc) => localeForms[loc].title.trim()).filter(Boolean),
+      ),
+    [localeForms],
+  );
+  const gradeOptions = excursionGradeOptions.includes(
+    grades as (typeof excursionGradeOptions)[number],
+  )
+    ? excursionGradeOptions
+    : [grades as (typeof excursionGradeOptions)[number], ...excursionGradeOptions];
 
   function updateLocaleField<K extends keyof LocaleExcursionForm>(
     key: K,
@@ -107,7 +125,7 @@ export default function ExcursionForm({
     ) as Record<AppLocale, ExcursionContent>;
 
     const payload = {
-      id: id.trim(),
+      ...(isEditing && recordId ? { id: recordId } : {}),
       meta: {
         durationKey,
         priceFrom: Number(priceFrom) || 0,
@@ -119,8 +137,8 @@ export default function ExcursionForm({
 
     try {
       const response = await fetch(
-        isEditing
-          ? `/api/admin/excursions/${encodeURIComponent(id.trim())}`
+        isEditing && recordId
+          ? `/api/admin/excursions/${encodeURIComponent(recordId)}`
           : "/api/admin/excursions",
         {
           method: isEditing ? "PUT" : "POST",
@@ -149,16 +167,12 @@ export default function ExcursionForm({
     <form onSubmit={handleSubmit} className="space-y-8">
       <section className="space-y-4 rounded-2xl border border-black/10 bg-white p-5 sm:p-6">
         <h2 className="font-afacad text-xl font-semibold">ექსკურსიის პარამეტრები</h2>
+        {isEditing && recordId ? (
+          <p className="text-[13px] text-black/60">
+            ID: <span className="font-medium text-black/80">{recordId}</span>
+          </p>
+        ) : null}
         <div className="grid gap-4 sm:grid-cols-2">
-          <AdminInput
-            label="ექსკურსიის ID (slug)"
-            hint="პატარა ლათინური ასოები, ციფრები, ტირე."
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-            required
-            readOnly={isEditing}
-            pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
-          />
           <AdminSelect
             label="ხანგრძლივობა"
             value={durationKey}
@@ -169,22 +183,24 @@ export default function ExcursionForm({
             }
             options={excursionDurationKeys.map((key) => ({
               value: key,
-              label: key,
+              label: excursionDurationLabels[key],
             }))}
           />
           <AdminInput
-            label="ფასი (₾-დან)"
+            label="ფასი (₾ სტუდენტზე)"
             type="number"
             min={0}
             value={priceFrom}
             onChange={(e) => setPriceFrom(e.target.value)}
           />
-          <AdminInput
+          <AdminSelect
             label="კლასი"
-            placeholder="V–VIII"
             value={grades}
             onChange={(e) => setGrades(e.target.value)}
-            required
+            options={gradeOptions.map((grade) => ({
+              value: grade,
+              label: grade,
+            }))}
           />
         </div>
         <label className="flex items-center gap-2 text-[14px] font-medium">
@@ -209,9 +225,17 @@ export default function ExcursionForm({
           value={form.title}
           onChange={(e) => updateLocaleField("title", e.target.value)}
           required
+          placeholder="მაგ: „მაჭახელას ხეობის მემკვიდრეობა — ისტორია და ტრადიცია“"
         />
+        {!isEditing && generatedSlug ? (
+          <p className="text-[12px] text-black/55">
+            ავტომატური ID:{" "}
+            <span className="font-medium text-black/75">{generatedSlug}</span>
+          </p>
+        ) : null}
         <AdminTextarea
           label="ექსკურსიის განმავლობაში ნახავთ (თითო ხაზზე ერთი)"
+          hint="ბარათზე გარეთ და შიგნით ჩანს — მთავარი ღირსშესანიშნაობები"
           value={form.highlights}
           onChange={(e) => updateLocaleField("highlights", e.target.value)}
         />
@@ -224,6 +248,7 @@ export default function ExcursionForm({
           label="დამატებითი შენიშვნა"
           value={form.optionalNote}
           onChange={(e) => updateLocaleField("optionalNote", e.target.value)}
+          placeholder="მაგ: ტანსაცმლის რეკომენდაცია ან საჭირო დოკუმენტები"
         />
       </section>
 
@@ -233,13 +258,21 @@ export default function ExcursionForm({
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={saving}
-        className="rounded-xl bg-[#38ab8a] px-6 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
-      >
-        {saving ? "ინახება…" : isEditing ? "ექსკურსიის განახლება" : "ექსკურსიის შექმნა"}
-      </button>
+      <div className="flex flex-wrap gap-3">
+        <button
+          type="submit"
+          disabled={saving}
+          className="rounded-xl bg-[#38ab8a] px-6 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+        >
+          {saving ? "ინახება…" : isEditing ? "ექსკურსიის განახლება" : "ექსკურსიის შექმნა"}
+        </button>
+        <Link
+          href="/admin/excursions"
+          className="rounded-xl border border-black/15 px-6 py-2.5 text-[15px] font-medium hover:bg-black/5"
+        >
+          გაუქმება
+        </Link>
+      </div>
     </form>
   );
 }

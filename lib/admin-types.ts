@@ -23,14 +23,14 @@ export type StoredExcursionRecord = {
 };
 
 export type StoredTourInput = {
-  id: string;
+  id?: string;
   destination: TourDestination | null;
   meta: Omit<TourMeta, "id">;
   content: LocaleContentMap<TourContent>;
 };
 
 export type StoredExcursionInput = {
-  id: string;
+  id?: string;
   meta: Omit<ExcursionMeta, "id">;
   content: LocaleContentMap<ExcursionContent>;
 };

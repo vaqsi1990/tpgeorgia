@@ -39,11 +39,11 @@ export async function PUT(request: Request, context: RouteContext) {
     if (!isValidExcursionInput(body)) {
       return NextResponse.json({ error: "Invalid excursion data." }, { status: 400 });
     }
-    if (body.id !== id) {
+    if (body.id && body.id !== id) {
       return NextResponse.json({ error: "Excursion id mismatch." }, { status: 400 });
     }
 
-    const excursion = await updateExcursion(id, body);
+    const excursion = await updateExcursion(id, { ...body, id });
     return NextResponse.json({ excursion });
   } catch (error) {
     const message =

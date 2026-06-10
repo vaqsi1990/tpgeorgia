@@ -7,20 +7,26 @@ import {
   linesToList,
 } from "@/components/admin/AdminField";
 import LocaleTabs from "@/components/admin/LocaleTabs";
-import type { TourContent, TourDay, TourSection } from "@/data/tour-content";
+import TourProgramEditor, {
+  createDefaultSections,
+  sectionsFromContent,
+  type TourSectionForm,
+} from "@/components/admin/TourProgramEditor";
+import type { TourContent } from "@/data/tour-content";
 import { routing, type AppLocale } from "@/i18n/routing";
+import { tourDurationLabels } from "@/lib/admin-form-options";
 import { tourDurationKeys, type StoredTourRecord } from "@/lib/admin-types";
+import { slugFromTitles } from "@/lib/slug";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type LocaleTourForm = {
   title: string;
   routeLabel: string;
   subtitle: string;
   outline: string;
-  sectionTitle: string;
-  dayLabel: string;
-  dayDescription: string;
+  sections: TourSectionForm[];
   includes: string;
   highlights: string;
   clothingNote: string;
@@ -31,9 +37,7 @@ const emptyLocaleForm = (): LocaleTourForm => ({
   routeLabel: "",
   subtitle: "",
   outline: "",
-  sectionTitle: "ტურის პროგრამა",
-  dayLabel: "",
-  dayDescription: "",
+  sections: createDefaultSections(),
   includes: "",
   highlights: "",
   clothingNote: "",
@@ -44,16 +48,12 @@ function listToLines(items: string[] | undefined): string {
 }
 
 function localeFormFromContent(content: TourContent): LocaleTourForm {
-  const section = content.sections[0];
-  const day = section?.days[0];
   return {
     title: content.title,
     routeLabel: content.routeLabel,
     subtitle: content.subtitle ?? "",
     outline: listToLines(content.outline),
-    sectionTitle: section?.title ?? "ტურის პროგრამა",
-    dayLabel: day?.label ?? "",
-    dayDescription: day?.description ?? "",
+    sections: sectionsFromContent(content.sections),
     includes: listToLines(content.includes),
     highlights: listToLines(content.highlights),
     clothingNote: content.clothingNote ?? "",
@@ -61,21 +61,17 @@ function localeFormFromContent(content: TourContent): LocaleTourForm {
 }
 
 function buildLocaleContent(form: LocaleTourForm): TourContent {
-  const days: TourDay[] = [];
-  if (form.dayLabel.trim() || form.dayDescription.trim()) {
-    days.push({
-      label: form.dayLabel.trim(),
-      description: form.dayDescription.trim(),
-    });
-  }
-
-  const sections: TourSection[] = [];
-  if (form.sectionTitle.trim() || days.length > 0) {
-    sections.push({
-      title: form.sectionTitle.trim() || "პროგრამა",
-      days,
-    });
-  }
+  const sections = form.sections
+    .map((section) => ({
+      title: section.title.trim() || "პროგრამა",
+      days: section.days
+        .map((day) => ({
+          label: day.label.trim(),
+          description: day.description.trim(),
+        }))
+        .filter((day) => day.label || day.description),
+    }))
+    .filter((section) => section.title || section.days.length > 0);
 
   return {
     title: form.title.trim(),
@@ -96,8 +92,8 @@ export default function TourForm({
 }) {
   const router = useRouter();
   const isEditing = Boolean(initialTour);
+  const recordId = initialTour?.id;
   const [locale, setLocale] = useState<AppLocale>("ka");
-  const [id, setId] = useState(initialTour?.id ?? "");
   const [destination, setDestination] = useState<string>(
     initialTour ? (initialTour.destination ?? "none") : "batumi",
   );
@@ -127,6 +123,13 @@ export default function TourForm({
   const [saving, setSaving] = useState(false);
 
   const form = localeForms[locale];
+  const generatedSlug = useMemo(
+    () =>
+      slugFromTitles(
+        routing.locales.map((loc) => localeForms[loc].title.trim()).filter(Boolean),
+      ),
+    [localeForms],
+  );
 
   function updateLocaleField<K extends keyof LocaleTourForm>(
     key: K,
@@ -148,7 +151,7 @@ export default function TourForm({
     ) as Record<AppLocale, TourContent>;
 
     const payload = {
-      id: id.trim(),
+      ...(isEditing && recordId ? { id: recordId } : {}),
       destination: destination === "none" ? null : destination,
       meta: {
         durationKey,
@@ -162,7 +165,9 @@ export default function TourForm({
 
     try {
       const response = await fetch(
-        isEditing ? `/api/admin/tours/${encodeURIComponent(id.trim())}` : "/api/admin/tours",
+        isEditing && recordId
+          ? `/api/admin/tours/${encodeURIComponent(recordId)}`
+          : "/api/admin/tours",
         {
           method: isEditing ? "PUT" : "POST",
           headers: { "Content-Type": "application/json" },
@@ -188,16 +193,12 @@ export default function TourForm({
     <form onSubmit={handleSubmit} className="space-y-8">
       <section className="space-y-4 rounded-2xl border border-black/10 bg-white p-5 sm:p-6">
         <h2 className="font-afacad text-xl font-semibold">ტურის პარამეტრები</h2>
+        {isEditing && recordId ? (
+          <p className="text-[13px] text-black/60">
+            ID: <span className="font-medium text-black/80">{recordId}</span>
+          </p>
+        ) : null}
         <div className="grid gap-4 sm:grid-cols-2">
-          <AdminInput
-            label="ტურის ID (slug)"
-            hint="პატარა ლათინური ასოები, ციფრები, ტირე. მაგ: wine-tour-kakheti"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-            required
-            readOnly={isEditing}
-            pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
-          />
           <AdminSelect
             label="მიმართულება"
             value={destination}
@@ -217,7 +218,7 @@ export default function TourForm({
             }
             options={tourDurationKeys.map((key) => ({
               value: key,
-              label: key,
+              label: tourDurationLabels[key],
             }))}
           />
           <AdminInput
@@ -265,6 +266,12 @@ export default function TourForm({
             onChange={(e) => updateLocaleField("title", e.target.value)}
             required
           />
+          {!isEditing && generatedSlug ? (
+            <p className="sm:col-span-2 text-[12px] text-black/55">
+              ავტომატური ID:{" "}
+              <span className="font-medium text-black/75">{generatedSlug}</span>
+            </p>
+          ) : null}
           <AdminInput
             label="მარშრუტი"
             value={form.routeLabel}
@@ -276,27 +283,28 @@ export default function TourForm({
           label="ქვესათაური"
           value={form.subtitle}
           onChange={(e) => updateLocaleField("subtitle", e.target.value)}
+          placeholder="მაგ: კულტურა • ღვინო • მთები"
         />
         <AdminTextarea
-          label="მოკლე მონახაზი (თითო ხაზზე ერთი)"
+          label="მოკლე მონახაზი (თითო ხაზზე ერთი ეტაპი)"
+          hint="ბარათზე გარეთ ჩანს — მარშრუტის მთავარი პუნქტები"
           value={form.outline}
           onChange={(e) => updateLocaleField("outline", e.target.value)}
         />
-        <AdminInput
-          label="პროგრამის სექციის სათაური"
-          value={form.sectionTitle}
-          onChange={(e) => updateLocaleField("sectionTitle", e.target.value)}
-        />
-        <AdminInput
-          label="დღის სათაური"
-          value={form.dayLabel}
-          onChange={(e) => updateLocaleField("dayLabel", e.target.value)}
-        />
-        <AdminTextarea
-          label="დღის აღწერა"
-          value={form.dayDescription}
-          onChange={(e) => updateLocaleField("dayDescription", e.target.value)}
-        />
+
+        <div className="space-y-3">
+          <div>
+            <p className="text-[15px] font-medium text-black/80">დეტალური პროგრამა</p>
+            <p className="mt-1 text-[15px] text-black/55">
+              სექციები და დღეები — ბარათის გახსნისას ჩანს სრული აღწერა
+            </p>
+          </div>
+          <TourProgramEditor
+            sections={form.sections}
+            onChange={(sections) => updateLocaleField("sections", sections)}
+          />
+        </div>
+
         <AdminTextarea
           label="ღირებულებაში შედის (თითო ხაზზე ერთი)"
           value={form.includes}
@@ -328,6 +336,12 @@ export default function TourForm({
         >
           {saving ? "ინახება…" : isEditing ? "ტურის განახლება" : "ტურის შექმნა"}
         </button>
+        <Link
+          href="/admin/tours"
+          className="rounded-xl border border-black/15 px-6 py-2.5 text-[15px] font-medium hover:bg-black/5"
+        >
+          გაუქმება
+        </Link>
       </div>
     </form>
   );

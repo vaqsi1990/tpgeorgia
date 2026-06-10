@@ -38,11 +38,11 @@ export async function PUT(request: Request, context: RouteContext) {
     if (!isValidTourInput(body)) {
       return NextResponse.json({ error: "Invalid tour data." }, { status: 400 });
     }
-    if (body.id !== id) {
+    if (body.id && body.id !== id) {
       return NextResponse.json({ error: "Tour id mismatch." }, { status: 400 });
     }
 
-    const tour = await updateTour(id, body);
+    const tour = await updateTour(id, { ...body, id });
     return NextResponse.json({ tour });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to update tour.";

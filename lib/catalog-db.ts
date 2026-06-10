@@ -11,6 +11,41 @@ import type {
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/lib/generated/prisma/client";
 import type { Locale } from "@/lib/generated/prisma/enums";
+import { resolveUniqueSlug, slugFromTitles } from "@/lib/slug";
+
+function titlesFromContent(
+  content: Record<AppLocale, { title: string }>,
+): string[] {
+  return routing.locales.map((locale) => content[locale]?.title?.trim() ?? "").filter(Boolean);
+}
+
+async function resolveTourId(input: StoredTourInput): Promise<string> {
+  if (input.id?.trim()) return input.id.trim();
+
+  const base = slugFromTitles(titlesFromContent(input.content));
+  if (!base) {
+    throw new Error("Tour title is required to generate an ID.");
+  }
+
+  return resolveUniqueSlug(base, async (slug) => {
+    const existing = await prisma.tour.findUnique({ where: { id: slug } });
+    return existing !== null;
+  });
+}
+
+async function resolveExcursionId(input: StoredExcursionInput): Promise<string> {
+  if (input.id?.trim()) return input.id.trim();
+
+  const base = slugFromTitles(titlesFromContent(input.content));
+  if (!base) {
+    throw new Error("Excursion title is required to generate an ID.");
+  }
+
+  return resolveUniqueSlug(base, async (slug) => {
+    const existing = await prisma.excursion.findUnique({ where: { id: slug } });
+    return existing !== null;
+  });
+}
 
 function toTourContent(translation: {
   title: string;
@@ -187,14 +222,11 @@ export async function getTourById(id: string): Promise<StoredTourRecord | null> 
 }
 
 export async function createTour(input: StoredTourInput): Promise<StoredTourRecord> {
-  const existing = await prisma.tour.findUnique({ where: { id: input.id } });
-  if (existing) {
-    throw new Error("A tour with this ID already exists.");
-  }
+  const id = await resolveTourId(input);
 
   const tour = await prisma.tour.create({
     data: {
-      id: input.id,
+      id,
       destination: input.destination,
       durationKey: input.meta.durationKey,
       priceFrom: input.meta.priceFrom,
@@ -330,14 +362,11 @@ export async function getExcursionById(
 export async function createExcursion(
   input: StoredExcursionInput,
 ): Promise<StoredExcursionRecord> {
-  const existing = await prisma.excursion.findUnique({ where: { id: input.id } });
-  if (existing) {
-    throw new Error("An excursion with this ID already exists.");
-  }
+  const id = await resolveExcursionId(input);
 
   const excursion = await prisma.excursion.create({
     data: {
-      id: input.id,
+      id,
       durationKey: input.meta.durationKey,
       priceFrom: input.meta.priceFrom,
       grades: input.meta.grades,

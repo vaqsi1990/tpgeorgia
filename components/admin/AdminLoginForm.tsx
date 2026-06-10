@@ -48,7 +48,7 @@ export default function AdminLoginForm() {
       <div>
         <label
           htmlFor="admin-password"
-          className="mb-1.5 block text-[13px] font-medium text-black/80"
+          className="mb-1.5 block text-[18px] font-medium text-black/80"
         >
           Password
         </label>

@@ -1,7 +1,7 @@
 const inputClass =
   "w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-[14px] text-black outline-none transition-colors focus:border-[#38ab8a]";
 
-const labelClass = "mb-1.5 block text-[13px] font-medium text-black/80";
+const labelClass = "mb-1.5 block text-[18px] font-medium text-black/80";
 
 export function AdminField({
   label,
@@ -17,7 +17,7 @@ export function AdminField({
       <label className={labelClass}>{label}</label>
       {children}
       {hint ? (
-        <p className="mt-1 text-[12px] leading-relaxed text-black/55">{hint}</p>
+        <p className="mt-1 text-[15px] leading-relaxed text-black/55">{hint}</p>
       ) : null}
     </div>
   );
