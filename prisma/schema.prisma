@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Locale {
+  ka
+  en
+  ru
+  zh
+}
+
+enum TourDestination {
+  batumi
+  tbilisi
+  kutaisi
+}
+
+/// Admin-created and future DB-backed tours (slug id, e.g. wine-tour-kakheti)
+model Tour {
+  id          String           @id
+  destination TourDestination?
+  durationKey String
+  priceFrom   Int              @default(0)
+  minPeople   Int              @default(0)
+  startTime   String?
+  popular     Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  translations TourTranslation[]
+
+  @@map("tours")
+}
+
+/// Localized tour content (ka, en, ru, zh)
+model TourTranslation {
+  id           String @id @default(cuid())
+  tourId       String
+  locale       Locale
+  title        String
+  routeLabel   String
+  subtitle     String?
+  /// string[] — outline bullet points
+  outline      Json
+  /// TourSection[] — { title, days: { label, description }[] }
+  sections     Json
+  /// string[]
+  includes     Json
+  /// string[] | null
+  highlights   Json?
+  clothingNote String?
+
+  tour Tour @relation(fields: [tourId], references: [id], onDelete: Cascade)
+
+  @@unique([tourId, locale])
+  @@map("tour_translations")
+}
+
+/// Admin-created and future DB-backed excursions (slug id)
+model Excursion {
+  id          String   @id
+  durationKey String
+  priceFrom   Int      @default(0)
+  grades      String
+  popular     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  translations ExcursionTranslation[]
+
+  @@map("excursions")
+}
+
+/// Localized excursion content (ka, en, ru, zh)
+model ExcursionTranslation {
+  id           String  @id @default(cuid())
+  excursionId  String
+  locale       Locale
+  title        String
+  /// string[]
+  highlights   Json
+  /// string[]
+  includes     Json
+  optionalNote String?
+
+  excursion Excursion @relation(fields: [excursionId], references: [id], onDelete: Cascade)
+
+  @@unique([excursionId, locale])
+  @@map("excursion_translations")
+}

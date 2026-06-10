@@ -87,9 +87,11 @@ function matchesPriceRange(
 export function matchesTourFilters(
   tour: TourMeta,
   filters: TourFilters,
+  destinationOverride?: TourDestination | null,
 ): boolean {
   if (filters.destination !== "all") {
-    if (getTourDestination(tour.id) !== filters.destination) {
+    const destination = destinationOverride ?? getTourDestination(tour.id);
+    if (destination !== filters.destination) {
       return false;
     }
   }

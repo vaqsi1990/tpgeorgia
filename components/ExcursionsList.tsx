@@ -8,8 +8,10 @@ import {
   type ExcursionFilters,
 } from "@/data/excursion-filters";
 import { getExcursionContent } from "@/data/excursion-content";
-import { excursionMeta, type ExcursionId } from "@/data/excursions";
+import { excursionMeta, type ExcursionId, type ExcursionMeta } from "@/data/excursions";
 import { Link } from "@/i18n/navigation";
+import type { AppLocale } from "@/i18n/routing";
+import type { StoredExcursionRecord } from "@/lib/admin-types";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -29,30 +31,55 @@ export default function ExcursionsList({
 }: ExcursionsListProps = {}) {
   const t = useTranslations("Excursions");
   const locale = useLocale();
-  const [openId, setOpenId] = useState<ExcursionId | null>(null);
+  const [openId, setOpenId] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const [storedExcursions, setStoredExcursions] = useState<StoredExcursionRecord[]>(
+    [],
+  );
 
   useEffect(() => {
     setIsReady(true);
   }, []);
 
-  const items = useMemo(
-    () =>
-      excursionMeta
-        .filter((excursion) => matchesExcursionFilters(excursion, filters))
-        .map((excursion) => ({
-          excursion,
-          content: getExcursionContent(locale, excursion.id),
-        })),
-    [filters, locale],
-  );
+  useEffect(() => {
+    fetch("/api/catalog/excursions")
+      .then((response) => response.json())
+      .then((data: { excursions?: StoredExcursionRecord[] }) => {
+        setStoredExcursions(data.excursions ?? []);
+      })
+      .catch(() => setStoredExcursions([]));
+  }, []);
+
+  const items = useMemo(() => {
+    const appLocale = locale as AppLocale;
+    const staticItems = excursionMeta
+      .filter((excursion) => matchesExcursionFilters(excursion, filters))
+      .map((excursion) => ({
+        excursion,
+        content: getExcursionContent(locale, excursion.id),
+      }));
+
+    const dynamicItems = storedExcursions
+      .filter((stored) =>
+        matchesExcursionFilters({
+          id: stored.id as ExcursionId,
+          ...stored.meta,
+        }, filters),
+      )
+      .map((stored) => ({
+        excursion: { id: stored.id, ...stored.meta } as ExcursionMeta,
+        content: stored.content[appLocale] ?? stored.content.ka,
+      }));
+
+    return [...staticItems, ...dynamicItems];
+  }, [filters, locale, storedExcursions]);
 
   const visibleItems =
     limit !== undefined ? items.slice(0, limit) : items;
   const hiddenCount =
     limit !== undefined ? Math.max(0, items.length - limit) : 0;
 
-  const handleOpen = useCallback((id: ExcursionId) => {
+  const handleOpen = useCallback((id: string) => {
     setOpenId(id);
   }, []);
 

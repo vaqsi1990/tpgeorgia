@@ -8,8 +8,10 @@ import {
   matchesTourFilters,
   type TourFilters,
 } from "@/data/tour-filters";
-import { tourMeta, type TourId } from "@/data/tours";
+import { tourMeta, type TourId, type TourMeta } from "@/data/tours";
 import { Link } from "@/i18n/navigation";
+import type { AppLocale } from "@/i18n/routing";
+import type { StoredTourRecord } from "@/lib/admin-types";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -29,29 +31,53 @@ export default function ToursList({
 }: ToursListProps = {}) {
   const t = useTranslations("Tours");
   const locale = useLocale();
-  const [openId, setOpenId] = useState<TourId | null>(null);
+  const [openId, setOpenId] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const [storedTours, setStoredTours] = useState<StoredTourRecord[]>([]);
 
   useEffect(() => {
     setIsReady(true);
   }, []);
 
-  const items = useMemo(
-    () =>
-      tourMeta
-        .filter((tour) => matchesTourFilters(tour, filters))
-        .map((tour) => ({
-          tour,
-          content: getTourContent(locale, tour.id),
-        })),
-    [filters, locale],
-  );
+  useEffect(() => {
+    fetch("/api/catalog/tours")
+      .then((response) => response.json())
+      .then((data: { tours?: StoredTourRecord[] }) => {
+        setStoredTours(data.tours ?? []);
+      })
+      .catch(() => setStoredTours([]));
+  }, []);
+
+  const items = useMemo(() => {
+    const appLocale = locale as AppLocale;
+    const staticItems = tourMeta
+      .filter((tour) => matchesTourFilters(tour, filters))
+      .map((tour) => ({
+        tour,
+        content: getTourContent(locale, tour.id),
+      }));
+
+    const dynamicItems = storedTours
+      .filter((stored) =>
+        matchesTourFilters(
+          { id: stored.id as TourId, ...stored.meta },
+          filters,
+          stored.destination,
+        ),
+      )
+      .map((stored) => ({
+        tour: { id: stored.id, ...stored.meta } as TourMeta,
+        content: stored.content[appLocale] ?? stored.content.ka,
+      }));
+
+    return [...staticItems, ...dynamicItems];
+  }, [filters, locale, storedTours]);
 
   const visibleItems = limit !== undefined ? items.slice(0, limit) : items;
   const hiddenCount =
     limit !== undefined ? Math.max(0, items.length - limit) : 0;
 
-  const handleOpen = useCallback((id: TourId) => {
+  const handleOpen = useCallback((id: string) => {
     setOpenId(id);
   }, []);
 
