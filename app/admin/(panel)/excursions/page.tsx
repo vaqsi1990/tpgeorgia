@@ -1,11 +1,11 @@
 import StoredExcursionList from "@/components/admin/StoredExcursionList";
 import { AdminCreateLink } from "@/components/admin/StoredTourList";
-import { readStoredExcursions } from "@/lib/admin-store";
+import { listExcursions } from "@/lib/catalog-db";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminExcursionsPage() {
-  const excursions = readStoredExcursions();
+export default async function AdminExcursionsPage() {
+  const excursions = await listExcursions();
 
   return (
     <div className="space-y-6">

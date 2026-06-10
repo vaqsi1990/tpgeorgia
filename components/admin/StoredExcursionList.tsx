@@ -1,6 +1,7 @@
 "use client";
 
 import type { StoredExcursionRecord } from "@/lib/admin-types";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ export default function StoredExcursionList({
     setDeletingId(id);
     try {
       const response = await fetch(
-        `/api/admin/excursions?id=${encodeURIComponent(id)}`,
+        `/api/admin/excursions/${encodeURIComponent(id)}`,
         { method: "DELETE" },
       );
       if (!response.ok) {
@@ -58,14 +59,22 @@ export default function StoredExcursionList({
               {excursion.meta.priceFrom} GEL
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => handleDelete(excursion.id)}
-            disabled={deletingId === excursion.id}
-            className="rounded-lg border border-red-200 px-3 py-2 text-[13px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
-          >
-            {deletingId === excursion.id ? "Deleting…" : "Delete"}
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={`/admin/excursions/${encodeURIComponent(excursion.id)}/edit`}
+              className="rounded-lg border border-black/15 px-3 py-2 text-[13px] font-medium hover:bg-black/5"
+            >
+              Edit
+            </Link>
+            <button
+              type="button"
+              onClick={() => handleDelete(excursion.id)}
+              disabled={deletingId === excursion.id}
+              className="rounded-lg border border-red-200 px-3 py-2 text-[13px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+            >
+              {deletingId === excursion.id ? "Deleting…" : "Delete"}
+            </button>
+          </div>
         </li>
       ))}
     </ul>

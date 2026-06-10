@@ -1,12 +1,11 @@
 import { AdminCreateLink } from "@/components/admin/StoredTourList";
-import { readStoredExcursions, readStoredTours } from "@/lib/admin-store";
+import { listExcursions, listTours } from "@/lib/catalog-db";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminDashboardPage() {
-  const tours = readStoredTours();
-  const excursions = readStoredExcursions();
+export default async function AdminDashboardPage() {
+  const [tours, excursions] = await Promise.all([listTours(), listExcursions()]);
 
   return (
     <div className="space-y-8">

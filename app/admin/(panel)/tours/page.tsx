@@ -1,10 +1,10 @@
 import StoredTourList, { AdminCreateLink } from "@/components/admin/StoredTourList";
-import { readStoredTours } from "@/lib/admin-store";
+import { listTours } from "@/lib/catalog-db";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminToursPage() {
-  const tours = readStoredTours();
+export default async function AdminToursPage() {
+  const tours = await listTours();
 
   return (
     <div className="space-y-6">

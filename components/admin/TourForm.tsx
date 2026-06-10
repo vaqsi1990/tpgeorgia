@@ -9,7 +9,7 @@ import {
 import LocaleTabs from "@/components/admin/LocaleTabs";
 import type { TourContent, TourDay, TourSection } from "@/data/tour-content";
 import { routing, type AppLocale } from "@/i18n/routing";
-import { tourDurationKeys } from "@/lib/admin-types";
+import { tourDurationKeys, type StoredTourRecord } from "@/lib/admin-types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -38,6 +38,27 @@ const emptyLocaleForm = (): LocaleTourForm => ({
   highlights: "",
   clothingNote: "",
 });
+
+function listToLines(items: string[] | undefined): string {
+  return (items ?? []).join("\n");
+}
+
+function localeFormFromContent(content: TourContent): LocaleTourForm {
+  const section = content.sections[0];
+  const day = section?.days[0];
+  return {
+    title: content.title,
+    routeLabel: content.routeLabel,
+    subtitle: content.subtitle ?? "",
+    outline: listToLines(content.outline),
+    sectionTitle: section?.title ?? "ტურის პროგრამა",
+    dayLabel: day?.label ?? "",
+    dayDescription: day?.description ?? "",
+    includes: listToLines(content.includes),
+    highlights: listToLines(content.highlights),
+    clothingNote: content.clothingNote ?? "",
+  };
+}
 
 function buildLocaleContent(form: LocaleTourForm): TourContent {
   const days: TourDay[] = [];
@@ -68,20 +89,38 @@ function buildLocaleContent(form: LocaleTourForm): TourContent {
   };
 }
 
-export default function TourForm() {
+export default function TourForm({
+  initialTour,
+}: {
+  initialTour?: StoredTourRecord;
+}) {
   const router = useRouter();
+  const isEditing = Boolean(initialTour);
   const [locale, setLocale] = useState<AppLocale>("ka");
-  const [id, setId] = useState("");
-  const [destination, setDestination] = useState<string>("batumi");
-  const [durationKey, setDurationKey] = useState(tourDurationKeys[0]);
-  const [priceFrom, setPriceFrom] = useState("0");
-  const [minPeople, setMinPeople] = useState("4");
-  const [startTime, setStartTime] = useState("");
-  const [popular, setPopular] = useState(false);
+  const [id, setId] = useState(initialTour?.id ?? "");
+  const [destination, setDestination] = useState<string>(
+    initialTour ? (initialTour.destination ?? "none") : "batumi",
+  );
+  const [durationKey, setDurationKey] = useState(
+    initialTour?.meta.durationKey ?? tourDurationKeys[0],
+  );
+  const [priceFrom, setPriceFrom] = useState(
+    String(initialTour?.meta.priceFrom ?? 0),
+  );
+  const [minPeople, setMinPeople] = useState(
+    String(initialTour?.meta.minPeople ?? 4),
+  );
+  const [startTime, setStartTime] = useState(initialTour?.meta.startTime ?? "");
+  const [popular, setPopular] = useState(initialTour?.meta.popular ?? false);
   const [localeForms, setLocaleForms] = useState<Record<AppLocale, LocaleTourForm>>(
     () =>
       Object.fromEntries(
-        routing.locales.map((loc) => [loc, emptyLocaleForm()]),
+        routing.locales.map((loc) => [
+          loc,
+          initialTour
+            ? localeFormFromContent(initialTour.content[loc])
+            : emptyLocaleForm(),
+        ]),
       ) as Record<AppLocale, LocaleTourForm>,
   );
   const [error, setError] = useState("");
@@ -108,23 +147,28 @@ export default function TourForm() {
       routing.locales.map((loc) => [loc, buildLocaleContent(localeForms[loc])]),
     ) as Record<AppLocale, TourContent>;
 
+    const payload = {
+      id: id.trim(),
+      destination: destination === "none" ? null : destination,
+      meta: {
+        durationKey,
+        priceFrom: Number(priceFrom) || 0,
+        minPeople: Number(minPeople) || 0,
+        startTime: startTime.trim() || undefined,
+        popular,
+      },
+      content,
+    };
+
     try {
-      const response = await fetch("/api/admin/tours", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: id.trim(),
-          destination: destination === "none" ? null : destination,
-          meta: {
-            durationKey,
-            priceFrom: Number(priceFrom) || 0,
-            minPeople: Number(minPeople) || 0,
-            startTime: startTime.trim() || undefined,
-            popular,
-          },
-          content,
-        }),
-      });
+      const response = await fetch(
+        isEditing ? `/api/admin/tours/${encodeURIComponent(id.trim())}` : "/api/admin/tours",
+        {
+          method: isEditing ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
 
       const data = await response.json();
       if (!response.ok) {
@@ -151,6 +195,7 @@ export default function TourForm() {
             value={id}
             onChange={(e) => setId(e.target.value)}
             required
+            readOnly={isEditing}
             pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
           />
           <AdminSelect
@@ -281,7 +326,7 @@ export default function TourForm() {
           disabled={saving}
           className="rounded-xl bg-[#38ab8a] px-6 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
         >
-          {saving ? "ინახება…" : "ტურის შექმნა"}
+          {saving ? "ინახება…" : isEditing ? "ტურის განახლება" : "ტურის შექმნა"}
         </button>
       </div>
     </form>

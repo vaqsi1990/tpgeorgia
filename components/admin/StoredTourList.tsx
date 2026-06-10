@@ -18,7 +18,7 @@ export default function StoredTourList({
     if (!confirm(`Delete tour "${id}"?`)) return;
     setDeletingId(id);
     try {
-      const response = await fetch(`/api/admin/tours?id=${encodeURIComponent(id)}`, {
+      const response = await fetch(`/api/admin/tours/${encodeURIComponent(id)}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -55,14 +55,22 @@ export default function StoredTourList({
               ID: {tour.id} · {tour.meta.durationKey} · {tour.meta.priceFrom} GEL
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => handleDelete(tour.id)}
-            disabled={deletingId === tour.id}
-            className="rounded-lg border border-red-200 px-3 py-2 text-[13px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
-          >
-            {deletingId === tour.id ? "Deleting…" : "Delete"}
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={`/admin/tours/${encodeURIComponent(tour.id)}/edit`}
+              className="rounded-lg border border-black/15 px-3 py-2 text-[13px] font-medium hover:bg-black/5"
+            >
+              Edit
+            </Link>
+            <button
+              type="button"
+              onClick={() => handleDelete(tour.id)}
+              disabled={deletingId === tour.id}
+              className="rounded-lg border border-red-200 px-3 py-2 text-[13px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+            >
+              {deletingId === tour.id ? "Deleting…" : "Delete"}
+            </button>
+          </div>
         </li>
       ))}
     </ul>

@@ -9,7 +9,10 @@ import {
 import LocaleTabs from "@/components/admin/LocaleTabs";
 import type { ExcursionContent } from "@/data/excursion-content";
 import { routing, type AppLocale } from "@/i18n/routing";
-import { excursionDurationKeys } from "@/lib/admin-types";
+import {
+  excursionDurationKeys,
+  type StoredExcursionRecord,
+} from "@/lib/admin-types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -27,6 +30,19 @@ const emptyLocaleForm = (): LocaleExcursionForm => ({
   optionalNote: "",
 });
 
+function listToLines(items: string[] | undefined): string {
+  return (items ?? []).join("\n");
+}
+
+function localeFormFromContent(content: ExcursionContent): LocaleExcursionForm {
+  return {
+    title: content.title,
+    highlights: listToLines(content.highlights),
+    includes: listToLines(content.includes),
+    optionalNote: content.optionalNote ?? "",
+  };
+}
+
 function buildLocaleContent(form: LocaleExcursionForm): ExcursionContent {
   return {
     title: form.title.trim(),
@@ -36,20 +52,34 @@ function buildLocaleContent(form: LocaleExcursionForm): ExcursionContent {
   };
 }
 
-export default function ExcursionForm() {
+export default function ExcursionForm({
+  initialExcursion,
+}: {
+  initialExcursion?: StoredExcursionRecord;
+}) {
   const router = useRouter();
+  const isEditing = Boolean(initialExcursion);
   const [locale, setLocale] = useState<AppLocale>("ka");
-  const [id, setId] = useState("");
-  const [durationKey, setDurationKey] = useState(excursionDurationKeys[0]);
-  const [priceFrom, setPriceFrom] = useState("0");
-  const [grades, setGrades] = useState("V–VIII");
-  const [popular, setPopular] = useState(false);
+  const [id, setId] = useState(initialExcursion?.id ?? "");
+  const [durationKey, setDurationKey] = useState(
+    initialExcursion?.meta.durationKey ?? excursionDurationKeys[0],
+  );
+  const [priceFrom, setPriceFrom] = useState(
+    String(initialExcursion?.meta.priceFrom ?? 0),
+  );
+  const [grades, setGrades] = useState(initialExcursion?.meta.grades ?? "V–VIII");
+  const [popular, setPopular] = useState(initialExcursion?.meta.popular ?? false);
   const [localeForms, setLocaleForms] = useState<
     Record<AppLocale, LocaleExcursionForm>
   >(
     () =>
       Object.fromEntries(
-        routing.locales.map((loc) => [loc, emptyLocaleForm()]),
+        routing.locales.map((loc) => [
+          loc,
+          initialExcursion
+            ? localeFormFromContent(initialExcursion.content[loc])
+            : emptyLocaleForm(),
+        ]),
       ) as Record<AppLocale, LocaleExcursionForm>,
   );
   const [error, setError] = useState("");
@@ -76,21 +106,28 @@ export default function ExcursionForm() {
       routing.locales.map((loc) => [loc, buildLocaleContent(localeForms[loc])]),
     ) as Record<AppLocale, ExcursionContent>;
 
+    const payload = {
+      id: id.trim(),
+      meta: {
+        durationKey,
+        priceFrom: Number(priceFrom) || 0,
+        grades: grades.trim(),
+        popular,
+      },
+      content,
+    };
+
     try {
-      const response = await fetch("/api/admin/excursions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: id.trim(),
-          meta: {
-            durationKey,
-            priceFrom: Number(priceFrom) || 0,
-            grades: grades.trim(),
-            popular,
-          },
-          content,
-        }),
-      });
+      const response = await fetch(
+        isEditing
+          ? `/api/admin/excursions/${encodeURIComponent(id.trim())}`
+          : "/api/admin/excursions",
+        {
+          method: isEditing ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
 
       const data = await response.json();
       if (!response.ok) {
@@ -119,6 +156,7 @@ export default function ExcursionForm() {
             value={id}
             onChange={(e) => setId(e.target.value)}
             required
+            readOnly={isEditing}
             pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
           />
           <AdminSelect
@@ -200,7 +238,7 @@ export default function ExcursionForm() {
         disabled={saving}
         className="rounded-xl bg-[#38ab8a] px-6 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
       >
-        {saving ? "ინახება…" : "ექსკურსიის შექმნა"}
+        {saving ? "ინახება…" : isEditing ? "ექსკურსიის განახლება" : "ექსკურსიის შექმნა"}
       </button>
     </form>
   );
