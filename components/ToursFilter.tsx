@@ -1,6 +1,6 @@
 "use client";
 
-import { tourDestinationIds } from "@/data/tour-destinations";
+
 import {
   defaultTourFilters,
   getTourPriceBoundsFromCatalog,
@@ -9,6 +9,8 @@ import {
   type TourDurationFilter,
   type TourFilters,
 } from "@/data/tour-filters";
+import { tourDestinationIds } from "@/data/tour-destinations";
+import { Link } from "@/i18n/navigation";
 import type { StoredTourRecord } from "@/lib/admin-types";
 import { useTranslations } from "next-intl";
 import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
@@ -76,10 +78,6 @@ export default function ToursFilter({
         : tourPriceBounds,
     [catalog],
   );
-
-  const setDestination = (destination: TourFilters["destination"]) => {
-    onChange((prev) => ({ ...prev, destination }));
-  };
 
   const setDuration = (duration: TourDurationFilter) => {
     onChange((prev) => ({ ...prev, duration }));
@@ -205,18 +203,16 @@ export default function ToursFilter({
 
         <FilterGroup label={t("filterCity")}>
           <div className="flex flex-col gap-2">
-            <button
-              type="button"
-              onClick={() => setDestination("all")}
+            <Link
+              href="/tours"
               className={optionClass(filters.destination === "all")}
             >
               {t("filterAll")}
-            </button>
+            </Link>
             {tourDestinationIds.map((destination) => (
-              <button
+              <Link
                 key={destination}
-                type="button"
-                onClick={() => setDestination(destination)}
+                href={`/tours/${destination}`}
                 className={optionClass(filters.destination === destination)}
               >
                 {tHeader(
@@ -225,7 +221,7 @@ export default function ToursFilter({
                     | "nav.toursDropdown.tbilisi"
                     | "nav.toursDropdown.kutaisi",
                 )}
-              </button>
+              </Link>
             ))}
           </div>
         </FilterGroup>

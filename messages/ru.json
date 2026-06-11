@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "TP Georgia",
-    "description": "TP Georgia"
+    "title": "Туры и школьные экскурсии по Грузии",
+    "description": "Откройте Грузию с TP Georgia — однодневные туры из Батуми и Тбилиси, многодневные путешествия и культурные школьные экскурсии для V–XII классов. Более 12 лет опыта."
   },
   "HomePage": {
     "title": "Для начала отредактируйте файл page.tsx.",
@@ -207,6 +207,30 @@
       "next": "Следующее фото",
       "counter": "{current} / {total}"
     }
+  },
+  "Contact": {
+    "metadata": {
+      "title": "Контакты | TP Georgia",
+      "description": "Свяжитесь с TP Georgia для бронирования туров, школьных экскурсий и индивидуальных программ по Грузии."
+    },
+    "title": "Контакты",
+    "description": "Свяжитесь с нами, чтобы спланировать тур или школьную экскурсию. Мы быстро отвечаем по телефону, email или WhatsApp.",
+    "methodsTitle": "Как с нами связаться",
+    "phoneLabel": "Телефон",
+    "emailLabel": "Email",
+    "whatsappCta": "Написать в WhatsApp",
+    "facebookCta": "Наша страница в Facebook",
+    "breadcrumb": {
+      "home": "Главная",
+      "current": "Контакты"
+    }
+  },
+  "Footer": {
+    "description": "Незабываемые туры и школьные экскурсии по Грузии — аутентичные маршруты, сертифицированные гиды и надёжная организация.",
+    "siteNav": "Сайт",
+    "tourNav": "Туры по городам",
+    "contactTitle": "Контакты",
+    "copyright": "© {year} TP Georgia. Все права защищены."
   },
   "Header": {
     "logoAlt": "TP Georgia",

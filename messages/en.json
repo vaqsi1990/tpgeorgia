@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "TP Georgia",
-    "description": "TP Georgia"
+    "title": "Tours & School Excursions in Georgia",
+    "description": "Discover Georgia with TP Georgia — day tours from Batumi and Tbilisi, multi-day journeys, and cultural school excursions for grades V–XII. 12+ years of trusted travel experience."
   },
   "HomePage": {
     "title": "To get started, edit the page.tsx file.",
@@ -207,6 +207,30 @@
       "next": "Next image",
       "counter": "{current} / {total}"
     }
+  },
+  "Contact": {
+    "metadata": {
+      "title": "Contact | TP Georgia",
+      "description": "Contact TP Georgia for tour bookings, school excursion planning, and custom travel programs across Georgia."
+    },
+    "title": "Contact Us",
+    "description": "Reach out to plan your next tour or school excursion in Georgia. We respond quickly by phone, email, or WhatsApp.",
+    "methodsTitle": "How to reach us",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "whatsappCta": "Message us on WhatsApp",
+    "facebookCta": "Visit our Facebook page",
+    "breadcrumb": {
+      "home": "Home",
+      "current": "Contact"
+    }
+  },
+  "Footer": {
+    "description": "Unforgettable tours and school excursions across Georgia — authentic routes, certified guides, and reliable organization.",
+    "siteNav": "Site",
+    "tourNav": "Tours by city",
+    "contactTitle": "Contact",
+    "copyright": "© {year} TP Georgia. All rights reserved."
   },
   "Header": {
     "logoAlt": "TP Georgia",

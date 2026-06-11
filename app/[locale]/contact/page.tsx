@@ -1,4 +1,4 @@
-import ExcursionsPage from "@/components/ExcursionsPage";
+import ContactPage from "@/components/ContactPage";
 import { buildPageMetadata } from "@/lib/seo";
 import type { AppLocale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -9,19 +9,19 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Excursions" });
+  const t = await getTranslations({ locale, namespace: "Contact" });
 
   return buildPageMetadata({
     locale: locale as AppLocale,
-    pathname: "/excursions",
-    title: t("title"),
-    description: t("description"),
+    pathname: "/contact",
+    title: t("metadata.title"),
+    description: t("metadata.description"),
   });
 }
 
-export default async function Excursions({ params }: Props) {
+export default async function Contact({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <ExcursionsPage />;
+  return <ContactPage locale={locale as AppLocale} />;
 }

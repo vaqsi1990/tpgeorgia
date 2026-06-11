@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "TP Georgia",
-    "description": "TP Georgia"
+    "title": "格鲁吉亚旅游与学校研学",
+    "description": "与 TP Georgia 一起探索格鲁吉亚——从巴统和第比利斯出发的一日游、多日旅程，以及面向 V–XII 年级的文化研学活动。12 年以上专业经验。"
   },
   "HomePage": {
     "title": "要开始，请编辑 page.tsx 文件。",
@@ -207,6 +207,30 @@
       "next": "下一张",
       "counter": "{current} / {total}"
     }
+  },
+  "Contact": {
+    "metadata": {
+      "title": "联系我们 | TP Georgia",
+      "description": "联系 TP Georgia 预订格鲁吉亚旅游、学校研学和定制行程。"
+    },
+    "title": "联系我们",
+    "description": "欢迎联系我们规划下一次格鲁吉亚之旅或学校研学。我们可通过电话、邮件或 WhatsApp 快速回复。",
+    "methodsTitle": "联系方式",
+    "phoneLabel": "电话",
+    "emailLabel": "邮箱",
+    "whatsappCta": "通过 WhatsApp 联系我们",
+    "facebookCta": "访问我们的 Facebook 页面",
+    "breadcrumb": {
+      "home": "首页",
+      "current": "联系我们"
+    }
+  },
+  "Footer": {
+    "description": "格鲁吉亚难忘之旅与学校研学——地道路线、持证导游与可靠组织服务。",
+    "siteNav": "网站导航",
+    "tourNav": "按城市浏览旅游",
+    "contactTitle": "联系",
+    "copyright": "© {year} TP Georgia. 保留所有权利。"
   },
   "Header": {
     "logoAlt": "TP Georgia",
