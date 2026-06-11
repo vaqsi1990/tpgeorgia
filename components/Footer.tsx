@@ -32,7 +32,7 @@ export default function Footer() {
       <div className="mx-auto grid w-full max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-3">
           <p className="font-afacad text-xl font-semibold">{business.name}</p>
-          <p className="text-[15px] leading-relaxed text-black/70">
+          <p className="text-[16px] leading-relaxed text-black">
             {t("description")}
           </p>
         </div>
@@ -46,7 +46,7 @@ export default function Footer() {
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="text-[15px] text-black/80 transition-colors hover:text-brand"
+                  className="text-[16px] text-black transition-colors hover:text-brand"
                 >
                   {tHeader(item.labelKey)}
                 </Link>
@@ -64,7 +64,7 @@ export default function Footer() {
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="text-[15px] text-black/80 transition-colors hover:text-brand"
+                  className="text-[16px] text-black transition-colors hover:text-brand"
                 >
                   {tHeader(
                     `nav.toursDropdown.${item.key}` as "nav.toursDropdown.batumi",
@@ -79,7 +79,7 @@ export default function Footer() {
           <h2 className="mb-3 text-[16px] font-semibold uppercase tracking-wide text-black">
             {t("contactTitle")}
           </h2>
-          <ul className="space-y-2 text-[15px] text-black/80">
+          <ul className="space-y-2 text-[16px] text-black">
             <li>
               <a
                 href={`tel:${business.phone}`}
