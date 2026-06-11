@@ -123,11 +123,11 @@ export default function ContactForm() {
         />
       </div>
 
-      <p className="text-[13px] leading-relaxed text-black/55">{t("formNote")}</p>
+      
 
       <button
         type="submit"
-        className="inline-flex items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[15px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90"
+        className="inline-flex items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[16px] md:text-[18px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90"
       >
         {t("submitButton")}
       </button>

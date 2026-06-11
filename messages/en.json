@@ -226,7 +226,7 @@
     "defaultSubject": "Inquiry from TP Georgia website",
     "bodyFooter": "Sent from {name} ({email}) via tpgeorgia.ge",
     "formNote": "The button opens Gmail with your message ready to send to our team.",
-    "submitButton": "Send via Gmail"
+    "submitButton": "Send"
   },
   "Footer": {
     "description": "Unforgettable tours and school excursions across Georgia — authentic routes, certified guides, and reliable organization.",

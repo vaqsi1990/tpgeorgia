@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <nav aria-label={t("siteNav")}>
-          <h2 className="mb-3 text-[14px] font-semibold uppercase tracking-wide text-black/55">
+          <h2 className="mb-3 text-[16px] font-semibold uppercase tracking-wide text-black">
             {t("siteNav")}
           </h2>
           <ul className="space-y-2">
@@ -56,7 +56,7 @@ export default function Footer() {
         </nav>
 
         <nav aria-label={t("tourNav")}>
-          <h2 className="mb-3 text-[14px] font-semibold uppercase tracking-wide text-black/55">
+          <h2 className="mb-3 text-[16px] font-semibold uppercase tracking-wide text-black">
             {t("tourNav")}
           </h2>
           <ul className="space-y-2">
@@ -76,7 +76,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="mb-3 text-[14px] font-semibold uppercase tracking-wide text-black/55">
+          <h2 className="mb-3 text-[16px] font-semibold uppercase tracking-wide text-black">
             {t("contactTitle")}
           </h2>
           <ul className="space-y-2 text-[15px] text-black/80">
