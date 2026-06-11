@@ -14,7 +14,7 @@ const footerLinks = [
     labelKey: "nav.schoolExcursions",
   },
   { key: "gallery", href: "/gallery", labelKey: "nav.gallery" },
-  { key: "contact", href: "/contact", labelKey: "nav.contact" },
+  { key: "contact", href: "/#contact", labelKey: "nav.contact" },
 ] as const;
 
 const tourLinks = [

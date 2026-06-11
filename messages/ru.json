@@ -209,21 +209,24 @@
     }
   },
   "Contact": {
-    "metadata": {
-      "title": "Контакты | TP Georgia",
-      "description": "Свяжитесь с TP Georgia для бронирования туров, школьных экскурсий и индивидуальных программ по Грузии."
-    },
     "title": "Контакты",
-    "description": "Свяжитесь с нами, чтобы спланировать тур или школьную экскурсию. Мы быстро отвечаем по телефону, email или WhatsApp.",
+    "description": "Напишите нам о турах или школьных экскурсиях. Заполните форму и отправьте письмо через Gmail.",
     "methodsTitle": "Как с нами связаться",
     "phoneLabel": "Телефон",
     "emailLabel": "Email",
     "whatsappCta": "Написать в WhatsApp",
     "facebookCta": "Наша страница в Facebook",
-    "breadcrumb": {
-      "home": "Главная",
-      "current": "Контакты"
-    }
+    "nameLabel": "Ваше имя",
+    "namePlaceholder": "Иван Иванов",
+    "emailPlaceholder": "you@example.com",
+    "subjectLabel": "Тема",
+    "subjectPlaceholder": "Запрос о туре",
+    "messageLabel": "Сообщение",
+    "messagePlaceholder": "Расскажите о группе, датах и интересах...",
+    "defaultSubject": "Запрос с сайта TP Georgia",
+    "bodyFooter": "Отправлено от {name} ({email}) через tpgeorgia.ge",
+    "formNote": "Кнопка откроет Gmail с готовым письмом для отправки нашей команде.",
+    "submitButton": "Отправить через Gmail"
   },
   "Footer": {
     "description": "Незабываемые туры и школьные экскурсии по Грузии — аутентичные маршруты, сертифицированные гиды и надёжная организация.",

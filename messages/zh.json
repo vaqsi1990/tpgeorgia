@@ -209,21 +209,24 @@
     }
   },
   "Contact": {
-    "metadata": {
-      "title": "联系我们 | TP Georgia",
-      "description": "联系 TP Georgia 预订格鲁吉亚旅游、学校研学和定制行程。"
-    },
     "title": "联系我们",
-    "description": "欢迎联系我们规划下一次格鲁吉亚之旅或学校研学。我们可通过电话、邮件或 WhatsApp 快速回复。",
+    "description": "咨询旅游或学校研学。填写表单并通过 Gmail 发送邮件。",
     "methodsTitle": "联系方式",
     "phoneLabel": "电话",
     "emailLabel": "邮箱",
     "whatsappCta": "通过 WhatsApp 联系我们",
     "facebookCta": "访问我们的 Facebook 页面",
-    "breadcrumb": {
-      "home": "首页",
-      "current": "联系我们"
-    }
+    "nameLabel": "您的姓名",
+    "namePlaceholder": "张三",
+    "emailPlaceholder": "you@example.com",
+    "subjectLabel": "主题",
+    "subjectPlaceholder": "旅游咨询",
+    "messageLabel": "留言",
+    "messagePlaceholder": "请告诉我们团队人数、日期和兴趣...",
+    "defaultSubject": "来自 TP Georgia 网站的咨询",
+    "bodyFooter": "由 {name}（{email}）通过 tpgeorgia.ge 发送",
+    "formNote": "点击按钮将打开 Gmail，邮件内容已预填，发送给我们的团队即可。",
+    "submitButton": "通过 Gmail 发送"
   },
   "Footer": {
     "description": "格鲁吉亚难忘之旅与学校研学——地道路线、持证导游与可靠组织服务。",

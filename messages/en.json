@@ -209,21 +209,24 @@
     }
   },
   "Contact": {
-    "metadata": {
-      "title": "Contact | TP Georgia",
-      "description": "Contact TP Georgia for tour bookings, school excursion planning, and custom travel programs across Georgia."
-    },
     "title": "Contact Us",
-    "description": "Reach out to plan your next tour or school excursion in Georgia. We respond quickly by phone, email, or WhatsApp.",
+    "description": "Write to us about tours or school excursions. Fill in the form and send your message through Gmail.",
     "methodsTitle": "How to reach us",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "whatsappCta": "Message us on WhatsApp",
     "facebookCta": "Visit our Facebook page",
-    "breadcrumb": {
-      "home": "Home",
-      "current": "Contact"
-    }
+    "nameLabel": "Your name",
+    "namePlaceholder": "John Smith",
+    "emailPlaceholder": "you@example.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Tour inquiry",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your group, dates, and interests...",
+    "defaultSubject": "Inquiry from TP Georgia website",
+    "bodyFooter": "Sent from {name} ({email}) via tpgeorgia.ge",
+    "formNote": "The button opens Gmail with your message ready to send to our team.",
+    "submitButton": "Send via Gmail"
   },
   "Footer": {
     "description": "Unforgettable tours and school excursions across Georgia — authentic routes, certified guides, and reliable organization.",

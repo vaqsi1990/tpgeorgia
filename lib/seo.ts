@@ -140,15 +140,3 @@ export function breadcrumbJsonLd(locale: AppLocale, items: BreadcrumbItem[]) {
     })),
   };
 }
-
-export function contactPageJsonLd(locale: AppLocale) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "Contact TP Georgia",
-    url: localizedUrl(locale, "/contact"),
-    mainEntity: {
-      "@id": `${getSiteUrl()}/#organization`,
-    },
-  };
-}

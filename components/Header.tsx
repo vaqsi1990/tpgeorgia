@@ -16,7 +16,7 @@ const navItems = [
   { key: "gallery", href: "/gallery" },
   { key: "schoolExcursions", href: "/excursions" },
 
-  { key: "contact", href: "/contact" },
+  { key: "contact", href: "/#contact" },
 ] as const;
 
 const tourDestinations = [

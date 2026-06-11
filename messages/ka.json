@@ -209,21 +209,24 @@
     }
   },
   "Contact": {
-    "metadata": {
-      "title": "კონტაქტი | TP Georgia",
-      "description": "დაგვიკავშირდით TP Georgia-სთან ტურების, სასკოლო ექსკურსიებისა და ინდივიდუალური პროგრამების დასაგეგმად საქართველოში."
-    },
     "title": "კონტაქტი",
-    "description": "დაგვიკავშირდით თქვენი შემდეგი ტურის ან სასკოლო ექსკურსიის დასაგეგმად. სწრაფად გიპასუხებთ ტელეფონით, ელფოსტით ან WhatsApp-ით.",
+    "description": "მოგვწერეთ ტურების ან სასკოლო ექსკურსიების შესახებ. შეავსეთ ფორმა და გაგვიგზავნეთ წერილი Gmail-ით.",
     "methodsTitle": "როგორ დაგვიკავშირდეთ",
     "phoneLabel": "ტელეფონი",
     "emailLabel": "ელფოსტა",
     "whatsappCta": "მოგვწერეთ WhatsApp-ზე",
     "facebookCta": "გვიპოვეთ Facebook-ზე",
-    "breadcrumb": {
-      "home": "მთავარი",
-      "current": "კონტაქტი"
-    }
+    "nameLabel": "თქვენი სახელი",
+    "namePlaceholder": "გიორგი ბერიძე",
+    "emailPlaceholder": "you@example.com",
+    "subjectLabel": "თემა",
+    "subjectPlaceholder": "ტურის შეკითხვა",
+    "messageLabel": "წერილი",
+    "messagePlaceholder": "მოგვიყევით ჯგუფის, თარიღებისა და ინტერესების შესახებ...",
+    "defaultSubject": "მოთხოვნა TP Georgia-ს საიტიდან",
+    "bodyFooter": "გაგზავნილია {name}-ისგან ({email}) tpgeorgia.ge-დან",
+    "formNote": "ღილაკი Gmail-ს გახსნის თქვენი წერილით, რომელიც ჩვენს გუნდს გაეგზავნება.",
+    "submitButton": "გაგზავნა Gmail-ით"
   },
   "Footer": {
     "description": "დაუვიწყარი ტურები და სასკოლო ექსკურსიები საქართველოში — ავთენტური მარშრუტები, სერტიფიცირებული გიდები და საიმედო ორგანიზაცია.",

@@ -26,7 +26,6 @@ export const publicPaths = [
   "/tours/tbilisi",
   "/tours/kutaisi",
   "/excursions",
-  "/contact",
 ] as const;
 
 export type PublicPath = (typeof publicPaths)[number];

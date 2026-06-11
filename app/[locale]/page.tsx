@@ -1,3 +1,4 @@
+import Contact from "@/components/Contact";
 import Excursions from "@/components/Excursions";
 import Hero from "@/components/Hero";
 import Tours from "@/components/Tours";
@@ -32,6 +33,7 @@ export default async function HomePage({ params }: Props) {
       <WhyUs />
       <Tours />
       <Excursions />
+      <Contact />
     </>
   );
 }
