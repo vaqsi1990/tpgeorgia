@@ -3,31 +3,72 @@
 import { buildGmailComposeUrl } from "@/lib/gmail";
 import { business } from "@/lib/site";
 import { useTranslations } from "next-intl";
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 
 const inputClass =
-  "w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-[15px] text-black outline-none transition-colors placeholder:text-black/40 focus:border-[#38ab8a]";
+  "w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-[16px]  text-black outline-none transition-colors placeholder:text-black/40 focus:border-[#38ab8a]";
 
-export default function ContactForm() {
+type InquiryType = "tour" | "excursion" | "";
+
+export type ContactCatalogOption = {
+  id: string;
+  title: string;
+};
+
+type ContactFormProps = {
+  tours: ContactCatalogOption[];
+  excursions: ContactCatalogOption[];
+};
+
+export default function ContactForm({ tours, excursions }: ContactFormProps) {
   const t = useTranslations("Contact");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const [inquiryType, setInquiryType] = useState<InquiryType>("");
+  const [selectedItemId, setSelectedItemId] = useState("");
   const [message, setMessage] = useState("");
+
+  const catalogItems = useMemo(() => {
+    if (inquiryType === "tour") return tours;
+    if (inquiryType === "excursion") return excursions;
+    return [];
+  }, [excursions, inquiryType, tours]);
+
+  const selectedItem = catalogItems.find((item) => item.id === selectedItemId);
+
+  const handleInquiryTypeChange = (value: InquiryType) => {
+    setInquiryType(value);
+    setSelectedItemId("");
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
-    const trimmedSubject = subject.trim() || t("defaultSubject");
     const trimmedMessage = message.trim();
 
-    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+    if (
+      !trimmedName ||
+      !trimmedEmail ||
+      !trimmedMessage ||
+      !inquiryType ||
+      !selectedItem
+    ) {
       return;
     }
 
+    const typeLabel =
+      inquiryType === "tour" ? t("topicTypeTour") : t("topicTypeExcursion");
+
+    const trimmedSubject =
+      inquiryType === "tour"
+        ? t("subjectTour", { title: selectedItem.title })
+        : t("subjectExcursion", { title: selectedItem.title });
+
     const body = [
+      t("bodyTopicLine", { type: typeLabel, title: selectedItem.title }),
+      "",
       trimmedMessage,
       "",
       "—",
@@ -42,6 +83,13 @@ export default function ContactForm() {
 
     window.open(gmailUrl, "_blank", "noopener,noreferrer");
   };
+
+  const itemLabel =
+    inquiryType === "tour"
+      ? t("itemTourLabel")
+      : inquiryType === "excursion"
+        ? t("itemExcursionLabel")
+        : t("itemLabel");
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -86,22 +134,51 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div>
-        <label
-          htmlFor="contact-subject"
-          className="mb-1.5 block text-[16px] font-medium text-black"
-        >
-          {t("subjectLabel")}
-        </label>
-        <input
-          id="contact-subject"
-          type="text"
-          name="subject"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
-          placeholder={t("subjectPlaceholder")}
-          className={inputClass}
-        />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label
+            htmlFor="contact-topic-type"
+            className="mb-1.5 block text-[16px] font-medium text-black"
+          >
+            {t("topicTypeLabel")}
+          </label>
+          <select
+            id="contact-topic-type"
+            name="topicType"
+            required
+            value={inquiryType}
+            onChange={(e) => handleInquiryTypeChange(e.target.value as InquiryType)}
+            className={inputClass}
+          >
+            <option value="">{t("topicTypePlaceholder")}</option>
+            <option value="tour">{t("topicTypeTour")}</option>
+            <option value="excursion">{t("topicTypeExcursion")}</option>
+          </select>
+        </div>
+        <div>
+          <label
+            htmlFor="contact-topic-item"
+            className="mb-1.5 block text-[16px] font-medium text-black"
+          >
+            {itemLabel}
+          </label>
+          <select
+            id="contact-topic-item"
+            name="topicItem"
+            required
+            disabled={!inquiryType}
+            value={selectedItemId}
+            onChange={(e) => setSelectedItemId(e.target.value)}
+            className={`${inputClass} disabled:cursor-not-allowed disabled:bg-black/[0.03] disabled:text-black/40`}
+          >
+            <option value="">{t("itemPlaceholder")}</option>
+            {catalogItems.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.title}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>
@@ -123,11 +200,9 @@ export default function ContactForm() {
         />
       </div>
 
-      
-
       <button
         type="submit"
-        className="inline-flex items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[16px] md:text-[18px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90"
+        className="inline-flex items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[16px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90 md:text-[18px]"
       >
         {t("submitButton")}
       </button>

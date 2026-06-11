@@ -1,17 +1,36 @@
-import ContactForm from "@/components/ContactForm";
+import ContactForm, { type ContactCatalogOption } from "@/components/ContactForm";
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
+import type { AppLocale } from "@/i18n/routing";
+import { listExcursions, listTours } from "@/lib/catalog-db";
 import { business } from "@/lib/site";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+
+function mapCatalogOptions(
+  records: { id: string; content: Record<AppLocale, { title: string }> }[],
+  locale: AppLocale,
+): ContactCatalogOption[] {
+  return records
+    .map((record) => ({
+      id: record.id,
+      title:
+        record.content[locale]?.title?.trim() ||
+        record.content.ka?.title?.trim() ||
+        record.id,
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title, locale));
+}
 
 export default async function Contact() {
+  const locale = (await getLocale()) as AppLocale;
   const t = await getTranslations("Contact");
+  const [tours, excursions] = await Promise.all([listTours(), listExcursions()]);
 
   return (
     <ParallaxSection
       id="contact"
       tone="mint"
-      className="bg-white px-4 pb-20 text-black sm:px-6 lg:px-10"
+      className="bg-white px-4 pb-20 text-black bg-white sm:px-6 lg:px-10"
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader title={t("title")} description={t("description")} />
@@ -66,7 +85,10 @@ export default async function Contact() {
           </aside>
 
           <div className="rounded-2xl border border-black/10 bg-brand/[0.02] p-5 sm:p-6 lg:p-8">
-            <ContactForm />
+            <ContactForm
+              tours={mapCatalogOptions(tours, locale)}
+              excursions={mapCatalogOptions(excursions, locale)}
+            />
           </div>
         </div>
       </div>
