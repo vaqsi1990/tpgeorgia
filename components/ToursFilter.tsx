@@ -3,17 +3,21 @@
 import { tourDestinationIds } from "@/data/tour-destinations";
 import {
   defaultTourFilters,
+  getTourPriceBoundsFromCatalog,
   hasActiveFilters,
   tourPriceBounds,
   type TourDurationFilter,
   type TourFilters,
 } from "@/data/tour-filters";
+import type { StoredTourRecord } from "@/lib/admin-types";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 
 type ToursFilterProps = {
   filters: TourFilters;
-  onChange: (filters: TourFilters) => void;
+  onChange: Dispatch<SetStateAction<TourFilters>>;
+  catalog?: StoredTourRecord[];
+  baselineFilters?: TourFilters;
 };
 
 const optionClass = (isActive: boolean) =>
@@ -56,25 +60,37 @@ function parsePriceInput(value: string): number | null {
   return Math.round(parsed);
 }
 
-export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
+export default function ToursFilter({
+  filters,
+  onChange,
+  catalog,
+  baselineFilters = defaultTourFilters,
+}: ToursFilterProps) {
   const t = useTranslations("Tours");
   const tHeader = useTranslations("Header");
   const [isExpanded, setIsExpanded] = useState(false);
+  const priceBounds = useMemo(
+    () =>
+      catalog?.length
+        ? getTourPriceBoundsFromCatalog(catalog)
+        : tourPriceBounds,
+    [catalog],
+  );
 
   const setDestination = (destination: TourFilters["destination"]) => {
-    onChange({ ...filters, destination });
+    onChange((prev) => ({ ...prev, destination }));
   };
 
   const setDuration = (duration: TourDurationFilter) => {
-    onChange({ ...filters, duration });
+    onChange((prev) => ({ ...prev, duration }));
   };
 
   const setPriceMin = (value: string) => {
-    onChange({ ...filters, priceMin: parsePriceInput(value) });
+    onChange((prev) => ({ ...prev, priceMin: parsePriceInput(value) }));
   };
 
   const setPriceMax = (value: string) => {
-    onChange({ ...filters, priceMax: parsePriceInput(value) });
+    onChange((prev) => ({ ...prev, priceMax: parsePriceInput(value) }));
   };
 
   const durationOptions: TourDurationFilter[] = [
@@ -90,7 +106,7 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
       aria-label={t("filterLabel")}
     >
       <div
-        className={`flex items-center justify-between gap-3 ${
+        className={`flex items-center justify-between flex-col gap-3 ${
           isExpanded ? "mb-5 border-b border-black/10 pb-4" : "lg:mb-5 lg:border-b lg:border-black/10 lg:pb-4"
         }`}
       >
@@ -105,7 +121,7 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
           <h2 className="font-afacad text-lg font-semibold text-black md:text-xl">
             {t("filterLabel")}
           </h2>
-          {hasActiveFilters(filters) && !isExpanded ? (
+          {hasActiveFilters(filters, baselineFilters) && !isExpanded ? (
             <span className="size-2 shrink-0 rounded-full bg-[#38ab8a]" aria-hidden />
           ) : null}
           <svg
@@ -123,10 +139,10 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
             />
           </svg>
         </button>
-        {hasActiveFilters(filters) ? (
+        {hasActiveFilters(filters, baselineFilters) ? (
           <button
             type="button"
-            onClick={() => onChange(defaultTourFilters)}
+            onClick={() => onChange(baselineFilters)}
             className="shrink-0 text-[13px] font-medium text-[#38ab8a] underline-offset-2 transition-opacity hover:underline hover:opacity-80 md:text-[14px]"
           >
             {t("filterClear")}
@@ -151,11 +167,11 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
                 id="tour-price-min"
                 type="number"
                 min={0}
-                max={tourPriceBounds.max}
+                max={priceBounds.max}
                 step={1}
                 value={filters.priceMin ?? ""}
                 onChange={(e) => setPriceMin(e.target.value)}
-                placeholder={String(tourPriceBounds.min)}
+                placeholder={String(priceBounds.min)}
                 className={inputClass}
               />
             </div>
@@ -170,19 +186,19 @@ export default function ToursFilter({ filters, onChange }: ToursFilterProps) {
                 id="tour-price-max"
                 type="number"
                 min={0}
-                max={tourPriceBounds.max}
+                max={priceBounds.max}
                 step={1}
                 value={filters.priceMax ?? ""}
                 onChange={(e) => setPriceMax(e.target.value)}
-                placeholder={String(tourPriceBounds.max)}
+                placeholder={String(priceBounds.max)}
                 className={inputClass}
               />
             </div>
           </div>
           <p className="text-[12px] leading-relaxed text-black/55 md:text-[13px]">
             {t("filterPriceHint", {
-              min: tourPriceBounds.min,
-              max: tourPriceBounds.max,
+              min: priceBounds.min,
+              max: priceBounds.max,
             })}
           </p>
         </FilterGroup>

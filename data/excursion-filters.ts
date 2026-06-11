@@ -109,11 +109,47 @@ export function matchesExcursionFilters(
   return true;
 }
 
-export function hasActiveExcursionFilters(filters: ExcursionFilters): boolean {
+export function getExcursionPriceBoundsFromCatalog(
+  excursions: Array<{ meta: { priceFrom: number } }>,
+): { min: number; max: number } {
+  const priced = excursions.filter(
+    (excursion) => excursion.meta.priceFrom > 0,
+  );
+  if (!priced.length) {
+    return excursionPriceBounds;
+  }
+
+  return {
+    min: Math.min(...priced.map((excursion) => excursion.meta.priceFrom)),
+    max: Math.max(...priced.map((excursion) => excursion.meta.priceFrom)),
+  };
+}
+
+export function matchesStoredExcursionFilters(
+  stored: {
+    id: string;
+    meta: {
+      durationKey: DurationKey | string;
+      priceFrom: number;
+      grades: string;
+    };
+  },
+  filters: ExcursionFilters,
+): boolean {
+  return matchesExcursionFilters(
+    { id: stored.id as ExcursionMeta["id"], ...stored.meta } as ExcursionMeta,
+    filters,
+  );
+}
+
+export function hasActiveExcursionFilters(
+  filters: ExcursionFilters,
+  baseline: ExcursionFilters = defaultExcursionFilters,
+): boolean {
   return (
-    filters.duration !== "all" ||
-    filters.grade !== "all" ||
-    filters.priceMin !== null ||
-    filters.priceMax !== null
+    filters.duration !== baseline.duration ||
+    filters.grade !== baseline.grade ||
+    filters.priceMin !== baseline.priceMin ||
+    filters.priceMax !== baseline.priceMax
   );
 }

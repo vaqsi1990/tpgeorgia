@@ -2,6 +2,7 @@ import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
 import ToursPageContent from "@/components/ToursPageContent";
 import type { TourDestination } from "@/data/tour-destinations";
+import { listTours } from "@/lib/catalog-db";
 import { getTranslations } from "next-intl/server";
 
 type ToursPageProps = {
@@ -9,7 +10,10 @@ type ToursPageProps = {
 };
 
 export default async function ToursPage({ destination }: ToursPageProps = {}) {
-  const t = await getTranslations("Tours");
+  const [t, tours] = await Promise.all([
+    getTranslations("Tours"),
+    listTours(),
+  ]);
   const title = destination
     ? t(`destinations.${destination}.title`)
     : t("title");
@@ -31,7 +35,10 @@ export default async function ToursPage({ destination }: ToursPageProps = {}) {
           title={title}
           description={description}
         />
-        <ToursPageContent initialDestination={destination} />
+        <ToursPageContent
+          initialDestination={destination}
+          initialTours={tours}
+        />
       </div>
     </ParallaxSection>
   );

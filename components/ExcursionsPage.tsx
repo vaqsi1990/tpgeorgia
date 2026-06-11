@@ -3,10 +3,14 @@ import FadeUp from "@/components/FadeUp";
 import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
+import { listExcursions } from "@/lib/catalog-db";
 import { getTranslations } from "next-intl/server";
 
 export default async function ExcursionsPage() {
-  const t = await getTranslations("Excursions");
+  const [t, excursions] = await Promise.all([
+    getTranslations("Excursions"),
+    listExcursions(),
+  ]);
 
   return (
     <ParallaxSection
@@ -34,7 +38,7 @@ export default async function ExcursionsPage() {
           description={t("description")}
         />
 
-        <ExcursionsPageContent />
+        <ExcursionsPageContent initialExcursions={excursions} />
 
         <FadeUp trigger="load" delay={120}>
           <div className="mt-14 w-full overflow-hidden rounded-2xl shadow-[0_4px_24px_rgba(15,79,79,0.06)] sm:mt-16">

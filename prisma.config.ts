@@ -7,6 +7,7 @@ export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
+    seed: "tsx prisma/seed.js",
   },
   datasource: {
     // Use direct TCP URL for CLI (migrate, db push). prisma+postgres:// proxy breaks migrate dev (P1017).

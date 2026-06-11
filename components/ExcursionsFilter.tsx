@@ -3,17 +3,20 @@
 import {
   defaultExcursionFilters,
   excursionPriceBounds,
+  getExcursionPriceBoundsFromCatalog,
   hasActiveExcursionFilters,
   type ExcursionDurationFilter,
   type ExcursionFilters,
   type ExcursionGradeFilter,
 } from "@/data/excursion-filters";
+import type { StoredExcursionRecord } from "@/lib/admin-types";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 
 type ExcursionsFilterProps = {
   filters: ExcursionFilters;
-  onChange: (filters: ExcursionFilters) => void;
+  onChange: Dispatch<SetStateAction<ExcursionFilters>>;
+  catalog?: StoredExcursionRecord[];
 };
 
 const optionClass = (isActive: boolean) =>
@@ -59,24 +62,32 @@ function parsePriceInput(value: string): number | null {
 export default function ExcursionsFilter({
   filters,
   onChange,
+  catalog,
 }: ExcursionsFilterProps) {
   const t = useTranslations("Excursions");
   const [isExpanded, setIsExpanded] = useState(false);
+  const priceBounds = useMemo(
+    () =>
+      catalog?.length
+        ? getExcursionPriceBoundsFromCatalog(catalog)
+        : excursionPriceBounds,
+    [catalog],
+  );
 
   const setDuration = (duration: ExcursionDurationFilter) => {
-    onChange({ ...filters, duration });
+    onChange((prev) => ({ ...prev, duration }));
   };
 
   const setGrade = (grade: ExcursionGradeFilter) => {
-    onChange({ ...filters, grade });
+    onChange((prev) => ({ ...prev, grade }));
   };
 
   const setPriceMin = (value: string) => {
-    onChange({ ...filters, priceMin: parsePriceInput(value) });
+    onChange((prev) => ({ ...prev, priceMin: parsePriceInput(value) }));
   };
 
   const setPriceMax = (value: string) => {
-    onChange({ ...filters, priceMax: parsePriceInput(value) });
+    onChange((prev) => ({ ...prev, priceMax: parsePriceInput(value) }));
   };
 
   const durationOptions: ExcursionDurationFilter[] = [
@@ -99,7 +110,7 @@ export default function ExcursionsFilter({
       aria-label={t("filterLabel")}
     >
       <div
-        className={`flex items-center justify-between gap-3 ${
+        className={`flex items-center justify-between flex-col gap-3 ${
           isExpanded
             ? "mb-5 border-b border-black/10 pb-4"
             : "lg:mb-5 lg:border-b lg:border-black/10 lg:pb-4"
@@ -165,11 +176,11 @@ export default function ExcursionsFilter({
                 id="excursion-price-min"
                 type="number"
                 min={0}
-                max={excursionPriceBounds.max}
+                max={priceBounds.max}
                 step={1}
                 value={filters.priceMin ?? ""}
                 onChange={(e) => setPriceMin(e.target.value)}
-                placeholder={String(excursionPriceBounds.min)}
+                placeholder={String(priceBounds.min)}
                 className={inputClass}
               />
             </div>
@@ -184,19 +195,19 @@ export default function ExcursionsFilter({
                 id="excursion-price-max"
                 type="number"
                 min={0}
-                max={excursionPriceBounds.max}
+                max={priceBounds.max}
                 step={1}
                 value={filters.priceMax ?? ""}
                 onChange={(e) => setPriceMax(e.target.value)}
-                placeholder={String(excursionPriceBounds.max)}
+                placeholder={String(priceBounds.max)}
                 className={inputClass}
               />
             </div>
           </div>
           <p className="text-[12px] leading-relaxed text-black/55 md:text-[13px]">
             {t("filterPriceHint", {
-              min: excursionPriceBounds.min,
-              max: excursionPriceBounds.max,
+              min: priceBounds.min,
+              max: priceBounds.max,
             })}
           </p>
         </FilterGroup>

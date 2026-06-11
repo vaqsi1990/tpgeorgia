@@ -117,11 +117,43 @@ export function matchesTourFilters(
   return true;
 }
 
-export function hasActiveFilters(filters: TourFilters): boolean {
+export function getTourPriceBoundsFromCatalog(
+  tours: Array<{ meta: { priceFrom: number } }>,
+): { min: number; max: number } {
+  const priced = tours.filter((tour) => tour.meta.priceFrom > 0);
+  if (!priced.length) {
+    return tourPriceBounds;
+  }
+
+  return {
+    min: Math.min(...priced.map((tour) => tour.meta.priceFrom)),
+    max: Math.max(...priced.map((tour) => tour.meta.priceFrom)),
+  };
+}
+
+export function matchesStoredTourFilters(
+  stored: {
+    id: string;
+    destination: TourDestination | null;
+    meta: { durationKey: TourDurationKey | string; priceFrom: number };
+  },
+  filters: TourFilters,
+): boolean {
+  return matchesTourFilters(
+    { id: stored.id as TourId, ...stored.meta } as TourMeta,
+    filters,
+    stored.destination,
+  );
+}
+
+export function hasActiveFilters(
+  filters: TourFilters,
+  baseline: TourFilters = defaultTourFilters,
+): boolean {
   return (
-    filters.destination !== "all" ||
-    filters.duration !== "all" ||
-    filters.priceMin !== null ||
-    filters.priceMax !== null
+    filters.destination !== baseline.destination ||
+    filters.duration !== baseline.duration ||
+    filters.priceMin !== baseline.priceMin ||
+    filters.priceMax !== baseline.priceMax
   );
 }
