@@ -8,6 +8,11 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   applicationName: siteName,
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
   formatDetection: {
     telephone: false,
     email: false,
