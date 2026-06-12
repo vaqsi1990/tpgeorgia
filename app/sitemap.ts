@@ -1,41 +1,35 @@
 import { routing } from "@/i18n/routing";
-import { getSiteUrl, localizedPath, publicPaths } from "@/lib/site";
+import {
+  hreflangMap,
+  localizedUrl,
+  publicPaths,
+  type PublicPath,
+} from "@/lib/site";
 import type { MetadataRoute } from "next";
 
+function sitemapPriority(pathname: PublicPath): number {
+  if (pathname === "") return 1;
+  if (pathname === "/tours" || pathname === "/excursions") return 0.9;
+  if (pathname.startsWith("/tours/")) return 0.85;
+  return 0.8;
+}
+
+function sitemapChangeFrequency(
+  pathname: PublicPath,
+): NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]> {
+  return pathname === "" ? "weekly" : "monthly";
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = getSiteUrl();
   const lastModified = new Date();
 
-  const entries: MetadataRoute.Sitemap = [];
-
-  for (const locale of routing.locales) {
-    for (const pathname of publicPaths) {
-      const path = localizedPath(locale, pathname);
-      const priority =
-        pathname === ""
-          ? 1
-          : pathname === "/tours" || pathname === "/excursions"
-            ? 0.9
-            : pathname.startsWith("/tours/")
-              ? 0.85
-              : 0.8;
-
-      entries.push({
-        url: `${siteUrl}${path}`,
-        lastModified,
-        changeFrequency: pathname === "" ? "weekly" : "monthly",
-        priority,
-        alternates: {
-          languages: Object.fromEntries(
-            routing.locales.map((altLocale) => [
-              altLocale,
-              `${siteUrl}${localizedPath(altLocale, pathname)}`,
-            ]),
-          ),
-        },
-      });
-    }
-  }
-
-  return entries;
+  return publicPaths.map((pathname) => ({
+    url: localizedUrl(routing.defaultLocale, pathname),
+    lastModified,
+    changeFrequency: sitemapChangeFrequency(pathname),
+    priority: sitemapPriority(pathname),
+    alternates: {
+      languages: hreflangMap(pathname),
+    },
+  }));
 }

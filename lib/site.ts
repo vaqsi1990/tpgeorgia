@@ -2,6 +2,8 @@ import { routing, type AppLocale } from "@/i18n/routing";
 
 export const siteName = "TP Georgia";
 
+export const productionSiteUrl = "https://tourprovidergeo.com";
+
 export const business = {
   name: siteName,
   legalName: "TP Georgia",
@@ -33,6 +35,20 @@ export type PublicPath = (typeof publicPaths)[number];
 export function getSiteUrl(): string {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
   if (configured) return configured;
+
+  if (process.env.VERCEL_ENV === "production") {
+    return productionSiteUrl;
+  }
+
+  const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL?.replace(
+    /\/$/,
+    "",
+  );
+  if (vercelProduction) {
+    return vercelProduction.startsWith("http")
+      ? vercelProduction
+      : `https://${vercelProduction}`;
+  }
 
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
