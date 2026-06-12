@@ -1,7 +1,5 @@
 "use client";
 
-import { buildGmailComposeUrl } from "@/lib/gmail";
-import { business } from "@/lib/site";
 import { useTranslations } from "next-intl";
 import { useMemo, useState, type FormEvent } from "react";
 
@@ -9,6 +7,8 @@ const inputClass =
   "w-full rounded-xl border border-black/5 bg-white px-4 py-3 text-[16px] text-black shadow-[0_4px_20px_rgba(15,79,79,0.08)] outline-none transition-[box-shadow,border-color] placeholder:text-black/40 focus:border-[#38ab8a] focus:shadow-[0_4px_24px_rgba(56,171,138,0.14)]";
 
 type InquiryType = "tour" | "excursion" | "";
+
+type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export type ContactCatalogOption = {
   id: string;
@@ -27,6 +27,7 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
   const [inquiryType, setInquiryType] = useState<InquiryType>("");
   const [selectedItemId, setSelectedItemId] = useState("");
   const [message, setMessage] = useState("");
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
 
   const catalogItems = useMemo(() => {
     if (inquiryType === "tour") return tours;
@@ -39,9 +40,10 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
   const handleInquiryTypeChange = (value: InquiryType) => {
     setInquiryType(value);
     setSelectedItemId("");
+    setSubmitState("idle");
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmedName = name.trim();
@@ -61,27 +63,48 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
     const typeLabel =
       inquiryType === "tour" ? t("topicTypeTour") : t("topicTypeExcursion");
 
-    const trimmedSubject =
+    const subject =
       inquiryType === "tour"
         ? t("subjectTour", { title: selectedItem.title })
         : t("subjectExcursion", { title: selectedItem.title });
 
-    const body = [
-      t("bodyTopicLine", { type: typeLabel, title: selectedItem.title }),
-      "",
-      trimmedMessage,
-      "",
-      "—",
-      t("bodyFooter", { name: trimmedName, email: trimmedEmail }),
-    ].join("\n");
-
-    const gmailUrl = buildGmailComposeUrl({
-      to: business.email,
-      subject: trimmedSubject,
-      body,
+    const topicLine = t("bodyTopicLine", {
+      type: typeLabel,
+      title: selectedItem.title,
     });
 
-    window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    setSubmitState("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          inquiryType,
+          itemId: selectedItem.id,
+          itemTitle: selectedItem.title,
+          subject,
+          topicLine,
+          message: trimmedMessage,
+        }),
+      });
+
+      if (!response.ok) {
+        setSubmitState("error");
+        return;
+      }
+
+      setName("");
+      setEmail("");
+      setInquiryType("");
+      setSelectedItemId("");
+      setMessage("");
+      setSubmitState("success");
+    } catch {
+      setSubmitState("error");
+    }
   };
 
   const itemLabel =
@@ -90,6 +113,8 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
       : inquiryType === "excursion"
         ? t("itemExcursionLabel")
         : t("itemLabel");
+
+  const isSubmitting = submitState === "submitting";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -107,8 +132,12 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
             name="name"
             required
             autoComplete="name"
+            disabled={isSubmitting}
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setSubmitState("idle");
+            }}
             placeholder={t("namePlaceholder")}
             className={inputClass}
           />
@@ -126,8 +155,12 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
             name="email"
             required
             autoComplete="email"
+            disabled={isSubmitting}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setSubmitState("idle");
+            }}
             placeholder={t("emailPlaceholder")}
             className={inputClass}
           />
@@ -146,6 +179,7 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
             id="contact-topic-type"
             name="topicType"
             required
+            disabled={isSubmitting}
             value={inquiryType}
             onChange={(e) => handleInquiryTypeChange(e.target.value as InquiryType)}
             className={inputClass}
@@ -166,9 +200,12 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
             id="contact-topic-item"
             name="topicItem"
             required
-            disabled={!inquiryType}
+            disabled={!inquiryType || isSubmitting}
             value={selectedItemId}
-            onChange={(e) => setSelectedItemId(e.target.value)}
+            onChange={(e) => {
+              setSelectedItemId(e.target.value);
+              setSubmitState("idle");
+            }}
             className={`${inputClass} disabled:cursor-not-allowed disabled:border-black/5 disabled:bg-white disabled:text-black/40 disabled:shadow-[0_2px_12px_rgba(15,79,79,0.04)]`}
           >
             <option value="">{t("itemPlaceholder")}</option>
@@ -193,18 +230,41 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
           name="message"
           required
           rows={6}
+          disabled={isSubmitting}
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => {
+            setMessage(e.target.value);
+            setSubmitState("idle");
+          }}
           placeholder={t("messagePlaceholder")}
           className={`${inputClass} min-h-[140px] resize-y`}
         />
       </div>
 
+      {submitState === "success" ? (
+        <p
+          role="status"
+          className="rounded-xl border border-[#38ab8a]/20 bg-[#38ab8a]/10 px-4 py-3 text-[15px] text-black"
+        >
+          {t("submitSuccess")}
+        </p>
+      ) : null}
+
+      {submitState === "error" ? (
+        <p
+          role="alert"
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[15px] text-red-800"
+        >
+          {t("submitError")}
+        </p>
+      ) : null}
+
       <button
         type="submit"
-        className="inline-flex items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[16px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90 md:text-[18px]"
+        disabled={isSubmitting}
+        className="inline-flex items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[16px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
       >
-        {t("submitButton")}
+        {isSubmitting ? t("submittingButton") : t("submitButton")}
       </button>
     </form>
   );

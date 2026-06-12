@@ -210,13 +210,13 @@
   },
   "Contact": {
     "title": "Контакты",
-    "description": "Напишите нам о турах или школьных экскурсиях. Заполните форму и отправьте письмо через Gmail.",
+    "description": "Напишите нам о турах или школьных экскурсиях. Заполните форму и отправьте сообщение.",
     "methodsTitle": "Как с нами связаться",
     "phoneLabel": "Телефон",
     "emailLabel": "Email",
     "whatsappCta": "Написать в WhatsApp",
     "facebookCta": "Наша страница в Facebook",
-    "nameLabel": "Ваше имя",
+    "nameLabel": "Ваше имя и фамилия",
     "namePlaceholder": "Иван Иванов",
     "emailPlaceholder": "you@example.com",
     "topicTypeLabel": "Тема",
@@ -234,8 +234,11 @@
     "messagePlaceholder": "Расскажите о группе, датах и интересах...",
     "defaultSubject": "Запрос с сайта TP Georgia",
     "bodyFooter": "Отправлено от {name} ({email}) через tpgeorgia.ge",
-    "formNote": "Кнопка откроет Gmail с готовым письмом для отправки нашей команде.",
-    "submitButton": "Отправить"
+    "formNote": "Сообщение отправляется напрямую нашей команде.",
+    "submitButton": "Отправить",
+    "submittingButton": "Отправка...",
+    "submitSuccess": "Сообщение отправлено. Мы скоро свяжемся с вами.",
+    "submitError": "Не удалось отправить сообщение. Попробуйте снова или позвоните нам."
   },
   "Footer": {
     "description": "Незабываемые туры и школьные экскурсии по Грузии — аутентичные маршруты, сертифицированные гиды и надёжная организация.",

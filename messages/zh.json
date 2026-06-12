@@ -210,13 +210,13 @@
   },
   "Contact": {
     "title": "联系我们",
-    "description": "咨询旅游或学校研学。填写表单并通过 Gmail 发送邮件。",
+    "description": "咨询旅游或学校研学。填写表单并发送消息给我们。",
     "methodsTitle": "联系方式",
     "phoneLabel": "电话",
     "emailLabel": "邮箱",
     "whatsappCta": "通过 WhatsApp 联系我们",
     "facebookCta": "访问我们的 Facebook 页面",
-    "nameLabel": "您的姓名",
+    "nameLabel": "您的姓名和姓氏",
     "namePlaceholder": "张三",
     "emailPlaceholder": "you@example.com",
     "topicTypeLabel": "主题",
@@ -234,8 +234,11 @@
     "messagePlaceholder": "请告诉我们团队人数、日期和兴趣...",
     "defaultSubject": "来自 TP Georgia 网站的咨询",
     "bodyFooter": "由 {name}（{email}）通过 tpgeorgia.ge 发送",
-    "formNote": "点击按钮将打开 Gmail，邮件内容已预填，发送给我们的团队即可。",
-    "submitButton": "发送"
+    "formNote": "消息将直接发送给我们的团队。",
+    "submitButton": "发送",
+    "submittingButton": "发送中...",
+    "submitSuccess": "消息已发送，我们会尽快回复您。",
+    "submitError": "消息发送失败，请重试或通过电话联系。"
   },
   "Footer": {
     "description": "格鲁吉亚难忘之旅与学校研学——地道路线、持证导游与可靠组织服务。",

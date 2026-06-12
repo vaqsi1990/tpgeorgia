@@ -210,13 +210,13 @@
   },
   "Contact": {
     "title": "Contact Us",
-    "description": "Write to us about tours or school excursions. Fill in the form and send your message through Gmail.",
+    "description": "Write to us about tours or school excursions. Fill in the form and send us a message.",
     "methodsTitle": "How to reach us",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "whatsappCta": "Message us on WhatsApp",
     "facebookCta": "Visit our Facebook page",
-    "nameLabel": "Your name",
+    "nameLabel": "Your name and surname",
     "namePlaceholder": "John Smith",
     "emailPlaceholder": "you@example.com",
     "topicTypeLabel": "Topic",
@@ -234,8 +234,11 @@
     "messagePlaceholder": "Tell us about your group, dates, and interests...",
     "defaultSubject": "Inquiry from TP Georgia website",
     "bodyFooter": "Sent from {name} ({email}) via tpgeorgia.ge",
-    "formNote": "The button opens Gmail with your message ready to send to our team.",
-    "submitButton": "Send"
+    "formNote": "Your message is sent directly to our team.",
+    "submitButton": "Send",
+    "submittingButton": "Sending...",
+    "submitSuccess": "Your message has been sent. We will get back to you soon.",
+    "submitError": "We could not send your message. Please try again or contact us by phone."
   },
   "Footer": {
     "description": "Unforgettable tours and school excursions across Georgia — authentic routes, certified guides, and reliable organization.",
