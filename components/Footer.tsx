@@ -28,25 +28,25 @@ export default function Footer() {
   const tHeader = useTranslations("Header");
 
   return (
-    <footer className="border-t border-black/10 bg-brand/[0.03] px-4 py-12 text-black sm:px-6 lg:px-10">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-3">
-          <p className="font-afacad text-xl font-semibold">{business.name}</p>
-          <p className="text-[16px] leading-relaxed text-black">
+    <footer className="relative z-10 border-t border-black/10 bg-white px-4 py-10 text-black sm:px-6 sm:py-12 lg:px-10">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="space-y-2 sm:space-y-3">
+          <p className="font-afacad text-lg font-semibold sm:text-xl">{business.name}</p>
+          <p className="text-[15px] leading-relaxed text-black/80 sm:text-[16px]">
             {t("description")}
           </p>
         </div>
 
         <nav aria-label={t("siteNav")}>
-          <h2 className="mb-3 text-[16px] font-semibold uppercase tracking-wide text-black">
+          <h2 className="mb-2 text-[15px] font-semibold uppercase tracking-wide text-black sm:mb-3 sm:text-[16px]">
             {t("siteNav")}
           </h2>
-          <ul className="space-y-2">
+          <ul className="space-y-1.5 sm:space-y-2">
             {footerLinks.map((item) => (
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="text-[16px] text-black transition-colors hover:text-brand"
+                  className="text-[15px] text-black/80 transition-colors hover:text-brand sm:text-[16px]"
                 >
                   {tHeader(item.labelKey)}
                 </Link>
@@ -56,15 +56,15 @@ export default function Footer() {
         </nav>
 
         <nav aria-label={t("tourNav")}>
-          <h2 className="mb-3 text-[16px] font-semibold uppercase tracking-wide text-black">
+          <h2 className="mb-2 text-[15px] font-semibold uppercase tracking-wide text-black sm:mb-3 sm:text-[16px]">
             {t("tourNav")}
           </h2>
-          <ul className="space-y-2">
+          <ul className="space-y-1.5 sm:space-y-2">
             {tourLinks.map((item) => (
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="text-[16px] text-black transition-colors hover:text-brand"
+                  className="text-[15px] text-black/80 transition-colors hover:text-brand sm:text-[16px]"
                 >
                   {tHeader(
                     `nav.toursDropdown.${item.key}` as "nav.toursDropdown.batumi",
@@ -76,10 +76,10 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="mb-3 text-[16px] font-semibold uppercase tracking-wide text-black">
+          <h2 className="mb-2 text-[15px] font-semibold uppercase tracking-wide text-black sm:mb-3 sm:text-[16px]">
             {t("contactTitle")}
           </h2>
-          <ul className="space-y-2 text-[16px] text-black">
+          <ul className="space-y-1.5 text-[15px] text-black/80 sm:space-y-2 sm:text-[16px]">
             <li>
               <a
                 href={`tel:${business.phone}`}
@@ -120,7 +120,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className="mx-auto mt-10 w-full max-w-7xl border-t border-black/10 pt-6 text-center text-[13px] text-black/50">
+      <p className="mx-auto mt-8 w-full max-w-7xl border-t border-black/10 pt-5 text-center text-[12px] text-black/50 sm:mt-10 sm:pt-6 sm:text-[13px]">
         {t("copyright", { year: new Date().getFullYear() })}
       </p>
     </footer>

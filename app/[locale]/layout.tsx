@@ -56,10 +56,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           rel="stylesheet"
         />
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col bg-white text-black">
         <SiteJsonLd locale={locale as AppLocale} />
         <NextIntlClientProvider messages={messages}>
-          <div className="relative flex min-h-screen flex-col">
+          <div className="relative flex min-h-screen flex-col bg-white">
             <Header />
             <div className="flex-1">{children}</div>
             <Footer />

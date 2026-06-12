@@ -11,7 +11,7 @@ export const business = {
   phoneDisplay: "+995 555 33 88 07",
   whatsapp: "https://wa.me/995555338807",
   facebook: "https://www.facebook.com/profile.php?id=61583758856391",
-  email: "info@tpgeorgia.ge",
+  email: "tourprovidergeorgia@gmail.com",
   address: {
     locality: "Batumi",
     region: "Adjara",
