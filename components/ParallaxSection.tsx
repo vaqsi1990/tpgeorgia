@@ -40,7 +40,7 @@ export default function ParallaxSection({
 
   const blob1Y = useTransform(scrollYProgress, [0, 1], [90, -90]);
   const blob2Y = useTransform(scrollYProgress, [0, 1], [-70, 70]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [24, -24]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -24]);
 
   return (
     <Tag id={id}>
