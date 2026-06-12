@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useMemo, useState, type FormEvent } from "react";
 
 const inputClass =
-  "w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-[16px]  text-black outline-none transition-colors placeholder:text-black/40 focus:border-[#38ab8a]";
+  "w-full rounded-xl border border-black/5 bg-white px-4 py-3 text-[16px] text-black shadow-[0_4px_20px_rgba(15,79,79,0.08)] outline-none transition-[box-shadow,border-color] placeholder:text-black/40 focus:border-[#38ab8a] focus:shadow-[0_4px_24px_rgba(56,171,138,0.14)]";
 
 type InquiryType = "tour" | "excursion" | "";
 
@@ -169,7 +169,7 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
             disabled={!inquiryType}
             value={selectedItemId}
             onChange={(e) => setSelectedItemId(e.target.value)}
-            className={`${inputClass} disabled:cursor-not-allowed disabled:bg-black/[0.03] disabled:text-black/40`}
+            className={`${inputClass} disabled:cursor-not-allowed disabled:border-black/5 disabled:bg-white disabled:text-black/40 disabled:shadow-[0_2px_12px_rgba(15,79,79,0.04)]`}
           >
             <option value="">{t("itemPlaceholder")}</option>
             {catalogItems.map((item) => (
