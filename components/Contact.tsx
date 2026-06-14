@@ -2,7 +2,7 @@ import ContactForm, { type ContactCatalogOption } from "@/components/ContactForm
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
 import type { AppLocale } from "@/i18n/routing";
-import { listExcursions, listTours } from "@/lib/catalog-db";
+import type { StoredExcursionRecord, StoredTourRecord } from "@/lib/admin-types";
 import { business } from "@/lib/site";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -21,10 +21,14 @@ function mapCatalogOptions(
     .sort((a, b) => a.title.localeCompare(b.title, locale));
 }
 
-export default async function Contact() {
+type ContactProps = {
+  tours: StoredTourRecord[];
+  excursions: StoredExcursionRecord[];
+};
+
+export default async function Contact({ tours, excursions }: ContactProps) {
   const locale = (await getLocale()) as AppLocale;
   const t = await getTranslations("Contact");
-  const [tours, excursions] = await Promise.all([listTours(), listExcursions()]);
 
   return (
     <ParallaxSection

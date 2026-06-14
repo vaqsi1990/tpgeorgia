@@ -1,14 +1,15 @@
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
 import ToursList from "@/components/ToursList";
-import { listTours } from "@/lib/catalog-db";
+import type { StoredTourRecord } from "@/lib/admin-types";
 import { getTranslations } from "next-intl/server";
 
-export default async function Tours() {
-  const [t, tours] = await Promise.all([
-    getTranslations("Tours"),
-    listTours(),
-  ]);
+type ToursProps = {
+  tours: StoredTourRecord[];
+};
+
+export default async function Tours({ tours }: ToursProps) {
+  const t = await getTranslations("Tours");
 
   return (
     <ParallaxSection

@@ -1,14 +1,15 @@
 import ExcursionsList from "@/components/ExcursionsList";
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
-import { listExcursions } from "@/lib/catalog-db";
+import type { StoredExcursionRecord } from "@/lib/admin-types";
 import { getTranslations } from "next-intl/server";
 
-export default async function Excursions() {
-  const [t, excursions] = await Promise.all([
-    getTranslations("Excursions"),
-    listExcursions(),
-  ]);
+type ExcursionsProps = {
+  excursions: StoredExcursionRecord[];
+};
+
+export default async function Excursions({ excursions }: ExcursionsProps) {
+  const t = await getTranslations("Excursions");
 
   return (
     <ParallaxSection

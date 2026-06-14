@@ -3,8 +3,9 @@ import Excursions from "@/components/Excursions";
 import Hero from "@/components/Hero";
 import Tours from "@/components/Tours";
 import WhyUs from "@/components/WhyUs";
-import { buildPageMetadata } from "@/lib/seo";
 import type { AppLocale } from "@/i18n/routing";
+import { listExcursions, listTours } from "@/lib/catalog-db";
+import { buildPageMetadata } from "@/lib/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const dynamic = "force-dynamic";
@@ -29,13 +30,15 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const [tours, excursions] = await Promise.all([listTours(), listExcursions()]);
+
   return (
     <>
       <Hero />
       <WhyUs />
-      <Tours />
-      <Excursions />
-      <Contact />
+      <Tours tours={tours} />
+      <Excursions excursions={excursions} />
+      <Contact tours={tours} excursions={excursions} />
     </>
   );
 }
