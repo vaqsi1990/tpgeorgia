@@ -117,3 +117,25 @@ body {
 .gallery-scroll-x::-webkit-scrollbar {
   display: none;
 }
+
+.catalog-modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 79, 79, 0.35) transparent;
+}
+
+.catalog-modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.catalog-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.catalog-modal-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(15, 79, 79, 0.28);
+}
+
+.catalog-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 79, 79, 0.42);
+}

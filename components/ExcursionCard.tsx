@@ -8,20 +8,16 @@ type Props = {
   excursion: ExcursionMeta;
   content: ExcursionContent;
   index: number;
-  isOpen: boolean;
   stretchCard: boolean;
-  onOpen: () => void;
-  onClose: () => void;
+  onOpenDetails: () => void;
 };
 
 export default function ExcursionCard({
   excursion,
   content,
   index,
-  isOpen,
   stretchCard,
-  onOpen,
-  onClose,
+  onOpenDetails,
 }: Props) {
   const t = useTranslations("Excursions");
 
@@ -30,10 +26,12 @@ export default function ExcursionCard({
       ? t("priceFrom", { price: excursion.priceFrom })
       : t("priceOnRequest");
 
+  const previewHighlights = content.highlights.slice(0, 3);
+
   return (
     <article
       className={`relative flex w-full flex-col rounded-2xl border border-black/10 bg-white shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow] hover:shadow-[0_8px_32px_rgba(15,79,79,0.1)] ${
-        stretchCard && !isOpen ? "h-full" : ""
+        stretchCard ? "h-full" : ""
       }`}
     >
       {excursion.popular ? (
@@ -45,17 +43,17 @@ export default function ExcursionCard({
         </span>
       ) : null}
 
-      <div className="bg-[#38ab8a] flex shrink-0 items-center justify-between rounded-t-2xl px-5 py-3 sm:px-6">
+      <div className="flex shrink-0 items-center justify-between rounded-t-2xl bg-[#38ab8a] px-5 py-3 sm:px-6">
         <span className="font-afacad text-lg font-semibold text-white/90">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="rounded-full bg-white/15 px-3 py-1 text-[16px] md:text-[18px] font-medium text-white">
+        <span className="rounded-full bg-white/15 px-3 py-1 text-[16px] font-medium text-white md:text-[18px]">
           {excursion.grades} {t("grade")}
         </span>
       </div>
 
       <div
-        className={`flex flex-col px-5 py-5 sm:px-6 sm:py-6 ${stretchCard && !isOpen ? "flex-1" : ""}`}
+        className={`flex flex-col px-5 py-5 sm:px-6 sm:py-6 ${stretchCard ? "flex-1" : ""}`}
       >
         <h3 className="font-afacad mb-4 text-xl font-semibold leading-snug text-black">
           {content.title}
@@ -78,72 +76,36 @@ export default function ExcursionCard({
           </div>
         </dl>
 
-       
-
-        {isOpen ? (
-          <div
-            id={`excursion-details-${excursion.id}`}
-            className="excursion-details-open mt-4 space-y-4 border-t border-black pt-4"
-          >
-            <div>
-              <h4 className="mb-2 text-[16px] font-semibold text-black">
-                {t("highlightsTitle")}
-              </h4>
-              <ul className="space-y-1.5">
-                {content.highlights.map((item, i) => (
-                  <li
-                    key={`${excursion.id}-highlight-${i}`}
-                    className="flex items-start gap-2 text-[16px] md:text-[18px] text-black"
-                  >
-                    <span
-                      className="mt-2.5 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-white"
-                      aria-hidden
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="mb-2 text-[16px] font-semibold text-black">
-                {t("includesTitle")}
-              </h4>
-              <ul className="space-y-1.5">
-                {content.includes.map((item, i) => (
-                  <li
-                    key={`${excursion.id}-include-${i}`}
-                    className="flex items-start gap-2 text-[16px] text-black"
-                  >
-                    <span className="mt-0.5 shrink-0 font-semibold" aria-hidden>
-                      ✔
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {content.optionalNote && (
-              <p className="text-[16px] italic text-black">
-                {content.optionalNote}
-              </p>
-            )}
+        {previewHighlights.length > 0 ? (
+          <div className="mb-4">
+            <h4 className="mb-2 text-[16px] font-semibold text-black">
+              {t("highlightsTitle")}
+            </h4>
+            <ul className="space-y-1.5">
+              {previewHighlights.map((item, i) => (
+                <li
+                  key={`${excursion.id}-highlight-${i}`}
+                  className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
+                >
+                  <span
+                    className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"
+                    aria-hidden
+                  />
+                  <span className="line-clamp-2">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ) : null}
 
         <button
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (isOpen) onClose();
-            else onOpen();
-          }}
-          className={`w-full rounded-xl cursor-pointer border border-black py-2.5 text-[16px] md:text-[18px] font-medium text-black transition-colors hover:bg-brand/5 ${isOpen ? "mt-4" : stretchCard ? "mt-auto" : "mt-4"}`}
-          aria-expanded={isOpen}
-          aria-controls={`excursion-details-${excursion.id}`}
+          onClick={onOpenDetails}
+          className={`w-full cursor-pointer rounded-xl border border-black bg-[#38ab8a] py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
+            stretchCard ? "mt-auto" : "mt-4"
+          }`}
         >
-          {isOpen ? t("showLess") : t("showMore")}
+          {t("showMore")}
         </button>
       </div>
     </article>

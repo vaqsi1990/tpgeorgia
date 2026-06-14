@@ -1,7 +1,9 @@
 "use client";
 
+import CatalogDetailModal from "@/components/CatalogDetailModal";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
 import TourCard from "@/components/TourCard";
+import TourDetailPanel from "@/components/TourDetailPanel";
 import {
   defaultTourFilters,
   matchesStoredTourFilters,
@@ -31,6 +33,7 @@ export default function ToursList({
   staggerCards = false,
 }: ToursListProps = {}) {
   const t = useTranslations("Tours");
+  const tGallery = useTranslations("Gallery.lightbox");
   const locale = useLocale();
   const [openId, setOpenId] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
@@ -54,6 +57,11 @@ export default function ToursList({
   const hiddenCount =
     limit !== undefined ? Math.max(0, items.length - limit) : 0;
 
+  const activeItem = useMemo(
+    () => visibleItems.find((item) => item.tour.id === openId) ?? null,
+    [openId, visibleItems],
+  );
+
   const handleOpen = useCallback((id: string) => {
     setOpenId(id);
   }, []);
@@ -62,7 +70,35 @@ export default function ToursList({
     setOpenId(null);
   }, []);
 
-  const stretchCards = isReady && openId === null;
+  const activeDurationLabel = activeItem
+    ? activeItem.tour.durationKey === "11nights12days"
+      ? t("durationDays", { days: 12, nights: 11 })
+      : t(`durations.${activeItem.tour.durationKey}` as const)
+    : "";
+
+  const activePriceLabel = activeItem
+    ? activeItem.tour.priceFrom > 0
+      ? t("priceFrom", { price: activeItem.tour.priceFrom })
+      : t("priceOnRequest")
+    : "";
+
+  const activeMeta = activeItem
+    ? [
+        ...(activeItem.tour.startTime
+          ? [{ label: t("startTime"), value: activeItem.tour.startTime }]
+          : []),
+        { label: t("duration"), value: activeDurationLabel },
+        { label: t("price"), value: activePriceLabel },
+        ...(activeItem.tour.minPeople > 0
+          ? [
+              {
+                label: t("minPeople"),
+                value: t("minPeopleValue", { count: activeItem.tour.minPeople }),
+              },
+            ]
+          : []),
+      ]
+    : [];
 
   return (
     <>
@@ -78,9 +114,9 @@ export default function ToursList({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.08 }}
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
-            stretchCards ? "items-stretch" : "items-start"
-          } ${visibleItems.length === 0 ? "hidden" : ""}`}
+          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
+            visibleItems.length === 0 ? "hidden" : ""
+          }`}
         >
           {visibleItems.map((item, index) => (
             <motion.div key={item.tour.id} variants={staggerItem}>
@@ -88,19 +124,17 @@ export default function ToursList({
                 tour={item.tour}
                 content={item.content}
                 index={index}
-                isOpen={isReady && openId === item.tour.id}
-                stretchCard={stretchCards}
-                onOpen={() => handleOpen(item.tour.id)}
-                onClose={handleClose}
+                stretchCard={isReady}
+                onOpenDetails={() => handleOpen(item.tour.id)}
               />
             </motion.div>
           ))}
         </motion.div>
       ) : (
         <div
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
-            stretchCards ? "items-stretch" : "items-start"
-          } ${visibleItems.length === 0 ? "hidden" : ""}`}
+          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
+            visibleItems.length === 0 ? "hidden" : ""
+          }`}
         >
           {visibleItems.map((item, index) => (
             <TourCard
@@ -108,10 +142,8 @@ export default function ToursList({
               tour={item.tour}
               content={item.content}
               index={index}
-              isOpen={isReady && openId === item.tour.id}
-              stretchCard={stretchCards}
-              onOpen={() => handleOpen(item.tour.id)}
-              onClose={handleClose}
+              stretchCard={isReady}
+              onOpenDetails={() => handleOpen(item.tour.id)}
             />
           ))}
         </div>
@@ -133,6 +165,21 @@ export default function ToursList({
           </Link>
         </motion.div>
       )}
+
+      {activeItem ? (
+        <CatalogDetailModal
+          isOpen={openId !== null}
+          onClose={handleClose}
+          closeLabel={tGallery("close")}
+          title={activeItem.content.title}
+          subtitle={activeItem.content.routeLabel}
+          popularLabel={t("popularBadge")}
+          isPopular={activeItem.tour.popular}
+          meta={activeMeta}
+        >
+          <TourDetailPanel content={activeItem.content} tourId={activeItem.tour.id} />
+        </CatalogDetailModal>
+      ) : null}
     </>
   );
 }

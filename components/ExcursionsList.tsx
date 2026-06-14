@@ -1,6 +1,8 @@
 "use client";
 
+import CatalogDetailModal from "@/components/CatalogDetailModal";
 import ExcursionCard from "@/components/ExcursionCard";
+import ExcursionDetailPanel from "@/components/ExcursionDetailPanel";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
 import {
   defaultExcursionFilters,
@@ -31,6 +33,7 @@ export default function ExcursionsList({
   filters = defaultExcursionFilters,
 }: ExcursionsListProps = {}) {
   const t = useTranslations("Excursions");
+  const tGallery = useTranslations("Gallery.lightbox");
   const locale = useLocale();
   const [openId, setOpenId] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
@@ -55,6 +58,11 @@ export default function ExcursionsList({
   const hiddenCount =
     limit !== undefined ? Math.max(0, items.length - limit) : 0;
 
+  const activeItem = useMemo(
+    () => visibleItems.find((item) => item.excursion.id === openId) ?? null,
+    [openId, visibleItems],
+  );
+
   const handleOpen = useCallback((id: string) => {
     setOpenId(id);
   }, []);
@@ -63,7 +71,26 @@ export default function ExcursionsList({
     setOpenId(null);
   }, []);
 
-  const stretchCards = isReady && openId === null;
+  const activeDurationLabel = activeItem
+    ? t(`durations.${activeItem.excursion.durationKey}` as const)
+    : "";
+
+  const activePriceLabel = activeItem
+    ? activeItem.excursion.priceFrom > 0
+      ? t("priceFrom", { price: activeItem.excursion.priceFrom })
+      : t("priceOnRequest")
+    : "";
+
+  const activeMeta = activeItem
+    ? [
+        { label: t("duration"), value: activeDurationLabel },
+        {
+          label: t("type"),
+          value: `${activeItem.excursion.grades} ${t("grade")} · ${t("cultural")}`,
+        },
+        { label: t("price"), value: activePriceLabel },
+      ]
+    : [];
 
   return (
     <>
@@ -79,9 +106,9 @@ export default function ExcursionsList({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.08 }}
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
-            stretchCards ? "items-stretch" : "items-start"
-          } ${visibleItems.length === 0 ? "hidden" : ""}`}
+          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
+            visibleItems.length === 0 ? "hidden" : ""
+          }`}
         >
           {visibleItems.map((item, index) => (
             <motion.div key={item.excursion.id} variants={staggerItem}>
@@ -89,19 +116,17 @@ export default function ExcursionsList({
                 excursion={item.excursion}
                 content={item.content}
                 index={index}
-                isOpen={isReady && openId === item.excursion.id}
-                stretchCard={stretchCards}
-                onOpen={() => handleOpen(item.excursion.id)}
-                onClose={handleClose}
+                stretchCard={isReady}
+                onOpenDetails={() => handleOpen(item.excursion.id)}
               />
             </motion.div>
           ))}
         </motion.div>
       ) : (
         <div
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
-            stretchCards ? "items-stretch" : "items-start"
-          } ${visibleItems.length === 0 ? "hidden" : ""}`}
+          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
+            visibleItems.length === 0 ? "hidden" : ""
+          }`}
         >
           {visibleItems.map((item, index) => (
             <ExcursionCard
@@ -109,10 +134,8 @@ export default function ExcursionsList({
               excursion={item.excursion}
               content={item.content}
               index={index}
-              isOpen={isReady && openId === item.excursion.id}
-              stretchCard={stretchCards}
-              onOpen={() => handleOpen(item.excursion.id)}
-              onClose={handleClose}
+              stretchCard={isReady}
+              onOpenDetails={() => handleOpen(item.excursion.id)}
             />
           ))}
         </div>
@@ -134,6 +157,23 @@ export default function ExcursionsList({
           </Link>
         </motion.div>
       )}
+
+      {activeItem ? (
+        <CatalogDetailModal
+          isOpen={openId !== null}
+          onClose={handleClose}
+          closeLabel={tGallery("close")}
+          title={activeItem.content.title}
+          popularLabel={t("popularBadge")}
+          isPopular={activeItem.excursion.popular}
+          meta={activeMeta}
+        >
+          <ExcursionDetailPanel
+            content={activeItem.content}
+            excursionId={activeItem.excursion.id}
+          />
+        </CatalogDetailModal>
+      ) : null}
     </>
   );
 }
