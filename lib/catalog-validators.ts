@@ -3,7 +3,17 @@ import { excursionDurationKeys, tourDurationKeys } from "@/lib/admin-types";
 import { isTourDestination } from "@/data/tour-destinations";
 import { routing } from "@/i18n/routing";
 
-const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const kebabSlugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+/** Existing catalog ids (eveningCity, taoKlarjeti, svaneti3day, …) */
+const catalogIdPattern = /^[a-z][a-zA-Z0-9]*$/;
+
+function isValidOptionalId(id: unknown): boolean {
+  if (id === undefined || id === null || id === "") return true;
+  return (
+    typeof id === "string" &&
+    (kebabSlugPattern.test(id) || catalogIdPattern.test(id))
+  );
+}
 
 function hasTitle(content: unknown): boolean {
   if (!content || typeof content !== "object") return false;
@@ -11,11 +21,6 @@ function hasTitle(content: unknown): boolean {
     const entry = (content as Record<string, { title?: string }>)[locale];
     return typeof entry?.title === "string" && entry.title.trim().length > 0;
   });
-}
-
-function isValidOptionalId(id: unknown): boolean {
-  if (id === undefined || id === null || id === "") return true;
-  return typeof id === "string" && slugPattern.test(id);
 }
 
 export function isValidTourInput(body: unknown): body is StoredTourInput {
