@@ -316,7 +316,7 @@ export default function TourForm({
           onChange={(e) => updateLocaleField("highlights", e.target.value)}
         />
         <AdminInput
-          label="ტანსაცმლის შენიშვნა"
+          label=" შენიშვნა"
           value={form.clothingNote}
           onChange={(e) => updateLocaleField("clothingNote", e.target.value)}
         />

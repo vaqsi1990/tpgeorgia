@@ -15,7 +15,7 @@ export default function LocaleTabs({ active, onChange }: LocaleTabsProps) {
           key={locale}
           type="button"
           onClick={() => onChange(locale)}
-          className={`rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors ${
+          className={`rounded-lg px-3 py-1.5 text-[15px] font-medium transition-colors ${
             active === locale
               ? "bg-[#38ab8a] text-white"
               : "border border-black/10 bg-white text-black/70 hover:bg-brand/5"
