@@ -64,7 +64,7 @@ export default function StoredExcursionList({
               href={`/admin/excursions/${encodeURIComponent(excursion.id)}/edit`}
               className="rounded-lg border border-black/15 px-3 py-2 text-[13px] font-medium hover:bg-black/5"
             >
-              Edit
+              ცვლილება
             </Link>
             <button
               type="button"
@@ -72,7 +72,7 @@ export default function StoredExcursionList({
               disabled={deletingId === excursion.id}
               className="rounded-lg border border-red-200 px-3 py-2 text-[13px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
             >
-              {deletingId === excursion.id ? "Deleting…" : "Delete"}
+              {deletingId === excursion.id ? "წაშლა…" : "წაშლა"}
             </button>
           </div>
         </li>

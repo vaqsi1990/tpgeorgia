@@ -178,7 +178,7 @@ export default function TourProgramEditor({
           <button
             type="button"
             onClick={() => addDay(sectionIndex)}
-            className="rounded-lg border border-dashed border-[#38ab8a]/50 px-3 py-2 text-[13px] font-medium text-[#2d8a6f] hover:bg-[#38ab8a]/5"
+            className="rounded-lg border border-dashed cursor-pointer border-[#38ab8a]/50 px-3 py-2 text-[18px] font-medium text-[#2d8a6f] hover:bg-[#38ab8a]/5"
           >
             + დღის დამატება
           </button>
