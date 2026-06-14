@@ -54,7 +54,7 @@ export default function StoredExcursionList({
             <p className="font-medium">
               {excursion.content.ka.title || excursion.id}
             </p>
-            <p className="text-[13px] text-black/60">
+            <p className="text-[15px] text-black/60">
               ID: {excursion.id} · {excursion.meta.grades} ·{" "}
               {excursion.meta.priceFrom} GEL
             </p>
@@ -62,7 +62,7 @@ export default function StoredExcursionList({
           <div className="flex flex-wrap gap-2">
             <Link
               href={`/admin/excursions/${encodeURIComponent(excursion.id)}/edit`}
-              className="rounded-lg border border-black/15 px-3 py-2 text-[13px] font-medium hover:bg-black/5"
+              className="rounded-lg border border-black/15 px-3 py-2 text-[15px] font-medium hover:bg-black/5"
             >
               ცვლილება
             </Link>
@@ -70,7 +70,7 @@ export default function StoredExcursionList({
               type="button"
               onClick={() => handleDelete(excursion.id)}
               disabled={deletingId === excursion.id}
-              className="rounded-lg border border-red-200 px-3 py-2 text-[13px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+              className="rounded-lg border border-red-200 px-3 py-2 text-[15px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
             >
               {deletingId === excursion.id ? "წაშლა…" : "წაშლა"}
             </button>

@@ -168,7 +168,7 @@ export default function ExcursionForm({
       <section className="space-y-4 rounded-2xl border border-black/10 bg-white p-5 sm:p-6">
         <h2 className="font-afacad text-xl font-semibold">ექსკურსიის პარამეტრები</h2>
         {isEditing && recordId ? (
-          <p className="text-[13px] text-black/60">
+          <p className="text-[15px] text-black/60">
             ID: <span className="font-medium text-black/80">{recordId}</span>
           </p>
         ) : null}

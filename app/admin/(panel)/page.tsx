@@ -18,7 +18,7 @@ export default async function AdminDashboardPage() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-2xl border border-black/10 bg-white p-5">
-          <p className="text-[13px] font-medium uppercase tracking-wide text-black/50">
+          <p className="text-[15px] font-medium uppercase tracking-wide text-black/50">
           ტურები 
           </p>
           <p className="font-afacad mt-1 text-3xl font-semibold">{tours.length}</p>
@@ -33,7 +33,7 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
         <div className="rounded-2xl border border-black/10 bg-white p-5">
-          <p className="text-[13px] font-medium uppercase tracking-wide text-black/50">
+          <p className="text-[15px] font-medium uppercase tracking-wide text-black/50">
           ექსკურსიები
           </p>
           <p className="font-afacad mt-1 text-3xl font-semibold">

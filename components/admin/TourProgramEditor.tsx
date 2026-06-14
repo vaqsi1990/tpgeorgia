@@ -117,7 +117,7 @@ export default function TourProgramEditor({
           className="space-y-4 rounded-xl border border-black/8 bg-[#f9fcfb] p-4"
         >
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="text-[13px] font-semibold text-black/70">
+            <p className="text-[15px] font-semibold text-black/70">
               სექცია {sectionIndex + 1}
             </p>
             <button

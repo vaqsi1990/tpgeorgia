@@ -152,7 +152,7 @@ export default function ExcursionsFilter({
           <button
             type="button"
             onClick={() => onChange(defaultExcursionFilters)}
-            className="shrink-0 text-[13px] font-medium text-[#38ab8a] underline-offset-2 transition-opacity hover:underline hover:opacity-80 md:text-[14px]"
+            className="shrink-0 text-[15px] font-medium text-[#38ab8a] underline-offset-2 transition-opacity hover:underline hover:opacity-80 md:text-[14px]"
           >
             {t("filterClear")}
           </button>
@@ -168,7 +168,7 @@ export default function ExcursionsFilter({
             <div>
               <label
                 htmlFor="excursion-price-min"
-                className="mb-1.5 block text-[13px] text-black/70"
+                className="mb-1.5 block text-[15px] text-black/70"
               >
                 {t("filterPriceMin")}
               </label>
@@ -187,7 +187,7 @@ export default function ExcursionsFilter({
             <div>
               <label
                 htmlFor="excursion-price-max"
-                className="mb-1.5 block text-[13px] text-black/70"
+                className="mb-1.5 block text-[15px] text-black/70"
               >
                 {t("filterPriceMax")}
               </label>
@@ -204,7 +204,7 @@ export default function ExcursionsFilter({
               />
             </div>
           </div>
-          <p className="text-[12px] leading-relaxed text-black/55 md:text-[13px]">
+          <p className="text-[12px] leading-relaxed text-black/55 md:text-[15px]">
             {t("filterPriceHint", {
               min: priceBounds.min,
               max: priceBounds.max,

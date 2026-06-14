@@ -141,7 +141,7 @@ export default function ToursFilter({
           <button
             type="button"
             onClick={() => onChange(baselineFilters)}
-            className="shrink-0 text-[13px] font-medium text-[#38ab8a] underline-offset-2 transition-opacity hover:underline hover:opacity-80 md:text-[14px]"
+            className="shrink-0 text-[15px] font-medium text-[#38ab8a] underline-offset-2 transition-opacity hover:underline hover:opacity-80 md:text-[14px]"
           >
             {t("filterClear")}
           </button>
@@ -157,7 +157,7 @@ export default function ToursFilter({
             <div>
               <label
                 htmlFor="tour-price-min"
-                className="mb-1.5 block text-[13px] text-black/70"
+                className="mb-1.5 block text-[15px] text-black/70"
               >
                 {t("filterPriceMin")}
               </label>
@@ -176,7 +176,7 @@ export default function ToursFilter({
             <div>
               <label
                 htmlFor="tour-price-max"
-                className="mb-1.5 block text-[13px] text-black/70"
+                className="mb-1.5 block text-[15px] text-black/70"
               >
                 {t("filterPriceMax")}
               </label>

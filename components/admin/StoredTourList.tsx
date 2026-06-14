@@ -51,14 +51,14 @@ export default function StoredTourList({
         >
           <div>
             <p className="font-medium">{tour.content.ka.title || tour.id}</p>
-            <p className="text-[13px] text-black/60">
+            <p className="text-[15px] text-black/60">
               ID: {tour.id} · {tour.meta.durationKey} · {tour.meta.priceFrom} GEL
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Link
               href={`/admin/tours/${encodeURIComponent(tour.id)}/edit`}
-              className="rounded-lg border border-black/15 px-3 py-2 text-[13px] font-medium hover:bg-black/5"
+              className="rounded-lg border border-black/15 px-3 py-2 text-[15px] font-medium hover:bg-black/5"
             >
               ცვლილება
             </Link>
@@ -66,7 +66,7 @@ export default function StoredTourList({
               type="button"
               onClick={() => handleDelete(tour.id)}
               disabled={deletingId === tour.id}
-              className="rounded-lg border border-red-200 px-3 py-2 text-[13px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+              className="rounded-lg border border-red-200 px-3 py-2 text-[15px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
             >
               {deletingId === tour.id ? "წაშლა…" : "წაშლა"}
             </button>

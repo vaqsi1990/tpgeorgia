@@ -39,7 +39,7 @@ export default function AdminLoginForm() {
       className="mx-auto w-full max-w-md space-y-4 rounded-2xl border border-black/10 bg-white p-6 shadow-[0_4px_24px_rgba(15,79,79,0.06)]"
     >
       <div className="text-center">
-        <h1 className="font-afacad text-2xl font-semibold">Admin login</h1>
+        <h1 className="font-afacad text-2xl font-semibold">ადმინისტრატორის შესვლა</h1>
         <p className="mt-1 text-[14px] text-black/60">
           შეიყვანე პაროლი
           file.
@@ -62,7 +62,7 @@ export default function AdminLoginForm() {
         />
       </div>
       {error ? (
-        <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-[13px] text-red-700">
+        <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-[15px] text-red-700">
           {error}
         </p>
       ) : null}
@@ -71,7 +71,7 @@ export default function AdminLoginForm() {
         disabled={loading}
         className="w-full rounded-xl bg-[#38ab8a] py-2.5 text-[15px] font-medium text-white disabled:opacity-60"
       >
-        {loading ? "Signing in…" : "Sign in"}
+        {loading ? "შესვლა…" : "შესვლა"}
       </button>
     </form>
   );
