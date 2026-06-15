@@ -1,5 +1,6 @@
 "use client";
 
+import BookingForm from "@/components/BookingForm";
 import CatalogDetailModal from "@/components/CatalogDetailModal";
 import ExcursionCard from "@/components/ExcursionCard";
 import ExcursionDetailPanel from "@/components/ExcursionDetailPanel";
@@ -33,9 +34,11 @@ export default function ExcursionsList({
   filters = defaultExcursionFilters,
 }: ExcursionsListProps = {}) {
   const t = useTranslations("Excursions");
+  const tBooking = useTranslations("Booking");
   const tGallery = useTranslations("Gallery.lightbox");
   const locale = useLocale();
   const [openId, setOpenId] = useState<string | null>(null);
+  const [modalView, setModalView] = useState<"details" | "booking">("details");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -64,11 +67,13 @@ export default function ExcursionsList({
   );
 
   const handleOpen = useCallback((id: string) => {
+    setModalView("details");
     setOpenId(id);
   }, []);
 
   const handleClose = useCallback(() => {
     setOpenId(null);
+    setModalView("details");
   }, []);
 
   const activeDurationLabel = activeItem
@@ -167,11 +172,23 @@ export default function ExcursionsList({
           popularLabel={t("popularBadge")}
           isPopular={activeItem.excursion.popular}
           meta={activeMeta}
+          view={modalView}
+          bookLabel={tBooking("bookButton")}
+          onBook={() => setModalView("booking")}
         >
-          <ExcursionDetailPanel
-            content={activeItem.content}
-            excursionId={activeItem.excursion.id}
-          />
+          {modalView === "details" ? (
+            <ExcursionDetailPanel
+              content={activeItem.content}
+              excursionId={activeItem.excursion.id}
+            />
+          ) : (
+            <BookingForm
+              bookingType="excursion"
+              itemId={activeItem.excursion.id}
+              itemTitle={activeItem.content.title}
+              onBack={() => setModalView("details")}
+            />
+          )}
         </CatalogDetailModal>
       ) : null}
     </>

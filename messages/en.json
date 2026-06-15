@@ -208,6 +208,28 @@
       "counter": "{current} / {total}"
     }
   },
+  "Booking": {
+    "bookButton": "Book now",
+    "backToDetails": "Back to details",
+    "selectedTour": "Selected tour",
+    "selectedExcursion": "Selected excursion",
+    "nameLabel": "Full name",
+    "namePlaceholder": "John Smith",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "+995 5XX XX XX XX",
+    "dateLabel": "Preferred date",
+    "peopleLabel": "Number of people",
+    "peoplePlaceholder": "e.g. 4",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your group, timing, or any special requests...",
+    "submitButton": "Submit booking",
+    "submittingButton": "Sending...",
+    "submitError": "Could not submit your booking. Please try again.",
+    "successTitle": "Request received",
+    "successMessage": "We received your booking request and will contact you shortly to confirm."
+  },
   "Contact": {
     "title": "Contact Us",
     "description": "Write to us about tours or school excursions. Fill in the form and send us a message.",

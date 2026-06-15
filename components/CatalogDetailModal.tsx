@@ -18,6 +18,9 @@ type CatalogDetailModalProps = {
   popularLabel?: string;
   isPopular?: boolean;
   meta?: MetaItem[];
+  view?: "details" | "booking";
+  bookLabel?: string;
+  onBook?: () => void;
   children: React.ReactNode;
 };
 
@@ -30,6 +33,9 @@ export default function CatalogDetailModal({
   popularLabel,
   isPopular = false,
   meta = [],
+  view = "details",
+  bookLabel,
+  onBook,
   children,
 }: CatalogDetailModalProps) {
   const [mounted, setMounted] = useState(false);
@@ -60,6 +66,9 @@ export default function CatalogDetailModal({
 
   if (!mounted) return null;
 
+  const showMeta = view === "details" && meta.length > 0;
+  const showBookButton = view === "details" && bookLabel && onBook;
+
   return createPortal(
     <AnimatePresence>
       {isOpen ? (
@@ -88,7 +97,7 @@ export default function CatalogDetailModal({
             exit={{ opacity: 0, y: 28 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative  shrink-0 border-b border-white/10 bg-gradient-to-br from-[#38ab8a] via-[#2d9476] to-[#0f4f4f] px-5 pb-5 pt-5 sm:px-7 sm:pb-6 sm:pt-6">
+            <div className="relative shrink-0 border-b border-white/10 bg-gradient-to-br from-[#38ab8a] via-[#2d9476] to-[#0f4f4f] px-5 pb-5 pt-5 sm:px-7 sm:pb-6 sm:pt-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1 pr-2">
                   {isPopular && popularLabel ? (
@@ -96,10 +105,10 @@ export default function CatalogDetailModal({
                       {popularLabel}
                     </span>
                   ) : null}
-                  <h2 className="font-afacad md:text-[25px] text-[20px] font-semibold leading-tight text-white sm:text-[2rem]">
+                  <h2 className="font-afacad text-[20px] font-semibold leading-tight text-white sm:text-[2rem] md:text-[25px]">
                     {title}
                   </h2>
-                  {subtitle ? (
+                  {subtitle && view === "details" ? (
                     <p className="mt-1.5 text-[15px] font-medium text-white/85 sm:text-base">
                       {subtitle}
                     </p>
@@ -125,7 +134,7 @@ export default function CatalogDetailModal({
                 </button>
               </div>
 
-              {meta.length > 0 ? (
+              {showMeta ? (
                 <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                   {meta.map((item) => (
                     <div
@@ -147,6 +156,18 @@ export default function CatalogDetailModal({
             <div className="catalog-modal-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5 sm:px-7 sm:py-6">
               {children}
             </div>
+
+            {showBookButton ? (
+              <div className="shrink-0 border-t border-black/8 bg-white px-5 py-4 sm:px-7">
+                <button
+                  type="button"
+                  onClick={onBook}
+                  className="w-full rounded-xl bg-[#38ab8a] py-3.5 text-[16px] font-medium text-white transition-opacity hover:opacity-90"
+                >
+                  {bookLabel}
+                </button>
+              </div>
+            ) : null}
           </motion.div>
         </motion.div>
       ) : null}

@@ -1,5 +1,6 @@
 "use client";
 
+import BookingForm from "@/components/BookingForm";
 import CatalogDetailModal from "@/components/CatalogDetailModal";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
 import TourCard from "@/components/TourCard";
@@ -33,9 +34,11 @@ export default function ToursList({
   staggerCards = false,
 }: ToursListProps = {}) {
   const t = useTranslations("Tours");
+  const tBooking = useTranslations("Booking");
   const tGallery = useTranslations("Gallery.lightbox");
   const locale = useLocale();
   const [openId, setOpenId] = useState<string | null>(null);
+  const [modalView, setModalView] = useState<"details" | "booking">("details");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -63,11 +66,13 @@ export default function ToursList({
   );
 
   const handleOpen = useCallback((id: string) => {
+    setModalView("details");
     setOpenId(id);
   }, []);
 
   const handleClose = useCallback(() => {
     setOpenId(null);
+    setModalView("details");
   }, []);
 
   const activeDurationLabel = activeItem
@@ -176,8 +181,23 @@ export default function ToursList({
           popularLabel={t("popularBadge")}
           isPopular={activeItem.tour.popular}
           meta={activeMeta}
+          view={modalView}
+          bookLabel={tBooking("bookButton")}
+          onBook={() => setModalView("booking")}
         >
-          <TourDetailPanel content={activeItem.content} tourId={activeItem.tour.id} />
+          {modalView === "details" ? (
+            <TourDetailPanel
+              content={activeItem.content}
+              tourId={activeItem.tour.id}
+            />
+          ) : (
+            <BookingForm
+              bookingType="tour"
+              itemId={activeItem.tour.id}
+              itemTitle={activeItem.content.title}
+              onBack={() => setModalView("details")}
+            />
+          )}
         </CatalogDetailModal>
       ) : null}
     </>

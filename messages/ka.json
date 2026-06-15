@@ -208,6 +208,28 @@
       "counter": "{current} / {total}"
     }
   },
+  "Booking": {
+    "bookButton": "დაჯავშნა",
+    "backToDetails": "დეტალებზე დაბრუნება",
+    "selectedTour": "არჩეული ტური",
+    "selectedExcursion": "არჩეული ექსკურსია",
+    "nameLabel": "სახელი და გვარი",
+    "namePlaceholder": "გიორგი ბერიძე",
+    "emailLabel": "ელფოსტა",
+    "emailPlaceholder": "you@example.com",
+    "phoneLabel": "ტელეფონი",
+    "phonePlaceholder": "+995 5XX XX XX XX",
+    "dateLabel": "სასურველი თარიღი",
+    "peopleLabel": "ადამიანების რაოდენობა",
+    "peoplePlaceholder": "მაგ. 4",
+    "messageLabel": "შეტყობინება",
+    "messagePlaceholder": "მოგვიყევით ჯგუფის, დროის ან სხვა სურვილების შესახებ...",
+    "submitButton": "ჯავშნის გაგზავნა",
+    "submittingButton": "იგზავნება...",
+    "submitError": "ჯავშნის გაგზავნა ვერ მოხერხდა. სცადეთ თავიდან.",
+    "successTitle": "მოთხოვნა მიღებულია",
+    "successMessage": "თქვენი ჯავშნის მოთხოვნა მივიღეთ. მალე დაგიკავშირდებით დასადასტურებლად."
+  },
   "Contact": {
     "title": "კონტაქტი",
     "description": "მოგვწერეთ ტურების ან სასკოლო ექსკურსიების შესახებ. შეავსეთ ფორმა და გამოგვიგზავნეთ შეტყობინება.",

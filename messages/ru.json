@@ -208,6 +208,28 @@
       "counter": "{current} / {total}"
     }
   },
+  "Booking": {
+    "bookButton": "Забронировать",
+    "backToDetails": "Назад к деталям",
+    "selectedTour": "Выбранный тур",
+    "selectedExcursion": "Выбранная экскурсия",
+    "nameLabel": "Имя и фамилия",
+    "namePlaceholder": "Иван Иванов",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "phoneLabel": "Телефон",
+    "phonePlaceholder": "+995 5XX XX XX XX",
+    "dateLabel": "Желаемая дата",
+    "peopleLabel": "Количество человек",
+    "peoplePlaceholder": "напр. 4",
+    "messageLabel": "Сообщение",
+    "messagePlaceholder": "Расскажите о группе, времени или особых пожеланиях...",
+    "submitButton": "Отправить заявку",
+    "submittingButton": "Отправка...",
+    "submitError": "Не удалось отправить заявку. Попробуйте снова.",
+    "successTitle": "Заявка получена",
+    "successMessage": "Мы получили вашу заявку и скоро свяжемся с вами для подтверждения."
+  },
   "Contact": {
     "title": "Контакты",
     "description": "Напишите нам о турах или школьных экскурсиях. Заполните форму и отправьте сообщение.",

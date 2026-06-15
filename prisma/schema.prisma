@@ -93,3 +93,36 @@ model ExcursionTranslation {
   @@unique([excursionId, locale])
   @@map("excursion_translations")
 }
+
+enum BookingType {
+  tour
+  excursion
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  cancelled
+}
+
+/// Client booking requests from the public site
+model Booking {
+  id            String        @id @default(cuid())
+  bookingType   BookingType
+  itemId        String
+  itemTitle     String
+  name          String
+  email         String
+  phone         String
+  preferredDate String?
+  peopleCount   Int?
+  message       String
+  locale        Locale?
+  status        BookingStatus @default(pending)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([createdAt(sort: Desc)])
+  @@index([status])
+  @@map("bookings")
+}

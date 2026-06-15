@@ -208,6 +208,28 @@
       "counter": "{current} / {total}"
     }
   },
+  "Booking": {
+    "bookButton": "立即预订",
+    "backToDetails": "返回详情",
+    "selectedTour": "所选行程",
+    "selectedExcursion": "所选研学",
+    "nameLabel": "姓名",
+    "namePlaceholder": "张三",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "you@example.com",
+    "phoneLabel": "电话",
+    "phonePlaceholder": "+995 5XX XX XX XX",
+    "dateLabel": "期望日期",
+    "peopleLabel": "人数",
+    "peoplePlaceholder": "例如 4",
+    "messageLabel": "留言",
+    "messagePlaceholder": "请告诉我们团队人数、时间或其他需求...",
+    "submitButton": "提交预订",
+    "submittingButton": "发送中...",
+    "submitError": "预订提交失败，请重试。",
+    "successTitle": "请求已收到",
+    "successMessage": "我们已收到您的预订请求，将尽快与您联系确认。"
+  },
   "Contact": {
     "title": "联系我们",
     "description": "咨询旅游或学校研学。填写表单并发送消息给我们。",
