@@ -184,19 +184,27 @@ export default function Header() {
             ))}
           </nav>
           <div className="flex items-center gap-1 sm:gap-2">
-            <div className="hidden items-center gap-0.5 lg:flex">
-              {socialLinks.map(({ name, href, Icon, colorClass }) => (
-                <a
-                  key={name}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={name}
-                  className="flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-80"
-                >
-                  <Icon className={`h-8 w-8 ${colorClass}`} aria-hidden />
-                </a>
-              ))}
+            <div className="hidden flex-col items-end gap-1 lg:flex">
+              <div className="flex items-center gap-0.5">
+                {socialLinks.map(({ name, href, Icon, colorClass }) => (
+                  <a
+                    key={name}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={name}
+                    className="flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-80"
+                  >
+                    <Icon className={`h-8 w-8 ${colorClass}`} aria-hidden />
+                  </a>
+                ))}
+              </div>
+              <a
+                href={`tel:${business.phone}`}
+                className="whitespace-nowrap font-figtree text-[14px] font-medium text-brand transition-opacity hover:opacity-80 md:text-[15px]"
+              >
+                {business.phoneDisplay}
+              </a>
             </div>
 
             <div className="hidden lg:block">
@@ -357,22 +365,30 @@ export default function Header() {
                 </nav>
 
                 <div className="border-t border-black px-5 py-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="flex gap-1">
-                      {socialLinks.map(({ name, href, Icon, colorClass }) => (
-                        <a
-                          key={name}
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={name}
-                          className="flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-80"
-                        >
-                          <Icon className={`h-7 w-7 ${colorClass}`} aria-hidden />
-                        </a>
-                      ))}
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex gap-1">
+                        {socialLinks.map(({ name, href, Icon, colorClass }) => (
+                          <a
+                            key={name}
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={name}
+                            className="flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-80"
+                          >
+                            <Icon className={`h-7 w-7 ${colorClass}`} aria-hidden />
+                          </a>
+                        ))}
+                      </div>
+                      <LocaleSwitcher variant="header" />
                     </div>
-                    <LocaleSwitcher variant="header" />
+                    <a
+                      href={`tel:${business.phone}`}
+                      className="font-medium text-brand hover:underline"
+                    >
+                      {business.phoneDisplay}
+                    </a>
                   </div>
                 </div>
               </aside>
