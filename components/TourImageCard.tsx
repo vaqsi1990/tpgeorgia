@@ -2,9 +2,9 @@
 
 import type { TourContent } from "@/data/tour-content";
 import type { TourMeta } from "@/data/tours";
+import { CATALOG_FALLBACK_IMAGES } from "@/lib/catalog-images";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-
-const FALLBACK_IMAGES = ["/images/1.png", "/images/2.png", "/images/3.png"] as const;
 
 type TourImageCardProps = {
   tour: TourMeta;
@@ -12,7 +12,7 @@ type TourImageCardProps = {
   imageSrc: string;
   index: number;
   stretchCard: boolean;
-  onOpenDetails: () => void;
+  href: string;
 };
 
 export default function TourImageCard({
@@ -21,7 +21,7 @@ export default function TourImageCard({
   imageSrc,
   index,
   stretchCard,
-  onOpenDetails,
+  href,
 }: TourImageCardProps) {
   const t = useTranslations("Tours");
 
@@ -50,9 +50,9 @@ export default function TourImageCard({
         </span>
       ) : null}
 
-      <div className="relative aspect-[4/3] shrink-0 overflow-hidden">
+      <Link href={href} className="relative block aspect-[4/3] shrink-0 overflow-hidden">
         <img
-          src={imageSrc || FALLBACK_IMAGES[index % FALLBACK_IMAGES.length]}
+          src={imageSrc || CATALOG_FALLBACK_IMAGES[index % CATALOG_FALLBACK_IMAGES.length]}
           alt={content.title}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -72,7 +72,7 @@ export default function TourImageCard({
             {content.routeLabel}
           </p>
         </div>
-      </div>
+      </Link>
 
       <div
         className={`flex flex-col px-4 py-4 sm:px-5 sm:py-5 ${stretchCard ? "flex-1" : ""}`}
@@ -95,21 +95,15 @@ export default function TourImageCard({
           <span className="font-semibold text-black">{priceLabel}</span>
         </div>
 
-        <button
-          type="button"
-          onClick={onOpenDetails}
-          className={`w-full cursor-pointer rounded-xl border border-black bg-[#38ab8a] py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
+        <Link
+          href={href}
+          className={`w-full rounded-xl border border-black bg-[#38ab8a] py-2.5 text-center text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
             stretchCard ? "mt-auto" : ""
           }`}
         >
           {t("showMore")}
-        </button>
+        </Link>
       </div>
     </article>
   );
-}
-
-export function getTourCoverImage(images: string[], index: number): string {
-  const cover = images.find((url) => url && url.trim() !== "");
-  return cover ?? FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
 }

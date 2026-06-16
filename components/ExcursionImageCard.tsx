@@ -1,8 +1,9 @@
 "use client";
 
+import { getTourCoverImage } from "@/lib/catalog-images";
 import type { ExcursionContent } from "@/data/excursion-content/ka";
 import type { ExcursionMeta } from "@/data/excursions";
-import { getTourCoverImage } from "@/components/TourImageCard";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 type ExcursionImageCardProps = {
@@ -11,7 +12,7 @@ type ExcursionImageCardProps = {
   imageSrc: string;
   index: number;
   stretchCard: boolean;
-  onOpenDetails: () => void;
+  href: string;
 };
 
 export default function ExcursionImageCard({
@@ -20,7 +21,7 @@ export default function ExcursionImageCard({
   imageSrc,
   index,
   stretchCard,
-  onOpenDetails,
+  href,
 }: ExcursionImageCardProps) {
   const t = useTranslations("Excursions");
 
@@ -47,7 +48,7 @@ export default function ExcursionImageCard({
         </span>
       ) : null}
 
-      <div className="relative aspect-[4/3] shrink-0 overflow-hidden">
+      <Link href={href} className="relative block aspect-[4/3] shrink-0 overflow-hidden">
         <img
           src={imageSrc || getTourCoverImage([], index)}
           alt={content.title}
@@ -71,7 +72,7 @@ export default function ExcursionImageCard({
             </p>
           ) : null}
         </div>
-      </div>
+      </Link>
 
       <div
         className={`flex flex-col px-4 py-4 sm:px-5 sm:py-5 ${stretchCard ? "flex-1" : ""}`}
@@ -83,15 +84,14 @@ export default function ExcursionImageCard({
           <span className="font-semibold text-black">{priceLabel}</span>
         </div>
 
-        <button
-          type="button"
-          onClick={onOpenDetails}
-          className={`w-full cursor-pointer rounded-xl border border-black bg-[#38ab8a] py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
+        <Link
+          href={href}
+          className={`w-full rounded-xl border border-black bg-[#38ab8a] py-2.5 text-center text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
             stretchCard ? "mt-auto" : ""
           }`}
         >
           {t("showMore")}
-        </button>
+        </Link>
       </div>
     </article>
   );

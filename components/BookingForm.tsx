@@ -13,7 +13,7 @@ type BookingFormProps = {
   bookingType: "tour" | "excursion";
   itemId: string;
   itemTitle: string;
-  onBack: () => void;
+  onBack?: () => void;
   onSuccess?: () => void;
 };
 
@@ -248,19 +248,23 @@ export default function BookingForm({
         </p>
       ) : null}
 
-      <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row">
-        <button
-          type="button"
-          onClick={onBack}
-          disabled={isSubmitting}
-          className="flex-1 rounded-xl border border-black/15 py-3 text-[15px] font-medium text-black transition-colors hover:bg-black/[0.03] disabled:opacity-60"
-        >
-          {t("backToDetails")}
-        </button>
+      <div
+        className={`flex flex-col-reverse gap-3 pt-1 ${onBack ? "sm:flex-row" : ""}`}
+      >
+        {onBack ? (
+          <button
+            type="button"
+            onClick={onBack}
+            disabled={isSubmitting}
+            className="flex-1 rounded-xl border border-black/15 py-3 text-[15px] font-medium text-black transition-colors hover:bg-black/[0.03] disabled:opacity-60"
+          >
+            {t("backToDetails")}
+          </button>
+        ) : null}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex-1 rounded-xl bg-[#38ab8a] py-3 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+          className={`rounded-xl bg-[#38ab8a] py-3 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 ${onBack ? "flex-1" : "w-full"}`}
         >
           {isSubmitting ? t("submittingButton") : t("submitButton")}
         </button>

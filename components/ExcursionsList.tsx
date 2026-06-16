@@ -1,11 +1,8 @@
 "use client";
 
-import BookingForm from "@/components/BookingForm";
-import CatalogDetailModal from "@/components/CatalogDetailModal";
-import ExcursionDetailPanel from "@/components/ExcursionDetailPanel";
 import ExcursionImageCard from "@/components/ExcursionImageCard";
-import { getTourCoverImage } from "@/components/TourImageCard";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
+import { getTourCoverImage } from "@/lib/catalog-images";
 import {
   defaultExcursionFilters,
   matchesStoredExcursionFilters,
@@ -17,7 +14,7 @@ import type { AppLocale } from "@/i18n/routing";
 import type { StoredExcursionRecord } from "@/lib/admin-types";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type ExcursionsListProps = {
   initialExcursions?: StoredExcursionRecord[];
@@ -35,11 +32,7 @@ export default function ExcursionsList({
   filters = defaultExcursionFilters,
 }: ExcursionsListProps = {}) {
   const t = useTranslations("Excursions");
-  const tBooking = useTranslations("Booking");
-  const tGallery = useTranslations("Gallery.lightbox");
   const locale = useLocale();
-  const [openId, setOpenId] = useState<string | null>(null);
-  const [modalView, setModalView] = useState<"details" | "booking">("details");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -58,46 +51,25 @@ export default function ExcursionsList({
       }));
   }, [filters, locale, initialExcursions]);
 
-  const visibleItems =
-    limit !== undefined ? items.slice(0, limit) : items;
+  const visibleItems = limit !== undefined ? items.slice(0, limit) : items;
   const hiddenCount =
     limit !== undefined ? Math.max(0, items.length - limit) : 0;
 
-  const activeItem = useMemo(
-    () => visibleItems.find((item) => item.excursion.id === openId) ?? null,
-    [openId, visibleItems],
-  );
+  const gridClassName = `grid items-stretch gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
+    visibleItems.length === 0 ? "hidden" : ""
+  }`;
 
-  const handleOpen = useCallback((id: string) => {
-    setModalView("details");
-    setOpenId(id);
-  }, []);
-
-  const handleClose = useCallback(() => {
-    setOpenId(null);
-    setModalView("details");
-  }, []);
-
-  const activeDurationLabel = activeItem
-    ? t(`durations.${activeItem.excursion.durationKey}` as const)
-    : "";
-
-  const activePriceLabel = activeItem
-    ? activeItem.excursion.priceFrom > 0
-      ? t("priceFrom", { price: activeItem.excursion.priceFrom })
-      : t("priceOnRequest")
-    : "";
-
-  const activeMeta = activeItem
-    ? [
-        { label: t("duration"), value: activeDurationLabel },
-        {
-          label: t("type"),
-          value: `${activeItem.excursion.grades} ${t("grade")} · ${t("cultural")}`,
-        },
-        { label: t("price"), value: activePriceLabel },
-      ]
-    : [];
+  const cards = visibleItems.map((item, index) => (
+    <ExcursionImageCard
+      key={item.excursion.id}
+      excursion={item.excursion}
+      content={item.content}
+      imageSrc={item.imageSrc}
+      index={index}
+      stretchCard={isReady}
+      href={`/excursions/${item.excursion.id}`}
+    />
+  ));
 
   return (
     <>
@@ -113,9 +85,7 @@ export default function ExcursionsList({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.08 }}
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
-            visibleItems.length === 0 ? "hidden" : ""
-          }`}
+          className={gridClassName}
         >
           {visibleItems.map((item, index) => (
             <motion.div key={item.excursion.id} variants={staggerItem}>
@@ -125,29 +95,13 @@ export default function ExcursionsList({
                 imageSrc={item.imageSrc}
                 index={index}
                 stretchCard={isReady}
-                onOpenDetails={() => handleOpen(item.excursion.id)}
+                href={`/excursions/${item.excursion.id}`}
               />
             </motion.div>
           ))}
         </motion.div>
       ) : (
-        <div
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
-            visibleItems.length === 0 ? "hidden" : ""
-          }`}
-        >
-          {visibleItems.map((item, index) => (
-            <ExcursionImageCard
-              key={item.excursion.id}
-              excursion={item.excursion}
-              content={item.content}
-              imageSrc={item.imageSrc}
-              index={index}
-              stretchCard={isReady}
-              onOpenDetails={() => handleOpen(item.excursion.id)}
-            />
-          ))}
-        </div>
+        <div className={gridClassName}>{cards}</div>
       )}
 
       {hiddenCount > 0 && showAllLink && (
@@ -166,35 +120,6 @@ export default function ExcursionsList({
           </Link>
         </motion.div>
       )}
-
-      {activeItem ? (
-        <CatalogDetailModal
-          isOpen={openId !== null}
-          onClose={handleClose}
-          closeLabel={tGallery("close")}
-          title={activeItem.content.title}
-          popularLabel={t("popularBadge")}
-          isPopular={activeItem.excursion.popular}
-          meta={activeMeta}
-          view={modalView}
-          bookLabel={tBooking("bookButton")}
-          onBook={() => setModalView("booking")}
-        >
-          {modalView === "details" ? (
-            <ExcursionDetailPanel
-              content={activeItem.content}
-              excursionId={activeItem.excursion.id}
-            />
-          ) : (
-            <BookingForm
-              bookingType="excursion"
-              itemId={activeItem.excursion.id}
-              itemTitle={activeItem.content.title}
-              onBack={() => setModalView("details")}
-            />
-          )}
-        </CatalogDetailModal>
-      ) : null}
     </>
   );
 }

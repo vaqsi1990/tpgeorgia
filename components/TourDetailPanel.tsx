@@ -1,5 +1,6 @@
 "use client";
 
+import CollapsibleDetailSection from "@/components/CollapsibleDetailSection";
 import type { TourContent } from "@/data/tour-content";
 import { useTranslations } from "next-intl";
 
@@ -8,103 +9,129 @@ type TourDetailPanelProps = {
   tourId: string;
 };
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="mb-3 flex items-center gap-2 text-[16px] font-semibold text-black sm:text-[17px]">
-      <span className="size-2 shrink-0 rounded-full bg-[#38ab8a]" aria-hidden />
-      {children}
-    </h3>
-  );
-}
-
 export default function TourDetailPanel({ content, tourId }: TourDetailPanelProps) {
   const t = useTranslations("Tours");
 
   return (
-    <div className="space-y-7 pb-2">
+    <div className="space-y-4 sm:space-y-5">
       {content.subtitle ? (
-        <p className="rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.05] px-4 py-3.5 text-[15px] leading-[1.7] text-black/80 sm:text-[16px]">
+        <p className="rounded-2xl border border-[#38ab8a]/20 bg-gradient-to-r from-[#38ab8a]/[0.07] to-transparent px-5 py-4 text-[15px] leading-[1.75] text-black/80 sm:text-[16px]">
           {content.subtitle}
         </p>
       ) : null}
 
-      <section>
-        <SectionTitle>{t("outlineTitle")}</SectionTitle>
-        <ul className="space-y-2">
+      <CollapsibleDetailSection
+        title={t("outlineTitle")}
+        expandLabel={t("showMore")}
+        collapseLabel={t("showLess")}
+      >
+        <ol className="space-y-3">
           {content.outline.map((item, index) => (
             <li
               key={`${tourId}-outline-${index}`}
-              className="flex items-start gap-3 rounded-xl border border-black/6 bg-white px-4 py-3 text-[15px] text-black/85 sm:text-[16px]"
+              className="flex items-start gap-4 rounded-2xl border border-black/6 bg-[#fafcfb] px-4 py-3.5 sm:px-5"
             >
-              <span
-                className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/20"
-                aria-hidden
-              />
-              {item}
+              <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-sm font-semibold text-white">
+                {index + 1}
+              </span>
+              <span className="pt-1 text-[15px] leading-relaxed text-black/85 sm:text-[16px]">
+                {item}
+              </span>
             </li>
           ))}
-        </ul>
-      </section>
+        </ol>
+      </CollapsibleDetailSection>
 
-      {content.sections.map((section, sectionIndex) => (
-        <section key={`${tourId}-section-${sectionIndex}`}>
-          <SectionTitle>{section.title}</SectionTitle>
-          <div className="space-y-3">
-            {section.days.map((day, dayIndex) => (
-              <div
-                key={`${tourId}-day-${sectionIndex}-${dayIndex}`}
-                className="rounded-2xl border border-black/8 bg-gradient-to-br from-brand/[0.04] to-transparent px-4 py-3.5"
-              >
-                {day.label ? (
-                  <p className="mb-1.5 text-[15px] font-semibold text-[#0f4f4f] sm:text-[16px]">
-                    {day.label}
-                  </p>
+      {content.sections.length > 0 ? (
+        <CollapsibleDetailSection
+          title={t("programTitle")}
+          expandLabel={t("showMore")}
+          collapseLabel={t("showLess")}
+        >
+          <div className="space-y-6">
+            {content.sections.map((section, sectionIndex) => (
+              <div key={`${tourId}-section-${sectionIndex}`}>
+                {content.sections.length > 1 && section.title ? (
+                  <h4 className="font-afacad mb-3 text-[17px] font-semibold text-[#0f4f4f] sm:text-lg">
+                    {section.title}
+                  </h4>
                 ) : null}
-                <p className="text-[15px] leading-[1.75] text-black/80 sm:text-[16px]">
-                  {day.description}
-                </p>
+                <div className="space-y-3">
+                  {section.days.map((day, dayIndex) => (
+                    <div
+                      key={`${tourId}-day-${sectionIndex}-${dayIndex}`}
+                      className="relative overflow-hidden rounded-2xl border border-black/8 bg-[#fafcfb] py-4 pl-5 pr-4 sm:pl-6 sm:pr-5"
+                    >
+                      <span
+                        className="absolute inset-y-3 left-0 w-1 rounded-full bg-[#38ab8a]"
+                        aria-hidden
+                      />
+                      {day.label ? (
+                        <p className="mb-2 text-[15px] font-semibold text-[#0f4f4f] sm:text-[16px]">
+                          {day.label}
+                        </p>
+                      ) : null}
+                      <p className="text-[15px] leading-[1.8] text-black/80 sm:text-[16px]">
+                        {day.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
-        </section>
-      ))}
+        </CollapsibleDetailSection>
+      ) : null}
 
-      <section>
-        <SectionTitle>{t("includesTitle")}</SectionTitle>
-        <ul className="grid gap-2 sm:grid-cols-2">
+      <CollapsibleDetailSection
+        title={t("includesTitle")}
+        expandLabel={t("showMore")}
+        collapseLabel={t("showLess")}
+      >
+        <ul className="grid gap-3 sm:grid-cols-2">
           {content.includes.map((item, index) => (
             <li
               key={`${tourId}-include-${index}`}
-              className="flex items-start gap-2.5 rounded-xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.06] px-3.5 py-2.5 text-[15px] text-black/85"
+              className="flex items-start gap-3 rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.05] px-4 py-3 text-[15px] text-black/85"
             >
-              <span className="mt-0.5 shrink-0 text-[#38ab8a]" aria-hidden>
+              <span
+                className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-[11px] text-white"
+                aria-hidden
+              >
                 ✓
               </span>
               {item}
             </li>
           ))}
         </ul>
-      </section>
+      </CollapsibleDetailSection>
 
       {content.highlights && content.highlights.length > 0 ? (
-        <section>
-          <SectionTitle>{t("highlightsTitle")}</SectionTitle>
-          <ul className="space-y-2">
+        <CollapsibleDetailSection
+          title={t("highlightsTitle")}
+          defaultOpen={false}
+          expandLabel={t("showMore")}
+          collapseLabel={t("showLess")}
+        >
+          <ul className="grid gap-3 sm:grid-cols-2">
             {content.highlights.map((item, index) => (
               <li
                 key={`${tourId}-highlight-${index}`}
-                className="flex items-start gap-2.5 text-[15px] text-black/85 sm:text-[16px]"
+                className="flex items-start gap-3 rounded-2xl border border-amber-200/80 bg-amber-50/60 px-4 py-3 text-[15px] text-black/85"
               >
-                <span className="mt-2 size-2 shrink-0 rounded-full bg-amber-400" aria-hidden />
+                <span
+                  className="mt-2 size-2 shrink-0 rounded-full bg-amber-400"
+                  aria-hidden
+                />
                 {item}
               </li>
             ))}
           </ul>
-        </section>
+        </CollapsibleDetailSection>
       ) : null}
 
       {content.clothingNote ? (
-        <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.02] px-4 py-3 text-[15px] italic text-black/75">
+        <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.02] px-5 py-4 text-[15px] italic leading-relaxed text-black/70">
           {t("clothingNote", { note: content.clothingNote })}
         </p>
       ) : null}

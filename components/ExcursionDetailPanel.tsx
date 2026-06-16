@@ -1,5 +1,6 @@
 "use client";
 
+import CollapsibleDetailSection from "@/components/CollapsibleDetailSection";
 import type { ExcursionContent } from "@/data/excursion-content/ka";
 import { useTranslations } from "next-intl";
 
@@ -8,15 +9,6 @@ type ExcursionDetailPanelProps = {
   excursionId: string;
 };
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="mb-3 flex items-center gap-2 text-[16px] font-semibold text-black sm:text-[17px]">
-      <span className="size-2 shrink-0 rounded-full bg-[#38ab8a]" aria-hidden />
-      {children}
-    </h3>
-  );
-}
-
 export default function ExcursionDetailPanel({
   content,
   excursionId,
@@ -24,44 +16,55 @@ export default function ExcursionDetailPanel({
   const t = useTranslations("Excursions");
 
   return (
-    <div className="space-y-7 pb-2">
-      <section>
-        <SectionTitle>{t("highlightsTitle")}</SectionTitle>
-        <ul className="space-y-2">
+    <div className="space-y-4 sm:space-y-5">
+      <CollapsibleDetailSection
+        title={t("highlightsTitle")}
+        expandLabel={t("showMore")}
+        collapseLabel={t("showLess")}
+      >
+        <ol className="space-y-3">
           {content.highlights.map((item, index) => (
             <li
               key={`${excursionId}-highlight-${index}`}
-              className="flex items-start gap-3 rounded-xl border border-black/6 bg-white px-4 py-3 text-[15px] text-black/85 sm:text-[16px]"
+              className="flex items-start gap-4 rounded-2xl border border-black/6 bg-[#fafcfb] px-4 py-3.5 sm:px-5"
             >
-              <span
-                className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/20"
-                aria-hidden
-              />
-              {item}
+              <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-sm font-semibold text-white">
+                {index + 1}
+              </span>
+              <span className="pt-1 text-[15px] leading-relaxed text-black/85 sm:text-[16px]">
+                {item}
+              </span>
             </li>
           ))}
-        </ul>
-      </section>
+        </ol>
+      </CollapsibleDetailSection>
 
-      <section>
-        <SectionTitle>{t("includesTitle")}</SectionTitle>
-        <ul className="grid gap-2 sm:grid-cols-2">
+      <CollapsibleDetailSection
+        title={t("includesTitle")}
+        defaultOpen={false}
+        expandLabel={t("showMore")}
+        collapseLabel={t("showLess")}
+      >
+        <ul className="grid gap-3 sm:grid-cols-2">
           {content.includes.map((item, index) => (
             <li
               key={`${excursionId}-include-${index}`}
-              className="flex items-start gap-2.5 rounded-xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.06] px-3.5 py-2.5 text-[15px] text-black/85"
+              className="flex items-start gap-3 rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.05] px-4 py-3 text-[15px] text-black/85"
             >
-              <span className="mt-0.5 shrink-0 text-[#38ab8a]" aria-hidden>
+              <span
+                className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-[11px] text-white"
+                aria-hidden
+              >
                 ✓
               </span>
               {item}
             </li>
           ))}
         </ul>
-      </section>
+      </CollapsibleDetailSection>
 
       {content.optionalNote ? (
-        <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.02] px-4 py-3 text-[15px] italic text-black/75">
+        <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.02] px-5 py-4 text-[15px] italic leading-relaxed text-black/70">
           {content.optionalNote}
         </p>
       ) : null}

@@ -1,10 +1,8 @@
 "use client";
 
-import BookingForm from "@/components/BookingForm";
-import CatalogDetailModal from "@/components/CatalogDetailModal";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
-import TourDetailPanel from "@/components/TourDetailPanel";
-import TourImageCard, { getTourCoverImage } from "@/components/TourImageCard";
+import TourImageCard from "@/components/TourImageCard";
+import { getTourCoverImage } from "@/lib/catalog-images";
 import {
   defaultTourFilters,
   matchesStoredTourFilters,
@@ -16,7 +14,7 @@ import type { AppLocale } from "@/i18n/routing";
 import type { StoredTourRecord } from "@/lib/admin-types";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type ToursListProps = {
   initialTours?: StoredTourRecord[];
@@ -34,11 +32,7 @@ export default function ToursList({
   staggerCards = false,
 }: ToursListProps = {}) {
   const t = useTranslations("Tours");
-  const tBooking = useTranslations("Booking");
-  const tGallery = useTranslations("Gallery.lightbox");
   const locale = useLocale();
-  const [openId, setOpenId] = useState<string | null>(null);
-  const [modalView, setModalView] = useState<"details" | "booking">("details");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -61,50 +55,21 @@ export default function ToursList({
   const hiddenCount =
     limit !== undefined ? Math.max(0, items.length - limit) : 0;
 
-  const activeItem = useMemo(
-    () => visibleItems.find((item) => item.tour.id === openId) ?? null,
-    [openId, visibleItems],
-  );
+  const gridClassName = `grid items-stretch gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
+    visibleItems.length === 0 ? "hidden" : ""
+  }`;
 
-  const handleOpen = useCallback((id: string) => {
-    setModalView("details");
-    setOpenId(id);
-  }, []);
-
-  const handleClose = useCallback(() => {
-    setOpenId(null);
-    setModalView("details");
-  }, []);
-
-  const activeDurationLabel = activeItem
-    ? activeItem.tour.durationKey === "11nights12days"
-      ? t("durationDays", { days: 12, nights: 11 })
-      : t(`durations.${activeItem.tour.durationKey}` as const)
-    : "";
-
-  const activePriceLabel = activeItem
-    ? activeItem.tour.priceFrom > 0
-      ? t("priceFrom", { price: activeItem.tour.priceFrom })
-      : t("priceOnRequest")
-    : "";
-
-  const activeMeta = activeItem
-    ? [
-        ...(activeItem.tour.startTime
-          ? [{ label: t("startTime"), value: activeItem.tour.startTime }]
-          : []),
-        { label: t("duration"), value: activeDurationLabel },
-        { label: t("price"), value: activePriceLabel },
-        ...(activeItem.tour.minPeople > 0
-          ? [
-              {
-                label: t("minPeople"),
-                value: t("minPeopleValue", { count: activeItem.tour.minPeople }),
-              },
-            ]
-          : []),
-      ]
-    : [];
+  const cards = visibleItems.map((item, index) => (
+    <TourImageCard
+      key={item.tour.id}
+      tour={item.tour}
+      content={item.content}
+      imageSrc={item.imageSrc}
+      index={index}
+      stretchCard={isReady}
+      href={`/tours/${item.tour.id}`}
+    />
+  ));
 
   return (
     <>
@@ -120,9 +85,7 @@ export default function ToursList({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.08 }}
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
-            visibleItems.length === 0 ? "hidden" : ""
-          }`}
+          className={gridClassName}
         >
           {visibleItems.map((item, index) => (
             <motion.div key={item.tour.id} variants={staggerItem}>
@@ -132,29 +95,13 @@ export default function ToursList({
                 imageSrc={item.imageSrc}
                 index={index}
                 stretchCard={isReady}
-                onOpenDetails={() => handleOpen(item.tour.id)}
+                href={`/tours/${item.tour.id}`}
               />
             </motion.div>
           ))}
         </motion.div>
       ) : (
-        <div
-          className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 items-stretch ${
-            visibleItems.length === 0 ? "hidden" : ""
-          }`}
-        >
-          {visibleItems.map((item, index) => (
-            <TourImageCard
-              key={item.tour.id}
-              tour={item.tour}
-              content={item.content}
-              imageSrc={item.imageSrc}
-              index={index}
-              stretchCard={isReady}
-              onOpenDetails={() => handleOpen(item.tour.id)}
-            />
-          ))}
-        </div>
+        <div className={gridClassName}>{cards}</div>
       )}
 
       {hiddenCount > 0 && showAllLink && (
@@ -173,36 +120,6 @@ export default function ToursList({
           </Link>
         </motion.div>
       )}
-
-      {activeItem ? (
-        <CatalogDetailModal
-          isOpen={openId !== null}
-          onClose={handleClose}
-          closeLabel={tGallery("close")}
-          title={activeItem.content.title}
-          subtitle={activeItem.content.routeLabel}
-          popularLabel={t("popularBadge")}
-          isPopular={activeItem.tour.popular}
-          meta={activeMeta}
-          view={modalView}
-          bookLabel={tBooking("bookButton")}
-          onBook={() => setModalView("booking")}
-        >
-          {modalView === "details" ? (
-            <TourDetailPanel
-              content={activeItem.content}
-              tourId={activeItem.tour.id}
-            />
-          ) : (
-            <BookingForm
-              bookingType="tour"
-              itemId={activeItem.tour.id}
-              itemTitle={activeItem.content.title}
-              onBack={() => setModalView("details")}
-            />
-          )}
-        </CatalogDetailModal>
-      ) : null}
     </>
   );
 }
