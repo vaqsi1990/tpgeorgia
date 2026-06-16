@@ -26,7 +26,7 @@ export default function CatalogDetailBooking({
         <h1 className="font-afacad text-2xl font-semibold text-white sm:text-3xl">
           {t("bookButton")}
         </h1>
-        <p className="mt-1 text-[14px] text-white/80 sm:text-[15px]">
+        <p className="mt-1 text-[16px] text-white/80 md:text-[20px]">
           {itemTitle}
         </p>
       </div>

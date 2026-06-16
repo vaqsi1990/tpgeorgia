@@ -31,7 +31,7 @@ export default function ExcursionDetailPanel({
               <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-sm font-semibold text-white">
                 {index + 1}
               </span>
-              <span className="pt-1 text-[15px] leading-relaxed text-black/85 sm:text-[16px]">
+              <span className="pt-1 text-[16px] leading-relaxed text-black md:text-[18px]">
                 {item}
               </span>
             </li>

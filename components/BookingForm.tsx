@@ -97,14 +97,14 @@ export default function BookingForm({
           <p className="font-afacad text-xl font-semibold text-[#0f4f4f]">
             {t("successTitle")}
           </p>
-          <p className="mt-2 text-[15px] leading-relaxed text-black/75">
+          <p className="mt-2 text-[16px] leading-relaxed text-black md:text-[18px]">
             {t("successMessage")}
           </p>
         </div>
         <button
           type="button"
           onClick={onBack}
-          className="w-full rounded-xl border border-black/15 py-3 text-[15px] font-medium text-black transition-colors hover:bg-black/[0.03]"
+          className="w-full rounded-xl border border-black/15 py-3 text-[16px] font-medium text-black transition-colors hover:bg-black/[0.03] md:text-[18px]"
         >
           {t("backToDetails")}
         </button>
@@ -115,15 +115,15 @@ export default function BookingForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.06] px-4 py-3">
-        <p className="text-[12px] font-semibold uppercase tracking-wide text-[#0f4f4f]/70">
+        <p className="text-[16px] font-semibold uppercase tracking-wide text-[#0f4f4f]/70">
           {bookingType === "tour" ? t("selectedTour") : t("selectedExcursion")}
         </p>
-        <p className="mt-1 text-[16px] font-semibold text-black">{itemTitle}</p>
+        <p className="mt-1 text-[16px] font-semibold text-black md:text-[18px]">{itemTitle}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label htmlFor="booking-name" className="mb-1.5 block text-[15px] font-medium">
+          <label htmlFor="booking-name" className="mb-1.5 block text-[16px] font-medium md:text-[18px]">
             {t("nameLabel")}
           </label>
           <input
@@ -143,7 +143,7 @@ export default function BookingForm({
         </div>
 
         <div>
-          <label htmlFor="booking-email" className="mb-1.5 block text-[15px] font-medium">
+          <label htmlFor="booking-email" className="mb-1.5 block text-[16px] font-medium md:text-[18px]">
             {t("emailLabel")}
           </label>
           <input
@@ -163,7 +163,7 @@ export default function BookingForm({
         </div>
 
         <div>
-          <label htmlFor="booking-phone" className="mb-1.5 block text-[15px] font-medium">
+          <label htmlFor="booking-phone" className="mb-1.5 block text-[16px] font-medium md:text-[18px]">
             {t("phoneLabel")}
           </label>
           <input
@@ -183,7 +183,7 @@ export default function BookingForm({
         </div>
 
         <div>
-          <label htmlFor="booking-date" className="mb-1.5 block text-[15px] font-medium">
+          <label htmlFor="booking-date" className="mb-1.5 block text-[16px] font-medium md:text-[18px]">
             {t("dateLabel")}
           </label>
           <input
@@ -200,7 +200,7 @@ export default function BookingForm({
         </div>
 
         <div>
-          <label htmlFor="booking-people" className="mb-1.5 block text-[15px] font-medium">
+          <label htmlFor="booking-people" className="mb-1.5 block text-[16px] font-medium md:text-[18px]">
             {t("peopleLabel")}
           </label>
           <input
@@ -221,7 +221,7 @@ export default function BookingForm({
       </div>
 
       <div>
-        <label htmlFor="booking-message" className="mb-1.5 block text-[15px] font-medium">
+        <label htmlFor="booking-message" className="mb-1.5 block text-[16px] font-medium md:text-[18px]">
           {t("messageLabel")}
         </label>
         <textarea
@@ -242,7 +242,7 @@ export default function BookingForm({
       {submitState === "error" ? (
         <p
           role="alert"
-          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[15px] text-red-800"
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[16px] text-red-800 md:text-[18px]"
         >
           {t("submitError")}
         </p>
@@ -256,7 +256,7 @@ export default function BookingForm({
             type="button"
             onClick={onBack}
             disabled={isSubmitting}
-            className="flex-1 rounded-xl border border-black/15 py-3 text-[15px] font-medium text-black transition-colors hover:bg-black/[0.03] disabled:opacity-60"
+            className="flex-1 rounded-xl border border-black/15 py-3 text-[16px] font-medium text-black transition-colors hover:bg-black/[0.03] disabled:opacity-60 md:text-[18px]"
           >
             {t("backToDetails")}
           </button>
@@ -264,7 +264,7 @@ export default function BookingForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`rounded-xl bg-[#38ab8a] py-3 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 ${onBack ? "flex-1" : "w-full"}`}
+          className={`rounded-xl bg-[#38ab8a] py-3 text-[16px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px] ${onBack ? "flex-1" : "w-full"}`}
         >
           {isSubmitting ? t("submittingButton") : t("submitButton")}
         </button>

@@ -15,7 +15,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
   return (
     <div className="space-y-4 sm:space-y-5">
       {content.subtitle ? (
-        <p className="rounded-2xl border border-[#38ab8a]/20 bg-gradient-to-r from-[#38ab8a]/[0.07] to-transparent px-5 py-4 text-[15px] leading-[1.75] text-black/80 sm:text-[16px]">
+        <p className="rounded-2xl border border-[#38ab8a]/20 bg-gradient-to-r from-[#38ab8a]/[0.07] to-transparent px-5 py-4 text-[16px] leading-[1.75] text-black md:text-[18px]">
           {content.subtitle}
         </p>
       ) : null}
@@ -34,7 +34,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
               <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-sm font-semibold text-white">
                 {index + 1}
               </span>
-              <span className="pt-1 text-[15px] leading-relaxed text-black/85 sm:text-[16px]">
+              <span className="pt-1 text-[16px] leading-relaxed text-black md:text-[18px]">
                 {item}
               </span>
             </li>
@@ -67,11 +67,11 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
                         aria-hidden
                       />
                       {day.label ? (
-                        <p className="mb-2 text-[15px] font-semibold text-[#0f4f4f] sm:text-[16px]">
+                        <p className="mb-2 text-[16px] font-semibold text-[#0f4f4f] md:text-[18px]">
                           {day.label}
                         </p>
                       ) : null}
-                      <p className="text-[15px] leading-[1.8] text-black/80 sm:text-[16px]">
+                      <p className="text-[16px] leading-[1.8] text-black/80 md:text-[18px]">
                         {day.description}
                       </p>
                     </div>
