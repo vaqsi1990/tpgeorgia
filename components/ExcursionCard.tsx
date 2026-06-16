@@ -26,7 +26,7 @@ export default function ExcursionCard({
       ? t("priceFrom", { price: excursion.priceFrom })
       : t("priceOnRequest");
 
-  const previewHighlights = content.highlights.slice(0, 3);
+  const highlights = content.highlights.filter((item) => item.trim().length > 0);
 
   return (
     <article
@@ -76,13 +76,13 @@ export default function ExcursionCard({
           </div>
         </dl>
 
-        {previewHighlights.length > 0 ? (
+        {highlights.length > 0 ? (
           <div className="mb-4">
             <h4 className="mb-2 text-[16px] font-semibold text-black">
               {t("highlightsTitle")}
             </h4>
             <ul className="space-y-1.5">
-              {previewHighlights.map((item, i) => (
+              {highlights.map((item, i) => (
                 <li
                   key={`${excursion.id}-highlight-${i}`}
                   className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
@@ -91,7 +91,7 @@ export default function ExcursionCard({
                     className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"
                     aria-hidden
                   />
-                  <span className="line-clamp-2">{item}</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>

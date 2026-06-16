@@ -31,7 +31,7 @@ export default function ExcursionImageCard({
       : t("priceOnRequest");
 
   const durationLabel = t(`durations.${excursion.durationKey}` as const);
-  const previewHighlight = content.highlights[0];
+  const highlights = content.highlights.filter((item) => item.trim().length > 0);
 
   return (
     <article
@@ -66,11 +66,6 @@ export default function ExcursionImageCard({
           <h3 className="font-afacad text-xl font-semibold leading-snug text-white sm:text-2xl">
             {content.title}
           </h3>
-          {previewHighlight ? (
-            <p className="mt-1 line-clamp-2 text-[14px] font-medium text-white/85 md:text-[15px]">
-              {previewHighlight}
-            </p>
-          ) : null}
         </div>
       </Link>
 
@@ -83,6 +78,28 @@ export default function ExcursionImageCard({
           </span>
           <span className="font-semibold text-black">{priceLabel}</span>
         </div>
+
+        {highlights.length > 0 ? (
+          <div className="mb-4">
+            <h4 className="mb-2 text-[16px] font-semibold text-black">
+              {t("highlightsTitle")}
+            </h4>
+            <ul className="space-y-1.5">
+              {highlights.map((item, i) => (
+                <li
+                  key={`${excursion.id}-highlight-${i}`}
+                  className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
+                >
+                  <span
+                    className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"
+                    aria-hidden
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <Link
           href={href}
