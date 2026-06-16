@@ -1,12 +1,12 @@
 import { routing, type AppLocale } from "@/i18n/routing";
 
-export const siteName = "TP Georgia";
+export const siteName = "Tour Provider Georga";
 
 export const productionSiteUrl = "https://tourprovidergeo.com";
 
 export const business = {
   name: siteName,
-  legalName: "TP Georgia",
+  legalName: "Tour Provider Georga",
   phone: "+995555338807",
   phoneDisplay: "+995 555 33 88 07",
   whatsapp: "https://wa.me/995555338807",

@@ -30,7 +30,7 @@ type StatusCopy = {
 
 const copy: Record<AppLocale, StatusCopy> = {
   ka: {
-    subject: (title) => `ჯავშნის განახლება — ${title}`,
+    subject: (title) => `ჯავშნის განახლება ${title}`,
     headline: "ჯავშნის სტატუსი განახლდა",
     intro: "გამარჯოთ, {name}! თქვენი ჯავშნის მოთხოვნის სტატუსი შეიცვალა. ქვემოთ მოცემულია დეტალური ინფორმაცია.",
     statusNote: {
@@ -62,7 +62,7 @@ const copy: Record<AppLocale, StatusCopy> = {
     },
   },
   en: {
-    subject: (title) => `Booking update — ${title}`,
+    subject: (title) => `Booking update ${title}`,
     headline: "Your booking status has been updated",
     intro: "Hello, {name}! The status of your booking request has changed. Below is the full details of your reservation.",
     statusNote: {
@@ -94,9 +94,9 @@ const copy: Record<AppLocale, StatusCopy> = {
     },
   },
   ru: {
-    subject: (title) => `Обновление бронирования — ${title}`,
+    subject: (title) => `Обновление бронирования ${title}`,
     headline: "Статус вашего бронирования обновлён",
-    intro: "Здравствуйте, {name}! Статус вашей заявки на бронирование изменился. Ниже — подробная информация.",
+    intro: "Здравствуйте, {name}! Статус вашей заявки на бронирование изменился. Ниже подробная информация.",
     statusNote: {
       pending: "Ваша заявка находится на рассмотрении. Мы скоро свяжемся с вами для уточнения деталей.",
       confirmed: "Мы рады подтвердить ваше бронирование. Ждём вас!",
@@ -126,7 +126,7 @@ const copy: Record<AppLocale, StatusCopy> = {
     },
   },
   zh: {
-    subject: (title) => `预订状态更新 — ${title}`,
+    subject: (title) => `预订状态更新 ${title}`,
     headline: "您的预订状态已更新",
     intro: "您好，{name}！您的预订申请状态已变更。以下是详细信息。",
     statusNote: {

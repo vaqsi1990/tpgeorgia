@@ -291,7 +291,7 @@ export default function TourForm({
         />
         <AdminTextarea
           label="მოკლე მონახაზი (თითო ხაზზე ერთი ეტაპი)"
-          hint="ბარათზე გარეთ ჩანს — მარშრუტის მთავარი პუნქტები"
+          hint="ბარათზე გარეთ ჩანს  მარშრუტის მთავარი პუნქტები"
           value={form.outline}
           onChange={(e) => updateLocaleField("outline", e.target.value)}
         />
@@ -300,7 +300,7 @@ export default function TourForm({
           <div>
             <p className="text-[16px] font-medium text-black md:text-[18px]">დეტალური პროგრამა</p>
             <p className="mt-1 text-[16px] text-black md:text-[18px]">
-              სექციები და დღეები — ბარათის გახსნისას ჩანს სრული აღწერა
+              სექციები და დღეები ბარათის გახსნისას ჩანს სრული აღწერა
             </p>
           </div>
           <TourProgramEditor

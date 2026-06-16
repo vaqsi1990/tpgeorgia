@@ -122,7 +122,7 @@ export function buildBookingEmail(payload: BookingPayload) {
     <div style="font-family:Figtree,Segoe UI,sans-serif;color:#171717;line-height:1.6;max-width:560px;">
       <p style="margin:0 0 16px;font-size:20px;font-weight:600;color:#0f4f4f;">ახალი ჯავშანი</p>
       <p style="margin:0 0 8px;font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#0f4f4f;">პროგრამა</p>
-      <p style="margin:0 0 20px;font-size:16px;">${escapeHtml(typeLabel)} — ${escapeHtml(payload.itemTitle)}</p>
+      <p style="margin:0 0 20px;font-size:16px;">${escapeHtml(typeLabel)} ${escapeHtml(payload.itemTitle)}</p>
       <p style="margin:0 0 4px;font-size:18px;font-weight:600;">${escapeHtml(payload.name)}</p>
       <p style="margin:0 0 4px;"><a href="mailto:${escapeHtml(payload.email)}" style="color:#0f4f4f;text-decoration:none;">${escapeHtml(payload.email)}</a></p>
       <p style="margin:0 0 20px;"><a href="tel:${escapeHtml(payload.phone)}" style="color:#0f4f4f;text-decoration:none;">${escapeHtml(payload.phone)}</a></p>

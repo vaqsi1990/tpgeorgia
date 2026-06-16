@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props) {
   return buildPageMetadata({
     locale: locale as AppLocale,
     pathname: `/excursions/${id}/book` as "/excursions",
-    title: `${t("bookButton")} — ${content.title}`,
+    title: `${t("bookButton")} ${content.title}`,
     description: content.highlights[0] ?? content.title,
   });
 }

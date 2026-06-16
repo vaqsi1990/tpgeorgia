@@ -3,11 +3,11 @@ import type { ExcursionContent } from "./ka";
 
 export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
   machakhela: {
-    title: "Machakhela Valley Heritage — History and Tradition",
+    title: "Machakhela Valley Heritage History and Tradition",
     highlights: [
       "Mirveti Waterfall",
       "Machakhela Valley",
-      "Machakhela Honey — Ethnographic Museum",
+      "Machakhela Honey Ethnographic Museum",
       "Machakhela Gun Factory",
       "Lunch at a family home",
     ],
@@ -27,7 +27,7 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
       "Tamar Bridge",
       "Makhuntseti Waterfall",
       "Zvare Church",
-      "Traditional Georgian family — wine cellar (marani)",
+      "Traditional Georgian family wine cellar (marani)",
     ],
     includes: [
       "Travel by comfortable minibus",
@@ -61,7 +61,7 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
       "Gurian Wilderness Fathers Monastery or Erketi Convent",
       "Local History Museum",
       "Nodar Dumbadze House-Museum",
-      "Skiji House — eco-tourism complex and churchkhela factory",
+      "Skiji House eco-tourism complex and churchkhela factory",
     ],
     includes: [
       "Travel by comfortable minibus",
@@ -77,7 +77,7 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
     highlights: [
       "Kinchkha Canyon",
       "Okatse Canyon",
-      "Confectionery factory — master class",
+      "Confectionery factory master class",
       "Lunch in a traditional Imeretian setting",
     ],
     includes: [
@@ -106,7 +106,7 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
       "Traditional Megrelian lunch",
       "Summary \"quest\"",
     ],
-    optionalNote: "Boat ride available — 20 GEL (optional)",
+    optionalNote: "Boat ride available 20 GEL (optional)",
   },
   kolkhida: {
     title: "Treasures of Colchis",
@@ -176,7 +176,7 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
     ],
   },
   varzia: {
-    title: "Vardzia — Where Stones Tell History",
+    title: "Vardzia Where Stones Tell History",
     highlights: [
       "Day one: Green Monastery",
       "Khertvisi",
@@ -205,7 +205,7 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
       "Bolnisi Sioni",
       "St. George Church",
       "Tsughruasheni Monastery",
-      "Asureti — German settlement",
+      "Asureti German settlement",
       "Dinner and overnight in Tbilisi",
       "Day two: Breakfast at the hotel",
       "Georgian National Museum",
@@ -275,7 +275,7 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
     ],
   },
   taoKlarjeti: {
-    title: "Historic Tao — Klarjeti",
+    title: "Historic Tao Klarjeti",
     highlights: [
       "Day one: Georgia–Turkey border crossing",
       "Viewpoint on the Arvin Dam and panoramic views",
@@ -302,14 +302,14 @@ export const excursionContentEn: Record<ExcursionId, ExcursionContent> = {
     ],
   },
   kazbegi: {
-    title: "Kingdom of the Mountains — Kazbegi",
+    title: "Kingdom of the Mountains Kazbegi",
     highlights: [
       "Day one: 08:00 departure from Batumi",
       "Zhinvali Reservoir",
       "Ananuri Fortress",
       "Gudauri panoramic viewpoint",
       "Khevi Sioni Church",
-      "Sno — giant sculptures",
+      "Sno giant sculptures",
       "Overnight in Stepantsminda",
       "Day two: Gergeti Trinity Church",
       "Mineral waters",

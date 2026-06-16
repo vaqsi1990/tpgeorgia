@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "title": "格鲁吉亚旅游与学校研学",
-    "description": "与 TP Georgia 一起探索格鲁吉亚——从巴统和第比利斯出发的一日游、多日旅程，以及面向 V–XII 年级的文化研学活动。12 年以上专业经验。"
+    "description": "与 Tour Provider Georga 一起探索格鲁吉亚——从巴统和第比利斯出发的一日游、多日旅程，以及面向 V–XII 年级的文化研学活动。12 年以上专业经验。"
   },
   "HomePage": {
     "title": "要开始，请编辑 page.tsx 文件。",
@@ -154,8 +154,8 @@
   },
   "About": {
     "metadata": {
-      "title": "关于我们 | TP Georgia",
-      "description": "TP Georgia — 您在格鲁吉亚值得信赖的难忘旅行与体验服务提供商。"
+      "title": "关于我们 | Tour Provider Georga",
+      "description": "Tour Provider Georga 您在格鲁吉亚值得信赖的难忘旅行与体验服务提供商。"
     },
     "hero": {
       "title": "欢迎来到格鲁吉亚",
@@ -184,7 +184,7 @@
   },
   "Gallery": {
     "metadata": {
-      "title": "画廊 | TP Georgia",
+      "title": "画廊 | Tour Provider Georga",
       "description": "浏览我们在格鲁吉亚之旅和游学中的照片——难忘的时刻与美丽的目的地。"
     },
     "breadcrumb": {
@@ -198,7 +198,7 @@
     },
     "aside": {
       "quote": "格鲁吉亚不仅是一个目的地——它是一种你带回家的心情。",
-      "attribution": "TP Georgia"
+      "attribution": "Tour Provider Georga"
     },
     "grid": {
       "label": "照片画廊"
@@ -254,10 +254,10 @@
     "itemPlaceholder": "从列表中选择",
     "subjectTour": "旅游咨询：{title}",
     "subjectExcursion": "研学咨询：{title}",
-    "bodyTopicLine": "咨询项目：{type} — {title}",
+    "bodyTopicLine": "咨询项目：{type} {title}",
     "messageLabel": "留言",
     "messagePlaceholder": "请告诉我们团队人数、日期和兴趣...",
-    "defaultSubject": "来自 TP Georgia 网站的咨询",
+    "defaultSubject": "来自 Tour Provider Georga 网站的咨询",
     "bodyFooter": "由 {name}（{email}）通过 tpgeorgia.ge 发送",
     "formNote": "消息将直接发送给我们的团队。",
     "submitButton": "发送",
@@ -270,10 +270,10 @@
     "siteNav": "网站导航",
     "tourNav": "按城市浏览旅游",
     "contactTitle": "联系",
-    "copyright": "© {year} TP Georgia. 保留所有权利。"
+    "copyright": "© {year} Tour Provider Georga. 保留所有权利。"
   },
   "Header": {
-    "logoAlt": "TP Georgia",
+    "logoAlt": "Tour Provider Georga",
     "mainNav": "主导航",
     "search": "搜索",
     "openMenu": "打开菜单",

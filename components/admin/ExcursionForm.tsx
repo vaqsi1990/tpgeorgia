@@ -229,7 +229,7 @@ export default function ExcursionForm({
           value={form.title}
           onChange={(e) => updateLocaleField("title", e.target.value)}
           required
-          placeholder="მაგ: „მაჭახელას ხეობის მემკვიდრეობა — ისტორია და ტრადიცია“"
+          placeholder="მაგ: „მაჭახელას ხეობის მემკვიდრეობა ისტორია და ტრადიცია“"
         />
         {!isEditing && generatedSlug ? (
           <p className="text-[12px] text-black">
@@ -239,7 +239,7 @@ export default function ExcursionForm({
         ) : null}
         <AdminTextarea
           label="ექსკურსიის განმავლობაში ნახავთ (თითო ხაზზე ერთი)"
-          hint="ბარათზე გარეთ და შიგნით ჩანს — მთავარი ღირსშესანიშნაობები"
+          hint="ბარათზე გარეთ და შიგნით ჩანს მთავარი ღირსშესანიშნაობები"
           value={form.highlights}
           onChange={(e) => updateLocaleField("highlights", e.target.value)}
         />
