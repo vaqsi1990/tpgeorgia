@@ -1,7 +1,7 @@
 "use client";
 
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { business } from "@/lib/site";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -83,6 +83,7 @@ function IconButton({
 
 export default function Header() {
   const t = useTranslations("Header");
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileToursOpen, setMobileToursOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -90,6 +91,11 @@ export default function Header() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setMobileToursOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -239,27 +245,19 @@ export default function Header() {
         </div>
       </div>
 
-      {mounted
+      {mounted && mobileOpen
         ? createPortal(
             <>
               <button
                 type="button"
                 aria-label={t("closeMenu")}
-                className={`fixed inset-0 z-[60] bg-brand/20 transition-opacity duration-300 lg:hidden ${
-                  mobileOpen
-                    ? "pointer-events-auto opacity-100"
-                    : "pointer-events-none opacity-0"
-                }`}
+                className="fixed inset-0 z-[60] bg-brand/20 transition-opacity duration-300 lg:hidden"
                 onClick={() => setMobileOpen(false)}
-                tabIndex={mobileOpen ? 0 : -1}
               />
 
               <aside
                 id="mobile-menu"
-                aria-hidden={!mobileOpen}
-                className={`fixed top-0 right-0 z-[70] flex h-svh w-full max-w-sm flex-col bg-white shadow-[-8px_0_32px_rgba(15,79,79,0.15)] transition-transform duration-300 ease-out lg:hidden ${
-                  mobileOpen ? "translate-x-0" : "translate-x-full"
-                }`}
+                className="fixed top-0 right-0 z-[70] flex h-svh w-full max-w-sm translate-x-0 flex-col bg-white shadow-[-8px_0_32px_rgba(15,79,79,0.15)] transition-transform duration-300 ease-out lg:hidden"
               >
                 <div className="flex items-center justify-end border-b border-brand/10 px-5 py-4">
                   <IconButton
