@@ -2,8 +2,9 @@
 
 import BookingForm from "@/components/BookingForm";
 import CatalogDetailModal from "@/components/CatalogDetailModal";
-import ExcursionCard from "@/components/ExcursionCard";
 import ExcursionDetailPanel from "@/components/ExcursionDetailPanel";
+import ExcursionImageCard from "@/components/ExcursionImageCard";
+import { getTourCoverImage } from "@/components/TourImageCard";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
 import {
   defaultExcursionFilters,
@@ -50,9 +51,10 @@ export default function ExcursionsList({
 
     return initialExcursions
       .filter((stored) => matchesStoredExcursionFilters(stored, filters))
-      .map((stored) => ({
+      .map((stored, storedIndex) => ({
         excursion: { id: stored.id, ...stored.meta } as ExcursionMeta,
         content: stored.content[appLocale] ?? stored.content.ka,
+        imageSrc: getTourCoverImage(stored.images, storedIndex),
       }));
   }, [filters, locale, initialExcursions]);
 
@@ -117,9 +119,10 @@ export default function ExcursionsList({
         >
           {visibleItems.map((item, index) => (
             <motion.div key={item.excursion.id} variants={staggerItem}>
-              <ExcursionCard
+              <ExcursionImageCard
                 excursion={item.excursion}
                 content={item.content}
+                imageSrc={item.imageSrc}
                 index={index}
                 stretchCard={isReady}
                 onOpenDetails={() => handleOpen(item.excursion.id)}
@@ -134,10 +137,11 @@ export default function ExcursionsList({
           }`}
         >
           {visibleItems.map((item, index) => (
-            <ExcursionCard
+            <ExcursionImageCard
               key={item.excursion.id}
               excursion={item.excursion}
               content={item.content}
+              imageSrc={item.imageSrc}
               index={index}
               stretchCard={isReady}
               onOpenDetails={() => handleOpen(item.excursion.id)}

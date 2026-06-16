@@ -3,8 +3,8 @@
 import BookingForm from "@/components/BookingForm";
 import CatalogDetailModal from "@/components/CatalogDetailModal";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
-import TourCard from "@/components/TourCard";
 import TourDetailPanel from "@/components/TourDetailPanel";
+import TourImageCard, { getTourCoverImage } from "@/components/TourImageCard";
 import {
   defaultTourFilters,
   matchesStoredTourFilters,
@@ -50,9 +50,10 @@ export default function ToursList({
 
     return initialTours
       .filter((stored) => matchesStoredTourFilters(stored, filters))
-      .map((stored) => ({
+      .map((stored, storedIndex) => ({
         tour: { id: stored.id, ...stored.meta } as TourMeta,
         content: stored.content[appLocale] ?? stored.content.ka,
+        imageSrc: getTourCoverImage(stored.images, storedIndex),
       }));
   }, [filters, locale, initialTours]);
 
@@ -125,9 +126,10 @@ export default function ToursList({
         >
           {visibleItems.map((item, index) => (
             <motion.div key={item.tour.id} variants={staggerItem}>
-              <TourCard
+              <TourImageCard
                 tour={item.tour}
                 content={item.content}
+                imageSrc={item.imageSrc}
                 index={index}
                 stretchCard={isReady}
                 onOpenDetails={() => handleOpen(item.tour.id)}
@@ -142,10 +144,11 @@ export default function ToursList({
           }`}
         >
           {visibleItems.map((item, index) => (
-            <TourCard
+            <TourImageCard
               key={item.tour.id}
               tour={item.tour}
               content={item.content}
+              imageSrc={item.imageSrc}
               index={index}
               stretchCard={isReady}
               onOpenDetails={() => handleOpen(item.tour.id)}
