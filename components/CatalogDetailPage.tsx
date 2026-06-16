@@ -118,7 +118,7 @@ export default function CatalogDetailPage({
                     key={item.label}
                     className="flex items-center justify-between gap-3 py-3.5"
                   >
-                    <dt className="text-[14px] text-black/60">{item.label}</dt>
+                    <dt className="text-[14px] md:text-[16px] text-black">{item.label}</dt>
                     <dd className="text-right text-[14px] font-semibold text-black sm:text-[15px]">
                       {item.value}
                     </dd>
@@ -130,7 +130,7 @@ export default function CatalogDetailPage({
             <div className="p-5 sm:p-6">
               <Link
                 href={bookHref}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#38ab8a] py-3.5 text-[16px] font-medium text-white shadow-[0_4px_20px_rgba(56,171,138,0.35)] transition-all hover:bg-[#2f9a7c] hover:shadow-[0_6px_28px_rgba(56,171,138,0.4)]"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#38ab8a] py-3.5 text-[16px] md:text-[18px] font-medium text-white shadow-[0_4px_20px_rgba(56,171,138,0.35)] transition-all hover:bg-[#2f9a7c] hover:shadow-[0_6px_28px_rgba(56,171,138,0.4)]"
               >
                 {bookLabel}
                 <svg

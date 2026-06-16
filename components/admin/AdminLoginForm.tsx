@@ -40,7 +40,7 @@ export default function AdminLoginForm() {
     >
       <div className="text-center">
         <h1 className="font-afacad text-2xl font-semibold">ადმინისტრატორის შესვლა</h1>
-        <p className="mt-1 text-[14px] text-black/60">
+        <p className="mt-1 text-[14px] md:text-[16px] text-black/60">
           შეიყვანე პაროლი
           file.
         </p>
@@ -48,7 +48,7 @@ export default function AdminLoginForm() {
       <div>
         <label
           htmlFor="admin-password"
-          className="mb-1.5 block text-[18px] font-medium text-black/80"
+          className="mb-1.5 block text-[18px] md:text-[20px] font-medium text-black"
         >
           Password
         </label>

@@ -36,7 +36,7 @@ export default function CollapsibleDetailSection({
           />
           <span className="min-w-0">{title}</span>
         </span>
-        <span className="flex shrink-0 items-center gap-1.5 text-[16px] font-medium text-[#38ab8a] ">
+        <span className="flex shrink-0 items-center gap-1.5 text-[16px] md:text-[18px] font-medium text-[#38ab8a] ">
           <span className="hidden sm:inline">
             {open ? collapseLabel : expandLabel}
           </span>

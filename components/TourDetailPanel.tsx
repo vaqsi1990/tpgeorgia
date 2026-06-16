@@ -92,7 +92,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
           {content.includes.map((item, index) => (
             <li
               key={`${tourId}-include-${index}`}
-              className="flex items-start gap-3 rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.05] px-4 py-3 text-[15px] text-black/85"
+              className="flex items-start gap-3 rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.05] px-4 py-3 text-[15px] md:text-[18px] text-black"
             >
               <span
                 className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-[11px] text-white"
@@ -116,7 +116,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
             {content.highlights.map((item, index) => (
               <li
                 key={`${tourId}-highlight-${index}`}
-                className="flex items-start gap-3 rounded-2xl border border-amber-200/80 bg-amber-50/60 px-4 py-3 text-[15px] text-black/85"
+                className="flex items-start gap-3 rounded-2xl border border-amber-200/80 bg-amber-50/60 px-4 py-3 text-[15px] md:text-[18px] text-black"
               >
                 <span
                   className="mt-2 size-2 shrink-0 rounded-full bg-amber-400"
