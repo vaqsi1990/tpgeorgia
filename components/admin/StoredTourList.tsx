@@ -47,7 +47,7 @@ export default function StoredTourList({
       {tours.map((tour) => (
         <li
           key={tour.id}
-          className="fflex gap-3 rounded-2xl border border-black bg-white p-4 sm:flex-row sm:items-center sm:justify-between"
+          className="fflex gap-3 rounded-2xl border border-black/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between"
         >
           <div>
             <p className="text-[16px] text-black md:text-[18px]">{tour.content.ka.title || tour.id}</p>
@@ -58,7 +58,7 @@ export default function StoredTourList({
           <div className="flex flex-wrap gap-2">
             <Link
               href={`/admin/tours/${encodeURIComponent(tour.id)}/edit`}
-              className="rounded-lg border border-black px-3 py-2 text-[16px] font-medium hover:bg-black/5 md:text-[18px]"
+              className="rounded-lg border border-black/15 px-3 py-2 text-[16px] font-medium hover:bg-black/5 md:text-[18px]"
             >
               ცვლილება
             </Link>

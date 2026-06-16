@@ -48,13 +48,13 @@ export default function StoredExcursionList({
       {excursions.map((excursion) => (
         <li
           key={excursion.id}
-          className="flex flex-col md:flex-row gap-3 rounded-2xl border border-black/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between"
+          className="flex flex-col md:flex-row gap-3 rounded-2xl border border-black/10 bg-white p-4 fflex sm:items-center sm:justify-between"
         >
           <div>
-            <p className="font-medium">
+            <p className="text-[16px] md:text-[18px] font-medium text-black">
               {excursion.content.ka.title || excursion.id}
             </p>
-            <p className="text-[15px] text-black/60">
+            <p className="text-[15px] md:text-[16px] text-black/60">
               ID: {excursion.id} · {excursion.meta.grades} ·{" "}
               {excursion.meta.priceFrom} GEL
             </p>
@@ -62,7 +62,7 @@ export default function StoredExcursionList({
           <div className="flex flex-wrap gap-2">
             <Link
               href={`/admin/excursions/${encodeURIComponent(excursion.id)}/edit`}
-              className="rounded-lg border border-black/15 px-3 py-2 text-[15px] font-medium hover:bg-black/5"
+              className="rounded-lg border border-black/15 px-3 py-2 text-[16px] md:text-[18px] font-medium hover:bg-black/5"
             >
               ცვლილება
             </Link>
@@ -70,7 +70,7 @@ export default function StoredExcursionList({
               type="button"
               onClick={() => handleDelete(excursion.id)}
               disabled={deletingId === excursion.id}
-              className="rounded-lg border border-red-200 px-3 py-2 text-[15px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+              className="rounded-lg border border-red-200 px-3 py-2 text-[16px] md:text-[18px] font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
             >
               {deletingId === excursion.id ? "წაშლა…" : "წაშლა"}
             </button>
