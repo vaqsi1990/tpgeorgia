@@ -1,0 +1,186 @@
+"use client";
+
+import BookingForm from "@/components/BookingForm";
+import CatalogDetailModal from "@/components/CatalogDetailModal";
+import { staggerContainer, staggerItem } from "@/components/motionPresets";
+import TourDetailPanel from "@/components/TourDetailPanel";
+import TourImageCard, { getTourCoverImage } from "@/components/TourImageCard";
+import {
+  defaultTourFilters,
+  matchesStoredTourFilters,
+  type TourFilters,
+} from "@/data/tour-filters";
+import type { TourMeta } from "@/data/tours";
+import { Link } from "@/i18n/navigation";
+import type { AppLocale } from "@/i18n/routing";
+import type { StoredTourRecord } from "@/lib/admin-types";
+import { motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+type ToursHomeListProps = {
+  initialTours?: StoredTourRecord[];
+  limit?: number;
+  showAllLink?: boolean;
+  filters?: TourFilters;
+};
+
+export default function ToursHomeList({
+  initialTours = [],
+  limit,
+  showAllLink = false,
+  filters = defaultTourFilters,
+}: ToursHomeListProps = {}) {
+  const t = useTranslations("Tours");
+  const tBooking = useTranslations("Booking");
+  const tGallery = useTranslations("Gallery.lightbox");
+  const locale = useLocale();
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [modalView, setModalView] = useState<"details" | "booking">("details");
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
+
+  const items = useMemo(() => {
+    const appLocale = locale as AppLocale;
+
+    return initialTours
+      .filter((stored) => matchesStoredTourFilters(stored, filters))
+      .map((stored, storedIndex) => ({
+        tour: { id: stored.id, ...stored.meta } as TourMeta,
+        content: stored.content[appLocale] ?? stored.content.ka,
+        imageSrc: getTourCoverImage(stored.images, storedIndex),
+      }));
+  }, [filters, locale, initialTours]);
+
+  const visibleItems = limit !== undefined ? items.slice(0, limit) : items;
+  const hiddenCount =
+    limit !== undefined ? Math.max(0, items.length - limit) : 0;
+
+  const activeItem = useMemo(
+    () => visibleItems.find((item) => item.tour.id === openId) ?? null,
+    [openId, visibleItems],
+  );
+
+  const handleOpen = useCallback((id: string) => {
+    setModalView("details");
+    setOpenId(id);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setOpenId(null);
+    setModalView("details");
+  }, []);
+
+  const activeDurationLabel = activeItem
+    ? activeItem.tour.durationKey === "11nights12days"
+      ? t("durationDays", { days: 12, nights: 11 })
+      : t(`durations.${activeItem.tour.durationKey}` as const)
+    : "";
+
+  const activePriceLabel = activeItem
+    ? activeItem.tour.priceFrom > 0
+      ? t("priceFrom", { price: activeItem.tour.priceFrom })
+      : t("priceOnRequest")
+    : "";
+
+  const activeMeta = activeItem
+    ? [
+        ...(activeItem.tour.startTime
+          ? [{ label: t("startTime"), value: activeItem.tour.startTime }]
+          : []),
+        { label: t("duration"), value: activeDurationLabel },
+        { label: t("price"), value: activePriceLabel },
+        ...(activeItem.tour.minPeople > 0
+          ? [
+              {
+                label: t("minPeople"),
+                value: t("minPeopleValue", { count: activeItem.tour.minPeople }),
+              },
+            ]
+          : []),
+      ]
+    : [];
+
+  return (
+    <>
+      {visibleItems.length === 0 ? (
+        <p className="rounded-2xl border border-black/10 bg-white px-6 py-10 text-center text-[16px] text-black/70 md:text-[18px]">
+          {t("noResults")}
+        </p>
+      ) : null}
+
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.08 }}
+        className={`grid items-stretch gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
+          visibleItems.length === 0 ? "hidden" : ""
+        }`}
+      >
+        {visibleItems.map((item, index) => (
+          <motion.div key={item.tour.id} variants={staggerItem}>
+            <TourImageCard
+              tour={item.tour}
+              content={item.content}
+              imageSrc={item.imageSrc}
+              index={index}
+              stretchCard={isReady}
+              onOpenDetails={() => handleOpen(item.tour.id)}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {hiddenCount > 0 && showAllLink && (
+        <motion.div
+          className="mt-10 flex justify-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Link
+            href="/tours"
+            className="rounded-xl border border-black/20 bg-white px-8 py-3 text-[15px] font-medium text-black shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-colors hover:bg-brand/5 md:text-[20px]"
+          >
+            {t("showAll")}
+          </Link>
+        </motion.div>
+      )}
+
+      {activeItem ? (
+        <CatalogDetailModal
+          isOpen={openId !== null}
+          onClose={handleClose}
+          closeLabel={tGallery("close")}
+          title={activeItem.content.title}
+          subtitle={activeItem.content.routeLabel}
+          popularLabel={t("popularBadge")}
+          isPopular={activeItem.tour.popular}
+          meta={activeMeta}
+          view={modalView}
+          bookLabel={tBooking("bookButton")}
+          onBook={() => setModalView("booking")}
+        >
+          {modalView === "details" ? (
+            <TourDetailPanel
+              content={activeItem.content}
+              tourId={activeItem.tour.id}
+            />
+          ) : (
+            <BookingForm
+              bookingType="tour"
+              itemId={activeItem.tour.id}
+              itemTitle={activeItem.content.title}
+              onBack={() => setModalView("details")}
+            />
+          )}
+        </CatalogDetailModal>
+      ) : null}
+    </>
+  );
+}

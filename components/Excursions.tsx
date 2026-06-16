@@ -1,4 +1,4 @@
-import ExcursionsList from "@/components/ExcursionsList";
+import ExcursionsHomeList from "@/components/ExcursionsHomeList";
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
 import type { StoredExcursionRecord } from "@/lib/admin-types";
@@ -19,12 +19,7 @@ export default async function Excursions({ excursions }: ExcursionsProps) {
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader title={t("title")} description={t("description")} />
-        <ExcursionsList
-          initialExcursions={excursions}
-          limit={6}
-          showAllLink
-          staggerCards
-        />
+        <ExcursionsHomeList initialExcursions={excursions} limit={6} showAllLink />
       </div>
     </ParallaxSection>
   );

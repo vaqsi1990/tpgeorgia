@@ -1,6 +1,6 @@
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
-import ToursList from "@/components/ToursList";
+import ToursHomeList from "@/components/ToursHomeList";
 import type { StoredTourRecord } from "@/lib/admin-types";
 import { getTranslations } from "next-intl/server";
 
@@ -19,7 +19,7 @@ export default async function Tours({ tours }: ToursProps) {
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader title={t("title")} description={t("description")} />
-        <ToursList initialTours={tours} limit={6} showAllLink staggerCards />
+        <ToursHomeList initialTours={tours} limit={6} showAllLink />
       </div>
     </ParallaxSection>
   );

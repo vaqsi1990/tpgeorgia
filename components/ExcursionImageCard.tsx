@@ -1,0 +1,98 @@
+"use client";
+
+import type { ExcursionContent } from "@/data/excursion-content/ka";
+import type { ExcursionMeta } from "@/data/excursions";
+import { getTourCoverImage } from "@/components/TourImageCard";
+import { useTranslations } from "next-intl";
+
+type ExcursionImageCardProps = {
+  excursion: ExcursionMeta;
+  content: ExcursionContent;
+  imageSrc: string;
+  index: number;
+  stretchCard: boolean;
+  onOpenDetails: () => void;
+};
+
+export default function ExcursionImageCard({
+  excursion,
+  content,
+  imageSrc,
+  index,
+  stretchCard,
+  onOpenDetails,
+}: ExcursionImageCardProps) {
+  const t = useTranslations("Excursions");
+
+  const priceLabel =
+    excursion.priceFrom > 0
+      ? t("priceFrom", { price: excursion.priceFrom })
+      : t("priceOnRequest");
+
+  const durationLabel = t(`durations.${excursion.durationKey}` as const);
+  const previewHighlight = content.highlights[0];
+
+  return (
+    <article
+      className={`group relative flex w-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow] hover:shadow-[0_8px_32px_rgba(15,79,79,0.12)] ${
+        stretchCard ? "h-full" : ""
+      }`}
+    >
+      {excursion.popular ? (
+        <span
+          className="absolute right-3 top-3 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:size-11 sm:text-[10px]"
+          aria-label={t("popularBadge")}
+        >
+          {t("popularBadge")}
+        </span>
+      ) : null}
+
+      <div className="relative aspect-[4/3] shrink-0 overflow-hidden">
+        <img
+          src={imageSrc || getTourCoverImage([], index)}
+          alt={content.title}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"
+          aria-hidden
+        />
+        <span className="absolute left-4 top-4 rounded-full bg-white/20 px-3 py-1 text-[14px] font-medium text-white backdrop-blur-sm md:text-[15px]">
+          {durationLabel}
+        </span>
+        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+          <h3 className="font-afacad text-xl font-semibold leading-snug text-white sm:text-2xl">
+            {content.title}
+          </h3>
+          {previewHighlight ? (
+            <p className="mt-1 line-clamp-2 text-[14px] font-medium text-white/85 md:text-[15px]">
+              {previewHighlight}
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      <div
+        className={`flex flex-col px-4 py-4 sm:px-5 sm:py-5 ${stretchCard ? "flex-1" : ""}`}
+      >
+        <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[15px] md:text-[16px]">
+          <span className="text-black/70">
+            {excursion.grades} {t("grade")} · {t("cultural")}
+          </span>
+          <span className="font-semibold text-black">{priceLabel}</span>
+        </div>
+
+        <button
+          type="button"
+          onClick={onOpenDetails}
+          className={`w-full cursor-pointer rounded-xl border border-black bg-[#38ab8a] py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
+            stretchCard ? "mt-auto" : ""
+          }`}
+        >
+          {t("showMore")}
+        </button>
+      </div>
+    </article>
+  );
+}
