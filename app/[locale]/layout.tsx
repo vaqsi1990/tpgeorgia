@@ -1,3 +1,4 @@
+import type { Viewport } from "next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SiteJsonLd from "@/components/seo/SiteJsonLd";
@@ -26,6 +27,11 @@ type Props = {
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;

@@ -5,7 +5,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { business } from "@/lib/site";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 import type { IconType } from "react-icons";
@@ -81,21 +81,44 @@ function IconButton({
   );
 }
 
+const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
+
+function subscribeToDesktopMediaQuery(onChange: () => void) {
+  const mediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
+  mediaQuery.addEventListener("change", onChange);
+  return () => mediaQuery.removeEventListener("change", onChange);
+}
+
+function getDesktopMediaQuerySnapshot() {
+  return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
+}
+
+function getDesktopMediaQueryServerSnapshot() {
+  return true;
+}
+
 export default function Header() {
   const t = useTranslations("Header");
   const pathname = usePathname();
+  const isDesktop = useSyncExternalStore(
+    subscribeToDesktopMediaQuery,
+    getDesktopMediaQuerySnapshot,
+    getDesktopMediaQueryServerSnapshot,
+  );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileToursOpen, setMobileToursOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
     setMobileToursOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (isDesktop) {
+      setMobileOpen(false);
+      setMobileToursOpen(false);
+    }
+  }, [isDesktop]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -129,7 +152,7 @@ export default function Header() {
             />
           </Link>
           <nav
-            className="hidden shrink-0 items-center gap-4 lg:flex lg:gap-5 xl:gap-6"
+            className={`${isDesktop ? "flex" : "hidden"} shrink-0 items-center gap-4 lg:gap-5 xl:gap-6`}
             aria-label={t("mainNav")}
           >
             <Link href="/" className={navLinkClass}>
@@ -190,7 +213,7 @@ export default function Header() {
             ))}
           </nav>
           <div className="flex items-center gap-1 sm:gap-2">
-            <div className="hidden flex-col items-end gap-1 lg:flex">
+            <div className={`${isDesktop ? "flex" : "hidden"} flex-col items-end gap-1`}>
               <div className="flex items-center gap-0.5">
                 {socialLinks.map(({ name, href, Icon, colorClass }) => (
                   <a
@@ -213,12 +236,14 @@ export default function Header() {
               </a>
             </div>
 
-            <div className="hidden lg:block">
-              <LocaleSwitcher variant="header" />
-            </div>
+            {isDesktop ? (
+              <div>
+                <LocaleSwitcher variant="header" />
+              </div>
+            ) : null}
 
+            {!isDesktop ? (
             <IconButton
-              className="lg:hidden"
               label={mobileOpen ? t("closeMenu") : t("openMenu")}
               onClick={() => setMobileOpen((open) => !open)}
             >
@@ -241,23 +266,24 @@ export default function Header() {
                 )}
               </svg>
             </IconButton>
+            ) : null}
           </div>
         </div>
       </div>
 
-      {mounted && mobileOpen
+      {!isDesktop && mobileOpen
         ? createPortal(
             <>
               <button
                 type="button"
                 aria-label={t("closeMenu")}
-                className="fixed inset-0 z-[60] bg-brand/20 transition-opacity duration-300 lg:hidden"
+                className="fixed inset-0 z-[60] bg-brand/20 transition-opacity duration-300"
                 onClick={() => setMobileOpen(false)}
               />
 
               <aside
                 id="mobile-menu"
-                className="fixed top-0 right-0 z-[70] flex h-svh w-full max-w-sm translate-x-0 flex-col bg-white shadow-[-8px_0_32px_rgba(15,79,79,0.15)] transition-transform duration-300 ease-out lg:hidden"
+                className="fixed top-0 right-0 z-[70] flex h-svh w-full max-w-sm translate-x-0 flex-col bg-white shadow-[-8px_0_32px_rgba(15,79,79,0.15)] transition-transform duration-300 ease-out"
               >
                 <div className="flex items-center justify-end border-b border-brand/10 px-5 py-4">
                   <IconButton
