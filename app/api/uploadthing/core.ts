@@ -5,7 +5,10 @@ import { UploadThingError } from "uploadthing/server";
 const f = createUploadthing();
 
 export const ourFileRouter = {
-  imageUploader: f({ image: { maxFileSize: "16MB", maxFileCount: 10 } })
+  imageUploader: f(
+    { image: { maxFileSize: "16MB", maxFileCount: 10 } },
+    { awaitServerData: false },
+  )
     .middleware(async ({ req }) => {
       if (!isAdminAuthenticatedFromRequest(req)) {
         throw new UploadThingError("Unauthorized");
@@ -14,7 +17,7 @@ export const ourFileRouter = {
       return { userId: "admin" };
     })
     .onUploadComplete(async ({ file }) => {
-      return { url: file.url };
+      console.log("Upload complete:", file.url);
     }),
 } satisfies FileRouter;
 

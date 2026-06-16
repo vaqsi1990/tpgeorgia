@@ -6,7 +6,7 @@ import {
   AdminTextarea,
   linesToList,
 } from "@/components/admin/AdminField";
-import CatalogImageUploader from "@/components/admin/CatalogImageUploader";
+import ImageUploadForProduct from "@/components/productimage";
 import LocaleTabs from "@/components/admin/LocaleTabs";
 import TourProgramEditor, {
   createDefaultSections,
@@ -254,7 +254,7 @@ export default function TourForm({
           />
           პოპულარული (ტოპ ბეიჯი)
         </label>
-        <CatalogImageUploader images={images} onChange={setImages} />
+        <ImageUploadForProduct value={images} onChange={setImages} />
       </section>
 
       <section className="space-y-4 rounded-2xl border border-black/10 bg-white p-5 sm:p-6">

@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from "crypto";
+import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 
 const COOKIE_NAME = "tp_admin_session";
@@ -56,6 +57,14 @@ export async function isAdminAuthenticated(): Promise<boolean> {
 }
 
 export function isAdminAuthenticatedFromRequest(req: Request): boolean {
+  if ("cookies" in req) {
+    const nextReq = req as NextRequest;
+    const token = nextReq.cookies?.get(COOKIE_NAME)?.value;
+    if (token) {
+      return verifySessionToken(token);
+    }
+  }
+
   const cookieHeader = req.headers.get("cookie") ?? "";
 
   for (const part of cookieHeader.split(";")) {

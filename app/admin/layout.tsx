@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { Geist, Geist_Mono } from "next/font/google";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -47,7 +50,10 @@ export default function AdminLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full bg-white text-black">{children}</body>
+      <body className="min-h-full bg-white text-black">
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+        {children}
+      </body>
     </html>
   );
 }
