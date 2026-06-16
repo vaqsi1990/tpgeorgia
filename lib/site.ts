@@ -11,6 +11,8 @@ export const business = {
   phoneDisplay: "+995 555 33 88 07",
   whatsapp: "https://wa.me/995555338807",
   facebook: "https://www.facebook.com/profile.php?id=61583758856391",
+  instagram:
+    "https://www.instagram.com/tourprovidergeorgia1?igsh=MW01Y25waWNoanY4ZQ==",
   email: "tourprovidergeorgia@gmail.com",
   address: {
     locality: "Batumi",

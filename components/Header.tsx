@@ -2,13 +2,14 @@
 
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { Link } from "@/i18n/navigation";
+import { business } from "@/lib/site";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import type { IconType } from "react-icons";
-import { FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 const navItems = [
   { key: "home", href: "/" },
@@ -35,9 +36,26 @@ const socialLinks: {
   name: string;
   href: string;
   Icon: IconType;
+  colorClass: string;
 }[] = [
-  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61583758856391", Icon: FaFacebook },
-  { name: "Whatsapp", href: "https://wa.me/995555338807", Icon: FaWhatsapp },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61583758856391",
+    Icon: FaFacebook,
+    colorClass: "text-[#1877F2]",
+  },
+  {
+    name: "Instagram",
+    href: business.instagram,
+    Icon: FaInstagram,
+    colorClass: "text-[#E4405F]",
+  },
+  {
+    name: "Whatsapp",
+    href: "https://wa.me/995555338807",
+    Icon: FaWhatsapp,
+    colorClass: "text-[#25D366]",
+  },
 ];
 
 function IconButton({
@@ -167,16 +185,16 @@ export default function Header() {
           </nav>
           <div className="flex items-center gap-1 sm:gap-2">
             <div className="hidden items-center gap-0.5 lg:flex">
-              {socialLinks.map(({ name, href, Icon }) => (
+              {socialLinks.map(({ name, href, Icon, colorClass }) => (
                 <a
                   key={name}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={name}
-                  className=" flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-brand/10"
+                  className="flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-80"
                 >
-                  <Icon className="h-8 w-8" aria-hidden />
+                  <Icon className={`h-8 w-8 ${colorClass}`} aria-hidden />
                 </a>
               ))}
             </div>
@@ -341,16 +359,16 @@ export default function Header() {
                 <div className="border-t border-black px-5 py-5">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex gap-1">
-                      {socialLinks.map(({ name, href, Icon }) => (
+                      {socialLinks.map(({ name, href, Icon, colorClass }) => (
                         <a
                           key={name}
                           href={href}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={name}
-                          className=" flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black"
+                          className="flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-80"
                         >
-                          <Icon className="h-7 w-7 text-black" aria-hidden />
+                          <Icon className={`h-7 w-7 ${colorClass}`} aria-hidden />
                         </a>
                       ))}
                     </div>

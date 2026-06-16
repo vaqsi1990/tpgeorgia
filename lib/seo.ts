@@ -101,7 +101,7 @@ export function organizationJsonLd(locale: AppLocale) {
       addressRegion: business.address.region,
       addressCountry: business.address.country,
     },
-    sameAs: [business.facebook, business.whatsapp],
+    sameAs: [business.facebook, business.instagram, business.whatsapp],
     areaServed: {
       "@type": "Country",
       name: "Georgia",
