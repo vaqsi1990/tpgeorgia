@@ -4,8 +4,8 @@ import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 import type { IconType } from "react-icons";
 import { FaFacebook, FaWhatsapp } from "react-icons/fa";
@@ -67,6 +67,11 @@ export default function Header() {
   const t = useTranslations("Header");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileToursOpen, setMobileToursOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -208,148 +213,155 @@ export default function Header() {
         </div>
       </div>
 
-      <button
-        type="button"
-        aria-label={t("closeMenu")}
-        className={`fixed inset-0 z-[60] bg-brand/20 transition-opacity duration-300 lg:hidden ${
-          mobileOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
-        onClick={() => setMobileOpen(false)}
-        tabIndex={mobileOpen ? 0 : -1}
-      />
-
-      <aside
-        id="mobile-menu"
-        aria-hidden={!mobileOpen}
-        className={`fixed top-0 right-0 z-[70] flex h-full w-full max-w-sm flex-col bg-white shadow-[-8px_0_32px_rgba(15,79,79,0.15)] transition-transform duration-300 ease-out lg:hidden ${
-          mobileOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex items-center justify-end border-b border-brand/10 px-5 py-4">
-          <IconButton
-            label={t("closeMenu")}
-            onClick={() => setMobileOpen(false)}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className=" h-[22px] w-[22px]"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden
-            >
-              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-            </svg>
-          </IconButton>
-        </div>
-
-        <nav
-          className="flex flex-1 flex-col gap-1 overflow-y-auto px-5 py-4"
-          aria-label={t("mainNav")}
-        >
-          <Link
-            href="/"
-            onClick={() => setMobileOpen(false)}
-            className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
-          >
-            {t("nav.home")}
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setMobileOpen(false)}
-            className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
-          >
-            {t("nav.about")}
-          </Link>
-
-          <div>
-            <div className="flex items-center rounded-lg transition-colors hover:bg-brand/5">
-              <Link
-                href="/tours"
-                onClick={() => setMobileOpen(false)}
-                className="flex-1 rounded-lg px-3 py-3 text-[15px] font-medium text-black"
-              >
-                {t("nav.tours")}
-              </Link>
+      {mounted
+        ? createPortal(
+            <>
               <button
                 type="button"
-                onClick={() => setMobileToursOpen((open) => !open)}
-                className="rounded-lg px-3 py-3"
-                aria-expanded={mobileToursOpen}
-                aria-label={t("nav.tours")}
+                aria-label={t("closeMenu")}
+                className={`fixed inset-0 z-[60] bg-brand/20 transition-opacity duration-300 lg:hidden ${
+                  mobileOpen
+                    ? "pointer-events-auto opacity-100"
+                    : "pointer-events-none opacity-0"
+                }`}
+                onClick={() => setMobileOpen(false)}
+                tabIndex={mobileOpen ? 0 : -1}
+              />
+
+              <aside
+                id="mobile-menu"
+                aria-hidden={!mobileOpen}
+                className={`fixed top-0 right-0 z-[70] flex h-svh w-full max-w-sm flex-col bg-white shadow-[-8px_0_32px_rgba(15,79,79,0.15)] transition-transform duration-300 ease-out lg:hidden ${
+                  mobileOpen ? "translate-x-0" : "translate-x-full"
+                }`}
               >
-                <svg
-                  viewBox="0 0 20 20"
-                  className={`h-4 w-4 transition-transform ${mobileToursOpen ? "rotate-180" : ""}`}
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
-            {mobileToursOpen ? (
-              <div className="ml-3 flex flex-col gap-0.5 border-l border-black/10 pl-3">
-                {tourDestinations.map((item) => (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setMobileToursOpen(false);
-                    }}
-                    className="rounded-lg px-3 py-2.5 text-[15px] font-medium text-black/80 transition-colors hover:bg-brand/5"
+                <div className="flex items-center justify-end border-b border-brand/10 px-5 py-4">
+                  <IconButton
+                    label={t("closeMenu")}
+                    onClick={() => setMobileOpen(false)}
                   >
-                    {t(
-                      `nav.toursDropdown.${item.key}` as
-                        | "nav.toursDropdown.batumi"
-                        | "nav.toursDropdown.tbilisi"
-                        | "nav.toursDropdown.kutaisi",
-                    )}
-                  </Link>
-                ))}
-              </div>
-            ) : null}
-          </div>
+                    <svg
+                      viewBox="0 0 24 24"
+                      className=" h-[22px] w-[22px]"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      aria-hidden
+                    >
+                      <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+                    </svg>
+                  </IconButton>
+                </div>
 
-          {navItems.slice(2).map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              onClick={() => setMobileOpen(false)}
-              className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
-            >
-              {t(`nav.${item.key}`)}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="border-t border-black px-5 py-5">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex gap-1">
-              {socialLinks.map(({ name, href, Icon }) => (
-                <a
-                  key={name}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={name}
-                  className=" flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black"
+                <nav
+                  className="flex flex-1 flex-col gap-1 overflow-y-auto px-5 py-4"
+                  aria-label={t("mainNav")}
                 >
-                  <Icon className="h-7 w-7 text-black" aria-hidden />
-                </a>
-              ))}
-            </div>
-            <LocaleSwitcher variant="header" />
-          </div>
-        </div>
-      </aside>
+                  <Link
+                    href="/"
+                    onClick={() => setMobileOpen(false)}
+                    className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                  >
+                    {t("nav.home")}
+                  </Link>
+                  <Link
+                    href="/about"
+                    onClick={() => setMobileOpen(false)}
+                    className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                  >
+                    {t("nav.about")}
+                  </Link>
+
+                  <div>
+                    <div className="flex items-center rounded-lg transition-colors hover:bg-brand/5">
+                      <Link
+                        href="/tours"
+                        onClick={() => setMobileOpen(false)}
+                        className="flex-1 rounded-lg px-3 py-3 text-[15px] font-medium text-black"
+                      >
+                        {t("nav.tours")}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setMobileToursOpen((open) => !open)}
+                        className="rounded-lg px-3 py-3"
+                        aria-expanded={mobileToursOpen}
+                        aria-label={t("nav.tours")}
+                      >
+                        <svg
+                          viewBox="0 0 20 20"
+                          className={`h-4 w-4 transition-transform ${mobileToursOpen ? "rotate-180" : ""}`}
+                          fill="currentColor"
+                          aria-hidden
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    {mobileToursOpen ? (
+                      <div className="ml-3 flex flex-col gap-0.5 border-l border-black/10 pl-3">
+                        {tourDestinations.map((item) => (
+                          <Link
+                            key={item.key}
+                            href={item.href}
+                            onClick={() => {
+                              setMobileOpen(false);
+                              setMobileToursOpen(false);
+                            }}
+                            className="rounded-lg px-3 py-2.5 text-[15px] font-medium text-black/80 transition-colors hover:bg-brand/5"
+                          >
+                            {t(
+                              `nav.toursDropdown.${item.key}` as
+                                | "nav.toursDropdown.batumi"
+                                | "nav.toursDropdown.tbilisi"
+                                | "nav.toursDropdown.kutaisi",
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+
+                  {navItems.slice(2).map((item) => (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                    >
+                      {t(`nav.${item.key}`)}
+                    </Link>
+                  ))}
+                </nav>
+
+                <div className="border-t border-black px-5 py-5">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex gap-1">
+                      {socialLinks.map(({ name, href, Icon }) => (
+                        <a
+                          key={name}
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={name}
+                          className=" flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black"
+                        >
+                          <Icon className="h-7 w-7 text-black" aria-hidden />
+                        </a>
+                      ))}
+                    </div>
+                    <LocaleSwitcher variant="header" />
+                  </div>
+                </div>
+              </aside>
+            </>,
+            document.body,
+          )
+        : null}
     </header>
   );
 }

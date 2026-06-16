@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "uploadthing/tw/v4";
-@import "@uploadthing/react/styles.css" layer(third-party);
 
 :root {
   --background: #ffffff;

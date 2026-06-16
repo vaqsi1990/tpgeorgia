@@ -67,17 +67,17 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full"
+      className="relative w-full overflow-x-hidden"
       aria-roledescription="carousel"
       aria-label={t("ariaLabel")}
     >
       <div className="relative w-full overflow-hidden">
-        <div ref={emblaRef} className="overflow-hidden">
-          <div className="flex">
+        <div ref={emblaRef} className="w-full overflow-hidden">
+          <div className="flex touch-pan-y">
             {slides.map((slide, index) => (
               <div
                 key={slide.key}
-                className="relative min-w-0 flex-[0_0_100%]"
+                className="relative min-w-0 shrink-0 grow-0 basis-full"
               >
                 <div className="relative min-h-[70svh] w-full overflow-hidden sm:min-h-[75svh] lg:min-h-[85svh]">
                   <motion.div

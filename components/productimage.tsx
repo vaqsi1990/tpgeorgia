@@ -48,10 +48,10 @@ const ImageUploadForProduct = ({ onChange, value }: ImageUploadProps): React.JSX
   });
 
   return (
-    <div className="rounded p-2">
+    <div className="rounded  p-2">
       {imageUrls.length < MAX_IMAGES ? (
         <UploadButton
-          className="text-white font-bold py-1 px-3 rounded text-sm"
+          className="w-full"
           endpoint="imageUploader"
           onClientUploadComplete={handleUploadComplete}
           onUploadError={(error) =>
@@ -66,9 +66,10 @@ const ImageUploadForProduct = ({ onChange, value }: ImageUploadProps): React.JSX
             allowedContent: `PNG, JPG, WebP (მაქს. 16MB, კიდევ ${MAX_IMAGES - imageUrls.length})`,
           }}
           appearance={{
+            container: "w-full",
             button:
-              "bg-[#38ab8a] md:w-[50%] w-full text-center hover:opacity-90 text-white font-bold py-2 px-4 rounded md:text-[18px] text-[16px]",
-            allowedContent: "text-black text-[16px] mt-1",
+              "w-full min-w-[280px] whitespace-nowrap bg-[#38ab8a] px-8 py-3 text-center text-[16px] font-bold text-white hover:opacity-90 ut-ready:bg-[#38ab8a] ut-uploading:bg-[#38ab8a]/80 md:text-[18px]",
+            allowedContent: "mt-2 text-[16px] text-black",
           }}
         />
       ) : (

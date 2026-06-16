@@ -3,6 +3,7 @@ import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
+import "./uploadthing.css";
 import "../globals.css";
 
 const geistSans = Geist({
