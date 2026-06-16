@@ -23,7 +23,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   return (
     <div className="min-h-screen bg-[#f4faf8] text-black">
       <header className="border-b border-black/10 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+        <div className="mx-auto fflex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div>
             <p className="font-afacad text-xl font-semibold">TP Georgia ადმინის პანელი</p>
             <p className="text-[15px] text-black/60">მართეთ ტურები, ექსკურსიები და ჯავშნები</p>
@@ -44,7 +44,8 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             </button>
           </div>
         </div>
-        <nav className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 pb-3 sm:px-6">
+        
+        <nav className="mx-auto fflex max-w-6xl gap-2 overflow-x-auto px-4 pb-3 sm:px-6">
           {nav.map((item) => {
             const active =
               item.href === "/admin"

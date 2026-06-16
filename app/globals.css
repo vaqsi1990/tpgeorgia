@@ -139,3 +139,15 @@ body {
 .catalog-modal-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(15, 79, 79, 0.42);
 }
+
+.fflex{
+  display: flex;
+  flex-direction: row !important;
+}
+
+
+@media (max-width: 426px) {
+  .fflex{
+    flex-direction: column !important;
+  }
+}
