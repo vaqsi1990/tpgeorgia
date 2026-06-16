@@ -11,23 +11,108 @@ import { createPortal } from "react-dom";
 import type { IconType } from "react-icons";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
-const navItems = [
-  { key: "home", href: "/" },
-  { key: "about", href: "/about" },
-  { key: "gallery", href: "/gallery" },
-  { key: "schoolExcursions", href: "/excursions" },
+const navLinkClass =
+  "text-black whitespace-nowrap font-figtree text-[15px] md:text-[18px] font-medium transition-opacity hover:opacity-70";
 
-  { key: "contact", href: "/#contact" },
-] as const;
+function SchoolExcursionsNavItem({
+  label,
+  onNavigate,
+  variant = "desktop",
+  expanded = false,
+  onToggle,
+}: {
+  label: string;
+  onNavigate?: () => void;
+  variant?: "desktop" | "mobile";
+  expanded?: boolean;
+  onToggle?: () => void;
+}) {
+  const chevronClass =
+    variant === "desktop"
+      ? "h-4 w-4 transition-transform group-hover/exc:rotate-180"
+      : `h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`;
+
+  const chevron = (
+    <svg
+      viewBox="0 0 20 20"
+      className={chevronClass}
+      fill="currentColor"
+      aria-hidden
+    >
+      <path
+        fillRule="evenodd"
+        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+
+  const hoverLink = (
+    <Link
+      href="/excursions"
+      onClick={onNavigate}
+      className={
+        variant === "desktop"
+          ? "block w-full rounded-xl border border-black/10 bg-white px-8 py-4 shadow-[0_8px_32px_rgba(15,79,79,0.12)] transition-opacity hover:opacity-90"
+          : "inline-flex w-full flex-col rounded-lg px-4 py-2.5 transition-colors hover:bg-brand/5"
+      }
+    >
+      <span className="flex w-full items-center justify-start gap-x-1.5 whitespace-nowrap font-figtree text-[15px] font-medium leading-tight md:text-[18px]">
+        <span className="text-[#FFB800]">გაიცანი</span>
+        <span className="text-[#FF5C33]">შენი</span>
+        <span className="text-[#299784]">საქართველო</span>
+      </span>
+    </Link>
+  );
+
+  if (variant === "mobile") {
+    return (
+      <div>
+        <div className="flex items-center rounded-lg transition-colors hover:bg-brand/5">
+          <span className="flex-1 rounded-lg px-3 py-3 text-[15px] font-medium text-black">
+            {label}
+          </span>
+          <button
+            type="button"
+            onClick={onToggle}
+            className="rounded-lg px-3 py-3"
+            aria-expanded={expanded}
+            aria-label={label}
+          >
+            {chevron}
+          </button>
+        </div>
+        {expanded ? (
+          <div className="ml-3 border-l border-black/10 pl-3">{hoverLink}</div>
+        ) : null}
+      </div>
+    );
+  }
+
+  return (
+    <div className="group/exc relative flex items-center gap-0.5">
+      <span className={`${navLinkClass} cursor-default`}>{label}</span>
+      <button
+        type="button"
+        className="flex items-center rounded p-0.5 transition-opacity hover:opacity-70"
+        aria-haspopup="true"
+        aria-expanded={false}
+        aria-label={label}
+      >
+        {chevron}
+      </button>
+      <div className="invisible absolute top-full left-0 z-50 pt-2 opacity-0 transition-all group-hover/exc:visible group-hover/exc:opacity-100 group-focus-within/exc:visible group-focus-within/exc:opacity-100">
+        {hoverLink}
+      </div>
+    </div>
+  );
+}
 
 const tourDestinations = [
   { key: "batumi", href: "/tours/batumi" },
   { key: "tbilisi", href: "/tours/tbilisi" },
   { key: "kutaisi", href: "/tours/kutaisi" },
 ] as const;
-
-const navLinkClass =
-  "text-black whitespace-nowrap font-figtree text-[15px] md:text-[18px] font-medium transition-opacity hover:opacity-70";
 
 const dropdownItemClass =
   "block rounded-lg px-4 py-2.5 text-[15px] font-medium text-black transition-colors hover:bg-brand/5 md:text-[16px]";
@@ -107,16 +192,19 @@ export default function Header() {
   );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileToursOpen, setMobileToursOpen] = useState(false);
+  const [mobileExcursionsOpen, setMobileExcursionsOpen] = useState(false);
 
   useEffect(() => {
     setMobileOpen(false);
     setMobileToursOpen(false);
+    setMobileExcursionsOpen(false);
   }, [pathname]);
 
   useEffect(() => {
     if (isDesktop) {
       setMobileOpen(false);
       setMobileToursOpen(false);
+      setMobileExcursionsOpen(false);
     }
   }, [isDesktop]);
 
@@ -186,7 +274,7 @@ export default function Header() {
                   />
                 </svg>
               </button>
-              <div className="invisible absolute top-full left-1/2 z-50 min-w-[11rem] -translate-x-1/2 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="invisible absolute top-full left-0 z-50 min-w-[11rem] pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                 <div className="overflow-hidden rounded-xl border border-black/10 bg-white py-1 shadow-[0_8px_32px_rgba(15,79,79,0.12)]">
                   {tourDestinations.map((item) => (
                     <Link
@@ -206,11 +294,13 @@ export default function Header() {
               </div>
             </div>
 
-            {navItems.slice(2).map((item) => (
-              <Link key={item.key} href={item.href} className={navLinkClass}>
-                {t(`nav.${item.key}`)}
-              </Link>
-            ))}
+            <Link href="/gallery" className={navLinkClass}>
+              {t("nav.gallery")}
+            </Link>
+            <SchoolExcursionsNavItem label={t("nav.schoolExcursions")} />
+            <Link href="/#contact" className={navLinkClass}>
+              {t("nav.contact")}
+            </Link>
           </nav>
           <div className="flex items-center gap-1 sm:gap-2">
             <div className={`${isDesktop ? "flex" : "hidden"} flex-col items-end gap-1`}>
@@ -376,16 +466,30 @@ export default function Header() {
                     ) : null}
                   </div>
 
-                  {navItems.slice(2).map((item) => (
-                    <Link
-                      key={item.key}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
-                    >
-                      {t(`nav.${item.key}`)}
-                    </Link>
-                  ))}
+                  <Link
+                    href="/gallery"
+                    onClick={() => setMobileOpen(false)}
+                    className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                  >
+                    {t("nav.gallery")}
+                  </Link>
+                  <SchoolExcursionsNavItem
+                    label={t("nav.schoolExcursions")}
+                    variant="mobile"
+                    expanded={mobileExcursionsOpen}
+                    onToggle={() => setMobileExcursionsOpen((open) => !open)}
+                    onNavigate={() => {
+                      setMobileOpen(false);
+                      setMobileExcursionsOpen(false);
+                    }}
+                  />
+                  <Link
+                    href="/#contact"
+                    onClick={() => setMobileOpen(false)}
+                    className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                  >
+                    {t("nav.contact")}
+                  </Link>
                 </nav>
 
                 <div className="border-t border-black px-5 py-5">
