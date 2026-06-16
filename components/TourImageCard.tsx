@@ -35,6 +35,8 @@ export default function TourImageCard({
       ? t("durationDays", { days: 12, nights: 11 })
       : t(`durations.${tour.durationKey}` as const);
 
+  const outline = content.outline.filter((item) => item.trim().length > 0);
+
   return (
     <article
       className={`group relative flex w-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow] hover:shadow-[0_8px_32px_rgba(15,79,79,0.12)] ${
@@ -94,6 +96,28 @@ export default function TourImageCard({
           )}
           <span className="font-semibold text-black">{priceLabel}</span>
         </div>
+
+        {outline.length > 0 ? (
+          <div className="mb-4">
+            <h4 className="mb-2 text-[16px] font-semibold text-black">
+              {t("outlineTitle")}
+            </h4>
+            <ul className="space-y-1.5">
+              {outline.map((item, i) => (
+                <li
+                  key={`${tour.id}-outline-${i}`}
+                  className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
+                >
+                  <span
+                    className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"
+                    aria-hidden
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <Link
           href={href}

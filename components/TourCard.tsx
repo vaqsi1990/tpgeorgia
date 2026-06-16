@@ -31,7 +31,7 @@ export default function TourCard({
       ? t("durationDays", { days: 12, nights: 11 })
       : t(`durations.${tour.durationKey}` as const);
 
-  const previewOutline = content.outline.slice(0, 3);
+  const outline = content.outline.filter((item) => item.trim().length > 0);
 
   return (
     <article
@@ -91,13 +91,13 @@ export default function TourCard({
           </div>
         </dl>
 
-        {previewOutline.length > 0 ? (
+        {outline.length > 0 ? (
           <div className="mb-4">
             <h4 className="mb-2 text-[16px] font-semibold text-black">
               {t("outlineTitle")}
             </h4>
             <ul className="space-y-1.5">
-              {previewOutline.map((item, i) => (
+              {outline.map((item, i) => (
                 <li
                   key={`${tour.id}-outline-${i}`}
                   className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
@@ -106,7 +106,7 @@ export default function TourCard({
                     className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"
                     aria-hidden
                   />
-                  <span className="line-clamp-2">{item}</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
