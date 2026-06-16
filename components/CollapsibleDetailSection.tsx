@@ -13,7 +13,7 @@ type CollapsibleDetailSectionProps = {
 export default function CollapsibleDetailSection({
   title,
   children,
-  defaultOpen = true,
+  defaultOpen = false,
   expandLabel,
   collapseLabel,
 }: CollapsibleDetailSectionProps) {

@@ -41,7 +41,6 @@ export default function ExcursionDetailPanel({
 
       <CollapsibleDetailSection
         title={t("includesTitle")}
-        defaultOpen={false}
         expandLabel={t("showMore")}
         collapseLabel={t("showLess")}
       >

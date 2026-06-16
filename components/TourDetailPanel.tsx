@@ -109,7 +109,6 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
       {content.highlights && content.highlights.length > 0 ? (
         <CollapsibleDetailSection
           title={t("highlightsTitle")}
-          defaultOpen={false}
           expandLabel={t("showMore")}
           collapseLabel={t("showLess")}
         >
