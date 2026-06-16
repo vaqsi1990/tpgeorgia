@@ -17,7 +17,7 @@ export function AdminField({
       <label className={labelClass}>{label}</label>
       {children}
       {hint ? (
-        <p className="mt-1 text-[15px] leading-relaxed text-black/55">{hint}</p>
+        <p className="mt-1 text-[16px] leading-relaxed text-black md:text-[18px]">{hint}</p>
       ) : null}
     </div>
   );

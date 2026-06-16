@@ -193,7 +193,7 @@ export default function ToursFilter({
               />
             </div>
           </div>
-          <p className="text-[12px] leading-relaxed text-black/55 md:text-[13px]">
+          <p className="text-[12px] leading-relaxed text-black md:text-[13px]">
             {t("filterPriceHint", {
               min: priceBounds.min,
               max: priceBounds.max,

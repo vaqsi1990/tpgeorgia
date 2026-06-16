@@ -111,7 +111,7 @@ enum BookingStatus {
 
 /// Client booking requests from the public site
 model Booking {
-  id            String        @id @default(cuid())
+  id            String        @id
   bookingType   BookingType
   itemId        String
   itemTitle     String

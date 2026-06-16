@@ -15,7 +15,7 @@ export default async function AdminEditExcursionPage({ params }: PageProps) {
     <div className="space-y-6">
       <div>
         <h1 className="font-afacad text-3xl font-semibold">ექსკურსიის რედაქტირება</h1>
-        <p className="mt-1 text-[15px] text-black/65">
+        <p className="mt-1 text-[16px] text-black md:text-[18px]">
           განაახლეთ პარამეტრები და კონტენტი ყველა ენაზე.
         </p>
       </div>

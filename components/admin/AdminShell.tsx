@@ -23,29 +23,29 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   return (
     <div className="min-h-screen bg-[#f4faf8] text-black">
       <header className="border-b border-black/10 bg-white">
-        <div className="mx-auto fflex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+        <div className="mx-auto fflex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div>
             <p className="font-afacad text-xl font-semibold">TP Georgia ადმინის პანელი</p>
-            <p className="text-[15px] text-black/60">მართეთ ტურები, ექსკურსიები და ჯავშნები</p>
+            <p className="text-[16px] text-black md:text-[18px]">მართეთ ტურები, ექსკურსიები და ჯავშნები</p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <Link
               href="/ka"
-              className="rounded-xl border border-black/15 px-4 py-2 text-[14px] font-medium transition-colors hover:bg-brand/5"
+              className="rounded-xl border border-black/15 px-4 py-2 text-[16px] font-medium transition-colors hover:bg-brand/5 md:text-[18px]"
             >
               მთავარი გვერდი
             </Link>
             <button
               type="button"
               onClick={handleLogout}
-              className="rounded-xl border border-black/15 px-4 py-2 text-[14px] font-medium transition-colors hover:bg-brand/5"
+              className="rounded-xl border border-black/15 px-4 py-2 text-[16px] font-medium transition-colors hover:bg-brand/5 md:text-[18px]"
             >
               გამოსვლა
             </button>
           </div>
         </div>
         
-        <nav className="mx-auto fflex max-w-6xl gap-2 overflow-x-auto px-4 pb-3 sm:px-6">
+        <nav className="mx-auto fflex max-w-7xl gap-2 overflow-x-auto px-4 pb-3 sm:px-6">
           {nav.map((item) => {
             const active =
               item.href === "/admin"
@@ -55,7 +55,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               <Link
                 key={item.href}
                 href={item.href}
-                className={`shrink-0 rounded-lg px-3 py-2 text-[14px] font-medium transition-colors ${
+                className={`shrink-0 rounded-lg px-3 py-2 text-[16px] font-medium transition-colors md:text-[18px] ${
                   active
                     ? "bg-[#38ab8a] text-white"
                     : "text-black/70 hover:bg-brand/5"
@@ -67,7 +67,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           })}
         </nav>
       </header>
-      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">{children}</main>
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">{children}</main>
     </div>
   );
 }

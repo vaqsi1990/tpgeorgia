@@ -204,7 +204,7 @@ export default function ExcursionsFilter({
               />
             </div>
           </div>
-          <p className="text-[12px] leading-relaxed text-black/55 md:text-[15px]">
+          <p className="text-[12px] leading-relaxed text-black md:text-[15px]">
             {t("filterPriceHint", {
               min: priceBounds.min,
               max: priceBounds.max,

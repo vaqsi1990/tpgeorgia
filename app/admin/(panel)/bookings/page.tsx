@@ -11,7 +11,7 @@ export default async function AdminBookingsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="font-afacad text-3xl font-semibold">ჯავშნები</h1>
-        <p className="mt-1 text-[15px] text-black/65">
+        <p className="mt-1 text-[16px] text-black md:text-[18px]">
           კლიენტების ჯავშნის მოთხოვნები საიტიდან.
           {pendingCount > 0 ? ` ${pendingCount} ახალი მოლოდინში.` : ""}
         </p>

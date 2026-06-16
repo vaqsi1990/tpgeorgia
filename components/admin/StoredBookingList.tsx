@@ -45,6 +45,9 @@ export default function StoredBookingList({
           booking.id === id ? data.booking : booking,
         ),
       );
+      if (data.emailSent === false && data.emailWarning) {
+        alert(`სტატუსი განახლდა, მაგრამ ელფოსტა ვერ გაიგზავნა: ${data.emailWarning}`);
+      }
       router.refresh();
     } catch (error) {
       alert(error instanceof Error ? error.message : "Update failed.");
@@ -71,11 +74,11 @@ export default function StoredBookingList({
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0 flex-1 space-y-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-[#38ab8a]/10 px-3 py-1 text-[12px] font-semibold uppercase tracking-wide text-[#0f4f4f]">
+                <span className="rounded-full bg-[#38ab8a]/10 px-3 py-1 text-[16px] font-semibold uppercase tracking-wide text-[#0f4f4f] ">
                   {booking.bookingType === "tour" ? "ტური" : "ექსკურსია"}
                 </span>
                 <span
-                  className={`rounded-full px-3 py-1 text-[12px] font-semibold ${
+                  className={`rounded-full px-3 py-1 text-[16px] font-semibold ${
                     booking.status === "confirmed"
                       ? "bg-green-100 text-green-800"
                       : booking.status === "cancelled"
@@ -85,7 +88,10 @@ export default function StoredBookingList({
                 >
                   {statusLabels[booking.status]}
                 </span>
-                <span className="text-[13px] text-black/50">
+                <span className="rounded-full bg-[#0f4f4f]/10 px-3 py-1 font-mono text-[15px] font-semibold tracking-wider text-[#0f4f4f] md:text-[16px]">
+                  № {booking.id}
+                </span>
+                <span className="text-[16px] text-black/50 md:text-[18px]">
                   {formatDate(booking.createdAt)}
                 </span>
               </div>
@@ -94,16 +100,16 @@ export default function StoredBookingList({
                 <p className="font-afacad text-xl font-semibold text-black">
                   {booking.itemTitle}
                 </p>
-                <p className="text-[14px] text-black/55">ID: {booking.itemId}</p>
+                <p className="text-[16px] text-black md:text-[18px]">ID: {booking.itemId}</p>
               </div>
 
-              <dl className="grid gap-2 text-[15px] sm:grid-cols-2">
+              <dl className="grid gap-2 text-[16px] sm:grid-cols-2 md:text-[18px]">
                 <div>
-                  <dt className="text-black/55">სახელი</dt>
+                  <dt className="text-black">სახელი</dt>
                   <dd className="font-medium">{booking.name}</dd>
                 </div>
                 <div>
-                  <dt className="text-black/55">ტელეფონი</dt>
+                  <dt className="text-black md:text-[18px]">ტელეფონი</dt>
                   <dd>
                     <a
                       href={`tel:${booking.phone}`}
@@ -114,7 +120,7 @@ export default function StoredBookingList({
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-black/55">ელფოსტა</dt>
+                  <dt className="text-black md:text-[18px]">ელფოსტა</dt>
                   <dd>
                     <a
                       href={`mailto:${booking.email}`}
@@ -126,30 +132,30 @@ export default function StoredBookingList({
                 </div>
                 {booking.preferredDate ? (
                   <div>
-                    <dt className="text-black/55">თარიღი</dt>
+                    <dt className="text-black md:text-[18px]">თარიღი</dt>
                     <dd className="font-medium">{booking.preferredDate}</dd>
                   </div>
                 ) : null}
                 {booking.peopleCount ? (
                   <div>
-                    <dt className="text-black/55">ადამიანები</dt>
+                    <dt className="text-black md:text-[18px]">ადამიანები</dt>
                     <dd className="font-medium">{booking.peopleCount}</dd>
                   </div>
                 ) : null}
               </dl>
 
               <div className="rounded-xl border border-black/8 bg-black/[0.02] px-4 py-3">
-                <p className="mb-1 text-[12px] font-semibold uppercase tracking-wide text-black/45">
+                <p className="mb-1 text-[16px] font-semibold uppercase tracking-wide text-black/45 md:text-[18px]">
                   შეტყობინება
                 </p>
-                <p className="whitespace-pre-wrap text-[15px] leading-relaxed text-black/80">
+                <p className="whitespace-pre-wrap text-[16px] leading-relaxed text-black md:text-[18px]">
                   {booking.message}
                 </p>
               </div>
             </div>
 
             <div className="shrink-0">
-              <label className="mb-1.5 block text-[13px] font-medium text-black/55">
+              <label className="mb-1.5 block text-[16px] font-medium text-black md:text-[18px]">
                 სტატუსი
               </label>
               <select
@@ -158,7 +164,7 @@ export default function StoredBookingList({
                 onChange={(e) =>
                   handleStatusChange(booking.id, e.target.value as BookingStatus)
                 }
-                className="rounded-xl border border-black/15 bg-white px-3 py-2.5 text-[14px] font-medium disabled:opacity-60"
+                className="rounded-xl border border-black bg-white px-3 py-2.5 text-[16px] font-medium disabled:opacity-60 md:text-[18px]"
               >
                 <option value="pending">{statusLabels.pending}</option>
                 <option value="confirmed">{statusLabels.confirmed}</option>

@@ -232,7 +232,7 @@ export default function ExcursionForm({
           placeholder="მაგ: „მაჭახელას ხეობის მემკვიდრეობა — ისტორია და ტრადიცია“"
         />
         {!isEditing && generatedSlug ? (
-          <p className="text-[12px] text-black/55">
+          <p className="text-[12px] text-black">
             ავტომატური ID:{" "}
             <span className="font-medium text-black/75">{generatedSlug}</span>
           </p>

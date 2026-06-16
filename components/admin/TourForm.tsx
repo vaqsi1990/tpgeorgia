@@ -271,7 +271,7 @@ export default function TourForm({
             required
           />
           {!isEditing && generatedSlug ? (
-            <p className="sm:col-span-2 text-[12px] text-black/55">
+            <p className="sm:col-span-2 text-[12px] text-black">
               ავტომატური ID:{" "}
               <span className="font-medium text-black/75">{generatedSlug}</span>
             </p>
@@ -298,8 +298,8 @@ export default function TourForm({
 
         <div className="space-y-3">
           <div>
-            <p className="text-[15px] font-medium text-black/80">დეტალური პროგრამა</p>
-            <p className="mt-1 text-[15px] text-black/55">
+            <p className="text-[16px] font-medium text-black md:text-[18px]">დეტალური პროგრამა</p>
+            <p className="mt-1 text-[16px] text-black md:text-[18px]">
               სექციები და დღეები — ბარათის გახსნისას ჩანს სრული აღწერა
             </p>
           </div>
@@ -327,7 +327,7 @@ export default function TourForm({
       </section>
 
       {error ? (
-        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[14px] text-red-700">
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[16px] text-red-700 md:text-[18px]">
           {error}
         </p>
       ) : null}

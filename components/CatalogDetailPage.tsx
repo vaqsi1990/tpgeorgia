@@ -49,7 +49,7 @@ export default function CatalogDetailPage({
     : meta;
 
   return (
-    <div className="mx-auto w-full max-w-6xl">
+    <div className="mx-auto w-full max-w-7xl">
       <Link
         href={backHref}
         className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-[14px] font-medium text-black/70 shadow-[0_2px_12px_rgba(15,79,79,0.05)] transition-all hover:border-[#38ab8a]/30 hover:text-[#38ab8a] sm:mb-8 sm:text-[15px]"

@@ -73,7 +73,7 @@ const ImageUploadForProduct = ({ onChange, value }: ImageUploadProps): React.JSX
           }}
         />
       ) : (
-        <p className="text-[14px] text-black/55">მაქსიმუმ {MAX_IMAGES} სურათი ატვირთულია.</p>
+        <p className="text-[14px] text-black">მაქსიმუმ {MAX_IMAGES} სურათი ატვირთულია.</p>
       )}
 
       {uploadError ? (

@@ -1,4 +1,5 @@
 import type { BookingPayload } from "@/lib/booking-inquiry";
+import { resolveUniqueBookingId } from "@/lib/booking-id";
 import { prisma } from "@/lib/prisma";
 import type { BookingStatus, BookingType, Locale } from "@/lib/generated/prisma/enums";
 
@@ -56,8 +57,14 @@ function mapBooking(booking: {
 export async function createBooking(
   payload: BookingPayload,
 ): Promise<BookingRecord> {
+  const id = await resolveUniqueBookingId(async (candidate) => {
+    const existing = await prisma.booking.findUnique({ where: { id: candidate } });
+    return existing !== null;
+  });
+
   const booking = await prisma.booking.create({
     data: {
+      id,
       bookingType: payload.bookingType,
       itemId: payload.itemId,
       itemTitle: payload.itemTitle,
@@ -80,6 +87,11 @@ export async function listBookings(): Promise<BookingRecord[]> {
   });
 
   return bookings.map(mapBooking);
+}
+
+export async function getBookingById(id: string): Promise<BookingRecord | null> {
+  const booking = await prisma.booking.findUnique({ where: { id } });
+  return booking ? mapBooking(booking) : null;
 }
 
 export async function updateBookingStatus(

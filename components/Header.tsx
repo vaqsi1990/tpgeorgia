@@ -312,7 +312,7 @@ export default function Header() {
                               setMobileOpen(false);
                               setMobileToursOpen(false);
                             }}
-                            className="rounded-lg px-3 py-2.5 text-[15px] font-medium text-black/80 transition-colors hover:bg-brand/5"
+                            className="rounded-lg px-3 py-2.5 text-[16px] font-medium text-black transition-colors hover:bg-brand/5 md:text-[18px]"
                           >
                             {t(
                               `nav.toursDropdown.${item.key}` as

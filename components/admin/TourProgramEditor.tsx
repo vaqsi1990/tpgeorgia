@@ -117,13 +117,13 @@ export default function TourProgramEditor({
           className="space-y-4 rounded-xl border border-black/8 bg-[#f9fcfb] p-4"
         >
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="text-[15px] font-semibold text-black/70">
+            <p className="text-[16px] font-semibold text-black md:text-[18px]">
               სექცია {sectionIndex + 1}
             </p>
             <button
               type="button"
               onClick={() => removeSection(sectionIndex)}
-              className="text-[12px] font-medium text-red-700 hover:underline"
+              className="text-[16px] font-medium text-red-700 hover:underline md:text-[18px]"
             >
               სექციის წაშლა
             </button>
@@ -143,13 +143,13 @@ export default function TourProgramEditor({
                 className="space-y-3 rounded-lg border border-black/8 bg-white p-3"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="text-[12px] font-medium text-black/60">
+                  <p className="text-[16px] font-medium text-black md:text-[18px]">
                     დღე {dayIndex + 1}
                   </p>
                   <button
                     type="button"
                     onClick={() => removeDay(sectionIndex, dayIndex)}
-                    className="text-[12px] font-medium text-red-700 hover:underline"
+                    className="text-[16px] font-medium text-red-700 hover:underline md:text-[18px]"
                   >
                     დღის წაშლა
                   </button>
@@ -178,7 +178,7 @@ export default function TourProgramEditor({
           <button
             type="button"
             onClick={() => addDay(sectionIndex)}
-            className="rounded-lg border border-dashed cursor-pointer border-[#38ab8a]/50 px-3 py-2 text-[18px] font-medium text-[#2d8a6f] hover:bg-[#38ab8a]/5"
+            className="rounded-lg border border-dashed cursor-pointer border-[#38ab8a]/50 px-3 py-2 text-[16px] font-medium text-[#2d8a6f] hover:bg-[#38ab8a]/5 md:text-[18px]"
           >
             + დღის დამატება
           </button>
