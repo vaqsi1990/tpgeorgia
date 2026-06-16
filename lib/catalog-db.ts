@@ -13,6 +13,11 @@ import { Prisma } from "@/lib/generated/prisma/client";
 import type { Locale } from "@/lib/generated/prisma/enums";
 import { resolveUniqueSlug, slugFromTitles } from "@/lib/slug";
 
+function parseImages(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is string => typeof item === "string");
+}
+
 function titlesFromContent(
   content: Record<AppLocale, { title: string }>,
 ): string[] {
@@ -194,6 +199,7 @@ export async function listTours(): Promise<StoredTourRecord[]> {
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
+    images: parseImages(tour.images),
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   }));
@@ -216,6 +222,7 @@ export async function getTourById(id: string): Promise<StoredTourRecord | null> 
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
+    images: parseImages(tour.images),
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   };
@@ -233,6 +240,7 @@ export async function createTour(input: StoredTourInput): Promise<StoredTourReco
       minPeople: input.meta.minPeople,
       startTime: input.meta.startTime ?? null,
       popular: input.meta.popular ?? false,
+      images: input.images ?? [],
       translations: {
         create: routing.locales.map((locale) =>
           tourTranslationData(locale, input.content[locale]),
@@ -252,6 +260,7 @@ export async function createTour(input: StoredTourInput): Promise<StoredTourReco
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
+    images: parseImages(tour.images),
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   };
@@ -276,6 +285,7 @@ export async function updateTour(
         minPeople: input.meta.minPeople,
         startTime: input.meta.startTime ?? null,
         popular: input.meta.popular ?? false,
+        images: input.images ?? [],
       },
     });
 
@@ -304,6 +314,7 @@ export async function updateTour(
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
+    images: parseImages(tour.images),
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   };
@@ -332,6 +343,7 @@ export async function listExcursions(): Promise<StoredExcursionRecord[]> {
       grades: excursion.grades,
       popular: excursion.popular,
     },
+    images: parseImages(excursion.images),
     content: buildExcursionContentMap(excursion.translations),
     createdAt: excursion.createdAt.toISOString(),
   }));
@@ -354,6 +366,7 @@ export async function getExcursionById(
       grades: excursion.grades,
       popular: excursion.popular,
     },
+    images: parseImages(excursion.images),
     content: buildExcursionContentMap(excursion.translations),
     createdAt: excursion.createdAt.toISOString(),
   };
@@ -371,6 +384,7 @@ export async function createExcursion(
       priceFrom: input.meta.priceFrom,
       grades: input.meta.grades,
       popular: input.meta.popular ?? false,
+      images: input.images ?? [],
       translations: {
         create: routing.locales.map((locale) =>
           excursionTranslationData(locale, input.content[locale]),
@@ -388,6 +402,7 @@ export async function createExcursion(
       grades: excursion.grades,
       popular: excursion.popular,
     },
+    images: parseImages(excursion.images),
     content: buildExcursionContentMap(excursion.translations),
     createdAt: excursion.createdAt.toISOString(),
   };
@@ -410,6 +425,7 @@ export async function updateExcursion(
         priceFrom: input.meta.priceFrom,
         grades: input.meta.grades,
         popular: input.meta.popular ?? false,
+        images: input.images ?? [],
       },
     });
 
@@ -436,6 +452,7 @@ export async function updateExcursion(
       grades: excursion.grades,
       popular: excursion.popular,
     },
+    images: parseImages(excursion.images),
     content: buildExcursionContentMap(excursion.translations),
     createdAt: excursion.createdAt.toISOString(),
   };

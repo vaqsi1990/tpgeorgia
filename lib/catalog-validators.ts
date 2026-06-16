@@ -23,6 +23,12 @@ function hasTitle(content: unknown): boolean {
   });
 }
 
+function isValidImages(images: unknown): boolean {
+  if (images === undefined) return true;
+  if (!Array.isArray(images)) return false;
+  return images.every((item) => typeof item === "string");
+}
+
 export function isValidTourInput(body: unknown): body is StoredTourInput {
   if (!body || typeof body !== "object") return false;
   const data = body as StoredTourInput;
@@ -34,6 +40,7 @@ export function isValidTourInput(body: unknown): body is StoredTourInput {
   if (!tourDurationKeys.includes(data.meta.durationKey)) return false;
   if (!data.content || typeof data.content !== "object") return false;
   if (!hasTitle(data.content)) return false;
+  if (!isValidImages(data.images)) return false;
   return true;
 }
 
@@ -46,5 +53,6 @@ export function isValidExcursionInput(body: unknown): body is StoredExcursionInp
   if (typeof data.meta.grades !== "string" || !data.meta.grades.trim()) return false;
   if (!data.content || typeof data.content !== "object") return false;
   if (!hasTitle(data.content)) return false;
+  if (!isValidImages(data.images)) return false;
   return true;
 }

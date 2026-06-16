@@ -12,6 +12,7 @@ export type StoredTourRecord = {
   destination: TourDestination | null;
   meta: Omit<TourMeta, "id">;
   content: LocaleContentMap<TourContent>;
+  images: string[];
   createdAt: string;
 };
 
@@ -19,6 +20,7 @@ export type StoredExcursionRecord = {
   id: string;
   meta: Omit<ExcursionMeta, "id">;
   content: LocaleContentMap<ExcursionContent>;
+  images: string[];
   createdAt: string;
 };
 
@@ -27,12 +29,14 @@ export type StoredTourInput = {
   destination: TourDestination | null;
   meta: Omit<TourMeta, "id">;
   content: LocaleContentMap<TourContent>;
+  images?: string[];
 };
 
 export type StoredExcursionInput = {
   id?: string;
   meta: Omit<ExcursionMeta, "id">;
   content: LocaleContentMap<ExcursionContent>;
+  images?: string[];
 };
 
 export const tourDurationKeys: TourDurationKey[] = [

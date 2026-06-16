@@ -48,7 +48,7 @@ export default function StoredExcursionList({
       {excursions.map((excursion) => (
         <li
           key={excursion.id}
-          className="flex flex-col gap-3 rounded-2xl border border-black/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between"
+          className="flex flex-col md:flex-row gap-3 rounded-2xl border border-black/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between"
         >
           <div>
             <p className="font-medium">

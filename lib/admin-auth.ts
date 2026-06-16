@@ -55,6 +55,19 @@ export async function isAdminAuthenticated(): Promise<boolean> {
   return verifySessionToken(cookieStore.get(COOKIE_NAME)?.value);
 }
 
+export function isAdminAuthenticatedFromRequest(req: Request): boolean {
+  const cookieHeader = req.headers.get("cookie") ?? "";
+
+  for (const part of cookieHeader.split(";")) {
+    const [name, ...rest] = part.trim().split("=");
+    if (name === COOKIE_NAME) {
+      return verifySessionToken(decodeURIComponent(rest.join("=")));
+    }
+  }
+
+  return false;
+}
+
 export async function setAdminSession(): Promise<void> {
   const cookieStore = await cookies();
   cookieStore.set(COOKIE_NAME, createSessionToken(), {

@@ -6,6 +6,7 @@ import {
   AdminTextarea,
   linesToList,
 } from "@/components/admin/AdminField";
+import CatalogImageUploader from "@/components/admin/CatalogImageUploader";
 import LocaleTabs from "@/components/admin/LocaleTabs";
 import type { ExcursionContent } from "@/data/excursion-content";
 import { routing, type AppLocale } from "@/i18n/routing";
@@ -75,6 +76,7 @@ export default function ExcursionForm({
   );
   const [grades, setGrades] = useState(initialExcursion?.meta.grades ?? "V–VIII");
   const [popular, setPopular] = useState(initialExcursion?.meta.popular ?? false);
+  const [images, setImages] = useState<string[]>(initialExcursion?.images ?? []);
   const [localeForms, setLocaleForms] = useState<
     Record<AppLocale, LocaleExcursionForm>
   >(
@@ -132,6 +134,7 @@ export default function ExcursionForm({
         grades: grades.trim(),
         popular,
       },
+      images,
       content,
     };
 
@@ -212,6 +215,7 @@ export default function ExcursionForm({
           />
           პოპულარული (ტოპ ბეიჯი)
         </label>
+        <CatalogImageUploader images={images} onChange={setImages} />
       </section>
 
       <section className="space-y-4 rounded-2xl border border-black/10 bg-white p-5 sm:p-6">
