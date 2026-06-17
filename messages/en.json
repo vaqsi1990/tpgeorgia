@@ -147,12 +147,10 @@
   "WhyUs": {
     "title": "What sets our tours apart?",
     "items": {
-      "routes": "Professionally planned routes tailored to students' age",
-      "guides": "Professional, certified guides",
-      "students": "Involvement of Shota Rustaveli State University tourism faculty students",
-      "games": "Interactive games and quizzes during excursions",
-      "program": "Age-appropriate program",
-      "organization": "Full organizational support"
+      "licensed": "Licensed Tour Provider",
+      "guides": "Local Experienced Guides",
+      "whatsapp": "WhatsApp Support",
+      "booking": "Instant Booking Confirmation"
     }
   },
   "About": {

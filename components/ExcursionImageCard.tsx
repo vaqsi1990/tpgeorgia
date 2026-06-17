@@ -91,7 +91,7 @@ export default function ExcursionImageCard({
           </div>
         ) : null}
 
-        <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[15px] md:text-[16px]">
+        <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[16px] md:text-[18px]">
           <span className="text-black/70">
             {excursion.grades} {t("grade")} · {t("cultural")}
           </span>
@@ -107,7 +107,7 @@ export default function ExcursionImageCard({
               {highlights.map((item, i) => (
                 <li
                   key={`${excursion.id}-highlight-${i}`}
-                  className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
+                  className="flex items-start gap-2 text-[16px] text-black/80 md:text-[18px]"
                 >
                   <span
                     className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"

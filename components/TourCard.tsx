@@ -102,7 +102,7 @@ export default function TourCard({
               {outline.map((item, i) => (
                 <li
                   key={`${tour.id}-outline-${i}`}
-                  className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
+                  className="flex items-start gap-2 text-[16px] text-black/80 md:text-[18px]"
                 >
                   <span
                     className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"

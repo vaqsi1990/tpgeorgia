@@ -4,12 +4,10 @@ import WhyUsGrid from "@/components/WhyUsGrid";
 import { getTranslations } from "next-intl/server";
 
 const itemKeys = [
-  "routes",
+  "licensed",
   "guides",
-  "students",
-  "games",
-  "program",
-  "organization",
+  "whatsapp",
+  "booking",
 ] as const;
 
 export default async function WhyUs() {

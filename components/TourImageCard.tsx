@@ -104,7 +104,7 @@ export default function TourImageCard({
           </div>
         ) : null}
 
-        <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[15px] md:text-[16px]">
+        <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[16px] md:text-[18px]">
           {tour.startTime ? (
             <span className="text-black/70">
               {t("startTime")}:{" "}
@@ -125,7 +125,7 @@ export default function TourImageCard({
               {outline.map((item, i) => (
                 <li
                   key={`${tour.id}-outline-${i}`}
-                  className="flex items-start gap-2 text-[15px] text-black/80 md:text-[16px]"
+                  className="flex items-start gap-2 text-[16px] text-black/80 md:text-[18px]"
                 >
                   <span
                     className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"

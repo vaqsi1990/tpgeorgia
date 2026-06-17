@@ -1,15 +1,34 @@
 "use client";
 
+import {
+  BadgeCheck,
+  CircleCheckBig,
+  MessageCircle,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
+type WhyUsItemKey = "licensed" | "guides" | "whatsapp" | "booking";
+
 type WhyUsItem = {
-  key: string;
+  key: WhyUsItemKey;
   text: string;
 };
 
 type WhyUsGridProps = {
   items: WhyUsItem[];
 };
+
+const iconByKey: Record<WhyUsItemKey, LucideIcon> = {
+  licensed: BadgeCheck,
+  guides: Users,
+  whatsapp: MessageCircle,
+  booking: CircleCheckBig,
+};
+
+const itemClassName =
+  "flex h-full flex-col items-center gap-3 rounded-2xl border border-[#38ab8a]/25 bg-white/80 px-4 py-5 text-center shadow-[0_4px_24px_rgba(15,79,79,0.04)] backdrop-blur-sm sm:gap-4 sm:px-5 sm:py-6";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -22,37 +41,44 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.55,
+      duration: 0.5,
       ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
+
+function WhyUsItemContent({ item }: { item: WhyUsItem }) {
+  const Icon = iconByKey[item.key];
+
+  return (
+    <>
+      <span
+        className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#38ab8a]/12 text-[#2d8a6f] sm:size-14"
+        aria-hidden
+      >
+        <Icon className="size-6 sm:size-7" strokeWidth={1.75} />
+      </span>
+      <span className="text-[16px] font-medium leading-snug text-black sm:text-[18px] md:text-[18px]">
+        {item.text}
+      </span>
+    </>
+  );
+}
 
 export default function WhyUsGrid({ items }: WhyUsGridProps) {
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
     return (
-      <ul className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
+      <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
         {items.map((item) => (
-          <li
-            key={item.key}
-            className="flex items-start gap-3 rounded-2xl border-2 border-[#38ab8a] px-5 py-4 text-black sm:gap-4 sm:px-6 sm:py-5"
-          >
-            <span
-              className="mt-0.5 shrink-0 text-lg font-semibold text-black sm:text-xl"
-              aria-hidden
-            >
-              ✔
-            </span>
-            <span className="text-[15px] font-medium leading-relaxed text-black md:text-[18px]">
-              {item.text}
-            </span>
+          <li key={item.key} className={itemClassName}>
+            <WhyUsItemContent item={item} />
           </li>
         ))}
       </ul>
@@ -65,24 +91,16 @@ export default function WhyUsGrid({ items }: WhyUsGridProps) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.12 }}
-      className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6"
+      className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5"
     >
       {items.map((item) => (
         <motion.li
           key={item.key}
           variants={itemVariants}
           whileHover={{ y: -4, transition: { duration: 0.2 } }}
-          className="flex items-start gap-3 rounded-2xl border-2 border-[#38ab8a] bg-white/80 px-5 py-4 text-black shadow-[0_4px_24px_rgba(15,79,79,0.04)] backdrop-blur-sm sm:gap-4 sm:px-6 sm:py-5"
+          className={itemClassName}
         >
-          <span
-            className="mt-0.5 shrink-0 text-lg font-semibold text-black sm:text-xl"
-            aria-hidden
-          >
-            ✔
-          </span>
-          <span className="text-[15px] font-medium leading-relaxed text-black md:text-[18px]">
-            {item.text}
-          </span>
+          <WhyUsItemContent item={item} />
         </motion.li>
       ))}
     </motion.ul>
