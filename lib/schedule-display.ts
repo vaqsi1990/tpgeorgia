@@ -1,7 +1,12 @@
 import type { AppLocale } from "@/i18n/routing";
+import {
+  GEORGIA_IANA_TIME_ZONE,
+  getGeorgiaCalendarDate,
+} from "@/lib/georgia-time";
+
+export { GEORGIA_IANA_TIME_ZONE, getGeorgiaCalendarDate };
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
-export const GEORGIA_IANA_TIME_ZONE = "Asia/Tbilisi";
 
 function resolveLocaleTag(locale: AppLocale): string {
   if (locale === "ka") return "ka-GE";
@@ -45,16 +50,6 @@ function formatGeorgiaCalendarDate(
     dateStyle: "long",
     timeZone: GEORGIA_IANA_TIME_ZONE,
   }).format(new Date(anchorMs));
-}
-
-/** Current calendar date in Georgia (YYYY-MM-DD). */
-export function getGeorgiaCalendarDate(date: Date = new Date()): string {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: GEORGIA_IANA_TIME_ZONE,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(date);
 }
 
 export function formatScheduleEnd(

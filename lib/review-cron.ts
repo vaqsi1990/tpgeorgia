@@ -1,9 +1,9 @@
-import type { BookingRecord } from "@/lib/booking-db";
+import type { BookingRecord } from "@/lib/booking-types";
 import { getBookingById } from "@/lib/booking-db";
+import { getGeorgiaCalendarDate } from "@/lib/georgia-time";
 import { prisma } from "@/lib/prisma";
 import { buildReviewRequestEmail } from "@/lib/review-request-email";
 import { sendEmail } from "@/lib/send-email";
-import { getGeorgiaCalendarDate } from "@/lib/schedule-display";
 
 export type ReviewCronResult = {
   date: string;
