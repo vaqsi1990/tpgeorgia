@@ -1,9 +1,7 @@
 import ParallaxSection from "@/components/ParallaxSection";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
 import SectionHeader from "@/components/SectionHeader";
-import StarRating from "@/components/StarRating";
 import type { ReviewRecord } from "@/lib/review-types";
-import { summarizeRatings } from "@/lib/review-stats-types";
 import { getTranslations } from "next-intl/server";
 
 type ReviewsProps = {
@@ -16,17 +14,19 @@ export default async function Reviews({ reviews }: ReviewsProps) {
   }
 
   const t = await getTranslations("Reviews");
-  const summary = summarizeRatings(reviews.map((review) => review.rating));
 
   return (
     <ParallaxSection
       id="reviews"
       tone="light"
-      className=" px-4 mb-20 mt-0 text-black "
+      className="bg-white px-4 pt-4 pb-6 text-black sm:px-6 sm:pt-5 sm:pb-8 lg:px-10"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <SectionHeader title={t("sectionTitle")} description={t("homeDescription")} />
-       
+        <SectionHeader
+          title={t("sectionTitle")}
+          description={t("homeDescription")}
+          className="mb-4 sm:mb-6"
+        />
         <ReviewsCarousel reviews={reviews} />
       </div>
     </ParallaxSection>

@@ -34,10 +34,14 @@ export default async function Contact({ tours, excursions }: ContactProps) {
     <ParallaxSection
       id="contact"
       tone="mint"
-      className="bg-white px-4 pb-20 text-black bg-white sm:px-6 lg:px-10"
+      className="bg-white px-4 pb-14 pt-4 text-black sm:px-6 sm:pt-5 sm:pb-16 lg:px-10"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <SectionHeader title={t("title")} description={t("description")} />
+        <SectionHeader
+          title={t("title")}
+          description={t("description")}
+          className="mb-4 sm:mb-6"
+        />
 
         <div className="grid gap-10 lg:grid-cols-[minmax(240px,300px)_1fr] lg:items-start lg:gap-12">
           <aside className="space-y-6 rounded-2xl border border-black/10 bg-brand/[0.03] p-5 sm:p-6">

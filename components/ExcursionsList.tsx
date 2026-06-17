@@ -133,7 +133,7 @@ export default function ExcursionsList({
 
       {hiddenCount > 0 && showAllLink && (
         <motion.div
-          className="mt-10 flex justify-center"
+          className="mt-6 flex justify-center"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}

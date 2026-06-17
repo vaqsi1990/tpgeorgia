@@ -22,10 +22,10 @@ export default async function WhyUs() {
   return (
     <ParallaxSection
       tone="mint"
-      className="bg-white px-4 py-16 sm:px-6 sm:py-18 lg:px-10 lg:py-18"
+      className="bg-white px-4 pt-10 pb-6 sm:px-6 sm:pt-12 sm:pb-8 lg:px-10"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <SectionHeader title={t("title")} />
+        <SectionHeader title={t("title")} className="mb-4 sm:mb-6" />
         <WhyUsGrid items={items} />
       </div>
     </ParallaxSection>

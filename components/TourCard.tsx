@@ -93,7 +93,7 @@ export default function TourCard({
 
         {outline.length > 0 ? (
           <div className="mb-4">
-            <h4 className="mb-2 text-[16px] font-semibold text-black">
+            <h4 className="mb-2 text-[16px] md:text-[18px] font-semibold text-black">
               {t("outlineTitle")}
             </h4>
             <ul className="space-y-1.5">
