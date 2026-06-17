@@ -147,10 +147,9 @@
   "WhyUs": {
     "title": "What sets our tours apart?",
     "items": {
-      "licensed": "Licensed Tour Provider",
+      "experience": "12+ years of experience",
       "guides": "Local Experienced Guides",
-      "whatsapp": "WhatsApp Support",
-      "booking": "Instant Booking Confirmation"
+      "whatsapp": "WhatsApp Support"
     }
   },
   "About": {

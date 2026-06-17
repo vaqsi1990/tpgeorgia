@@ -147,10 +147,9 @@
   "WhyUs": {
     "title": "我们的旅行有何特色？",
     "items": {
-      "licensed": "持证旅游服务商",
+      "experience": "12 年以上经验",
       "guides": "当地资深导游",
-      "whatsapp": "WhatsApp 客服支持",
-      "booking": "即时预订确认"
+      "whatsapp": "WhatsApp 客服支持"
     }
   },
   "About": {

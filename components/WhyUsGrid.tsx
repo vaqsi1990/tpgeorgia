@@ -1,15 +1,14 @@
 "use client";
 
 import {
-  BadgeCheck,
-  CircleCheckBig,
+  Award,
   MessageCircle,
   Users,
   type LucideIcon,
 } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
-type WhyUsItemKey = "licensed" | "guides" | "whatsapp" | "booking";
+type WhyUsItemKey = "experience" | "guides" | "whatsapp";
 
 type WhyUsItem = {
   key: WhyUsItemKey;
@@ -21,10 +20,9 @@ type WhyUsGridProps = {
 };
 
 const iconByKey: Record<WhyUsItemKey, LucideIcon> = {
-  licensed: BadgeCheck,
+  experience: Award,
   guides: Users,
   whatsapp: MessageCircle,
-  booking: CircleCheckBig,
 };
 
 const itemClassName =
@@ -75,7 +73,7 @@ export default function WhyUsGrid({ items }: WhyUsGridProps) {
 
   if (reducedMotion) {
     return (
-      <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:gap-5">
         {items.map((item) => (
           <li key={item.key} className={itemClassName}>
             <WhyUsItemContent item={item} />
@@ -91,7 +89,7 @@ export default function WhyUsGrid({ items }: WhyUsGridProps) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.12 }}
-      className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5"
+      className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:gap-5"
     >
       {items.map((item) => (
         <motion.li
