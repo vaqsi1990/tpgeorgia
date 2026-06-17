@@ -22,6 +22,8 @@ function mapBooking(booking: {
   message: string;
   locale: Locale | null;
   status: BookingStatus;
+  reviewRequestedAt: Date | null;
+  review: { id: string } | null;
   createdAt: Date;
   updatedAt: Date;
 }): BookingRecord {
@@ -40,10 +42,16 @@ function mapBooking(booking: {
     message: booking.message,
     locale: booking.locale,
     status: booking.status,
+    reviewRequestedAt: booking.reviewRequestedAt?.toISOString() ?? null,
+    hasReview: booking.review !== null,
     createdAt: booking.createdAt.toISOString(),
     updatedAt: booking.updatedAt.toISOString(),
   };
 }
+
+const bookingInclude = {
+  review: { select: { id: true } },
+} as const;
 
 export async function createBooking(
   payload: BookingPayload,
@@ -73,11 +81,12 @@ export async function createBooking(
     },
   });
 
-  return mapBooking(booking);
+  return mapBooking({ ...booking, review: null });
 }
 
 export async function listBookings(): Promise<BookingRecord[]> {
   const bookings = await prisma.booking.findMany({
+    include: bookingInclude,
     orderBy: { createdAt: "desc" },
   });
 
@@ -85,7 +94,10 @@ export async function listBookings(): Promise<BookingRecord[]> {
 }
 
 export async function getBookingById(id: string): Promise<BookingRecord | null> {
-  const booking = await prisma.booking.findUnique({ where: { id } });
+  const booking = await prisma.booking.findUnique({
+    where: { id },
+    include: bookingInclude,
+  });
   return booking ? mapBooking(booking) : null;
 }
 
@@ -97,6 +109,7 @@ export async function updateBookingStatus(
     const booking = await prisma.booking.update({
       where: { id },
       data: { status },
+      include: bookingInclude,
     });
     return mapBooking(booking);
   } catch {

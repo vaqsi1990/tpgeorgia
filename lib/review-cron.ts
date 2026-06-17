@@ -41,6 +41,8 @@ export async function findBookingsDueForReviewRequest(
     message: booking.message,
     locale: booking.locale,
     status: booking.status,
+    reviewRequestedAt: booking.reviewRequestedAt?.toISOString() ?? null,
+    hasReview: false,
     createdAt: booking.createdAt.toISOString(),
     updatedAt: booking.updatedAt.toISOString(),
   }));
@@ -49,23 +51,37 @@ export async function findBookingsDueForReviewRequest(
 export async function sendReviewRequestForBooking(
   bookingId: string,
 ): Promise<{ ok: boolean; error?: string }> {
+  return sendReviewRequestEmail(bookingId, { mode: "cron" });
+}
+
+export async function sendManualReviewRequestForBooking(
+  bookingId: string,
+): Promise<{ ok: boolean; error?: string; reviewUrl?: string }> {
+  return sendReviewRequestEmail(bookingId, { mode: "manual" });
+}
+
+async function sendReviewRequestEmail(
+  bookingId: string,
+  options: { mode: "cron" | "manual" },
+): Promise<{ ok: boolean; error?: string; reviewUrl?: string }> {
   const booking = await getBookingById(bookingId);
   if (!booking) {
     return { ok: false, error: "Booking not found." };
   }
 
-  if (booking.status !== "confirmed" || !booking.endDate) {
+  if (booking.status !== "confirmed") {
+    return { ok: false, error: "Only confirmed bookings can receive review emails." };
+  }
+
+  if (options.mode === "cron" && !booking.endDate) {
     return { ok: false, error: "Booking is not eligible." };
   }
 
-  const existingReview = await prisma.review.findUnique({
-    where: { bookingId },
-  });
-  if (existingReview) {
+  if (booking.hasReview) {
     return { ok: false, error: "Review already submitted." };
   }
 
-  const { subject, text, html } = buildReviewRequestEmail(booking);
+  const { subject, text, html, reviewUrl } = buildReviewRequestEmail(booking);
   const emailResult = await sendEmail({
     to: booking.email,
     subject,
@@ -82,7 +98,7 @@ export async function sendReviewRequestForBooking(
     data: { reviewRequestedAt: new Date() },
   });
 
-  return { ok: true };
+  return { ok: true, reviewUrl };
 }
 
 export async function runReviewRequestCron(): Promise<ReviewCronResult> {

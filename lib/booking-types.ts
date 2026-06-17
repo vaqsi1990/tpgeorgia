@@ -17,6 +17,8 @@ export type BookingRecord = {
   message: string;
   locale: BookingLocale | null;
   status: BookingStatus;
+  reviewRequestedAt: string | null;
+  hasReview: boolean;
   createdAt: string;
   updatedAt: string;
 };

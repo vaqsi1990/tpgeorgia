@@ -39,6 +39,7 @@ export default function StoredBookingList({
   const router = useRouter();
   const [bookings, setBookings] = useState(initialBookings);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
+  const [sendingReviewId, setSendingReviewId] = useState<string | null>(null);
 
   async function handleStatusChange(id: string, status: BookingStatus) {
     setUpdatingId(id);
@@ -66,6 +67,43 @@ export default function StoredBookingList({
       alert(error instanceof Error ? error.message : "Update failed.");
     } finally {
       setUpdatingId(null);
+    }
+  }
+
+  async function handleSendReviewRequest(id: string) {
+    if (
+      !window.confirm(
+        "გსურთ კლიენტს რევიუს ბმულის ელფოსტის გაგზავნა?",
+      )
+    ) {
+      return;
+    }
+
+    setSendingReviewId(id);
+    try {
+      const response = await fetch(
+        `/api/admin/bookings/${encodeURIComponent(id)}/review-request`,
+        { method: "POST" },
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error ?? "Email failed.");
+      }
+
+      if (data.booking) {
+        setBookings((prev) =>
+          prev.map((booking) =>
+            booking.id === id ? data.booking : booking,
+          ),
+        );
+      }
+
+      alert("რევიუს წერილი გაიგზავნა.");
+      router.refresh();
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Email failed.");
+    } finally {
+      setSendingReviewId(null);
     }
   }
 
@@ -176,22 +214,51 @@ export default function StoredBookingList({
               </div>
             </div>
 
-            <div className="shrink-0">
-              <label className="mb-1.5 block text-[16px] font-medium text-black md:text-[18px]">
-                სტატუსი
+            <div className="flex shrink-0 flex-col gap-3">
+              <label className="block">
+                <span className="mb-1.5 block text-[16px] font-medium text-black md:text-[18px]">
+                  სტატუსი
+                </span>
+                <select
+                  value={booking.status}
+                  disabled={updatingId === booking.id}
+                  onChange={(e) =>
+                    handleStatusChange(booking.id, e.target.value as BookingStatus)
+                  }
+                  className="rounded-xl border border-black bg-white px-3 py-2.5 text-[16px] font-medium disabled:opacity-60 md:text-[18px]"
+                >
+                  <option value="pending">{statusLabels.pending}</option>
+                  <option value="confirmed">{statusLabels.confirmed}</option>
+                  <option value="cancelled">{statusLabels.cancelled}</option>
+                </select>
               </label>
-              <select
-                value={booking.status}
-                disabled={updatingId === booking.id}
-                onChange={(e) =>
-                  handleStatusChange(booking.id, e.target.value as BookingStatus)
-                }
-                className="rounded-xl border border-black bg-white px-3 py-2.5 text-[16px] font-medium disabled:opacity-60 md:text-[18px]"
-              >
-                <option value="pending">{statusLabels.pending}</option>
-                <option value="confirmed">{statusLabels.confirmed}</option>
-                <option value="cancelled">{statusLabels.cancelled}</option>
-              </select>
+
+              {booking.hasReview ? (
+                <p className="rounded-xl border border-green-200 bg-green-50 px-4 py-2.5 text-center text-[15px] font-medium text-green-800 md:text-[16px]">
+                  რევიუ მიღებულია
+                </p>
+              ) : booking.status === "confirmed" ? (
+                <button
+                  type="button"
+                  disabled={
+                    sendingReviewId === booking.id || updatingId === booking.id
+                  }
+                  onClick={() => handleSendReviewRequest(booking.id)}
+                  className="rounded-xl border border-[#0f4f4f]/20 bg-[#38ab8a]/10 px-4 py-2.5 text-[16px] font-medium text-[#0f4f4f] transition-colors hover:bg-[#38ab8a]/20 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
+                >
+                  {sendingReviewId === booking.id
+                    ? "იგზავნება..."
+                    : booking.reviewRequestedAt
+                      ? "რევიუს წერილი თავიდან"
+                      : "რევიუს წერილი"}
+                </button>
+              ) : null}
+
+              {booking.reviewRequestedAt && !booking.hasReview ? (
+                <p className="text-center text-[14px] text-black/50 md:text-[15px]">
+                  გაგზავნილია: {formatDate(booking.reviewRequestedAt)}
+                </p>
+              ) : null}
             </div>
           </div>
         </li>

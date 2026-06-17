@@ -1,4 +1,4 @@
-import type { BookingRecord } from "@/lib/booking-db";
+import type { BookingRecord } from "@/lib/booking-types";
 import type { AppLocale } from "@/i18n/routing";
 import { absoluteUrl, siteName } from "@/lib/site";
 import { createReviewToken } from "@/lib/review-token";
