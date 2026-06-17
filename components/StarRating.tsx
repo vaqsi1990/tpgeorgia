@@ -28,7 +28,7 @@ type StarRatingInputProps = {
 type StarRatingProps = StarRatingDisplayProps | StarRatingInputProps;
 
 function sizeClasses(size: StarRatingSize): string {
-  return size === "sm" ? "size-4" : "size-5";
+  return size === "sm" ? "size-5" : "size-7";
 }
 
 function StarIcon({
@@ -143,10 +143,10 @@ export default function StarRating(props: StarRatingProps) {
         })}
       </div>
       {showValue ? (
-        <span className="text-[14px] font-medium text-black/80 md:text-[15px]">
+        <span className="text-[16px] font-medium text-black/80 md:text-[16px]">
           {value.toFixed(1)}
           {reviewCount !== undefined && reviewCount > 0 ? (
-            <span className="font-normal text-black/50">
+            <span className="font-normal text-black">
               {" "}
               ({t("reviewCount", { count: reviewCount })})
             </span>

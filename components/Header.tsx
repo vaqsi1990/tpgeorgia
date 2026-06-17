@@ -1,7 +1,9 @@
 "use client";
 
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+
 import { Link, usePathname } from "@/i18n/navigation";
+import type { ReviewRecord } from "@/lib/review-types";
 import { business } from "@/lib/site";
 import {
   motion,
@@ -187,7 +189,11 @@ function getDesktopMediaQueryServerSnapshot() {
   return true;
 }
 
-export default function Header() {
+export default function Header({
+  featuredReviews = [],
+}: {
+  featuredReviews?: ReviewRecord[];
+}) {
   const t = useTranslations("Header");
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -352,6 +358,11 @@ export default function Header() {
             <Link href="/gallery" className={navLinkClass}>
               {t("nav.gallery")}
             </Link>
+            {featuredReviews.length > 0 ? (
+              <Link href="/#reviews" className={navLinkClass}>
+                {t("nav.reviews")}
+              </Link>
+            ) : null}
             <SchoolExcursionsNavItem label={t("nav.schoolExcursions")} />
             <Link href="/#contact" className={navLinkClass}>
               {t("nav.contact")}
@@ -414,6 +425,7 @@ export default function Header() {
             ) : null}
           </div>
         </div>
+       
       </div>
 
       {!isDesktop && mobileOpen
@@ -528,6 +540,15 @@ export default function Header() {
                   >
                     {t("nav.gallery")}
                   </Link>
+                  {featuredReviews.length > 0 ? (
+                    <Link
+                      href="/#reviews"
+                      onClick={() => setMobileOpen(false)}
+                      className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                    >
+                      {t("nav.reviews")}
+                    </Link>
+                  ) : null}
                   <SchoolExcursionsNavItem
                     label={t("nav.schoolExcursions")}
                     variant="mobile"

@@ -70,6 +70,15 @@ export async function getPublishedReviewStatsRecord(): Promise<ReviewStatsRecord
   return result;
 }
 
+export async function listPublishedReviews(limit = 24): Promise<ReviewRecord[]> {
+  const reviews = await prisma.review.findMany({
+    where: { published: true },
+    orderBy: { createdAt: "desc" },
+    take: limit,
+  });
+  return reviews.map(mapReview);
+}
+
 export async function listReviews(): Promise<ReviewRecord[]> {
   const reviews = await prisma.review.findMany({
     orderBy: { createdAt: "desc" },

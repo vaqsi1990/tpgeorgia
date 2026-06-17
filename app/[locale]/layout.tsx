@@ -2,6 +2,7 @@ import type { Viewport } from "next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SiteJsonLd from "@/components/seo/SiteJsonLd";
+import { listPublishedReviews } from "@/lib/review-db";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
@@ -42,6 +43,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const featuredReviews = await listPublishedReviews(8);
 
   return (
     <html
@@ -66,7 +68,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <SiteJsonLd locale={locale as AppLocale} />
         <NextIntlClientProvider messages={messages}>
           <div className="relative flex min-h-screen flex-col bg-white">
-            <Header />
+            <Header featuredReviews={featuredReviews} />
             <div className="flex-1">{children}</div>
             <Footer />
           </div>

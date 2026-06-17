@@ -268,6 +268,14 @@
   },
   "Reviews": {
     "sectionTitle": "游客评价",
+    "homeDescription": "与我们一起旅行后，客人们怎么说。",
+    "carouselAriaLabel": "游客评价",
+    "headerTickerAriaLabel": "最新评价",
+    "headerTickerLabel": "评价",
+    "viewProgram": "查看项目",
+    "prevSlide": "上一条评价",
+    "nextSlide": "下一条评价",
+    "goToSlide": "评价 {number}",
     "pageTitle": "分享您的体验",
     "pageSubtitle": "您的评价有助于我们改进服务。",
     "formIntro": "请分享您对「{program}」的感受。",
@@ -311,6 +319,7 @@
         "kutaisi": "库塔伊西"
       },
       "gallery": "画廊",
+      "reviews": "评价",
       "schoolExcursions": "学校游学",
       "blogs": "博客",
       "contact": "联系我们"
