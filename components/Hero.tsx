@@ -120,11 +120,16 @@ export default function Hero() {
           }
         >
           <FadeUp delay={150}>
-            <h1 className="font-afacad max-w-4xl text-center text-3xl leading-tight font-semibold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
-              {t("title")}
-            </h1>
+            <div className="flex max-w-4xl flex-col items-center gap-3 sm:gap-4">
+              <h1 className="font-afacad text-center text-4xl leading-tight font-semibold tracking-tight text-white drop-shadow-md sm:text-4xl md:text-5xl lg:text-6xl">
+                {t("title")}
+              </h1>
+              <p className="max-w-3xl text-center text-xl font-medium leading-snug text-white/95 drop-shadow-sm sm:text-2xl md:text-2xl lg:text-3xl">
+                {t("subtitle")}
+              </p>
+            </div>
           </FadeUp>
-          <FadeUp delay={250}>
+          <FadeUp delay={300}>
             <Link
               href="/#contact"
               className="pointer-events-auto inline-flex items-center justify-center rounded-xl  bg-[#38ab8a] px-8 py-3 text-[18px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-colors hover:bg-[#2f9a7c] md:text-[20px]"

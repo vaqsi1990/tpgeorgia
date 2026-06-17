@@ -18,6 +18,7 @@
   },
   "Hero": {
     "title": "Discover Georgia With Us",
+    "subtitle": "School excursions and tours in Georgia",
     "ariaLabel": "Featured images",
     "slideAlt": "Hero slide {number}",
     "prev": "Previous slide",

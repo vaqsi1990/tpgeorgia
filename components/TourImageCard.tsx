@@ -41,7 +41,9 @@ export default function TourImageCard({
       ? t("durationDays", { days: 12, nights: 11 })
       : t(`durations.${tour.durationKey}` as const);
 
-  const outline = content.outline.filter((item) => item.trim().length > 0);
+  const outline = content.outline
+    .filter((item) => item.trim().length > 0)
+    .slice(0, 4);
 
   return (
     <article

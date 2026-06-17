@@ -26,7 +26,9 @@ export default function ExcursionCard({
       ? t("priceFrom", { price: excursion.priceFrom })
       : t("priceOnRequest");
 
-  const highlights = content.highlights.filter((item) => item.trim().length > 0);
+  const highlights = content.highlights
+    .filter((item) => item.trim().length > 0)
+    .slice(0, 4);
 
   return (
     <article

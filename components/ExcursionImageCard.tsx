@@ -37,7 +37,9 @@ export default function ExcursionImageCard({
       : t("priceOnRequest");
 
   const durationLabel = t(`durations.${excursion.durationKey}` as const);
-  const highlights = content.highlights.filter((item) => item.trim().length > 0);
+  const highlights = content.highlights
+    .filter((item) => item.trim().length > 0)
+    .slice(0, 4);
 
   return (
     <article
