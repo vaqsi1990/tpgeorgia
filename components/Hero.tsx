@@ -127,6 +127,9 @@ export default function Hero() {
               <p className="max-w-3xl text-center text-xl font-medium leading-snug text-white/95 drop-shadow-sm sm:text-2xl md:text-2xl lg:text-3xl">
                 {t("subtitle")}
               </p>
+              <p className="rounded-full border border-white/30 bg-white/15 px-5 py-2 text-center text-base font-semibold tracking-wide text-white backdrop-blur-sm sm:text-lg md:text-xl">
+                {t("experienceBadge")}
+              </p>
             </div>
           </FadeUp>
           <FadeUp delay={300}>

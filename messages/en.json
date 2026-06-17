@@ -19,6 +19,7 @@
   "Hero": {
     "title": "Discover Georgia With Us",
     "subtitle": "School excursions and tours in Georgia",
+    "experienceBadge": "12+ years of experience",
     "ariaLabel": "Featured images",
     "slideAlt": "Hero slide {number}",
     "prev": "Previous slide",
