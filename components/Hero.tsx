@@ -1,6 +1,7 @@
 "use client";
 
 import FadeUp from "@/components/FadeUp";
+import { Link } from "@/i18n/navigation";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   motion,
@@ -110,7 +111,7 @@ export default function Hero() {
         />
 
         <motion.div
-          className="pointer-events-none absolute inset-0 z-[5] flex items-center justify-center px-6 sm:px-10"
+          className="pointer-events-none absolute inset-0 z-[5] flex flex-col items-center justify-center gap-6 px-6 sm:gap-8 sm:px-10"
           style={
             reducedMotion
               ? undefined
@@ -121,6 +122,14 @@ export default function Hero() {
             <h1 className="font-afacad max-w-4xl text-center text-3xl leading-tight font-semibold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl lg:text-5xl">
               {t("title")}
             </h1>
+          </FadeUp>
+          <FadeUp delay={250}>
+            <Link
+              href="/#contact"
+              className="pointer-events-auto inline-flex items-center justify-center rounded-xl  bg-[#38ab8a] px-8 py-3 text-[18px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-colors hover:bg-[#2f9a7c] md:text-[20px]"
+            >
+              {t("cta")}
+            </Link>
           </FadeUp>
         </motion.div>
 

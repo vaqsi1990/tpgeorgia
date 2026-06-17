@@ -17,12 +17,13 @@
     "label": "Language"
   },
   "Hero": {
-    "title": "The best moment of life",
+    "title": "Discover Georgia With Us",
     "ariaLabel": "Featured images",
     "slideAlt": "Hero slide {number}",
     "prev": "Previous slide",
     "next": "Next slide",
-    "goToSlide": "Go to slide {number}"
+    "goToSlide": "Go to slide {number}",
+    "cta": "Contact Us"
   },
   "Excursions": {
     "subtitle": "Discover Your Georgia",
