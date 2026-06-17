@@ -128,7 +128,7 @@ export default function StoredReviewList({
   if (reviews.length === 0) {
     return (
       <p className="rounded-2xl border border-black/10 bg-white px-6 py-10 text-center text-[15px] text-black/65">
-        რევიუები ჯერ არ არის.
+        შეფასებები ჯერ არ არის.
       </p>
     );
   }
