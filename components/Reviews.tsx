@@ -22,19 +22,11 @@ export default async function Reviews({ reviews }: ReviewsProps) {
     <ParallaxSection
       id="reviews"
       tone="light"
-      className="bg-[#fafcfb] px-4 py-16 text-black sm:px-6 sm:py-20 lg:px-10"
+      className=" px-4 mb-20 mt-0 text-black "
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader title={t("sectionTitle")} description={t("homeDescription")} />
-        {summary ? (
-          <div className="mb-8 flex justify-center sm:mb-10">
-            <StarRating
-              value={summary.averageRating}
-              showValue
-              reviewCount={summary.reviewCount}
-            />
-          </div>
-        ) : null}
+       
         <ReviewsCarousel reviews={reviews} />
       </div>
     </ParallaxSection>

@@ -11,7 +11,7 @@ type SectionHeaderProps = {
 };
 
 const headingClassName =
-  "font-afacad mb-3 text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-[2.5rem]";
+  "font-afacad mb-3 text-3xl mt-2 font-semibold tracking-tight text-black sm:text-4xl lg:text-[2.5rem]";
 
 export default function SectionHeader({
   title,
