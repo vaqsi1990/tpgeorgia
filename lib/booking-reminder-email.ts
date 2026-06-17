@@ -4,8 +4,10 @@ import { business, siteName } from "@/lib/site";
 
 type ReminderEmailCopy = {
   subject: (title: string) => string;
-  headline: string;
-  intro: string;
+  headlineTour: string;
+  headlineExcursion: string;
+  introTour: string;
+  introExcursion: string;
   labels: {
     program: string;
     date: string;
@@ -19,9 +21,12 @@ type ReminderEmailCopy = {
 const copy: Record<AppLocale, ReminderEmailCopy> = {
   ka: {
     subject: (title) => `შეხსენება: ხვალ — ${title}`,
-    headline: "თქვენი პროგრამა ხვალ იწყება",
-    intro:
-      "გამარჯოთ, {name}! გაგიხსენებთ, რომ ხვალ გელით. გთხოვთ, დარწმუნდეთ, რომ მზად ხართ და დროულად ხართ ადგილზე.",
+    headlineTour: "თქვენი ტური ხვალაა",
+    headlineExcursion: "თქვენი ექსკურსია ხვალაა",
+    introTour:
+      "გამარჯობა, {name}! 😊 გსურთ შეგახსენოთ, რომ თქვენი ტური ხვალ არის დაგეგმილი. გთხოვთ, დარწმუნდით, რომ მზად ხართ და დროულად გამოცხადდეთ შეხვედრის ადგილზე.",
+    introExcursion:
+      "გამარჯობა, {name}! 😊 გსურთ შეგახსენოთ, რომ თქვენი ექსკურსია ხვალ არის დაგეგმილი. გთხოვთ, დარწმუნდით, რომ მზად ხართ და დროულად გამოცხადდეთ შეხვედრის ადგილზე.",
     labels: {
       program: "პროგრამა",
       date: "თარიღი",
@@ -33,9 +38,12 @@ const copy: Record<AppLocale, ReminderEmailCopy> = {
   },
   en: {
     subject: (title) => `Reminder: tomorrow — ${title}`,
-    headline: "Your program starts tomorrow",
-    intro:
-      "Hello, {name}! This is a friendly reminder that your program is tomorrow. Please make sure you are ready and arrive on time.",
+    headlineTour: "Your tour is tomorrow",
+    headlineExcursion: "Your excursion is tomorrow",
+    introTour:
+      "Hello, {name}! 😊 Just a friendly reminder that your tour is scheduled for tomorrow. Please make sure you are ready and arrive on time at the meeting point.",
+    introExcursion:
+      "Hello, {name}! 😊 Just a friendly reminder that your excursion is scheduled for tomorrow. Please make sure you are ready and arrive on time at the meeting point.",
     labels: {
       program: "Program",
       date: "Date",
@@ -47,9 +55,12 @@ const copy: Record<AppLocale, ReminderEmailCopy> = {
   },
   ru: {
     subject: (title) => `Напоминание: завтра — ${title}`,
-    headline: "Ваша программа начинается завтра",
-    intro:
-      "Здравствуйте, {name}! Напоминаем, что ваша программа состоится завтра. Пожалуйста, будьте готовы и приходите вовремя.",
+    headlineTour: "Ваш тур завтра",
+    headlineExcursion: "Ваша экскурсия завтра",
+    introTour:
+      "Здравствуйте, {name}! 😊 Напоминаем, что ваш тур запланирован на завтра. Пожалуйста, убедитесь, что вы готовы и вовремя придёте в место встречи.",
+    introExcursion:
+      "Здравствуйте, {name}! 😊 Напоминаем, что ваша экскурсия запланирована на завтра. Пожалуйста, убедитесь, что вы готовы и вовремя придёте в место встречи.",
     labels: {
       program: "Программа",
       date: "Дата",
@@ -61,9 +72,12 @@ const copy: Record<AppLocale, ReminderEmailCopy> = {
   },
   zh: {
     subject: (title) => `提醒：明天 — ${title}`,
-    headline: "您的行程明天开始",
-    intro:
-      "您好，{name}！温馨提醒：您的行程将于明天开始。请做好准备并准时到达。",
+    headlineTour: "您的行程明天开始",
+    headlineExcursion: "您的研学明天开始",
+    introTour:
+      "您好，{name}！😊 温馨提醒：您的行程定于明天。请做好准备，并准时到达集合地点。",
+    introExcursion:
+      "您好，{name}！😊 温馨提醒：您的研学定于明天。请做好准备，并准时到达集合地点。",
     labels: {
       program: "项目",
       date: "日期",
@@ -113,7 +127,10 @@ function escapeHtml(value: string): string {
 export function buildBookingReminderEmail(booking: BookingRecord) {
   const locale = resolveLocale(booking.locale);
   const t = copy[locale];
-  const intro = t.intro.replace("{name}", booking.name);
+  const isTour = booking.bookingType === "tour";
+  const headline = isTour ? t.headlineTour : t.headlineExcursion;
+  const introTemplate = isTour ? t.introTour : t.introExcursion;
+  const intro = introTemplate.replace("{name}", booking.name);
   const footer = t.footer.replace("{siteName}", siteName);
   const formattedDate = booking.preferredDate
     ? formatPreferredDate(booking.preferredDate, locale)
@@ -129,9 +146,7 @@ export function buildBookingReminderEmail(booking: BookingRecord) {
     `${t.labels.contact}: ${business.phoneDisplay}`,
   ];
 
-  const text = [t.headline, "", intro, "", ...detailLines, "", footer].join(
-    "\n",
-  );
+  const text = [headline, "", intro, "", ...detailLines, "", footer].join("\n");
 
   const htmlDetails = detailLines
     .map(
@@ -144,7 +159,7 @@ export function buildBookingReminderEmail(booking: BookingRecord) {
     <div style="font-family:Figtree,Segoe UI,sans-serif;color:#171717;line-height:1.6;max-width:560px;margin:0 auto;">
       <div style="background:linear-gradient(135deg,#38ab8a,#0f4f4f);border-radius:16px 16px 0 0;padding:28px 24px;">
         <p style="margin:0 0 8px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.75);">${escapeHtml(siteName)}</p>
-        <h1 style="margin:0;font-size:24px;font-weight:600;color:#ffffff;">${escapeHtml(t.headline)}</h1>
+        <h1 style="margin:0;font-size:24px;font-weight:600;color:#ffffff;">${escapeHtml(headline)}</h1>
       </div>
       <div style="background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 16px 16px;padding:24px;">
         <p style="margin:0 0 20px;font-size:16px;color:#374151;">${escapeHtml(intro)}</p>
