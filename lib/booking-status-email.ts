@@ -2,6 +2,7 @@ import type { BookingRecord } from "@/lib/booking-db";
 import type { BookingStatus } from "@/lib/generated/prisma/enums";
 import type { AppLocale } from "@/i18n/routing";
 import { business, siteName } from "@/lib/site";
+import { formatScheduleEnd } from "@/lib/tour-schedule";
 
 type StatusCopy = {
   subject: (title: string) => string;
@@ -19,6 +20,7 @@ type StatusCopy = {
     email: string;
     phone: string;
     preferredDate: string;
+    programEndsAt: string;
     peopleCount: string;
     submittedAt: string;
     yourMessage: string;
@@ -49,6 +51,7 @@ const copy: Record<AppLocale, StatusCopy> = {
       email: "ელფოსტა",
       phone: "ტელეფონი",
       preferredDate: "სასურველი თარიღი",
+      programEndsAt: "პროგრამა დასრულდება",
       peopleCount: "ადამიანების რაოდენობა",
       submittedAt: "გაგზავნის თარიღი",
       yourMessage: "თქვენი შეტყობინება",
@@ -81,6 +84,7 @@ const copy: Record<AppLocale, StatusCopy> = {
       email: "Email",
       phone: "Phone",
       preferredDate: "Preferred date",
+      programEndsAt: "Program ends",
       peopleCount: "Number of people",
       submittedAt: "Submitted on",
       yourMessage: "Your message",
@@ -113,6 +117,7 @@ const copy: Record<AppLocale, StatusCopy> = {
       email: "Email",
       phone: "Телефон",
       preferredDate: "Желаемая дата",
+      programEndsAt: "Программа завершится",
       peopleCount: "Количество человек",
       submittedAt: "Дата подачи",
       yourMessage: "Ваше сообщение",
@@ -145,6 +150,7 @@ const copy: Record<AppLocale, StatusCopy> = {
       email: "邮箱",
       phone: "电话",
       preferredDate: "期望日期",
+      programEndsAt: "行程结束时间",
       peopleCount: "人数",
       submittedAt: "提交时间",
       yourMessage: "您的留言",
@@ -217,6 +223,10 @@ export function buildBookingStatusCustomerEmail(booking: BookingRecord) {
   const intro = t.intro.replace("{name}", booking.name);
   const footer = t.labels.footer.replace("{siteName}", siteName);
   const submittedAt = formatSubmittedAt(booking.createdAt, locale);
+  const programEndsAt =
+    booking.status === "confirmed" && booking.endDate && booking.endTime
+      ? formatScheduleEnd(booking.endDate, booking.endTime, locale)
+      : null;
 
   const textLines = [
     t.headline,
@@ -236,6 +246,9 @@ export function buildBookingStatusCustomerEmail(booking: BookingRecord) {
 
   if (booking.preferredDate) {
     textLines.push(`${t.labels.preferredDate}: ${booking.preferredDate}`);
+  }
+  if (programEndsAt) {
+    textLines.push(`${t.labels.programEndsAt}: ${programEndsAt}`);
   }
   if (booking.peopleCount) {
     textLines.push(`${t.labels.peopleCount}: ${booking.peopleCount}`);
@@ -278,6 +291,11 @@ export function buildBookingStatusCustomerEmail(booking: BookingRecord) {
             ${
               booking.preferredDate
                 ? detailRow(t.labels.preferredDate, escapeHtml(booking.preferredDate))
+                : ""
+            }
+            ${
+              programEndsAt
+                ? detailRow(t.labels.programEndsAt, escapeHtml(programEndsAt))
                 : ""
             }
             ${

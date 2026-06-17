@@ -1,6 +1,7 @@
 import type { BookingPayload } from "@/lib/booking-inquiry";
 import { resolveUniqueBookingId } from "@/lib/booking-id";
 import { prisma } from "@/lib/prisma";
+import { resolveBookingEndSchedule } from "@/lib/tour-schedule";
 import type { BookingStatus, BookingType, Locale } from "@/lib/generated/prisma/enums";
 
 export type BookingRecord = {
@@ -12,6 +13,8 @@ export type BookingRecord = {
   email: string;
   phone: string;
   preferredDate: string | null;
+  endDate: string | null;
+  endTime: string | null;
   peopleCount: number | null;
   message: string;
   locale: Locale | null;
@@ -29,6 +32,8 @@ function mapBooking(booking: {
   email: string;
   phone: string;
   preferredDate: string | null;
+  endDate: string | null;
+  endTime: string | null;
   peopleCount: number | null;
   message: string;
   locale: Locale | null;
@@ -45,6 +50,8 @@ function mapBooking(booking: {
     email: booking.email,
     phone: booking.phone,
     preferredDate: booking.preferredDate,
+    endDate: booking.endDate,
+    endTime: booking.endTime,
     peopleCount: booking.peopleCount,
     message: booking.message,
     locale: booking.locale,
@@ -62,6 +69,8 @@ export async function createBooking(
     return existing !== null;
   });
 
+  const { endDate, endTime } = await resolveBookingEndSchedule(payload);
+
   const booking = await prisma.booking.create({
     data: {
       id,
@@ -72,6 +81,8 @@ export async function createBooking(
       email: payload.email,
       phone: payload.phone,
       preferredDate: payload.preferredDate ?? null,
+      endDate,
+      endTime,
       peopleCount: payload.peopleCount ?? null,
       message: payload.message,
       locale: payload.locale ?? null,

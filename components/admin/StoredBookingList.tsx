@@ -2,6 +2,7 @@
 
 import type { BookingRecord } from "@/lib/booking-db";
 import type { BookingStatus } from "@/lib/generated/prisma/enums";
+import { formatScheduleEnd } from "@/lib/tour-schedule";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -16,6 +17,14 @@ function formatDate(iso: string) {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(iso));
+}
+
+function formatBookingEnd(booking: BookingRecord): string | null {
+  if (!booking.endDate || !booking.endTime) {
+    return null;
+  }
+
+  return formatScheduleEnd(booking.endDate, booking.endTime, "ka");
 }
 
 export default function StoredBookingList({
@@ -66,7 +75,10 @@ export default function StoredBookingList({
 
   return (
     <ul className="space-y-4">
-      {bookings.map((booking) => (
+      {bookings.map((booking) => {
+        const endLabel = formatBookingEnd(booking);
+
+        return (
         <li
           key={booking.id}
           className="rounded-2xl border border-black/10 bg-white p-5"
@@ -136,6 +148,12 @@ export default function StoredBookingList({
                     <dd className="font-medium">{booking.preferredDate}</dd>
                   </div>
                 ) : null}
+                {endLabel ? (
+                  <div>
+                    <dt className="text-black md:text-[18px]">დასრულება</dt>
+                    <dd className="font-medium">{endLabel}</dd>
+                  </div>
+                ) : null}
                 {booking.peopleCount ? (
                   <div>
                     <dt className="text-black md:text-[18px]">ადამიანები</dt>
@@ -173,7 +191,8 @@ export default function StoredBookingList({
             </div>
           </div>
         </li>
-      ))}
+        );
+      })}
     </ul>
   );
 }

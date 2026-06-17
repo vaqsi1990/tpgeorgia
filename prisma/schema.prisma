@@ -119,6 +119,8 @@ model Booking {
   email         String
   phone         String
   preferredDate String?
+  endDate       String?
+  endTime       String?
   peopleCount   Int?
   message       String
   locale        Locale?
