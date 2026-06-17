@@ -378,15 +378,15 @@ export default function Header({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={name}
-                    className="flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-80"
+                    className="flex h-11 w-11 items-center justify-center rounded-full transition-opacity hover:opacity-80"
                   >
-                    <Icon className={`h-8 w-8 ${colorClass}`} aria-hidden />
+                    <Icon className={`h-10 w-10 ${colorClass}`} aria-hidden />
                   </a>
                 ))}
               </div>
               <a
                 href={`tel:${business.phone}`}
-                className="whitespace-nowrap font-figtree text-[14px] font-medium text-brand transition-opacity hover:opacity-80 md:text-[15px]"
+                className="whitespace-nowrap font-figtree text-[16px] font-medium text-brand transition-opacity hover:opacity-80 md:text-[18px]"
               >
                 {business.phoneDisplay}
               </a>
