@@ -6,16 +6,19 @@ import ToursList from "@/components/ToursList";
 import type { TourDestination } from "@/data/tour-destinations";
 import { defaultTourFilters, type TourFilters } from "@/data/tour-filters";
 import type { StoredTourRecord } from "@/lib/admin-types";
+import type { ReviewStatsRecord } from "@/lib/review-stats-types";
 import { useEffect, useMemo, useState } from "react";
 
 type ToursPageContentProps = {
   initialDestination?: TourDestination;
   initialTours: StoredTourRecord[];
+  reviewStats?: ReviewStatsRecord;
 };
 
 export default function ToursPageContent({
   initialDestination,
   initialTours,
+  reviewStats,
 }: ToursPageContentProps) {
   const baselineFilters = useMemo<TourFilters>(
     () => ({
@@ -41,7 +44,11 @@ export default function ToursPageContent({
         />
       </FadeUp>
       <FadeUp trigger="load" delay={60} className="min-w-0">
-        <ToursList initialTours={initialTours} filters={filters} />
+        <ToursList
+          initialTours={initialTours}
+          filters={filters}
+          reviewStats={reviewStats}
+        />
       </FadeUp>
     </div>
   );

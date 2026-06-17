@@ -3,6 +3,7 @@ import SectionHeader from "@/components/SectionHeader";
 import ToursPageContent from "@/components/ToursPageContent";
 import type { TourDestination } from "@/data/tour-destinations";
 import { listTours } from "@/lib/catalog-db";
+import { getPublishedReviewStatsRecord } from "@/lib/review-db";
 import { getTranslations } from "next-intl/server";
 
 type ToursPageProps = {
@@ -10,9 +11,10 @@ type ToursPageProps = {
 };
 
 export default async function ToursPage({ destination }: ToursPageProps = {}) {
-  const [t, tours] = await Promise.all([
+  const [t, tours, reviewStats] = await Promise.all([
     getTranslations("Tours"),
     listTours(),
+    getPublishedReviewStatsRecord(),
   ]);
   const title = destination
     ? t(`destinations.${destination}.title`)
@@ -38,6 +40,7 @@ export default async function ToursPage({ destination }: ToursPageProps = {}) {
         <ToursPageContent
           initialDestination={destination}
           initialTours={tours}
+          reviewStats={reviewStats}
         />
       </div>
     </ParallaxSection>

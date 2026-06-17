@@ -12,6 +12,11 @@ import type { TourMeta } from "@/data/tours";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
 import type { StoredTourRecord } from "@/lib/admin-types";
+import {
+  getItemReviewStats,
+  isAutoTopRated,
+  type ReviewStatsRecord,
+} from "@/lib/review-stats-types";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
@@ -22,6 +27,7 @@ type ToursListProps = {
   showAllLink?: boolean;
   filters?: TourFilters;
   staggerCards?: boolean;
+  reviewStats?: ReviewStatsRecord;
 };
 
 export default function ToursList({
@@ -30,6 +36,7 @@ export default function ToursList({
   showAllLink = false,
   filters = defaultTourFilters,
   staggerCards = false,
+  reviewStats,
 }: ToursListProps = {}) {
   const t = useTranslations("Tours");
   const locale = useLocale();
@@ -59,17 +66,25 @@ export default function ToursList({
     visibleItems.length === 0 ? "hidden" : ""
   }`;
 
-  const cards = visibleItems.map((item, index) => (
-    <TourImageCard
-      key={item.tour.id}
-      tour={item.tour}
-      content={item.content}
-      imageSrc={item.imageSrc}
-      index={index}
-      stretchCard={isReady}
-      href={`/tours/${item.tour.id}`}
-    />
-  ));
+  const cards = visibleItems.map((item, index) => {
+    const stats = getItemReviewStats(reviewStats, "tour", item.tour.id);
+    const showTopBadge =
+      item.tour.popular || isAutoTopRated(stats);
+
+    return (
+      <TourImageCard
+        key={item.tour.id}
+        tour={item.tour}
+        content={item.content}
+        imageSrc={item.imageSrc}
+        index={index}
+        stretchCard={isReady}
+        href={`/tours/${item.tour.id}`}
+        reviewStats={stats}
+        showTopBadge={showTopBadge}
+      />
+    );
+  });
 
   return (
     <>
@@ -87,18 +102,26 @@ export default function ToursList({
           viewport={{ once: true, amount: 0.08 }}
           className={gridClassName}
         >
-          {visibleItems.map((item, index) => (
-            <motion.div key={item.tour.id} variants={staggerItem}>
-              <TourImageCard
-                tour={item.tour}
-                content={item.content}
-                imageSrc={item.imageSrc}
-                index={index}
-                stretchCard={isReady}
-                href={`/tours/${item.tour.id}`}
-              />
-            </motion.div>
-          ))}
+          {visibleItems.map((item, index) => {
+            const stats = getItemReviewStats(reviewStats, "tour", item.tour.id);
+            const showTopBadge =
+              item.tour.popular || isAutoTopRated(stats);
+
+            return (
+              <motion.div key={item.tour.id} variants={staggerItem}>
+                <TourImageCard
+                  tour={item.tour}
+                  content={item.content}
+                  imageSrc={item.imageSrc}
+                  index={index}
+                  stretchCard={isReady}
+                  href={`/tours/${item.tour.id}`}
+                  reviewStats={stats}
+                  showTopBadge={showTopBadge}
+                />
+              </motion.div>
+            );
+          })}
         </motion.div>
       ) : (
         <div className={gridClassName}>{cards}</div>

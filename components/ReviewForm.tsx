@@ -1,5 +1,6 @@
 "use client";
 
+import StarRating from "@/components/StarRating";
 import type { AppLocale } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -22,6 +23,7 @@ export default function ReviewForm({
   const t = useTranslations("Reviews");
   const [name, setName] = useState(defaultName);
   const [text, setText] = useState("");
+  const [rating, setRating] = useState(5);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,6 +42,7 @@ export default function ReviewForm({
           token,
           authorName: name,
           text,
+          rating,
           locale,
         }),
       });
@@ -97,6 +100,13 @@ export default function ReviewForm({
           onChange={(e) => setName(e.target.value)}
           className="w-full rounded-xl border border-black/15 bg-white px-4 py-3 text-[16px] outline-none ring-[#38ab8a] focus:ring-2 md:text-[18px]"
         />
+      </div>
+
+      <div className="mb-5">
+        <p id="review-rating-label" className="mb-1.5 text-[16px] font-medium md:text-[18px]">
+          {t("ratingLabel")}
+        </p>
+        <StarRating mode="input" value={rating} onChange={setRating} />
       </div>
 
       <div className="mb-6">

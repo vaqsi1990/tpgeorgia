@@ -16,6 +16,14 @@ export async function POST(request: Request) {
     const token = trimField(body.token, 500);
     const authorName = trimField(body.authorName, 120);
     const text = trimField(body.text, 5000);
+    const ratingRaw = body.rating;
+    const rating =
+      typeof ratingRaw === "number" &&
+      Number.isInteger(ratingRaw) &&
+      ratingRaw >= 1 &&
+      ratingRaw <= 5
+        ? ratingRaw
+        : 0;
     const localeRaw = trimField(body.locale, 2);
     const locale =
       localeRaw === "ka" ||
@@ -25,7 +33,7 @@ export async function POST(request: Request) {
         ? localeRaw
         : null;
 
-    if (!bookingId || !token || !authorName || !text) {
+    if (!bookingId || !token || !authorName || !text || rating < 1) {
       return NextResponse.json(
         { error: "Invalid form data." },
         { status: 400 },
@@ -56,6 +64,7 @@ export async function POST(request: Request) {
       itemTitle: booking.itemTitle,
       authorName,
       text,
+      rating,
       locale: (locale ?? booking.locale) as AppLocale | null,
     });
 

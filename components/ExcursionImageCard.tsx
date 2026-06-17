@@ -1,8 +1,10 @@
 "use client";
 
 import { getTourCoverImage } from "@/lib/catalog-images";
+import type { ItemReviewStats } from "@/lib/review-stats-types";
 import type { ExcursionContent } from "@/data/excursion-content/ka";
 import type { ExcursionMeta } from "@/data/excursions";
+import StarRating from "@/components/StarRating";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
@@ -13,6 +15,8 @@ type ExcursionImageCardProps = {
   index: number;
   stretchCard: boolean;
   href: string;
+  reviewStats?: ItemReviewStats;
+  showTopBadge?: boolean;
 };
 
 export default function ExcursionImageCard({
@@ -22,6 +26,8 @@ export default function ExcursionImageCard({
   index,
   stretchCard,
   href,
+  reviewStats,
+  showTopBadge = excursion.popular,
 }: ExcursionImageCardProps) {
   const t = useTranslations("Excursions");
 
@@ -39,7 +45,7 @@ export default function ExcursionImageCard({
         stretchCard ? "h-full" : ""
       }`}
     >
-      {excursion.popular ? (
+      {showTopBadge ? (
         <span
           className="absolute right-3 top-3 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:size-11 sm:text-[10px]"
           aria-label={t("popularBadge")}
@@ -72,6 +78,17 @@ export default function ExcursionImageCard({
       <div
         className={`flex flex-col px-4 py-4 sm:px-5 sm:py-5 ${stretchCard ? "flex-1" : ""}`}
       >
+        {reviewStats && reviewStats.reviewCount > 0 ? (
+          <div className="mb-3">
+            <StarRating
+              value={reviewStats.averageRating}
+              size="sm"
+              showValue
+              reviewCount={reviewStats.reviewCount}
+            />
+          </div>
+        ) : null}
+
         <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[15px] md:text-[16px]">
           <span className="text-black/70">
             {excursion.grades} {t("grade")} · {t("cultural")}

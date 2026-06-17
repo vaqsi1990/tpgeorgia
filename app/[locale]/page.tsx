@@ -5,6 +5,7 @@ import Tours from "@/components/Tours";
 import WhyUs from "@/components/WhyUs";
 import type { AppLocale } from "@/i18n/routing";
 import { listExcursions, listTours } from "@/lib/catalog-db";
+import { getPublishedReviewStatsRecord } from "@/lib/review-db";
 import { buildPageMetadata } from "@/lib/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -30,14 +31,18 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [tours, excursions] = await Promise.all([listTours(), listExcursions()]);
+  const [tours, excursions, reviewStats] = await Promise.all([
+    listTours(),
+    listExcursions(),
+    getPublishedReviewStatsRecord(),
+  ]);
 
   return (
     <>
       <Hero />
       <WhyUs />
-      <Tours tours={tours} />
-      <Excursions excursions={excursions} />
+      <Tours tours={tours} reviewStats={reviewStats} />
+      <Excursions excursions={excursions} reviewStats={reviewStats} />
       <Contact tours={tours} excursions={excursions} />
     </>
   );

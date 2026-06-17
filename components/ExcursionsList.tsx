@@ -12,6 +12,11 @@ import type { ExcursionMeta } from "@/data/excursions";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
 import type { StoredExcursionRecord } from "@/lib/admin-types";
+import {
+  getItemReviewStats,
+  isAutoTopRated,
+  type ReviewStatsRecord,
+} from "@/lib/review-stats-types";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
@@ -22,6 +27,7 @@ type ExcursionsListProps = {
   showAllLink?: boolean;
   staggerCards?: boolean;
   filters?: ExcursionFilters;
+  reviewStats?: ReviewStatsRecord;
 };
 
 export default function ExcursionsList({
@@ -30,6 +36,7 @@ export default function ExcursionsList({
   showAllLink = false,
   staggerCards = false,
   filters = defaultExcursionFilters,
+  reviewStats,
 }: ExcursionsListProps = {}) {
   const t = useTranslations("Excursions");
   const locale = useLocale();
@@ -59,17 +66,25 @@ export default function ExcursionsList({
     visibleItems.length === 0 ? "hidden" : ""
   }`;
 
-  const cards = visibleItems.map((item, index) => (
-    <ExcursionImageCard
-      key={item.excursion.id}
-      excursion={item.excursion}
-      content={item.content}
-      imageSrc={item.imageSrc}
-      index={index}
-      stretchCard={isReady}
-      href={`/excursions/${item.excursion.id}`}
-    />
-  ));
+  const cards = visibleItems.map((item, index) => {
+    const stats = getItemReviewStats(reviewStats, "excursion", item.excursion.id);
+    const showTopBadge =
+      item.excursion.popular || isAutoTopRated(stats);
+
+    return (
+      <ExcursionImageCard
+        key={item.excursion.id}
+        excursion={item.excursion}
+        content={item.content}
+        imageSrc={item.imageSrc}
+        index={index}
+        stretchCard={isReady}
+        href={`/excursions/${item.excursion.id}`}
+        reviewStats={stats}
+        showTopBadge={showTopBadge}
+      />
+    );
+  });
 
   return (
     <>
@@ -87,18 +102,30 @@ export default function ExcursionsList({
           viewport={{ once: true, amount: 0.08 }}
           className={gridClassName}
         >
-          {visibleItems.map((item, index) => (
-            <motion.div key={item.excursion.id} variants={staggerItem}>
-              <ExcursionImageCard
-                excursion={item.excursion}
-                content={item.content}
-                imageSrc={item.imageSrc}
-                index={index}
-                stretchCard={isReady}
-                href={`/excursions/${item.excursion.id}`}
-              />
-            </motion.div>
-          ))}
+          {visibleItems.map((item, index) => {
+            const stats = getItemReviewStats(
+              reviewStats,
+              "excursion",
+              item.excursion.id,
+            );
+            const showTopBadge =
+              item.excursion.popular || isAutoTopRated(stats);
+
+            return (
+              <motion.div key={item.excursion.id} variants={staggerItem}>
+                <ExcursionImageCard
+                  excursion={item.excursion}
+                  content={item.content}
+                  imageSrc={item.imageSrc}
+                  index={index}
+                  stretchCard={isReady}
+                  href={`/excursions/${item.excursion.id}`}
+                  reviewStats={stats}
+                  showTopBadge={showTopBadge}
+                />
+              </motion.div>
+            );
+          })}
         </motion.div>
       ) : (
         <div className={gridClassName}>{cards}</div>

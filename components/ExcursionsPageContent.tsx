@@ -5,14 +5,17 @@ import ExcursionsList from "@/components/ExcursionsList";
 import FadeUp from "@/components/FadeUp";
 import { defaultExcursionFilters, type ExcursionFilters } from "@/data/excursion-filters";
 import type { StoredExcursionRecord } from "@/lib/admin-types";
+import type { ReviewStatsRecord } from "@/lib/review-stats-types";
 import { useState } from "react";
 
 type ExcursionsPageContentProps = {
   initialExcursions: StoredExcursionRecord[];
+  reviewStats?: ReviewStatsRecord;
 };
 
 export default function ExcursionsPageContent({
   initialExcursions,
+  reviewStats,
 }: ExcursionsPageContentProps) {
   const [filters, setFilters] = useState<ExcursionFilters>(
     defaultExcursionFilters,
@@ -28,7 +31,11 @@ export default function ExcursionsPageContent({
         />
       </FadeUp>
       <FadeUp trigger="load" delay={60} className="min-w-0">
-        <ExcursionsList initialExcursions={initialExcursions} filters={filters} />
+        <ExcursionsList
+          initialExcursions={initialExcursions}
+          filters={filters}
+          reviewStats={reviewStats}
+        />
       </FadeUp>
     </div>
   );

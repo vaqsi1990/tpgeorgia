@@ -4,12 +4,14 @@ import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
 import { listExcursions } from "@/lib/catalog-db";
+import { getPublishedReviewStatsRecord } from "@/lib/review-db";
 import { getTranslations } from "next-intl/server";
 
 export default async function ExcursionsPage() {
-  const [t, excursions] = await Promise.all([
+  const [t, excursions, reviewStats] = await Promise.all([
     getTranslations("Excursions"),
     listExcursions(),
+    getPublishedReviewStatsRecord(),
   ]);
 
   return (
@@ -38,7 +40,10 @@ export default async function ExcursionsPage() {
           description={t("description")}
         />
 
-        <ExcursionsPageContent initialExcursions={excursions} />
+        <ExcursionsPageContent
+          initialExcursions={excursions}
+          reviewStats={reviewStats}
+        />
 
         <FadeUp trigger="load" delay={120}>
           <div className="mt-14 w-full overflow-hidden rounded-2xl shadow-[0_4px_24px_rgba(15,79,79,0.06)] sm:mt-16">

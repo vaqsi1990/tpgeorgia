@@ -1,14 +1,16 @@
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
 import ToursHomeList from "@/components/ToursHomeList";
+import type { ReviewStatsRecord } from "@/lib/review-stats-types";
 import type { StoredTourRecord } from "@/lib/admin-types";
 import { getTranslations } from "next-intl/server";
 
 type ToursProps = {
   tours: StoredTourRecord[];
+  reviewStats?: ReviewStatsRecord;
 };
 
-export default async function Tours({ tours }: ToursProps) {
+export default async function Tours({ tours, reviewStats }: ToursProps) {
   const t = await getTranslations("Tours");
 
   return (
@@ -19,7 +21,7 @@ export default async function Tours({ tours }: ToursProps) {
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader title={t("title")} description={t("description")} />
-        <ToursHomeList initialTours={tours} limit={6} showAllLink />
+        <ToursHomeList initialTours={tours} limit={6} showAllLink reviewStats={reviewStats} />
       </div>
     </ParallaxSection>
   );

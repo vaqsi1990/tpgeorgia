@@ -8,6 +8,7 @@ export type ReviewRecord = {
   itemTitle: string;
   authorName: string;
   text: string;
+  rating: number;
   locale: BookingLocale | null;
   published: boolean;
   createdAt: string;

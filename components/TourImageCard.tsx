@@ -3,7 +3,9 @@
 import type { TourContent } from "@/data/tour-content";
 import type { TourMeta } from "@/data/tours";
 import { CATALOG_FALLBACK_IMAGES } from "@/lib/catalog-images";
+import type { ItemReviewStats } from "@/lib/review-stats-types";
 import { Link } from "@/i18n/navigation";
+import StarRating from "@/components/StarRating";
 import { useTranslations } from "next-intl";
 
 type TourImageCardProps = {
@@ -13,6 +15,8 @@ type TourImageCardProps = {
   index: number;
   stretchCard: boolean;
   href: string;
+  reviewStats?: ItemReviewStats;
+  showTopBadge?: boolean;
 };
 
 export default function TourImageCard({
@@ -22,6 +26,8 @@ export default function TourImageCard({
   index,
   stretchCard,
   href,
+  reviewStats,
+  showTopBadge = tour.popular,
 }: TourImageCardProps) {
   const t = useTranslations("Tours");
 
@@ -43,7 +49,7 @@ export default function TourImageCard({
         stretchCard ? "h-full" : ""
       }`}
     >
-      {tour.popular ? (
+      {showTopBadge ? (
         <span
           className="absolute right-3 top-3 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:size-11 sm:text-[10px]"
           aria-label={t("popularBadge")}
@@ -83,6 +89,17 @@ export default function TourImageCard({
           <p className="mb-3 line-clamp-2 text-[15px] text-black/70 md:text-[16px]">
             {content.subtitle}
           </p>
+        ) : null}
+
+        {reviewStats && reviewStats.reviewCount > 0 ? (
+          <div className="mb-3">
+            <StarRating
+              value={reviewStats.averageRating}
+              size="sm"
+              showValue
+              reviewCount={reviewStats.reviewCount}
+            />
+          </div>
         ) : null}
 
         <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[15px] md:text-[16px]">

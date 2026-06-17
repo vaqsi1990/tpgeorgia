@@ -1,5 +1,6 @@
 "use client";
 
+import StarRating from "@/components/StarRating";
 import type { ReviewRecord } from "@/lib/review-types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -110,6 +111,9 @@ export default function StoredReviewList({
                 <p className="text-[16px] text-black md:text-[18px]">
                   {review.authorName} · ჯავშანი № {review.bookingId}
                 </p>
+                <div className="mt-2">
+                  <StarRating value={review.rating} size="sm" showValue />
+                </div>
               </div>
 
               <p className="whitespace-pre-wrap rounded-xl border border-black/8 bg-black/[0.02] px-4 py-3 text-[16px] leading-relaxed text-black md:text-[18px]">
