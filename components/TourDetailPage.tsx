@@ -70,6 +70,7 @@ export default async function TourDetailPage({
         imageAlt={content.title}
         bookLabel={tBooking("bookButton")}
         bookHref={`/tours/${tour.id}/book`}
+        bookingType="tour"
       >
         <TourDetailPanel content={content} tourId={tour.id} />
         <ReviewsSection reviews={reviews} locale={locale} />

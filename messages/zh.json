@@ -214,6 +214,10 @@
   },
   "Booking": {
     "bookButton": "立即预订",
+    "whatsappBookButton": "通过 WhatsApp 预订",
+    "whatsappMessageTour": "您好，我想预订行程「{program}」。",
+    "whatsappMessageExcursion": "您好，我想预订研学「{program}」。",
+    "whatsappOrForm": "或在下方填写表单",
     "backToDetails": "返回详情",
     "selectedTour": "所选行程",
     "selectedExcursion": "所选研学",

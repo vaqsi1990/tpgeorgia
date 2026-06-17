@@ -214,6 +214,10 @@
   },
   "Booking": {
     "bookButton": "დაჯავშნა",
+    "whatsappBookButton": "დაჯავშნა WhatsApp-ით",
+    "whatsappMessageTour": "გამარჯობა, მინდა დაჯავშნა ტური „{program}“.",
+    "whatsappMessageExcursion": "გამარჯობა, მინდა დაჯავშნა ექსკურსია „{program}“.",
+    "whatsappOrForm": "ან შეავსეთ ფორმა ქვემოთ",
     "backToDetails": "დეტალებზე დაბრუნება",
     "selectedTour": "არჩეული ტური",
     "selectedExcursion": "არჩეული ექსკურსია",

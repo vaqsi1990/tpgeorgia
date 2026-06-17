@@ -214,6 +214,10 @@
   },
   "Booking": {
     "bookButton": "Забронировать",
+    "whatsappBookButton": "Забронировать в WhatsApp",
+    "whatsappMessageTour": "Здравствуйте, хочу забронировать тур «{program}».",
+    "whatsappMessageExcursion": "Здравствуйте, хочу забронировать экскурсию «{program}».",
+    "whatsappOrForm": "или заполните форму ниже",
     "backToDetails": "Назад к деталям",
     "selectedTour": "Выбранный тур",
     "selectedExcursion": "Выбранная экскурсия",

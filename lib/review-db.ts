@@ -129,6 +129,50 @@ export async function createReview(input: {
   return mapReview(review);
 }
 
+export async function updateReview(
+  id: string,
+  input: {
+    authorName?: string;
+    text?: string;
+    rating?: number;
+    published?: boolean;
+  },
+): Promise<ReviewRecord | null> {
+  const data: {
+    authorName?: string;
+    text?: string;
+    rating?: number;
+    published?: boolean;
+  } = {};
+
+  if (input.authorName !== undefined) {
+    data.authorName = input.authorName;
+  }
+  if (input.text !== undefined) {
+    data.text = input.text;
+  }
+  if (input.rating !== undefined) {
+    data.rating = input.rating;
+  }
+  if (input.published !== undefined) {
+    data.published = input.published;
+  }
+
+  if (Object.keys(data).length === 0) {
+    return null;
+  }
+
+  try {
+    const review = await prisma.review.update({
+      where: { id },
+      data,
+    });
+    return mapReview(review);
+  } catch {
+    return null;
+  }
+}
+
 export async function updateReviewPublished(
   id: string,
   published: boolean,

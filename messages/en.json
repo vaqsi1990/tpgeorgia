@@ -214,6 +214,10 @@
   },
   "Booking": {
     "bookButton": "Book now",
+    "whatsappBookButton": "Book via WhatsApp",
+    "whatsappMessageTour": "Hi, I want to book the tour \"{program}\".",
+    "whatsappMessageExcursion": "Hi, I want to book the excursion \"{program}\".",
+    "whatsappOrForm": "or fill in the form below",
     "backToDetails": "Back to details",
     "selectedTour": "Selected tour",
     "selectedExcursion": "Selected excursion",

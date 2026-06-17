@@ -1,6 +1,7 @@
 "use client";
 
 import BookingForm from "@/components/BookingForm";
+import WhatsAppBookButton from "@/components/WhatsAppBookButton";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
@@ -31,6 +32,15 @@ export default function CatalogDetailBooking({
         </p>
       </div>
       <div className="bg-white px-5 py-6 sm:px-8 sm:py-8">
+        <div className="mb-6">
+          <WhatsAppBookButton
+            itemTitle={itemTitle}
+            bookingType={bookingType}
+          />
+          <p className="mt-3 text-center text-[14px] text-black/50 md:text-[15px]">
+            {t("whatsappOrForm")}
+          </p>
+        </div>
         <BookingForm
           bookingType={bookingType}
           itemId={itemId}

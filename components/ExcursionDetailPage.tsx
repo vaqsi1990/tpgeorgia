@@ -59,6 +59,7 @@ export default async function ExcursionDetailPage({
         imageAlt={content.title}
         bookLabel={tBooking("bookButton")}
         bookHref={`/excursions/${excursion.id}/book`}
+        bookingType="excursion"
       >
         <ExcursionDetailPanel content={content} excursionId={excursion.id} />
         <ReviewsSection reviews={reviews} locale={locale} />

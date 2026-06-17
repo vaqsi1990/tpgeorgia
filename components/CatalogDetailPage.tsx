@@ -1,4 +1,5 @@
 import CatalogDetailGallery from "@/components/CatalogDetailGallery";
+import WhatsAppBookButton from "@/components/WhatsAppBookButton";
 import { getTourCoverImage } from "@/lib/catalog-images";
 import { Link } from "@/i18n/navigation";
 
@@ -19,6 +20,7 @@ type CatalogDetailPageProps = {
   imageAlt: string;
   bookLabel: string;
   bookHref: string;
+  bookingType: "tour" | "excursion";
   children: React.ReactNode;
 };
 
@@ -34,6 +36,7 @@ export default function CatalogDetailPage({
   imageAlt,
   bookLabel,
   bookHref,
+  bookingType,
   children,
 }: CatalogDetailPageProps) {
   const galleryImages =
@@ -127,7 +130,7 @@ export default function CatalogDetailPage({
               </dl>
             ) : null}
 
-            <div className="p-5 sm:p-6">
+            <div className="space-y-3 p-5 sm:p-6">
               <Link
                 href={bookHref}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#38ab8a] py-3.5 text-[16px] md:text-[18px] font-medium text-white shadow-[0_4px_20px_rgba(56,171,138,0.35)] transition-all hover:bg-[#2f9a7c] hover:shadow-[0_6px_28px_rgba(56,171,138,0.4)]"
@@ -144,6 +147,10 @@ export default function CatalogDetailPage({
                   <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
+              <WhatsAppBookButton
+                itemTitle={title}
+                bookingType={bookingType}
+              />
             </div>
           </div>
         </aside>
