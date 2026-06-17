@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 const nav = [
   { href: "/admin", label: "ადმინის პანელი" },
   { href: "/admin/bookings", label: "ჯავშნები" },
+  { href: "/admin/reviews", label: "რევიუები" },
   { href: "/admin/tours", label: "ტურები" },
   { href: "/admin/excursions", label: "ექსკურსიები" },
 ];
@@ -26,7 +27,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         <div className="mx-auto fflex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div>
             <p className="font-afacad text-xl font-semibold">Tour Provider Georga ადმინის პანელი</p>
-            <p className="text-[16px] text-black md:text-[18px]">მართეთ ტურები, ექსკურსიები და ჯავშნები</p>
+            <p className="text-[16px] text-black md:text-[18px]">მართეთ ტურები, ექსკურსიები, ჯავშნები და რევიუები</p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <Link

@@ -266,6 +266,22 @@
     "submitSuccess": "消息已发送，我们会尽快回复您。",
     "submitError": "消息发送失败，请重试或通过电话联系。"
   },
+  "Reviews": {
+    "sectionTitle": "游客评价",
+    "pageTitle": "分享您的体验",
+    "pageSubtitle": "您的评价有助于我们改进服务。",
+    "formIntro": "请分享您对「{program}」的感受。",
+    "nameLabel": "您的姓名",
+    "textLabel": "您的评价",
+    "textPlaceholder": "您最喜欢什么？您会推荐给其他游客什么？",
+    "submitButton": "提交",
+    "submittingButton": "发送中...",
+    "submitSuccessTitle": "谢谢！",
+    "submitSuccessMessage": "我们已收到您的评价，将显示在网站上。",
+    "submitError": "评价提交失败，请重试。",
+    "alreadySubmittedTitle": "评价已提交",
+    "alreadySubmittedMessage": "我们已收到此预订的评价。谢谢！"
+  },
   "Footer": {
     "description": "格鲁吉亚难忘之旅与学校研学——地道路线、持证导游与可靠组织服务。",
     "siteNav": "网站导航",

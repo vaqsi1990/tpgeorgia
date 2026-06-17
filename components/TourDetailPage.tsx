@@ -1,8 +1,10 @@
 import CatalogDetailPage from "@/components/CatalogDetailPage";
 import ParallaxSection from "@/components/ParallaxSection";
+import ReviewsSection from "@/components/ReviewsSection";
 import TourDetailPanel from "@/components/TourDetailPanel";
 import type { AppLocale } from "@/i18n/routing";
 import type { StoredTourRecord } from "@/lib/admin-types";
+import { listPublishedReviewsForItem } from "@/lib/review-db";
 import { getTranslations } from "next-intl/server";
 
 type TourDetailPageProps = {
@@ -18,6 +20,7 @@ export default async function TourDetailPage({
     getTranslations("Tours"),
     getTranslations("Booking"),
   ]);
+  const reviews = await listPublishedReviewsForItem("tour", tour.id);
 
   const content = tour.content[locale] ?? tour.content.ka;
   const meta = { id: tour.id, ...tour.meta };
@@ -69,6 +72,7 @@ export default async function TourDetailPage({
         bookHref={`/tours/${tour.id}/book`}
       >
         <TourDetailPanel content={content} tourId={tour.id} />
+        <ReviewsSection reviews={reviews} locale={locale} />
       </CatalogDetailPage>
     </ParallaxSection>
   );

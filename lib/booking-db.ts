@@ -1,27 +1,11 @@
 import type { BookingPayload } from "@/lib/booking-inquiry";
+import type { BookingRecord, BookingStatus } from "@/lib/booking-types";
 import { resolveUniqueBookingId } from "@/lib/booking-id";
 import { prisma } from "@/lib/prisma";
 import { resolveBookingEndSchedule } from "@/lib/tour-schedule";
-import type { BookingStatus, BookingType, Locale } from "@/lib/generated/prisma/enums";
+import type { BookingType, Locale } from "@/lib/generated/prisma/enums";
 
-export type BookingRecord = {
-  id: string;
-  bookingType: BookingType;
-  itemId: string;
-  itemTitle: string;
-  name: string;
-  email: string;
-  phone: string;
-  preferredDate: string | null;
-  endDate: string | null;
-  endTime: string | null;
-  peopleCount: number | null;
-  message: string;
-  locale: Locale | null;
-  status: BookingStatus;
-  createdAt: string;
-  updatedAt: string;
-};
+export type { BookingRecord, BookingStatus } from "@/lib/booking-types";
 
 function mapBooking(booking: {
   id: string;

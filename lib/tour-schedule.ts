@@ -1,6 +1,5 @@
 import type { BookingPayload } from "@/lib/booking-inquiry";
 import { getExcursionById, getTourById } from "@/lib/catalog-db";
-import type { AppLocale } from "@/i18n/routing";
 
 /**
  * Time model: all schedule values are Georgia local wall clock.
@@ -17,7 +16,6 @@ const TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const DEFAULT_START_TIME = "09:00";
 const FULL_DAY_HOURS = 10;
 const GEORGIA_UTC_OFFSET_HOURS = 4;
-const GEORGIA_IANA_TIME_ZONE = "Asia/Tbilisi";
 
 export type TourScheduleInput = {
   preferredDate: string;
@@ -150,33 +148,6 @@ function georgiaLocalToUtcMs(date: string, time: string): number | null {
   return Date.UTC(year, month - 1, day, utcHour, timeParts.minute, 0);
 }
 
-/** Noon Georgia on the stored calendar date — stable anchor for date-only labels. */
-function georgiaCalendarDateAnchorMs(parts: DateParts): number {
-  return Date.UTC(
-    parts.year,
-    parts.month - 1,
-    parts.day,
-    12 - GEORGIA_UTC_OFFSET_HOURS,
-    0,
-    0,
-  );
-}
-
-function formatGeorgiaCalendarDate(
-  date: string,
-  locale: AppLocale,
-): string | null {
-  const parts = parseDateParts(date);
-  if (!parts) {
-    return null;
-  }
-
-  return new Intl.DateTimeFormat(resolveLocaleTag(locale), {
-    dateStyle: "long",
-    timeZone: GEORGIA_IANA_TIME_ZONE,
-  }).format(new Date(georgiaCalendarDateAnchorMs(parts)));
-}
-
 export function calculateTourEnd(
   input: TourScheduleInput,
 ): TourScheduleResult | null {
@@ -246,20 +217,4 @@ export function isTourCompleted(endDate: string, endTime: string): boolean {
   }
 
   return Date.now() > endMs;
-}
-
-function resolveLocaleTag(locale: AppLocale): string {
-  if (locale === "ka") return "ka-GE";
-  if (locale === "ru") return "ru-RU";
-  if (locale === "zh") return "zh-CN";
-  return "en-GB";
-}
-
-export function formatScheduleEnd(
-  endDate: string,
-  endTime: string,
-  locale: AppLocale = "ka",
-): string {
-  const formatted = formatGeorgiaCalendarDate(endDate, locale) ?? endDate;
-  return `${formatted}, ${endTime}`;
 }

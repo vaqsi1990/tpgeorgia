@@ -1,8 +1,6 @@
 "use client";
 
-import type { BookingRecord } from "@/lib/booking-db";
-import type { BookingStatus } from "@/lib/generated/prisma/enums";
-import { formatScheduleEnd } from "@/lib/tour-schedule";
+import type { BookingRecord, BookingStatus } from "@/lib/booking-types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -24,7 +22,13 @@ function formatBookingEnd(booking: BookingRecord): string | null {
     return null;
   }
 
-  return formatScheduleEnd(booking.endDate, booking.endTime, "ka");
+  const [year, month, day] = booking.endDate.split("-").map(Number);
+  const formatted = new Intl.DateTimeFormat("ka-GE", {
+    dateStyle: "long",
+    timeZone: "Asia/Tbilisi",
+  }).format(new Date(Date.UTC(year, month - 1, day, 8, 0, 0)));
+
+  return `${formatted}, ${booking.endTime}`;
 }
 
 export default function StoredBookingList({

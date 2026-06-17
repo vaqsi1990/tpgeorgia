@@ -1,8 +1,10 @@
 import CatalogDetailPage from "@/components/CatalogDetailPage";
 import ExcursionDetailPanel from "@/components/ExcursionDetailPanel";
 import ParallaxSection from "@/components/ParallaxSection";
+import ReviewsSection from "@/components/ReviewsSection";
 import type { AppLocale } from "@/i18n/routing";
 import type { StoredExcursionRecord } from "@/lib/admin-types";
+import { listPublishedReviewsForItem } from "@/lib/review-db";
 import { getTranslations } from "next-intl/server";
 
 type ExcursionDetailPageProps = {
@@ -18,6 +20,7 @@ export default async function ExcursionDetailPage({
     getTranslations("Excursions"),
     getTranslations("Booking"),
   ]);
+  const reviews = await listPublishedReviewsForItem("excursion", excursion.id);
 
   const content = excursion.content[locale] ?? excursion.content.ka;
   const meta = { id: excursion.id, ...excursion.meta };
@@ -58,6 +61,7 @@ export default async function ExcursionDetailPage({
         bookHref={`/excursions/${excursion.id}/book`}
       >
         <ExcursionDetailPanel content={content} excursionId={excursion.id} />
+        <ReviewsSection reviews={reviews} locale={locale} />
       </CatalogDetailPage>
     </ParallaxSection>
   );

@@ -125,10 +125,33 @@ model Booking {
   message       String
   locale        Locale?
   status        BookingStatus @default(pending)
+  reviewRequestedAt DateTime?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
+
+  review Review?
 
   @@index([createdAt(sort: Desc)])
   @@index([status])
   @@map("bookings")
+}
+
+/// Customer reviews submitted after tours/excursions
+model Review {
+  id         String      @id @default(cuid())
+  bookingId  String      @unique
+  itemType   BookingType
+  itemId     String
+  itemTitle  String
+  authorName String
+  text       String
+  locale     Locale?
+  published  Boolean     @default(true)
+  createdAt  DateTime    @default(now())
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@index([itemType, itemId])
+  @@index([createdAt(sort: Desc)])
+  @@map("reviews")
 }

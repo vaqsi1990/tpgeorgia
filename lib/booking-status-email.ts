@@ -2,7 +2,7 @@ import type { BookingRecord } from "@/lib/booking-db";
 import type { BookingStatus } from "@/lib/generated/prisma/enums";
 import type { AppLocale } from "@/i18n/routing";
 import { business, siteName } from "@/lib/site";
-import { formatScheduleEnd } from "@/lib/tour-schedule";
+import { formatScheduleEnd } from "@/lib/schedule-display";
 
 type StatusCopy = {
   subject: (title: string) => string;
