@@ -206,7 +206,7 @@ export default function Header({
   const [mobileToursOpen, setMobileToursOpen] = useState(false);
   const [mobileExcursionsOpen, setMobileExcursionsOpen] = useState(false);
   const [heroHeight, setHeroHeight] = useState(0);
-  const [maxTopPadding, setMaxTopPadding] = useState(16);
+  const maxTopPadding = 10;
 
   const { scrollY } = useScroll();
 
@@ -217,22 +217,6 @@ export default function Header({
       ? [maxTopPadding, 0]
       : [maxTopPadding, maxTopPadding],
   );
-
-  useEffect(() => {
-    const updateMaxTopPadding = () => {
-      if (window.matchMedia("(min-width: 1024px)").matches) {
-        setMaxTopPadding(24);
-      } else if (window.matchMedia("(min-width: 640px)").matches) {
-        setMaxTopPadding(20);
-      } else {
-        setMaxTopPadding(16);
-      }
-    };
-
-    updateMaxTopPadding();
-    window.addEventListener("resize", updateMaxTopPadding);
-    return () => window.removeEventListener("resize", updateMaxTopPadding);
-  }, []);
 
   useEffect(() => {
     if (!isHome) {
@@ -282,7 +266,7 @@ export default function Header({
 
   return (
     <motion.header
-      className={`fixed top-0 right-0 left-0 z-50 w-full px-3 sm:px-4 lg:px-5 ${isHome ? "" : "pt-3 sm:pt-4"}`}
+      className={`fixed top-0 right-0 left-0 z-50 w-full px-3 sm:px-4 lg:px-5 ${isHome ? "" : "pt-[8px]"}`}
       style={isHome ? { paddingTop } : undefined}
     >
       <div className="mx-auto w-full overflow-visible rounded-[2.5rem] bg-white/80 shadow-[0_8px_32px_rgba(15,79,79,0.12)] backdrop-blur-sm">
