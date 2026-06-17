@@ -40,6 +40,7 @@ export default function StoredBookingList({
   const [bookings, setBookings] = useState(initialBookings);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [sendingReviewId, setSendingReviewId] = useState<string | null>(null);
+  const [sendingReminderId, setSendingReminderId] = useState<string | null>(null);
 
   async function handleStatusChange(id: string, status: BookingStatus) {
     setUpdatingId(id);
@@ -104,6 +105,43 @@ export default function StoredBookingList({
       alert(error instanceof Error ? error.message : "Email failed.");
     } finally {
       setSendingReviewId(null);
+    }
+  }
+
+  async function handleSendReminder(id: string) {
+    if (
+      !window.confirm(
+        "გსურთ კლიენტს შეხსენების ელფოსტის გაგზავნა?",
+      )
+    ) {
+      return;
+    }
+
+    setSendingReminderId(id);
+    try {
+      const response = await fetch(
+        `/api/admin/bookings/${encodeURIComponent(id)}/reminder`,
+        { method: "POST" },
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error ?? "Email failed.");
+      }
+
+      if (data.booking) {
+        setBookings((prev) =>
+          prev.map((booking) =>
+            booking.id === id ? data.booking : booking,
+          ),
+        );
+      }
+
+      alert("შეხსენების წერილი გაიგზავნა.");
+      router.refresh();
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Email failed.");
+    } finally {
+      setSendingReminderId(null);
     }
   }
 
@@ -252,6 +290,31 @@ export default function StoredBookingList({
                       ? "რევიუს წერილი თავიდან"
                       : "რევიუს წერილი"}
                 </button>
+              ) : null}
+
+              {booking.reminderSentAt ? (
+                <p className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-2.5 text-center text-[15px] font-medium text-blue-900 md:text-[16px]">
+                  შეხსენება გაგზავნილია
+                </p>
+              ) : booking.status === "confirmed" && booking.preferredDate ? (
+                <button
+                  type="button"
+                  disabled={
+                    sendingReminderId === booking.id || updatingId === booking.id
+                  }
+                  onClick={() => handleSendReminder(booking.id)}
+                  className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-2.5 text-[16px] font-medium text-blue-900 transition-colors hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
+                >
+                  {sendingReminderId === booking.id
+                    ? "იგზავნება..."
+                    : "შეხსენება"}
+                </button>
+              ) : null}
+
+              {booking.reminderSentAt ? (
+                <p className="text-center text-[14px] text-black/50 md:text-[15px]">
+                  შეხსენება: {formatDate(booking.reminderSentAt)}
+                </p>
               ) : null}
 
               {booking.reviewRequestedAt && !booking.hasReview ? (

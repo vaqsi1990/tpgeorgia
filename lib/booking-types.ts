@@ -18,6 +18,7 @@ export type BookingRecord = {
   locale: BookingLocale | null;
   status: BookingStatus;
   reviewRequestedAt: string | null;
+  reminderSentAt: string | null;
   hasReview: boolean;
   createdAt: string;
   updatedAt: string;

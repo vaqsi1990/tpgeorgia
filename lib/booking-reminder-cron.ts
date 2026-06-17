@@ -1,28 +1,30 @@
-import type { BookingRecord } from "@/lib/booking-types";
 import { getBookingById } from "@/lib/booking-db";
-import { getGeorgiaCalendarDate } from "@/lib/georgia-time";
+import { buildBookingReminderEmail } from "@/lib/booking-reminder-email";
+import type { BookingRecord } from "@/lib/booking-types";
+import { getGeorgiaCalendarDate, getGeorgiaTomorrowDate } from "@/lib/georgia-time";
 import { prisma } from "@/lib/prisma";
-import { buildReviewRequestEmail } from "@/lib/review-request-email";
+import { business } from "@/lib/site";
 import { sendEmail } from "@/lib/send-email";
 
-export type ReviewCronResult = {
+export type BookingReminderCronResult = {
   date: string;
+  targetDate: string;
   candidates: number;
   sent: number;
   skipped: number;
   errors: string[];
 };
 
-export async function findBookingsDueForReviewRequest(
-  georgiaDate: string,
+export async function findBookingsDueForReminder(
+  targetDate: string,
 ): Promise<BookingRecord[]> {
   const rows = await prisma.booking.findMany({
     where: {
       status: "confirmed",
-      endDate: georgiaDate,
-      reviewRequestedAt: null,
-      review: { is: null },
+      preferredDate: targetDate,
+      reminderSentAt: null,
     },
+    include: { review: { select: { id: true } } },
     orderBy: { createdAt: "asc" },
   });
 
@@ -43,51 +45,39 @@ export async function findBookingsDueForReviewRequest(
     status: booking.status,
     reviewRequestedAt: booking.reviewRequestedAt?.toISOString() ?? null,
     reminderSentAt: booking.reminderSentAt?.toISOString() ?? null,
-    hasReview: false,
+    hasReview: booking.review !== null,
     createdAt: booking.createdAt.toISOString(),
     updatedAt: booking.updatedAt.toISOString(),
   }));
 }
 
-export async function sendReviewRequestForBooking(
+export async function sendBookingReminderForBooking(
   bookingId: string,
 ): Promise<{ ok: boolean; error?: string }> {
-  return sendReviewRequestEmail(bookingId, { mode: "cron" });
-}
-
-export async function sendManualReviewRequestForBooking(
-  bookingId: string,
-): Promise<{ ok: boolean; error?: string; reviewUrl?: string }> {
-  return sendReviewRequestEmail(bookingId, { mode: "manual" });
-}
-
-async function sendReviewRequestEmail(
-  bookingId: string,
-  options: { mode: "cron" | "manual" },
-): Promise<{ ok: boolean; error?: string; reviewUrl?: string }> {
   const booking = await getBookingById(bookingId);
   if (!booking) {
     return { ok: false, error: "Booking not found." };
   }
 
   if (booking.status !== "confirmed") {
-    return { ok: false, error: "Only confirmed bookings can receive review emails." };
+    return { ok: false, error: "Booking is not confirmed." };
   }
 
-  if (options.mode === "cron" && !booking.endDate) {
-    return { ok: false, error: "Booking is not eligible." };
+  if (!booking.preferredDate) {
+    return { ok: false, error: "Booking has no start date." };
   }
 
-  if (booking.hasReview) {
-    return { ok: false, error: "Review already submitted." };
+  if (booking.reminderSentAt) {
+    return { ok: false, error: "Reminder already sent." };
   }
 
-  const { subject, text, html, reviewUrl } = buildReviewRequestEmail(booking);
+  const { subject, text, html } = buildBookingReminderEmail(booking);
   const emailResult = await sendEmail({
     to: booking.email,
     subject,
     text,
     html,
+    replyTo: business.email,
   });
 
   if (!emailResult.ok) {
@@ -96,22 +86,29 @@ async function sendReviewRequestEmail(
 
   await prisma.booking.update({
     where: { id: bookingId },
-    data: { reviewRequestedAt: new Date() },
+    data: { reminderSentAt: new Date() },
   });
 
-  return { ok: true, reviewUrl };
+  return { ok: true };
 }
 
-export async function runReviewRequestCron(): Promise<ReviewCronResult> {
+export async function sendManualBookingReminderForBooking(
+  bookingId: string,
+): Promise<{ ok: boolean; error?: string }> {
+  return sendBookingReminderForBooking(bookingId);
+}
+
+export async function runBookingReminderCron(): Promise<BookingReminderCronResult> {
   const date = getGeorgiaCalendarDate();
-  const bookings = await findBookingsDueForReviewRequest(date);
+  const targetDate = getGeorgiaTomorrowDate();
+  const bookings = await findBookingsDueForReminder(targetDate);
 
   let sent = 0;
   let skipped = 0;
   const errors: string[] = [];
 
   for (const booking of bookings) {
-    const result = await sendReviewRequestForBooking(booking.id);
+    const result = await sendBookingReminderForBooking(booking.id);
     if (result.ok) {
       sent += 1;
     } else {
@@ -124,6 +121,7 @@ export async function runReviewRequestCron(): Promise<ReviewCronResult> {
 
   return {
     date,
+    targetDate,
     candidates: bookings.length,
     sent,
     skipped,

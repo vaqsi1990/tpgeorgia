@@ -126,6 +126,7 @@ model Booking {
   locale        Locale?
   status        BookingStatus @default(pending)
   reviewRequestedAt DateTime?
+  reminderSentAt    DateTime?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 

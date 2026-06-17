@@ -23,6 +23,7 @@ function mapBooking(booking: {
   locale: Locale | null;
   status: BookingStatus;
   reviewRequestedAt: Date | null;
+  reminderSentAt: Date | null;
   review: { id: string } | null;
   createdAt: Date;
   updatedAt: Date;
@@ -43,6 +44,7 @@ function mapBooking(booking: {
     locale: booking.locale,
     status: booking.status,
     reviewRequestedAt: booking.reviewRequestedAt?.toISOString() ?? null,
+    reminderSentAt: booking.reminderSentAt?.toISOString() ?? null,
     hasReview: booking.review !== null,
     createdAt: booking.createdAt.toISOString(),
     updatedAt: booking.updatedAt.toISOString(),
@@ -81,7 +83,7 @@ export async function createBooking(
     },
   });
 
-  return mapBooking({ ...booking, review: null });
+  return mapBooking({ ...booking, review: null, reminderSentAt: null });
 }
 
 export async function listBookings(): Promise<BookingRecord[]> {
