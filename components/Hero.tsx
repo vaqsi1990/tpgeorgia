@@ -67,6 +67,7 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       ref={sectionRef}
       className="relative w-full overflow-x-hidden"
       aria-roledescription="carousel"

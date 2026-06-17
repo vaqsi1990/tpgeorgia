@@ -22,7 +22,7 @@ export default async function WhyUs() {
   return (
     <ParallaxSection
       tone="mint"
-      className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24"
+      className="bg-white px-4 py-16 sm:px-6 sm:py-18 lg:px-10 lg:py-18"
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader title={t("title")} />

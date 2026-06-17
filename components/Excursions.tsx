@@ -15,7 +15,7 @@ export default async function Excursions({ excursions }: ExcursionsProps) {
     <ParallaxSection
       id="excursions"
       tone="warm"
-      className="bg-white px-4 pb-20 text-black sm:px-6 lg:px-10"
+      className="bg-white px-4 mb-20 text-black sm:px-6 lg:px-10"
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader title={t("title")} description={t("description")} />

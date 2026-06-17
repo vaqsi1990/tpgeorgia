@@ -3,6 +3,11 @@
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { Link, usePathname } from "@/i18n/navigation";
 import { business } from "@/lib/site";
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useState, useSyncExternalStore } from "react";
@@ -12,7 +17,7 @@ import type { IconType } from "react-icons";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 const navLinkClass =
-  "text-black whitespace-nowrap font-figtree text-[15px] md:text-[18px] font-medium transition-opacity hover:opacity-70";
+  "text-black whitespace-nowrap font-figtree text-[16px] md:text-[18px] font-semibold transition-opacity hover:opacity-70";
 
 function SchoolExcursionsNavItem({
   label,
@@ -115,7 +120,7 @@ const tourDestinations = [
 ] as const;
 
 const dropdownItemClass =
-  "block rounded-lg px-4 py-2.5 text-[15px] font-medium text-black transition-colors hover:bg-brand/5 md:text-[16px]";
+  "block rounded-lg px-4 py-2.5 text-[16px] font-semibold text-black transition-colors hover:bg-brand/5 md:text-[18px]";
 
 const socialLinks: {
   name: string;
@@ -185,6 +190,7 @@ function getDesktopMediaQueryServerSnapshot() {
 export default function Header() {
   const t = useTranslations("Header");
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const isDesktop = useSyncExternalStore(
     subscribeToDesktopMediaQuery,
     getDesktopMediaQuerySnapshot,
@@ -193,6 +199,52 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileToursOpen, setMobileToursOpen] = useState(false);
   const [mobileExcursionsOpen, setMobileExcursionsOpen] = useState(false);
+  const [heroHeight, setHeroHeight] = useState(0);
+  const [maxTopPadding, setMaxTopPadding] = useState(16);
+
+  const { scrollY } = useScroll();
+
+  const paddingTop = useTransform(
+    scrollY,
+    isHome && heroHeight > 0 ? [0, heroHeight] : [0, 1],
+    isHome && heroHeight > 0
+      ? [maxTopPadding, 0]
+      : [maxTopPadding, maxTopPadding],
+  );
+
+  useEffect(() => {
+    const updateMaxTopPadding = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        setMaxTopPadding(24);
+      } else if (window.matchMedia("(min-width: 640px)").matches) {
+        setMaxTopPadding(20);
+      } else {
+        setMaxTopPadding(16);
+      }
+    };
+
+    updateMaxTopPadding();
+    window.addEventListener("resize", updateMaxTopPadding);
+    return () => window.removeEventListener("resize", updateMaxTopPadding);
+  }, []);
+
+  useEffect(() => {
+    if (!isHome) {
+      setHeroHeight(0);
+      return;
+    }
+
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    const measure = () => setHeroHeight(hero.offsetHeight);
+    measure();
+
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(hero);
+
+    return () => resizeObserver.disconnect();
+  }, [isHome, pathname]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -223,7 +275,10 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 w-full px-3 pt-4 sm:px-4 sm:pt-5 lg:px-5 lg:pt-6">
+    <motion.header
+      className={`fixed top-0 right-0 left-0 z-50 w-full px-3 sm:px-4 lg:px-5 ${isHome ? "" : "pt-3 sm:pt-4"}`}
+      style={isHome ? { paddingTop } : undefined}
+    >
       <div className="mx-auto w-full overflow-visible rounded-[2.5rem] bg-white/80 shadow-[0_8px_32px_rgba(15,79,79,0.12)] backdrop-blur-sm">
         <div className="flex items-center justify-between gap-4 px-5 py-3.5 sm:px-8 sm:py-4 lg:px-10">
          
@@ -235,7 +290,7 @@ export default function Header() {
               alt={t("logoAlt")}
               width={220}
               height={76}
-              className="h-14 w-auto object-contain sm:h-16 lg:h-[72px]"
+              className="h-14 w-auto object-contain sm:h-16 lg:h-[84px]"
               priority
             />
           </Link>
@@ -524,6 +579,6 @@ export default function Header() {
             document.body,
           )
         : null}
-    </header>
+    </motion.header>
   );
 }
