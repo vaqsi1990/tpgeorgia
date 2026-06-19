@@ -50,7 +50,7 @@ export default function TourCard({
         </span>
       ) : null}
 
-      <div className="flex shrink-0 items-center justify-between rounded-t-2xl bg-[#38ab8a] px-5 py-3 sm:px-6">
+      <div className="flex shrink-0 items-center justify-between rounded-t-2xl bg-[#DC2626] px-5 py-3 sm:px-6">
         <span className="font-afacad text-lg font-semibold text-white/90">
           {String(index + 1).padStart(2, "0")}
         </span>
@@ -65,7 +65,7 @@ export default function TourCard({
         <h3 className="font-afacad mb-1 text-xl font-semibold leading-snug text-black">
           {content.title}
         </h3>
-        <p className="mb-2 text-[15px] font-medium text-[#38ab8a] md:text-[16px]">
+        <p className="mb-2 text-[15px] font-medium text-[#DC2626] md:text-[16px]">
           {content.routeLabel}
         </p>
         {content.subtitle ? (
@@ -105,7 +105,7 @@ export default function TourCard({
                   className="flex items-start gap-2 text-[16px] text-black/80 md:text-[18px]"
                 >
                   <span
-                    className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"
+                    className="mt-2 size-2 shrink-0 rounded-full bg-[#DC2626] ring-[3px] ring-[#DC2626]/25"
                     aria-hidden
                   />
                   <span>{item}</span>
@@ -118,7 +118,7 @@ export default function TourCard({
         <button
           type="button"
           onClick={onOpenDetails}
-          className={`w-full cursor-pointer rounded-xl border border-black bg-[#38ab8a] py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
+          className={`w-full cursor-pointer rounded-xl border border-black bg-[#DC2626] py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
             stretchCard ? "mt-auto" : "mt-4"
           }`}
         >

@@ -266,7 +266,7 @@ export default function ExcursionForm({
         <button
           type="submit"
           disabled={saving}
-          className="rounded-xl bg-[#38ab8a] px-6 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="rounded-xl bg-[#DC2626] px-6 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           {saving ? "ინახება…" : isEditing ? "ექსკურსიის განახლება" : "ექსკურსიის შექმნა"}
         </button>

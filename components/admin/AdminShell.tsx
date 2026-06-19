@@ -58,7 +58,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                 href={item.href}
                 className={`shrink-0 rounded-lg px-3 py-2 text-[16px] font-medium transition-colors md:text-[18px] ${
                   active
-                    ? "bg-[#38ab8a] text-white"
+                    ? "bg-[#DC2626] text-white"
                     : "text-black/70 hover:bg-brand/5"
                 }`}
               >

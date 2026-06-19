@@ -11,7 +11,7 @@ type WhatsAppBookButtonProps = {
 };
 
 const baseClassName =
-  "flex w-full items-center justify-center gap-2 rounded-xl border border-[#25D366]/40 bg-[#25D366]/10 py-3.5 text-[16px] font-medium text-[#128C7E] transition-all hover:bg-[#25D366]/20 md:text-[18px]";
+  "flex w-full items-center justify-center gap-2 rounded-xl border border-[#DC2626]/40 bg-[#DC2626]/10 py-3.5 text-[16px] font-medium text-[#DC2626] transition-all hover:bg-[#DC2626]/20 md:text-[18px]";
 
 export default function WhatsAppBookButton({
   itemTitle,

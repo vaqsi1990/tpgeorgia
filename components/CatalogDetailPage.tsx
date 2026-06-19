@@ -106,9 +106,9 @@ export default function CatalogDetailPage({
 
         <aside className="lg:sticky lg:top-28 lg:self-start">
           <div className="overflow-hidden rounded-[1.75rem] border border-[#38ab8a]/20 bg-gradient-to-br from-white via-white to-[#38ab8a]/[0.06] shadow-[0_12px_48px_rgba(15,79,79,0.1)]">
-            <div className="border-b border-[#38ab8a]/15 bg-[#38ab8a]/[0.08] px-5 py-4 sm:px-6">
+            <div className="border-b border-[#991B1B] bg-[#DC2626] px-5 py-4 sm:px-6">
               {priceItem ? (
-                <p className="font-afacad text-2xl font-semibold text-[#0f4f4f] sm:text-[28px]">
+                <p className="font-afacad text-2xl font-semibold text-white sm:text-[28px]">
                   {priceItem.value}
                 </p>
               ) : null}
@@ -133,7 +133,7 @@ export default function CatalogDetailPage({
             <div className="space-y-3 p-5 sm:p-6">
               <Link
                 href={bookHref}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#38ab8a] py-3.5 text-[16px] md:text-[18px] font-medium text-white shadow-[0_4px_20px_rgba(56,171,138,0.35)] transition-all hover:bg-[#2f9a7c] hover:shadow-[0_6px_28px_rgba(56,171,138,0.4)]"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#DC2626] py-3.5 text-[16px] md:text-[18px] font-medium text-white shadow-[0_4px_20px_rgba(56,171,138,0.35)] transition-all hover:bg-[#DC2626] hover:shadow-[0_6px_28px_rgba(56,171,138,0.4)]"
               >
                 {bookLabel}
                 <svg

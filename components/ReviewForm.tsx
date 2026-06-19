@@ -64,11 +64,11 @@ export default function ReviewForm({
 
   if (success) {
     return (
-      <div className="rounded-2xl border border-[#38ab8a]/30 bg-[#38ab8a]/10 px-6 py-8 text-center">
-        <p className="font-afacad text-2xl font-semibold text-[#0f4f4f]">
+      <div className="rounded-2xl border border-[#991B1B] bg-[#DC2626] px-6 py-8 text-center">
+        <p className="font-afacad text-2xl font-semibold text-white">
           {t("submitSuccessTitle")}
         </p>
-        <p className="mt-2 text-[16px] text-black/75 md:text-[18px]">
+        <p className="mt-2 text-[16px] text-white/75 md:text-[18px]">
           {t("submitSuccessMessage")}
         </p>
       </div>
@@ -78,9 +78,9 @@ export default function ReviewForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_8px_32px_rgba(15,79,79,0.08)] sm:p-8"
+      className="rounded-2xl border border-[#991B1B] bg-[#DC2626] p-6 shadow-[0_8px_32px_rgba(15,79,79,0.08)] sm:p-8"
     >
-      <p className="mb-6 text-[16px] text-black/70 md:text-[18px]">
+      <p className="mb-6 text-[16px] text-white md:text-[18px]">
         {t("formIntro", { program: itemTitle })}
       </p>
 
@@ -140,7 +140,7 @@ export default function ReviewForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex w-full items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[16px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
+        className="inline-flex w-full items-center justify-center rounded-xl bg-[#DC2626] px-6 py-3 text-[16px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
       >
         {isSubmitting ? t("submittingButton") : t("submitButton")}
       </button>

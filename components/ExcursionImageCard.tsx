@@ -110,7 +110,7 @@ export default function ExcursionImageCard({
                   className="flex items-start gap-2 text-[16px] text-black/80 md:text-[18px]"
                 >
                   <span
-                    className="mt-2 size-2 shrink-0 rounded-full bg-[#38ab8a] ring-[3px] ring-[#38ab8a]/25"
+                    className="mt-2 size-2 shrink-0 rounded-full bg-[#DC2626] ring-[3px] ring-[#DC2626]/25"
                     aria-hidden
                   />
                   <span>{item}</span>
@@ -122,7 +122,7 @@ export default function ExcursionImageCard({
 
         <Link
           href={href}
-          className={`w-full rounded-xl border border-black bg-[#38ab8a] py-2.5 text-center text-[16px] font-medium text-white transition-colors hover:bg-[#2f9a7c] md:text-[18px] ${
+          className={`w-full rounded-xl border border-[#991B1B] bg-[#DC2626] py-2.5 text-center text-[16px] font-medium text-white transition-colors  md:text-[18px] ${
             stretchCard ? "mt-auto" : ""
           }`}
         >

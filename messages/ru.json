@@ -145,11 +145,20 @@
     }
   },
   "WhyUs": {
-    "title": "Чем отличаются наши туры?",
-    "items": {
-      "experience": "Более 12 лет опыта",
-      "guides": "Местные опытные гиды",
-      "whatsapp": "Поддержка в WhatsApp"
+    "title": "Почему мы?",
+    "stats": {
+      "tours": {
+        "value": "2000+",
+        "label": "организованных туров"
+      },
+      "participants": {
+        "value": "3000+",
+        "label": "участников"
+      },
+      "experience": {
+        "value": "12+",
+        "label": "лет опыта"
+      }
     }
   },
   "About": {

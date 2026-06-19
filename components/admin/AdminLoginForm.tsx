@@ -69,7 +69,7 @@ export default function AdminLoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-xl bg-[#38ab8a] py-2.5 text-[15px] font-medium text-white disabled:opacity-60"
+        className="w-full rounded-xl bg-[#DC2626] py-2.5 text-[15px] font-medium text-white disabled:opacity-60"
       >
         {loading ? "შესვლა…" : "შესვლა"}
       </button>

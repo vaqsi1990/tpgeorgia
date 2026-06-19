@@ -45,8 +45,8 @@ export default async function HomePage({ params }: Props) {
       <WhyUs />
       <Tours tours={tours} reviewStats={reviewStats} />
       <Excursions excursions={excursions} reviewStats={reviewStats} />
-      <Reviews reviews={reviews} />
       <Contact tours={tours} excursions={excursions} />
+     
     </>
   );
 }

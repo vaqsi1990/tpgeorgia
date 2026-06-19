@@ -93,11 +93,11 @@ export default function BookingForm({
   if (submitState === "success") {
     return (
       <div className="space-y-5 py-4">
-        <div className="rounded-2xl border border-[#38ab8a]/20 bg-[#38ab8a]/10 px-5 py-6 text-center">
-          <p className="font-afacad text-xl font-semibold text-[#0f4f4f]">
+        <div className="rounded-2xl border border-[#991B1B] bg-[#DC2626] px-5 py-6 text-center">
+          <p className="font-afacad text-xl font-semibold text-white">
             {t("successTitle")}
           </p>
-          <p className="mt-2 text-[16px] leading-relaxed text-black md:text-[18px]">
+          <p className="mt-2 text-[16px] leading-relaxed text-white md:text-[18px]">
             {t("successMessage")}
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function BookingForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.06] px-4 py-3">
+      <div className="rounded-2xl border border-[#991B1B] bg-[#DC2626] px-4 py-3">
         <p className="text-[16px] font-semibold uppercase tracking-wide text-[#0f4f4f]/70">
           {bookingType === "tour" ? t("selectedTour") : t("selectedExcursion")}
         </p>
@@ -264,7 +264,7 @@ export default function BookingForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`rounded-xl bg-[#38ab8a] py-3 text-[16px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px] ${onBack ? "flex-1" : "w-full"}`}
+          className={`rounded-xl bg-[#DC2626] py-3 text-[16px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px] ${onBack ? "flex-1" : "w-full"}`}
         >
           {isSubmitting ? t("submittingButton") : t("submitButton")}
         </button>

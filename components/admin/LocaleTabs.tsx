@@ -17,7 +17,7 @@ export default function LocaleTabs({ active, onChange }: LocaleTabsProps) {
           onClick={() => onChange(locale)}
           className={`rounded-lg px-3 py-1.5 text-[16px] font-medium transition-colors md:text-[18px] ${
             active === locale
-              ? "bg-[#38ab8a] text-white"
+              ? "bg-[#DC2626] text-white"
               : "border border-black/10 bg-white text-black hover:bg-brand/5"
           }`}
         >

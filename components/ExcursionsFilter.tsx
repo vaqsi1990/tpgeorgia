@@ -22,7 +22,7 @@ type ExcursionsFilterProps = {
 const optionClass = (isActive: boolean) =>
   `w-full rounded-xl border px-4 py-2.5 text-left text-[14px] font-medium transition-colors md:text-[15px] ${
     isActive
-      ? "border-[#38ab8a] bg-[#38ab8a] text-white shadow-[0_4px_16px_rgba(56,171,138,0.2)]"
+      ? "border-[#DC2626] bg-[#DC2626] text-white shadow-[0_4px_16px_rgba(56,171,138,0.2)]"
       : "border-black/10 bg-white text-black hover:border-[#38ab8a]/40 hover:bg-brand/5"
   }`;
 
@@ -129,7 +129,7 @@ export default function ExcursionsFilter({
           </h2>
           {hasActiveExcursionFilters(filters) && !isExpanded ? (
             <span
-              className="size-2 shrink-0 rounded-full bg-[#38ab8a]"
+              className="size-2 shrink-0 rounded-full bg-[#DC2626]"
               aria-hidden
             />
           ) : null}
@@ -152,7 +152,7 @@ export default function ExcursionsFilter({
           <button
             type="button"
             onClick={() => onChange(defaultExcursionFilters)}
-            className="shrink-0 text-[15px] font-medium text-[#38ab8a] underline-offset-2 transition-opacity hover:underline hover:opacity-80 md:text-[14px]"
+            className="shrink-0 text-[15px] font-medium text-[#DC2626] underline-offset-2 transition-opacity hover:underline hover:opacity-80 md:text-[14px]"
           >
             {t("filterClear")}
           </button>

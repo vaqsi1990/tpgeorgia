@@ -87,7 +87,7 @@ export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 onClick={() => emblaApi?.scrollTo(index)}
                 className={`h-2 rounded-full transition-all ${
                   index === selectedIndex
-                    ? "w-6 bg-[#38ab8a]"
+                    ? "w-6 bg-[#DC2626]"
                     : "w-2 bg-black/20 hover:bg-black/35"
                 }`}
               />

@@ -244,7 +244,7 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
       {submitState === "success" ? (
         <p
           role="status"
-          className="rounded-xl border border-[#38ab8a]/20 bg-[#38ab8a]/10 px-4 py-3 text-[15px] text-black"
+          className="rounded-xl border border-[#991B1B] bg-[#DC2626] px-4 py-3 text-[15px] text-white"
         >
           {t("submitSuccess")}
         </p>
@@ -262,7 +262,7 @@ export default function ContactForm({ tours, excursions }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex items-center justify-center rounded-xl bg-[#38ab8a] px-6 py-3 text-[16px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
+        className="inline-flex items-center justify-center rounded-xl bg-[#DC2626] px-6 py-3 text-[16px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
       >
         {isSubmitting ? t("submittingButton") : t("submitButton")}
       </button>

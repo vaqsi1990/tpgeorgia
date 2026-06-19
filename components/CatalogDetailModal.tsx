@@ -162,7 +162,7 @@ export default function CatalogDetailModal({
                 <button
                   type="button"
                   onClick={onBook}
-                  className="w-full rounded-xl bg-[#38ab8a] py-3.5 text-[16px] font-medium text-white transition-opacity hover:opacity-90"
+                  className="w-full rounded-xl bg-[#DC2626] py-3.5 text-[16px] font-medium text-white transition-opacity hover:opacity-90"
                 >
                   {bookLabel}
                 </button>

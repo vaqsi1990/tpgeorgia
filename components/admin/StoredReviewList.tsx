@@ -147,7 +147,7 @@ export default function StoredReviewList({
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div className="min-w-0 flex-1 space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-[#38ab8a]/10 px-3 py-1 text-[16px] font-semibold uppercase tracking-wide text-[#0f4f4f]">
+                  <span className="rounded-full bg-[#DC2626]/10 px-3 py-1 text-[16px] font-semibold uppercase tracking-wide text-[#0f4f4f]">
                     {review.itemType === "tour" ? "ტური" : "ექსკურსია"}
                   </span>
                   <span
@@ -174,7 +174,7 @@ export default function StoredReviewList({
                 </div>
 
                 {isEditing && editDraft ? (
-                  <div className="space-y-4 rounded-xl border border-[#38ab8a]/25 bg-[#38ab8a]/5 p-4">
+                  <div className="space-y-4 rounded-xl border border-[#DC2626]/25 bg-[#DC2626]/5 p-4">
                     <label className="block">
                       <span className="mb-1.5 block text-[16px] font-medium text-black md:text-[18px]">
                         სახელი
@@ -191,7 +191,7 @@ export default function StoredReviewList({
                               : draft,
                           )
                         }
-                        className="w-full rounded-xl border border-black/15 bg-white px-4 py-3 text-[16px] outline-none ring-[#38ab8a] focus:ring-2 md:text-[18px]"
+                        className="w-full rounded-xl border border-black/15 bg-white px-4 py-3 text-[16px] outline-none ring-[#DC2626] focus:ring-2 md:text-[18px]"
                       />
                     </label>
 
@@ -224,7 +224,7 @@ export default function StoredReviewList({
                             draft ? { ...draft, text: e.target.value } : draft,
                           )
                         }
-                        className="w-full resize-y rounded-xl border border-black/15 bg-white px-4 py-3 text-[16px] outline-none ring-[#38ab8a] focus:ring-2 md:text-[18px]"
+                        className="w-full resize-y rounded-xl border border-black/15 bg-white px-4 py-3 text-[16px] outline-none ring-[#DC2626] focus:ring-2 md:text-[18px]"
                       />
                     </label>
 
@@ -233,7 +233,7 @@ export default function StoredReviewList({
                         type="button"
                         disabled={isBusy}
                         onClick={() => handleSaveEdit(review.id)}
-                        className="rounded-xl bg-[#38ab8a] px-4 py-2.5 text-[16px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60 md:text-[18px]"
+                        className="rounded-xl bg-[#DC2626] px-4 py-2.5 text-[16px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60 md:text-[18px]"
                       >
                         {isBusy ? "ინახება..." : "შენახვა"}
                       </button>
@@ -291,7 +291,7 @@ export default function StoredReviewList({
                     type="button"
                     disabled={isBusy || editingId !== null}
                     onClick={() => startEditing(review)}
-                    className="rounded-xl border border-[#0f4f4f]/20 bg-[#0f4f4f]/5 px-4 py-2.5 text-[16px] font-medium text-[#0f4f4f] transition-colors hover:bg-[#0f4f4f]/10 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
+                    className="rounded-xl border border-[#DC2626] bg-[#DC2626] px-4 py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#DC2626]/20 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
                   >
                     რედაქტირება
                   </button>

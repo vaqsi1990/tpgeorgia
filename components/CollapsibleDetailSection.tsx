@@ -31,7 +31,7 @@ export default function CollapsibleDetailSection({
       >
         <span className="font-afacad flex min-w-0 items-center gap-3 text-xl font-semibold text-[#0f4f4f] sm:text-[22px]">
           <span
-            className="h-6 w-1 shrink-0 rounded-full bg-[#38ab8a]"
+            className="h-6 w-1 shrink-0 rounded-full bg-[#DC2626]"
             aria-hidden
           />
           <span className="min-w-0">{title}</span>

@@ -68,7 +68,7 @@ const ImageUploadForProduct = ({ onChange, value }: ImageUploadProps): React.JSX
           appearance={{
             container: "w-full",
             button:
-              "w-full min-w-[280px] whitespace-nowrap bg-[#38ab8a] px-8 py-3 text-center text-[16px] font-bold text-white hover:opacity-90 ut-ready:bg-[#38ab8a] ut-uploading:bg-[#38ab8a]/80 md:text-[18px]",
+              "w-full min-w-[280px] whitespace-nowrap bg-[#DC2626] px-8 py-3 text-center text-[16px] font-bold text-white hover:opacity-90 ut-ready:bg-[#DC2626] ut-uploading:bg-[#DC2626]/80 md:text-[18px]",
             allowedContent: "mt-2 text-[16px] text-black",
           }}
         />

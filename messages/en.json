@@ -145,11 +145,20 @@
     }
   },
   "WhyUs": {
-    "title": "What sets our tours apart?",
-    "items": {
-      "experience": "12+ years of experience",
-      "guides": "Local Experienced Guides",
-      "whatsapp": "WhatsApp Support"
+    "title": "Why us?",
+    "stats": {
+      "tours": {
+        "value": "2000+",
+        "label": "organized tours"
+      },
+      "participants": {
+        "value": "3000+",
+        "label": "participants"
+      },
+      "experience": {
+        "value": "12+",
+        "label": "years of experience"
+      }
     }
   },
   "About": {

@@ -3,17 +3,14 @@ import SectionHeader from "@/components/SectionHeader";
 import WhyUsGrid from "@/components/WhyUsGrid";
 import { getTranslations } from "next-intl/server";
 
-const itemKeys = [
-  "experience",
-  "guides",
-  "whatsapp",
-] as const;
+const statKeys = ["tours", "participants", "experience"] as const;
 
 export default async function WhyUs() {
   const t = await getTranslations("WhyUs");
-  const items = itemKeys.map((key) => ({
+  const items = statKeys.map((key) => ({
     key,
-    text: t(`items.${key}`),
+    value: t(`stats.${key}.value`),
+    label: t(`stats.${key}.label`),
   }));
 
   return (

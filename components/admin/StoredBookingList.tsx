@@ -166,7 +166,7 @@ export default function StoredBookingList({
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0 flex-1 space-y-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-[#38ab8a]/10 px-3 py-1 text-[16px] font-semibold uppercase tracking-wide text-[#0f4f4f] ">
+                <span className="rounded-full bg-[#DC2626]/10 px-3 py-1 text-[16px] font-semibold uppercase tracking-wide text-[#0f4f4f] ">
                   {booking.bookingType === "tour" ? "ტური" : "ექსკურსია"}
                 </span>
                 <span
@@ -282,7 +282,7 @@ export default function StoredBookingList({
                     sendingReviewId === booking.id || updatingId === booking.id
                   }
                   onClick={() => handleSendReviewRequest(booking.id)}
-                  className="rounded-xl border border-[#0f4f4f]/20 bg-[#38ab8a]/10 px-4 py-2.5 text-[16px] font-medium text-[#0f4f4f] transition-colors hover:bg-[#38ab8a]/20 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
+                  className="rounded-xl border border-[#DC2626] bg-[#DC2626] px-4 py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#DC2626]/20 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
                 >
                   {sendingReviewId === booking.id
                     ? "იგზავნება..."
@@ -303,7 +303,7 @@ export default function StoredBookingList({
                     sendingReminderId === booking.id || updatingId === booking.id
                   }
                   onClick={() => handleSendReminder(booking.id)}
-                  className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-2.5 text-[16px] font-medium text-blue-900 transition-colors hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
+                  className="rounded-xl border border-[#DC2626] bg-[#DC2626] px-4 py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#DC2626]/20 disabled:cursor-not-allowed disabled:opacity-60 md:text-[18px]"
                 >
                   {sendingReminderId === booking.id
                     ? "იგზავნება..."

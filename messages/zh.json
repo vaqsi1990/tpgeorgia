@@ -145,11 +145,20 @@
     }
   },
   "WhyUs": {
-    "title": "我们的旅行有何特色？",
-    "items": {
-      "experience": "12 年以上经验",
-      "guides": "当地资深导游",
-      "whatsapp": "WhatsApp 客服支持"
+    "title": "为什么选择我们？",
+    "stats": {
+      "tours": {
+        "value": "2000+",
+        "label": "场组织旅行"
+      },
+      "participants": {
+        "value": "3000+",
+        "label": "位参与者"
+      },
+      "experience": {
+        "value": "12+",
+        "label": "年经验"
+      }
     }
   },
   "About": {

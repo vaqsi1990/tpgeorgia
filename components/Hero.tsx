@@ -133,7 +133,7 @@ export default function Hero() {
           <FadeUp delay={300}>
             <Link
               href="/#contact"
-              className="pointer-events-auto inline-flex items-center justify-center rounded-xl  bg-[#38ab8a] px-8 py-3 text-[18px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-colors hover:bg-[#2f9a7c] md:text-[20px]"
+              className="pointer-events-auto inline-flex items-center justify-center rounded-xl  bg-[#DC2626] px-8 py-3 text-[18px] font-medium text-white shadow-[0_4px_16px_rgba(56,171,138,0.25)] transition-colors hover:bg-[#2f9a7c] md:text-[20px]"
             >
               {t("cta")}
             </Link>

@@ -87,7 +87,7 @@ export function AdminCreateLink({
   return (
     <Link
       href={href}
-      className="inline-flex rounded-xl bg-[#38ab8a] px-5 py-2.5 text-[16px] font-medium text-white hover:opacity-90 md:text-[18px]"
+      className="inline-flex rounded-xl bg-[#DC2626] px-5 py-2.5 text-[16px] font-medium text-white hover:opacity-90 md:text-[18px]"
     >
       {children}
     </Link>

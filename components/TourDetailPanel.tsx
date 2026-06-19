@@ -31,7 +31,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
               key={`${tourId}-outline-${index}`}
               className="flex items-start gap-4 rounded-2xl border border-black/6 bg-[#fafcfb] px-4 py-3.5 sm:px-5"
             >
-              <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-sm font-semibold text-white">
+              <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#DC2626] text-sm font-semibold text-white">
                 {index + 1}
               </span>
               <span className="pt-1 text-[16px] leading-relaxed text-black md:text-[18px]">
@@ -63,7 +63,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
                       className="relative overflow-hidden rounded-2xl border border-black/8 bg-[#fafcfb] py-4 pl-5 pr-4 sm:pl-6 sm:pr-5"
                     >
                       <span
-                        className="absolute inset-y-3 left-0 w-1 rounded-full bg-[#38ab8a]"
+                        className="absolute inset-y-3 left-0 w-1 rounded-full bg-[#DC2626]"
                         aria-hidden
                       />
                       {day.label ? (
@@ -92,10 +92,10 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
           {content.includes.map((item, index) => (
             <li
               key={`${tourId}-include-${index}`}
-              className="flex items-start gap-3 rounded-2xl border border-[#38ab8a]/15 bg-[#38ab8a]/[0.05] px-4 py-3 text-[15px] md:text-[18px] text-black"
+              className="flex items-start gap-3 rounded-2xl border border-[#991B1B] bg-[#DC2626] px-4 py-3 text-[15px] md:text-[18px] text-black"
             >
               <span
-                className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#38ab8a] text-[11px] text-white"
+                className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#DC2626] text-[11px] text-white"
                 aria-hidden
               >
                 ✓
@@ -116,10 +116,10 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
             {content.highlights.map((item, index) => (
               <li
                 key={`${tourId}-highlight-${index}`}
-                className="flex items-start gap-3 rounded-2xl border border-amber-200/80 bg-amber-50/60 px-4 py-3 text-[15px] md:text-[18px] text-black"
+                className="flex items-start gap-3 rounded-2xl border border-[#991B1B] bg-[#DC2626] px-4 py-3 text-[15px] md:text-[18px] text-black"
               >
                 <span
-                  className="mt-2 size-2 shrink-0 rounded-full bg-amber-400"
+                  className="mt-2 size-2 shrink-0 rounded-full bg-[#DC2626]"
                   aria-hidden
                 />
                 {item}
@@ -130,7 +130,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
       ) : null}
 
       {content.clothingNote ? (
-        <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.02] px-5 py-4 text-[15px] italic leading-relaxed text-black/70">
+          <p className="rounded-2xl border border-dashed border-[#991B1B] bg-[#DC2626] px-5 py-4 text-[15px] italic leading-relaxed text-white">
           {t("clothingNote", { note: content.clothingNote })}
         </p>
       ) : null}
