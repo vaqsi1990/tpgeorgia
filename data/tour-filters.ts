@@ -3,7 +3,13 @@ import {
   toursByDestination,
   type TourDestination,
 } from "@/data/tour-destinations";
-import { tourMeta, type TourDurationKey, type TourId, type TourMeta } from "@/data/tours";
+import {
+  tourIds,
+  tourMeta,
+  type TourDurationKey,
+  type TourId,
+  type TourMeta,
+} from "@/data/tours";
 
 export type TourDestinationFilter = TourDestination | "all";
 export type TourDurationFilter = "all" | "short" | "longDay" | "multiDay";
@@ -49,6 +55,58 @@ const multiDayDurations = new Set<TourDurationKey>([
   "2nights3days",
   "11nights12days",
 ]);
+
+const cityTourIds = new Set<TourId>(["eveningCity"]);
+
+const tourCatalogOrder = new Map<TourId, number>(
+  tourIds.map((id, index) => [id, index]),
+);
+
+type TourDisplaySortable = {
+  id: string;
+  meta: { durationKey: TourDurationKey | string };
+  createdAt?: string;
+};
+
+function getTourDisplayGroup(tour: TourDisplaySortable): number {
+  if (cityTourIds.has(tour.id as TourId)) {
+    return 0;
+  }
+
+  if (multiDayDurations.has(tour.meta.durationKey as TourDurationKey)) {
+    return 2;
+  }
+
+  return 1;
+}
+
+export function compareToursForDisplay(
+  a: TourDisplaySortable,
+  b: TourDisplaySortable,
+): number {
+  const groupDiff = getTourDisplayGroup(a) - getTourDisplayGroup(b);
+  if (groupDiff !== 0) {
+    return groupDiff;
+  }
+
+  const orderA = tourCatalogOrder.get(a.id as TourId) ?? Number.MAX_SAFE_INTEGER;
+  const orderB = tourCatalogOrder.get(b.id as TourId) ?? Number.MAX_SAFE_INTEGER;
+  if (orderA !== orderB) {
+    return orderA - orderB;
+  }
+
+  if (a.createdAt && b.createdAt) {
+    return b.createdAt.localeCompare(a.createdAt);
+  }
+
+  return 0;
+}
+
+export function sortToursForDisplay<T extends TourDisplaySortable>(
+  tours: T[],
+): T[] {
+  return [...tours].sort(compareToursForDisplay);
+}
 
 const tourDestinationById = new Map<TourId, TourDestination>(
   tourDestinationIds.flatMap((destination) =>

@@ -6,6 +6,7 @@ import { getTourCoverImage } from "@/lib/catalog-images";
 import {
   defaultTourFilters,
   matchesStoredTourFilters,
+  sortToursForDisplay,
   type TourFilters,
 } from "@/data/tour-filters";
 import type { TourMeta } from "@/data/tours";
@@ -49,9 +50,9 @@ export default function ToursList({
   const items = useMemo(() => {
     const appLocale = locale as AppLocale;
 
-    return initialTours
-      .filter((stored) => matchesStoredTourFilters(stored, filters))
-      .map((stored, storedIndex) => ({
+    return sortToursForDisplay(
+      initialTours.filter((stored) => matchesStoredTourFilters(stored, filters)),
+    ).map((stored, storedIndex) => ({
         tour: { id: stored.id, ...stored.meta } as TourMeta,
         content: stored.content[appLocale] ?? stored.content.ka,
         imageSrc: getTourCoverImage(stored.images, storedIndex),
