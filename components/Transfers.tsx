@@ -10,7 +10,7 @@ export default async function Transfers() {
     <ParallaxSection
       id="transfers"
       tone="mint"
-      className="bg-white px-4 pt-4 pb-6 text-black sm:px-6 sm:pt-5 sm:pb-8 lg:px-10"
+      className="relative overflow-hidden bg-gradient-to-b from-white via-[#f0faf7] to-white px-4 pt-4 pb-6 text-black sm:px-6 sm:pt-5 sm:pb-8 lg:px-10"
     >
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader

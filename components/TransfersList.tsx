@@ -7,52 +7,128 @@ import {
   transferRoutes,
   type TransferAirport,
 } from "@/data/transfers";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import type { IconType } from "react-icons";
+import {
+  FaClock,
+  FaHandshake,
+  FaShieldHalved,
+  FaTag,
+} from "react-icons/fa6";
+import { MdFlight } from "react-icons/md";
 
-function AirportSection({ airport }: { airport: TransferAirport }) {
-  const t = useTranslations("Transfers");
-  const reducedMotion = useReducedMotion();
+const featureKeys = ["fixedPrice", "onTime", "comfort", "support"] as const;
+
+const featureIcons: Record<(typeof featureKeys)[number], IconType> = {
+  fixedPrice: FaTag,
+  onTime: FaClock,
+  comfort: FaShieldHalved,
+  support: FaHandshake,
+};
+
+const tabTransition = {
+  duration: 0.3,
+  ease: [0.22, 1, 0.36, 1] as const,
+};
+
+function RouteGrid({
+  airport,
+  reducedMotion,
+}: {
+  airport: TransferAirport;
+  reducedMotion: boolean | null;
+}) {
   const routes = transferRoutes.filter((route) => route.airport === airport);
+  const listClassName = "grid gap-5 sm:grid-cols-2";
 
-  const listClassName = "grid gap-5 sm:grid-cols-2 xl:grid-cols-2";
+  if (reducedMotion) {
+    return (
+      <ul className={listClassName}>
+        {routes.map((route) => (
+          <li key={route.id}>
+            <TransferRouteCard route={route} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   return (
-    <section className="mb-10 last:mb-0 sm:mb-12">
-      
-      {reducedMotion ? (
-        <ul className={listClassName}>
-          {routes.map((route) => (
-            <li key={route.id}>
-              <TransferRouteCard route={route} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <motion.ul
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.08 }}
-          className={listClassName}
-        >
-          {routes.map((route) => (
-            <motion.li key={route.id} variants={staggerItem}>
-              <TransferRouteCard route={route} />
-            </motion.li>
-          ))}
-        </motion.ul>
-      )}
-    </section>
+    <motion.ul
+      key={airport}
+      variants={staggerContainer}
+      initial="hidden"
+      animate="show"
+      className={listClassName}
+    >
+      {routes.map((route) => (
+        <motion.li key={route.id} variants={staggerItem}>
+          <TransferRouteCard route={route} />
+        </motion.li>
+      ))}
+    </motion.ul>
   );
 }
 
 export default function TransfersList() {
+  const t = useTranslations("Transfers");
+  const reducedMotion = useReducedMotion();
+  const [activeAirport, setActiveAirport] = useState<TransferAirport>("batumi");
+
   return (
-    <div>
-      {transferAirports.map((airport) => (
-        <AirportSection key={airport} airport={airport} />
-      ))}
+    <div className="space-y-6 sm:space-y-8">
+   
+
+      <div
+        role="tablist"
+        aria-label={t("selectAirport")}
+        className="relative flex rounded-2xl border border-black/10 bg-black/[0.03] p-1.5"
+      >
+        {transferAirports.map((airport) => {
+          const isActive = activeAirport === airport;
+          return (
+            <button
+              key={airport}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setActiveAirport(airport)}
+              className={`relative z-10 flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-3 text-[14px] font-semibold transition-colors sm:px-4 sm:py-3.5 sm:text-[16px] ${
+                isActive ? "text-white" : "text-black "
+              }`}
+            >
+              {isActive && !reducedMotion ? (
+                <motion.span
+                  layoutId="transfer-airport-tab"
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#0f4f4f] to-[#38ab8a] shadow-[0_4px_16px_rgba(15,79,79,0.25)]"
+                  transition={tabTransition}
+                />
+              ) : isActive ? (
+                <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#0f4f4f] to-[#38ab8a]" />
+              ) : null}
+              <MdFlight
+                className={`relative size-4 sm:size-5 ${isActive ? "rotate-45" : ""}`}
+                aria-hidden
+              />
+              <span className="relative truncate">{t(`groups.${airport}`)}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeAirport}
+          initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reducedMotion ? undefined : { opacity: 0, y: -8 }}
+          transition={tabTransition}
+        >
+          <RouteGrid airport={activeAirport} reducedMotion={reducedMotion} />
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

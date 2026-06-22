@@ -314,7 +314,28 @@
     "title": "Transfers",
     "description": "Comfortable airport transfers to all major destinations in Georgia. Choose your vehicle type and contact us to book.",
     "price": "{price} GEL",
+    "fromPrice": "from",
+    "routeTo": "to",
+    "bestValue": "Top",
+    "selectAirport": "Select airport",
     "bookCta": "Book now",
+    "features": {
+      "fixedPrice": "Fixed price",
+      "onTime": "On-time pickup",
+      "comfort": "Comfortable vehicles",
+      "support": "24/7 support"
+    },
+    "destinations": {
+      "batumi": "Batumi",
+      "kobuleti": "Kobuleti",
+      "ureki": "Ureki",
+      "tbilisi": "Tbilisi"
+    },
+    "vehicleSeats": {
+      "sedan": "1–3 seats",
+      "minivan": "4–7 seats",
+      "sprinter": "8+ seats"
+    },
     "vehicles": {
       "sedan": "Sedan",
       "minivan": "Minivan",

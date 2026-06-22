@@ -314,7 +314,28 @@
     "title": "接送服务",
     "description": "舒适的机场接送服务，覆盖格鲁吉亚所有主要目的地。选择车型后联系我们预订。",
     "price": "{price} ₾",
+    "fromPrice": "起",
+    "routeTo": "目的地",
+    "bestValue": "热门",
+    "selectAirport": "选择机场",
     "bookCta": "立即预订",
+    "features": {
+      "fixedPrice": "固定价格",
+      "onTime": "准时接机",
+      "comfort": "舒适车辆",
+      "support": "全天候支持"
+    },
+    "destinations": {
+      "batumi": "巴统",
+      "kobuleti": "科布列季",
+      "ureki": "乌雷基",
+      "tbilisi": "第比利斯"
+    },
+    "vehicleSeats": {
+      "sedan": "1–3 座",
+      "minivan": "4–7 座",
+      "sprinter": "8+ 座"
+    },
     "vehicles": {
       "sedan": "轿车",
       "minivan": "商务车",
