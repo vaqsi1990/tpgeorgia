@@ -71,6 +71,11 @@ export const transferRoutes: TransferRoute[] = [
   },
 ];
 
+export const transferRoutesByAirport = {
+  batumi: transferRoutes.filter((route) => route.airport === "batumi"),
+  kutaisi: transferRoutes.filter((route) => route.airport === "kutaisi"),
+} satisfies Record<TransferAirport, TransferRoute[]>;
+
 export const transferAirports: TransferAirport[] = ["batumi", "kutaisi"];
 
 export const transferVehicles: TransferVehicle[] = ["sedan", "minivan", "sprinter"];
