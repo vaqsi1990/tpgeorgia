@@ -1,6 +1,6 @@
 "use client";
 
-import { getTourCoverImage } from "@/lib/catalog-images";
+import CatalogCardHeroImage from "@/components/CatalogCardHeroImage";
 import type { ItemReviewStats } from "@/lib/review-stats-types";
 import type { ExcursionContent } from "@/data/excursion-content/ka";
 import type { ExcursionMeta } from "@/data/excursions";
@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 type ExcursionImageCardProps = {
   excursion: ExcursionMeta;
   content: ExcursionContent;
-  imageSrc: string;
+  images: string[];
   index: number;
   stretchCard: boolean;
   href: string;
@@ -22,7 +22,7 @@ type ExcursionImageCardProps = {
 export default function ExcursionImageCard({
   excursion,
   content,
-  imageSrc,
+  images,
   index,
   stretchCard,
   href,
@@ -57,12 +57,7 @@ export default function ExcursionImageCard({
       ) : null}
 
       <Link href={href} className="relative block aspect-[4/3] shrink-0 overflow-hidden">
-        <img
-          src={imageSrc || getTourCoverImage([], index)}
-          alt={content.title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        <CatalogCardHeroImage images={images} alt={content.title} index={index} />
         <div
           className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"
           aria-hidden

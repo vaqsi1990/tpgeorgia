@@ -2,7 +2,6 @@
 
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
 import TourImageCard from "@/components/TourImageCard";
-import { getTourCoverImage } from "@/lib/catalog-images";
 import {
   defaultTourFilters,
   matchesStoredTourFilters,
@@ -52,10 +51,10 @@ export default function ToursList({
 
     return sortToursForDisplay(
       initialTours.filter((stored) => matchesStoredTourFilters(stored, filters)),
-    ).map((stored, storedIndex) => ({
+    ).map((stored) => ({
         tour: { id: stored.id, ...stored.meta } as TourMeta,
         content: stored.content[appLocale] ?? stored.content.ka,
-        imageSrc: getTourCoverImage(stored.images, storedIndex),
+        images: stored.images,
       }));
   }, [filters, locale, initialTours]);
 
@@ -77,7 +76,7 @@ export default function ToursList({
         key={item.tour.id}
         tour={item.tour}
         content={item.content}
-        imageSrc={item.imageSrc}
+        images={item.images}
         index={index}
         stretchCard={isReady}
         href={`/tours/${item.tour.id}`}
@@ -113,7 +112,7 @@ export default function ToursList({
                 <TourImageCard
                   tour={item.tour}
                   content={item.content}
-                  imageSrc={item.imageSrc}
+                  images={item.images}
                   index={index}
                   stretchCard={isReady}
                   href={`/tours/${item.tour.id}`}

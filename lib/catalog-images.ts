@@ -4,7 +4,13 @@ export const CATALOG_FALLBACK_IMAGES = [
   "/images/3.png",
 ] as const;
 
+export function getValidCatalogImages(images: string[]): string[] {
+  return images.filter((url) => url && url.trim() !== "");
+}
+
 export function getTourCoverImage(images: string[], index: number): string {
-  const cover = images.find((url) => url && url.trim() !== "");
-  return cover ?? CATALOG_FALLBACK_IMAGES[index % CATALOG_FALLBACK_IMAGES.length];
+  const validImages = getValidCatalogImages(images);
+  return (
+    validImages[0] ?? CATALOG_FALLBACK_IMAGES[index % CATALOG_FALLBACK_IMAGES.length]
+  );
 }

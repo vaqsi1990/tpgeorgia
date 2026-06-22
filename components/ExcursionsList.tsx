@@ -2,7 +2,6 @@
 
 import ExcursionImageCard from "@/components/ExcursionImageCard";
 import { staggerContainer, staggerItem } from "@/components/motionPresets";
-import { getTourCoverImage } from "@/lib/catalog-images";
 import {
   defaultExcursionFilters,
   matchesStoredExcursionFilters,
@@ -51,10 +50,10 @@ export default function ExcursionsList({
 
     return initialExcursions
       .filter((stored) => matchesStoredExcursionFilters(stored, filters))
-      .map((stored, storedIndex) => ({
+      .map((stored) => ({
         excursion: { id: stored.id, ...stored.meta } as ExcursionMeta,
         content: stored.content[appLocale] ?? stored.content.ka,
-        imageSrc: getTourCoverImage(stored.images, storedIndex),
+        images: stored.images,
       }));
   }, [filters, locale, initialExcursions]);
 
@@ -76,7 +75,7 @@ export default function ExcursionsList({
         key={item.excursion.id}
         excursion={item.excursion}
         content={item.content}
-        imageSrc={item.imageSrc}
+        images={item.images}
         index={index}
         stretchCard={isReady}
         href={`/excursions/${item.excursion.id}`}
@@ -116,7 +115,7 @@ export default function ExcursionsList({
                 <ExcursionImageCard
                   excursion={item.excursion}
                   content={item.content}
-                  imageSrc={item.imageSrc}
+                  images={item.images}
                   index={index}
                   stretchCard={isReady}
                   href={`/excursions/${item.excursion.id}`}

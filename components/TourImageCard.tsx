@@ -1,8 +1,8 @@
 "use client";
 
+import CatalogCardHeroImage from "@/components/CatalogCardHeroImage";
 import type { TourContent } from "@/data/tour-content";
 import type { TourMeta } from "@/data/tours";
-import { CATALOG_FALLBACK_IMAGES } from "@/lib/catalog-images";
 import type { ItemReviewStats } from "@/lib/review-stats-types";
 import { Link } from "@/i18n/navigation";
 import StarRating from "@/components/StarRating";
@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 type TourImageCardProps = {
   tour: TourMeta;
   content: TourContent;
-  imageSrc: string;
+  images: string[];
   index: number;
   stretchCard: boolean;
   href: string;
@@ -22,7 +22,7 @@ type TourImageCardProps = {
 export default function TourImageCard({
   tour,
   content,
-  imageSrc,
+  images,
   index,
   stretchCard,
   href,
@@ -61,12 +61,7 @@ export default function TourImageCard({
       ) : null}
 
       <Link href={href} className="relative block aspect-[4/3] shrink-0 overflow-hidden">
-        <img
-          src={imageSrc || CATALOG_FALLBACK_IMAGES[index % CATALOG_FALLBACK_IMAGES.length]}
-          alt={content.title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        <CatalogCardHeroImage images={images} alt={content.title} index={index} />
         <div
           className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"
           aria-hidden
