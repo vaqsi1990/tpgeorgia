@@ -1,7 +1,7 @@
 export type ContactInquiryPayload = {
   name: string;
   email: string;
-  inquiryType: "tour" | "excursion";
+  inquiryType: "tour" | "excursion" | "transfer";
   itemId: string;
   itemTitle: string;
   subject: string;
@@ -19,7 +19,7 @@ export function parseContactInquiryPayload(
   const record = body as Record<string, unknown>;
   const inquiryType = record.inquiryType;
 
-  if (inquiryType !== "tour" && inquiryType !== "excursion") {
+  if (inquiryType !== "tour" && inquiryType !== "excursion" && inquiryType !== "transfer") {
     return null;
   }
 

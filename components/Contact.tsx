@@ -1,6 +1,7 @@
 import ContactForm, { type ContactCatalogOption } from "@/components/ContactForm";
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
+import { transferRoutes } from "@/data/transfers";
 import type { AppLocale } from "@/i18n/routing";
 import type { StoredExcursionRecord, StoredTourRecord } from "@/lib/admin-types";
 import { business } from "@/lib/site";
@@ -29,6 +30,14 @@ type ContactProps = {
 export default async function Contact({ tours, excursions }: ContactProps) {
   const locale = (await getLocale()) as AppLocale;
   const t = await getTranslations("Contact");
+  const tTransfers = await getTranslations("Transfers");
+
+  const transferOptions: ContactCatalogOption[] = transferRoutes
+    .map((route) => ({
+      id: route.id,
+      title: tTransfers(`routes.${route.routeKey}`),
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title, locale));
 
   return (
     <ParallaxSection
@@ -96,6 +105,7 @@ export default async function Contact({ tours, excursions }: ContactProps) {
             <ContactForm
               tours={mapCatalogOptions(tours, locale)}
               excursions={mapCatalogOptions(excursions, locale)}
+              transfers={transferOptions}
             />
           </div>
         </div>
