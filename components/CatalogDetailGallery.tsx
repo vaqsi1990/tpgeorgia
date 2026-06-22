@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { GalleryLightbox } from "@/components/GalleryLightbox";
+import { useTranslations } from "next-intl";
 
 type CatalogDetailGalleryProps = {
   images: string[];
@@ -11,6 +12,83 @@ type CatalogDetailGalleryProps = {
   isPopular?: boolean;
 };
 
+type GridImageCellProps = {
+  src: string;
+  alt: string;
+  index: number;
+  onOpen: (index: number) => void;
+  className?: string;
+  overlay?: React.ReactNode;
+  priority?: boolean;
+};
+
+function GridImageCell({
+  src,
+  alt,
+  index,
+  onOpen,
+  className = "",
+  overlay,
+  priority = false,
+}: GridImageCellProps) {
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(index)}
+      aria-label={alt}
+      className={`group relative min-h-[120px] overflow-hidden bg-[#f3f4f4] ${className}`}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+      />
+      <span
+        className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10"
+        aria-hidden
+      />
+      {overlay}
+    </button>
+  );
+}
+
+function TitleOverlay({
+  title,
+  subtitle,
+  popularLabel,
+  isPopular,
+}: {
+  title: string;
+  subtitle?: string;
+  popularLabel?: string;
+  isPopular?: boolean;
+}) {
+  return (
+    <>
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 sm:p-7 md:p-8">
+        {isPopular && popularLabel ? (
+          <span className="mb-3 inline-flex rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black shadow-sm sm:text-[11px]">
+            {popularLabel}
+          </span>
+        ) : null}
+        <h1 className="font-afacad max-w-4xl text-left text-[26px] font-semibold leading-[1.15] text-white sm:text-[2.25rem] md:text-[2.75rem]">
+          {title}
+        </h1>
+        {subtitle ? (
+          <p className="mt-2 max-w-2xl text-left text-[15px] font-medium text-white/88 sm:text-[17px] md:text-lg">
+            {subtitle}
+          </p>
+        ) : null}
+      </div>
+    </>
+  );
+}
+
 export default function CatalogDetailGallery({
   images,
   imageAlt,
@@ -19,67 +97,101 @@ export default function CatalogDetailGallery({
   popularLabel,
   isPopular = false,
 }: CatalogDetailGalleryProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeImage = images[activeIndex] ?? images[0];
+  const t = useTranslations("Gallery");
+
+  const galleryImages = images.map((src, index) => ({
+    id: index,
+    src,
+    alt: `${imageAlt} ${index + 1}`,
+  }));
+
+  const thumbs = galleryImages.slice(1, 5);
+  const photoCountLabel = t("hero.photoCount", { count: galleryImages.length });
 
   return (
-    <div className="space-y-3">
-      <div className="relative overflow-hidden rounded-[1.75rem] shadow-[0_20px_60px_rgba(15,79,79,0.14)] sm:rounded-[2rem]">
-        <div className="relative aspect-[4/3] min-h-[240px] sm:aspect-[16/9] sm:min-h-[320px] md:min-h-[400px]">
-          <img
-            key={activeImage}
-            src={activeImage}
-            alt={`${imageAlt} ${activeIndex + 1}`}
-            loading="eager"
-            className="h-full w-full object-cover transition-opacity duration-300"
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/5"
-            aria-hidden
-          />
-          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8 md:p-10">
-            {isPopular && popularLabel ? (
-              <span className="mb-3 inline-flex rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black shadow-sm sm:text-[11px]">
-                {popularLabel}
-              </span>
-            ) : null}
-            <h1 className="font-afacad max-w-4xl text-[26px] font-semibold leading-[1.15] text-white sm:text-[2.25rem] md:text-[2.75rem]">
-              {title}
-            </h1>
-            {subtitle ? (
-              <p className="mt-2 max-w-2xl text-[15px] font-medium text-white/88 sm:text-[17px] md:text-lg">
-                {subtitle}
-              </p>
-            ) : null}
-          </div>
-        </div>
-      </div>
-
-      {images.length > 1 ? (
-        <div className="gallery-scroll-x flex gap-2 overflow-x-auto pb-1 sm:gap-3">
-          {images.map((src, index) => (
-            <button
-              key={`${src}-${index}`}
-              type="button"
-              onClick={() => setActiveIndex(index)}
-              aria-label={`${imageAlt} ${index + 1}`}
-              aria-current={index === activeIndex}
-              className={`relative h-16 w-24 shrink-0 snap-start overflow-hidden rounded-xl transition-all sm:h-20 sm:w-28 ${
-                index === activeIndex
-                  ? "ring-2 ring-[#38ab8a] ring-offset-2"
-                  : "opacity-70 hover:opacity-100"
-              }`}
-            >
-              <img
-                src={src}
-                alt=""
-                loading="lazy"
-                className="h-full w-full object-cover"
+    <GalleryLightbox
+      images={galleryImages}
+      closeLabel={t("lightbox.close")}
+      prevLabel={t("lightbox.prev")}
+      nextLabel={t("lightbox.next")}
+      counterLabel={(current, total) =>
+        t("lightbox.counter", { current, total })
+      }
+    >
+      {(open) => {
+        if (galleryImages.length === 1) {
+          return (
+            <div className="overflow-hidden rounded-[1.75rem] shadow-[0_20px_60px_rgba(15,79,79,0.14)] sm:rounded-[2rem]">
+              <GridImageCell
+                src={galleryImages[0].src}
+                alt={galleryImages[0].alt}
+                index={0}
+                onOpen={open}
+                priority
+                className="aspect-[4/3] min-h-[240px] w-full sm:aspect-[16/9] sm:min-h-[320px] md:min-h-[400px]"
+                overlay={
+                  <TitleOverlay
+                    title={title}
+                    subtitle={subtitle}
+                    popularLabel={popularLabel}
+                    isPopular={isPopular}
+                  />
+                }
               />
-            </button>
-          ))}
-        </div>
-      ) : null}
-    </div>
+            </div>
+          );
+        }
+
+        const photoCountOverlay = (
+          <span className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[13px] font-semibold text-black shadow-[0_4px_16px_rgba(0,0,0,0.12)] sm:bottom-4 sm:right-4 sm:px-4 sm:py-2 sm:text-[14px]">
+            {photoCountLabel}
+            <span aria-hidden>›</span>
+          </span>
+        );
+
+        return (
+          <div className="overflow-hidden rounded-[1.75rem] shadow-[0_20px_60px_rgba(15,79,79,0.14)] sm:rounded-[2rem]">
+            <div className="flex flex-col gap-1 md:aspect-[16/10] md:min-h-[360px] md:flex-row">
+              <GridImageCell
+                src={galleryImages[0].src}
+                alt={galleryImages[0].alt}
+                index={0}
+                onOpen={open}
+                priority
+                className="aspect-[4/3] w-full md:aspect-auto md:min-h-0 md:w-1/2 md:flex-1"
+                overlay={
+                  <TitleOverlay
+                    title={title}
+                    subtitle={subtitle}
+                    popularLabel={popularLabel}
+                    isPopular={isPopular}
+                  />
+                }
+              />
+
+              {thumbs.length > 0 ? (
+                <div className="grid grid-cols-2 grid-rows-2 gap-1 md:w-1/2 md:flex-1">
+                  {thumbs.map((image, thumbIndex) => {
+                    const isLastVisible = thumbIndex === thumbs.length - 1;
+
+                    return (
+                      <GridImageCell
+                        key={image.id}
+                        src={image.src}
+                        alt={image.alt}
+                        index={thumbIndex + 1}
+                        onOpen={open}
+                        className="aspect-[4/3] md:aspect-auto md:min-h-0"
+                        overlay={isLastVisible ? photoCountOverlay : undefined}
+                      />
+                    );
+                  })}
+                </div>
+              ) : null}
+            </div>
+          </div>
+        );
+      }}
+    </GalleryLightbox>
   );
 }
