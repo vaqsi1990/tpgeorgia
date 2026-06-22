@@ -199,7 +199,7 @@ export async function listTours(): Promise<StoredTourRecord[]> {
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
-    images: parseImages(tour.images),
+    images: tour.images,
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   }));
@@ -222,7 +222,7 @@ export async function getTourById(id: string): Promise<StoredTourRecord | null> 
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
-    images: parseImages(tour.images),
+    images: tour.images,
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   };
@@ -260,7 +260,7 @@ export async function createTour(input: StoredTourInput): Promise<StoredTourReco
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
-    images: parseImages(tour.images),
+    images: tour.images,
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   };
@@ -314,7 +314,7 @@ export async function updateTour(
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
     },
-    images: parseImages(tour.images),
+    images: tour.images,
     content: buildTourContentMap(tour.translations),
     createdAt: tour.createdAt.toISOString(),
   };

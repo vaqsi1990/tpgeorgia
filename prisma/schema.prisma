@@ -30,7 +30,7 @@ model Tour {
   startTime   String?
   popular     Boolean          @default(false)
   /// string[] — image URLs
-  images      Json             @default("[]")
+  images      String[]         @default([])
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 
