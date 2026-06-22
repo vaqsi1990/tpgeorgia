@@ -306,6 +306,34 @@
     "alreadySubmittedTitle": "评价已提交",
     "alreadySubmittedMessage": "我们已收到此预订的评价。谢谢！"
   },
+  "Transfers": {
+    "metadata": {
+      "title": "接送服务",
+      "description": "机场接送至巴统、库塔伊西、科布列季、乌雷基和第比利斯。轿车、商务车和 Sprinter。"
+    },
+    "title": "接送服务",
+    "description": "舒适的机场接送服务，覆盖格鲁吉亚所有主要目的地。选择车型后联系我们预订。",
+    "price": "{price} ₾",
+    "bookCta": "立即预订",
+    "vehicles": {
+      "sedan": "轿车",
+      "minivan": "商务车",
+      "sprinter": "Sprinter"
+    },
+    "groups": {
+      "batumi": "巴统机场",
+      "kutaisi": "库塔伊西机场"
+    },
+    "routes": {
+      "batumiAirportBatumi": "巴统机场 → 巴统",
+      "batumiAirportKobuleti": "巴统机场 → 科布列季",
+      "batumiAirportUreki": "巴统机场 → 乌雷基",
+      "batumiAirportTbilisi": "巴统机场 → 第比利斯",
+      "kutaisiAirportKobuleti": "库塔伊西机场 → 科布列季",
+      "kutaisiAirportBatumi": "库塔伊西机场 → 巴统",
+      "kutaisiAirportTbilisi": "库塔伊西机场 → 第比利斯"
+    }
+  },
   "Footer": {
     "description": "格鲁吉亚难忘之旅与学校研学——地道路线、持证导游与可靠组织服务。",
     "siteNav": "网站导航",
@@ -330,6 +358,7 @@
         "tbilisi": "第比利斯",
         "kutaisi": "库塔伊西"
       },
+      "transfers": "接送服务",
       "gallery": "画廊",
       "reviews": "评价",
       "schoolExcursions": "学校游学",

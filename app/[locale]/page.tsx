@@ -3,6 +3,7 @@ import Excursions from "@/components/Excursions";
 import Hero from "@/components/Hero";
 import Reviews from "@/components/Reviews";
 import Tours from "@/components/Tours";
+import Transfers from "@/components/Transfers";
 import WhyUs from "@/components/WhyUs";
 import type { AppLocale } from "@/i18n/routing";
 import { listExcursions, listTours } from "@/lib/catalog-db";
@@ -45,6 +46,7 @@ export default async function HomePage({ params }: Props) {
       <WhyUs />
       <Tours tours={tours} reviewStats={reviewStats} />
       <Excursions excursions={excursions} reviewStats={reviewStats} />
+      <Transfers />
       <Contact tours={tours} excursions={excursions} />
      
     </>

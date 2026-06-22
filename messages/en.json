@@ -306,6 +306,34 @@
     "alreadySubmittedTitle": "Review already submitted",
     "alreadySubmittedMessage": "We have already received a review for this booking. Thank you!"
   },
+  "Transfers": {
+    "metadata": {
+      "title": "Transfers",
+      "description": "Airport transfers to Batumi, Kutaisi, Kobuleti, Ureki and Tbilisi. Sedan, minivan and Sprinter options."
+    },
+    "title": "Transfers",
+    "description": "Comfortable airport transfers to all major destinations in Georgia. Choose your vehicle type and contact us to book.",
+    "price": "{price} GEL",
+    "bookCta": "Book now",
+    "vehicles": {
+      "sedan": "Sedan",
+      "minivan": "Minivan",
+      "sprinter": "Sprinter"
+    },
+    "groups": {
+      "batumi": "Batumi Airport",
+      "kutaisi": "Kutaisi Airport"
+    },
+    "routes": {
+      "batumiAirportBatumi": "Batumi Airport → Batumi",
+      "batumiAirportKobuleti": "Batumi Airport → Kobuleti",
+      "batumiAirportUreki": "Batumi Airport → Ureki",
+      "batumiAirportTbilisi": "Batumi Airport → Tbilisi",
+      "kutaisiAirportKobuleti": "Kutaisi Airport → Kobuleti",
+      "kutaisiAirportBatumi": "Kutaisi Airport → Batumi",
+      "kutaisiAirportTbilisi": "Kutaisi Airport → Tbilisi"
+    }
+  },
   "Footer": {
     "description": "Unforgettable tours and school excursions across Georgia authentic routes, certified guides, and reliable organization.",
     "siteNav": "Site",
@@ -330,6 +358,7 @@
         "tbilisi": "Tbilisi",
         "kutaisi": "Kutaisi"
       },
+      "transfers": "Transfers",
       "gallery": "Gallery",
       "reviews": "Reviews",
       "schoolExcursions": "School Excursions",

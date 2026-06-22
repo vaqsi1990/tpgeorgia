@@ -483,11 +483,10 @@ export default function Header({
             <Link href="/gallery" className={navLinkClass}>
               {t("nav.gallery")}
             </Link>
-            {featuredReviews.length > 0 ? (
-              <Link href="/#reviews" className={navLinkClass}>
-                {t("nav.reviews")}
-              </Link>
-            ) : null}
+            <Link href="/#transfers" className={navLinkClass}>
+              {t("nav.transfers")}
+            </Link>
+           
             <SchoolExcursionsNavItem label={t("nav.schoolExcursions")} />
             <Link href="/#contact" className={navLinkClass}>
               {t("nav.contact")}
@@ -664,6 +663,13 @@ export default function Header({
                     className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
                   >
                     {t("nav.gallery")}
+                  </Link>
+                  <Link
+                    href="/#transfers"
+                    onClick={() => setMobileOpen(false)}
+                    className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                  >
+                    {t("nav.transfers")}
                   </Link>
                   {featuredReviews.length > 0 ? (
                     <Link

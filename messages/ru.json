@@ -306,6 +306,34 @@
     "alreadySubmittedTitle": "Отзыв уже отправлен",
     "alreadySubmittedMessage": "Мы уже получили отзыв по этому бронированию. Спасибо!"
   },
+  "Transfers": {
+    "metadata": {
+      "title": "Трансферы",
+      "description": "Трансферы из аэропортов в Батуми, Кутаиси, Кобулети, Уреки и Тбилиси. Седан, минивэн и Sprinter."
+    },
+    "title": "Трансферы",
+    "description": "Комфортные трансферы из аэропортов во все основные направления Грузии. Выберите тип автомобиля и свяжитесь с нами для бронирования.",
+    "price": "{price} ₾",
+    "bookCta": "Забронировать",
+    "vehicles": {
+      "sedan": "Седан",
+      "minivan": "Минивэн",
+      "sprinter": "Sprinter"
+    },
+    "groups": {
+      "batumi": "Аэропорт Батуми",
+      "kutaisi": "Аэропорт Кутаиси"
+    },
+    "routes": {
+      "batumiAirportBatumi": "Аэропорт Батуми → Батуми",
+      "batumiAirportKobuleti": "Аэропорт Батуми → Кобулети",
+      "batumiAirportUreki": "Аэропорт Батуми → Уреки",
+      "batumiAirportTbilisi": "Аэропорт Батуми → Тбилиси",
+      "kutaisiAirportKobuleti": "Аэропорт Кутаиси → Кобулети",
+      "kutaisiAirportBatumi": "Аэропорт Кутаиси → Батуми",
+      "kutaisiAirportTbilisi": "Аэропорт Кутаиси → Тбилиси"
+    }
+  },
   "Footer": {
     "description": "Незабываемые туры и школьные экскурсии по Грузии аутентичные маршруты, сертифицированные гиды и надёжная организация.",
     "siteNav": "Сайт",
@@ -330,6 +358,7 @@
         "tbilisi": "Тбилиси",
         "kutaisi": "Кутаиси"
       },
+      "transfers": "Трансферы",
       "gallery": "Галерея",
       "reviews": "Отзывы",
       "schoolExcursions": "Школьные экскурсии",
