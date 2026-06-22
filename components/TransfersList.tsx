@@ -41,7 +41,7 @@ function RouteGrid({
   reducedMotion: boolean | null;
 }) {
   const routes = transferRoutes.filter((route) => route.airport === airport);
-  const listClassName = "grid gap-5 sm:grid-cols-2";
+  const listClassName = "grid items-stretch gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6";
 
   if (reducedMotion) {
     return (
@@ -84,7 +84,7 @@ export default function TransfersList() {
       <div
         role="tablist"
         aria-label={t("selectAirport")}
-        className="relative flex rounded-2xl border border-black/10 bg-black/[0.03] p-1.5"
+        className="relative flex flex-col gap-1.5 rounded-2xl border border-black/10 bg-black/[0.03] p-1.5 sm:flex-row"
       >
         {transferAirports.map((airport) => {
           const isActive = activeAirport === airport;
@@ -95,7 +95,7 @@ export default function TransfersList() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveAirport(airport)}
-              className={`relative z-10 flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-3 text-[14px] font-semibold transition-colors sm:px-4 sm:py-3.5 sm:text-[16px] ${
+              className={`relative z-10 flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-2.5 text-[13px] font-semibold transition-colors min-[400px]:gap-2 min-[400px]:px-3 min-[400px]:py-3 min-[400px]:text-[14px] sm:px-4 sm:py-3.5 sm:text-[16px] ${
                 isActive ? "text-white" : "text-black "
               }`}
             >
