@@ -45,8 +45,8 @@ export default async function ExcursionsPage() {
           reviewStats={reviewStats}
         />
 
-        <FadeUp trigger="load" delay={120}>
-          <div className="mt-14 w-full overflow-hidden rounded-2xl shadow-[0_4px_24px_rgba(15,79,79,0.06)] sm:mt-16">
+        <FadeUp trigger="load" delay={120} className="flex justify-center">
+          <div className="mt-14 w-fit max-w-full overflow-hidden rounded-2xl bg-black/[0.03] shadow-[0_4px_24px_rgba(15,79,79,0.06)] sm:mt-16">
             <video
               src="/IMG_8984.MP4"
               autoPlay
@@ -55,7 +55,7 @@ export default async function ExcursionsPage() {
               loop
               preload="auto"
               aria-label={t("videoAlt")}
-              className="h-40 w-full object-cover sm:h-48 md:h-[700px]"
+              className="max-h-48 w-auto max-w-full object-contain sm:max-h-64 md:max-h-[480px]"
             />
           </div>
         </FadeUp>

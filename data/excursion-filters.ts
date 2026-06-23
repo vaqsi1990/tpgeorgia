@@ -1,8 +1,15 @@
 import {
+  excursionIds,
   excursionMeta,
   type DurationKey,
+  type ExcursionId,
   type ExcursionMeta,
 } from "@/data/excursions";
+import {
+  getItemReviewStats,
+  isAutoTopRated,
+  type ReviewStatsRecord,
+} from "@/lib/review-stats-types";
 
 export type ExcursionDurationFilter = "all" | "short" | "longDay" | "multiDay";
 export type ExcursionGradeFilter = "all" | "vToViii" | "viToXii" | "ixToXii";
@@ -151,5 +158,63 @@ export function hasActiveExcursionFilters(
     filters.grade !== baseline.grade ||
     filters.priceMin !== baseline.priceMin ||
     filters.priceMax !== baseline.priceMax
+  );
+}
+
+const excursionCatalogOrder = new Map<ExcursionId, number>(
+  excursionIds.map((id, index) => [id, index]),
+);
+
+type ExcursionDisplaySortable = {
+  id: string;
+  meta: { popular?: boolean };
+  createdAt?: string;
+};
+
+function isTopExcursion(
+  excursion: ExcursionDisplaySortable,
+  reviewStats?: ReviewStatsRecord,
+): boolean {
+  if (excursion.meta.popular) {
+    return true;
+  }
+
+  return isAutoTopRated(
+    getItemReviewStats(reviewStats, "excursion", excursion.id),
+  );
+}
+
+export function compareExcursionsForDisplay(
+  a: ExcursionDisplaySortable,
+  b: ExcursionDisplaySortable,
+  reviewStats?: ReviewStatsRecord,
+): number {
+  const topDiff =
+    Number(isTopExcursion(b, reviewStats)) - Number(isTopExcursion(a, reviewStats));
+  if (topDiff !== 0) {
+    return topDiff;
+  }
+
+  const orderA =
+    excursionCatalogOrder.get(a.id as ExcursionId) ?? Number.MAX_SAFE_INTEGER;
+  const orderB =
+    excursionCatalogOrder.get(b.id as ExcursionId) ?? Number.MAX_SAFE_INTEGER;
+  if (orderA !== orderB) {
+    return orderA - orderB;
+  }
+
+  if (a.createdAt && b.createdAt) {
+    return b.createdAt.localeCompare(a.createdAt);
+  }
+
+  return 0;
+}
+
+export function sortExcursionsForDisplay<T extends ExcursionDisplaySortable>(
+  excursions: T[],
+  reviewStats?: ReviewStatsRecord,
+): T[] {
+  return [...excursions].sort((a, b) =>
+    compareExcursionsForDisplay(a, b, reviewStats),
   );
 }

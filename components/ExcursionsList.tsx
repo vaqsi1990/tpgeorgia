@@ -5,6 +5,7 @@ import { staggerContainer, staggerItem } from "@/components/motionPresets";
 import {
   defaultExcursionFilters,
   matchesStoredExcursionFilters,
+  sortExcursionsForDisplay,
   type ExcursionFilters,
 } from "@/data/excursion-filters";
 import type { ExcursionMeta } from "@/data/excursions";
@@ -48,14 +49,17 @@ export default function ExcursionsList({
   const items = useMemo(() => {
     const appLocale = locale as AppLocale;
 
-    return initialExcursions
-      .filter((stored) => matchesStoredExcursionFilters(stored, filters))
-      .map((stored) => ({
+    return sortExcursionsForDisplay(
+      initialExcursions.filter((stored) =>
+        matchesStoredExcursionFilters(stored, filters),
+      ),
+      reviewStats,
+    ).map((stored) => ({
         excursion: { id: stored.id, ...stored.meta } as ExcursionMeta,
         content: stored.content[appLocale] ?? stored.content.ka,
         images: stored.images,
       }));
-  }, [filters, locale, initialExcursions]);
+  }, [filters, locale, initialExcursions, reviewStats]);
 
   const visibleItems = limit !== undefined ? items.slice(0, limit) : items;
   const hiddenCount =
