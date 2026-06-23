@@ -699,24 +699,22 @@ export default function Header({
                   </Link>
                 </nav>
 
-                <div className="border-t border-black px-5 py-5">
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex gap-1">
-                        {socialLinks.map(({ name, href, Icon, colorClass }) => (
-                          <a
-                            key={name}
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={name}
-                            className="flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-80"
-                          >
-                            <Icon className={`h-7 w-7 ${colorClass}`} aria-hidden />
-                          </a>
-                        ))}
-                      </div>
-                      <LocaleSwitcher variant="header" />
+                <div className="border-t border-black/10 px-5 py-5">
+                  <div className="flex flex-col gap-4">
+                    <LocaleSwitcher variant="mobile" />
+                    <div className="flex items-center gap-1">
+                      {socialLinks.map(({ name, href, Icon, colorClass }) => (
+                        <a
+                          key={name}
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={name}
+                          className="flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-80"
+                        >
+                          <Icon className={`h-7 w-7 ${colorClass}`} aria-hidden />
+                        </a>
+                      ))}
                     </div>
                     <a
                       href={`tel:${business.phone}`}
