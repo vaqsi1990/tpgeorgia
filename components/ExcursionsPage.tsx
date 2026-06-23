@@ -1,4 +1,5 @@
 import ExcursionsPageContent from "@/components/ExcursionsPageContent";
+import ExcursionsVideoPlayer from "@/components/ExcursionsVideoPlayer";
 import FadeUp from "@/components/FadeUp";
 import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxSection from "@/components/ParallaxSection";
@@ -45,18 +46,13 @@ export default async function ExcursionsPage() {
           reviewStats={reviewStats}
         />
 
-        <FadeUp trigger="load" delay={120} className="flex justify-center">
-          <div className="mt-14 w-fit max-w-full overflow-hidden rounded-2xl bg-black/[0.03] shadow-[0_4px_24px_rgba(15,79,79,0.06)] sm:mt-16">
-            <video
-              src="/IMG_8984.MP4"
-              autoPlay
-              muted
-              playsInline
-              loop
-              preload="auto"
-              aria-label={t("videoAlt")}
-              className="max-h-48 w-auto max-w-full object-contain sm:max-h-64 md:max-h-[480px]"
-            />
+        <FadeUp
+          trigger="load"
+          delay={120}
+          className="mt-14 flex justify-center sm:mt-16"
+        >
+          <div className="aspect-[9/16] w-full max-w-sm overflow-hidden rounded-[1.75rem] shadow-[0_20px_60px_rgba(15,79,79,0.14)] sm:max-w-md sm:rounded-[2rem]">
+            <ExcursionsVideoPlayer ariaLabel={t("videoAlt")} />
           </div>
         </FadeUp>
       </div>
