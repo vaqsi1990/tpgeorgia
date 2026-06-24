@@ -6,7 +6,9 @@ import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
 import { listExcursions } from "@/lib/catalog-db";
 import { getPublishedReviewStatsRecord } from "@/lib/review-db";
+import { business } from "@/lib/site";
 import { getTranslations } from "next-intl/server";
+import { FaFacebook } from "react-icons/fa";
 
 export default async function ExcursionsPage() {
   const [t, excursions, reviewStats] = await Promise.all([
@@ -34,13 +36,24 @@ export default async function ExcursionsPage() {
           />
         </FadeUp>
 
-        <SectionHeader
-          as="h1"
-          trigger="load"
-          title={t("title")}
-          description={t("description")}
-        />
-
+        <div className="mb-6 flex items-start justify-center gap-3 sm:mb-8 sm:gap-4">
+          <SectionHeader
+            as="h1"
+            trigger="load"
+            title={t("title")}
+            description={t("description")}
+            className="mb-0 max-w-md"
+          />
+          <a
+            href={business.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="mt-1 shrink-0 transition-opacity hover:opacity-80 sm:mt-2"
+          >
+            <FaFacebook className="text-3xl text-[#1877F2] sm:text-4xl" />
+          </a>
+        </div>
         <ExcursionsPageContent
           initialExcursions={excursions}
           reviewStats={reviewStats}

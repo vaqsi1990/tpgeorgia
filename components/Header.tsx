@@ -232,7 +232,7 @@ const socialLinks: {
 }[] = [
   {
     name: "Facebook",
-    href: "https://www.facebook.com/profile.php?id=61583758856391",
+    href: "https://www.facebook.com/profile.php?id=61591168508430",
     Icon: FaFacebook,
     colorClass: "text-[#1877F2]",
   },
