@@ -17,7 +17,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 import type { IconType } from "react-icons";
-import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 const navLinkClass =
   "text-black whitespace-nowrap font-figtree text-[16px] md:text-[18px] font-semibold transition-opacity hover:opacity-70";
@@ -241,6 +241,12 @@ const socialLinks: {
     href: business.instagram,
     Icon: FaInstagram,
     colorClass: "text-[#E4405F]",
+  },
+  {
+    name: "TikTok",
+    href: business.tiktok,
+    Icon: FaTiktok,
+    colorClass: "text-black",
   },
   {
     name: "Whatsapp",

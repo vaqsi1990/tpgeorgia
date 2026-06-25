@@ -13,6 +13,7 @@ export const business = {
   facebook: "https://www.facebook.com/profile.php?id=61583758856391",
   instagram:
     "https://www.instagram.com/tourprovidergeorgia1?igsh=MW01Y25waWNoanY4ZQ==",
+  tiktok: "https://www.tiktok.com/@tourprovidergeorgia",
   email: "tourprovidergeorgia@gmail.com",
   address: {
     locality: "Batumi",
