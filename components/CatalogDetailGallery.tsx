@@ -55,6 +55,37 @@ function GridImageCell({
   );
 }
 
+function BadgeOverlay({
+  popularLabel,
+  isPopular,
+  exclusiveLabel,
+  isExclusive,
+}: {
+  popularLabel?: string;
+  isPopular?: boolean;
+  exclusiveLabel?: string;
+  isExclusive?: boolean;
+}) {
+  if (!(isPopular && popularLabel) && !(isExclusive && exclusiveLabel)) {
+    return null;
+  }
+
+  return (
+    <div className="pointer-events-none absolute right-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-col items-end gap-2 sm:right-4 sm:top-4">
+      {isExclusive && exclusiveLabel ? (
+        <span className="inline-flex rounded-full bg-amber-400 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:px-4 sm:py-2 sm:text-[12px]">
+          {exclusiveLabel}
+        </span>
+      ) : null}
+      {isPopular && popularLabel ? (
+        <span className="inline-flex rounded-full bg-amber-400 px-3 py-1 text-[15px] font-bold uppercase tracking-wider text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)]  sm:text-[11px]">
+          {popularLabel}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
 function TitleOverlay({
   title,
   subtitle,
@@ -76,21 +107,13 @@ function TitleOverlay({
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
         aria-hidden
       />
+      <BadgeOverlay
+        popularLabel={popularLabel}
+        isPopular={isPopular}
+        exclusiveLabel={exclusiveLabel}
+        isExclusive={isExclusive}
+      />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 sm:p-7 md:p-8">
-        {(isPopular && popularLabel) || (isExclusive && exclusiveLabel) ? (
-          <div className="mb-3 flex flex-wrap gap-2">
-            {isExclusive && exclusiveLabel ? (
-              <span className="inline-flex rounded-full bg-amber-400 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-black shadow-sm sm:px-4 sm:py-2 sm:text-[12px]">
-                {exclusiveLabel}
-              </span>
-            ) : null}
-            {isPopular && popularLabel ? (
-              <span className="inline-flex rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black shadow-sm sm:text-[11px]">
-                {popularLabel}
-              </span>
-            ) : null}
-          </div>
-        ) : null}
         <h1 className="font-afacad max-w-4xl text-left text-[26px] font-semibold leading-[1.15] text-white sm:text-[2.25rem] md:text-[2.75rem]">
           {title}
         </h1>
