@@ -48,7 +48,7 @@ export default function ExcursionDetailPanel({
           {content.includes.map((item, index) => (
             <li
               key={`${excursionId}-include-${index}`}
-              className="flex items-start gap-3 rounded-2xl border border-[#991B1B] bg-[#DC2626] px-4 py-3 text-[15px] text-black/85"
+              className="flex items-start gap-3 rounded-2xl border border-[#991B1B] bg-[#DC2626] px-4 py-3 text-[15px] text-white"
             >
               <span
                 className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#DC2626] text-[11px] text-white"
