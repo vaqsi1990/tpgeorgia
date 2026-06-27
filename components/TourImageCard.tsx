@@ -111,7 +111,7 @@ export default function TourImageCard({
           </div>
         ) : null}
 
-        <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[16px] md:text-[18px]">
+        <div className="mb-4 flex items-start justify-between gap-3 border-b border-black/10 pb-3 text-[16px] md:text-[18px]">
           {tour.startTime ? (
             <span className="text-black/70">
               {t("startTime")}:{" "}
@@ -120,7 +120,9 @@ export default function TourImageCard({
           ) : (
             <span />
           )}
-          <span className="font-semibold text-black">{priceLabel}</span>
+          <span className="shrink-0 whitespace-nowrap text-right font-semibold text-black">
+            {priceLabel}
+          </span>
         </div>
 
         {outline.length > 0 ? (

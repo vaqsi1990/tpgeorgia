@@ -87,10 +87,12 @@ export default function ExcursionImageCard({
         ) : null}
 
         <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-3 text-[16px] md:text-[18px]">
-          <span className="text-black/70">
+          <span className="min-w-0 text-black/70">
             {excursion.grades} {t("grade")} · {t("cultural")}
           </span>
-          <span className="font-semibold text-black">{priceLabel}</span>
+          <span className="shrink-0 whitespace-nowrap text-right font-semibold text-black">
+            {priceLabel}
+          </span>
         </div>
 
         {highlights.length > 0 ? (

@@ -130,7 +130,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
       ) : null}
 
       {content.clothingNote ? (
-          <p className="rounded-2xl border border-dashed border-[#991B1B] bg-[#DC2626] px-5 py-4 text-[15px] italic leading-relaxed text-white">
+          <p className="rounded-2xl border border-dashed border-[#991B1B] bg-[#DC2626] px-5 py-4 text-xl sm:text-[22px] italic leading-relaxed text-white">
           {t("clothingNote", { note: content.clothingNote })}
         </p>
       ) : null}
