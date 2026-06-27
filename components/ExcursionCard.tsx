@@ -38,7 +38,7 @@ export default function ExcursionCard({
     >
       {excursion.popular ? (
         <span
-          className="absolute -right-1.5 -top-4 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:size-11 sm:text-[10px]"
+          className="absolute -right-1.5 -top-4 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)]  sm:size-11 sm:text-[10px]"
           aria-label={t("popularBadge")}
         >
           {t("popularBadge")}

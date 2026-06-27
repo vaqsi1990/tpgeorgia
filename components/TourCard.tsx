@@ -43,7 +43,7 @@ export default function TourCard({
     >
       {tour.popular ? (
         <span
-          className="absolute -right-1.5 -top-4 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:size-11 sm:text-[10px]"
+          className="absolute -right-1.5 -top-4 z-10 flex size-10 items-center justify-center rounded-full bg-amber-400 text-center text-[9px] font-bold uppercase leading-none tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)]  sm:size-11 sm:text-[10px]"
           aria-label={t("popularBadge")}
         >
           {t("popularBadge")}
@@ -51,7 +51,7 @@ export default function TourCard({
       ) : null}
       {tour.exclusive ? (
         <span
-          className="absolute -left-1.5 -top-4 z-10 inline-flex items-center justify-center rounded-full bg-amber-400 px-3.5 py-2 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:px-4 sm:py-2.5 sm:text-[10px]"
+          className="absolute -left-1.5 -top-4 z-10 inline-flex items-center justify-center rounded-full bg-amber-400 px-3.5 py-2 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)]  sm:px-4 sm:py-2.5 sm:text-[10px]"
           aria-label={t("exclusiveBadge")}
         >
           {t("exclusiveBadge")}

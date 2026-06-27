@@ -73,12 +73,12 @@ function BadgeOverlay({
   return (
     <div className="pointer-events-none absolute right-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-col items-end gap-2 sm:right-4 sm:top-4">
       {isExclusive && exclusiveLabel ? (
-        <span className="inline-flex rounded-full bg-amber-400 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:px-4 sm:py-2 sm:text-[12px]">
+        <span className="inline-flex rounded-full bg-amber-400 px-5 py-2.5 text-[12px] font-bold uppercase leading-tight tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)]  sm:px-6 sm:py-3 sm:text-[14px]">
           {exclusiveLabel}
         </span>
       ) : null}
       {isPopular && popularLabel ? (
-        <span className="inline-flex rounded-full bg-amber-400 px-3 py-1 text-[15px] font-bold uppercase tracking-wider text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)]  sm:text-[11px]">
+        <span className="inline-flex rounded-full bg-amber-400 px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)]  sm:px-5 sm:py-2.5 sm:text-[13px]">
           {popularLabel}
         </span>
       ) : null}
