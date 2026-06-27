@@ -59,6 +59,14 @@ export default function TourImageCard({
           {t("popularBadge")}
         </span>
       ) : null}
+      {tour.exclusive ? (
+        <span
+          className="absolute left-3 top-3 z-10 inline-flex max-w-[calc(100%-5.5rem)] items-center justify-center rounded-full bg-amber-400 px-3.5 py-2 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:px-4 sm:py-2.5 sm:text-[10px]"
+          aria-label={t("exclusiveBadge")}
+        >
+          {t("exclusiveBadge")}
+        </span>
+      ) : null}
 
       <Link href={href} className="relative block aspect-[4/3] shrink-0 overflow-hidden">
         <CatalogCardHeroImage images={images} alt={content.title} index={index} />
@@ -66,7 +74,11 @@ export default function TourImageCard({
           className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"
           aria-hidden
         />
-        <span className="absolute left-4 top-4 rounded-full bg-white/20 px-3 py-1 text-[14px] font-medium text-white backdrop-blur-sm md:text-[15px]">
+        <span
+          className={`absolute left-4 rounded-full bg-white/20 px-3 py-1 text-[14px] font-medium text-white backdrop-blur-sm md:text-[15px] ${
+            tour.exclusive ? "top-14 sm:top-16" : "top-4"
+          }`}
+        >
           {durationLabel}
         </span>
         <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">

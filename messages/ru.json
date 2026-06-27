@@ -92,6 +92,7 @@
     "priceFrom": "от {price} ₾",
     "priceOnRequest": "Цена по запросу",
     "popularBadge": "Топ",
+    "exclusiveBadge": "Эксклюзив",
     "minPeople": "Мин. группа",
     "minPeopleValue": "{count} человек",
     "outlineTitle": "Краткий маршрут",

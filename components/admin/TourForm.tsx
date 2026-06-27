@@ -109,6 +109,7 @@ export default function TourForm({
   );
   const [startTime, setStartTime] = useState(initialTour?.meta.startTime ?? "");
   const [popular, setPopular] = useState(initialTour?.meta.popular ?? false);
+  const [exclusive, setExclusive] = useState(initialTour?.meta.exclusive ?? false);
   const [images, setImages] = useState<string[]>(initialTour?.images ?? []);
   const [localeForms, setLocaleForms] = useState<Record<AppLocale, LocaleTourForm>>(
     () =>
@@ -161,6 +162,7 @@ export default function TourForm({
         minPeople: Number(minPeople) || 0,
         startTime: startTime.trim() || undefined,
         popular,
+        exclusive,
       },
       images,
       content,
@@ -253,6 +255,15 @@ export default function TourForm({
             className="size-4 rounded border-black/20"
           />
           პოპულარული (ტოპ ბეიჯი)
+        </label>
+        <label className="flex items-center gap-2 text-[14px] font-medium">
+          <input
+            type="checkbox"
+            checked={exclusive}
+            onChange={(e) => setExclusive(e.target.checked)}
+            className="size-4 rounded border-black/20"
+          />
+          ექსკლუზივი (exclusive ბეიჯი)
         </label>
         <ImageUploadForProduct value={images} onChange={setImages} />
       </section>

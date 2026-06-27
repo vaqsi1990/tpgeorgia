@@ -10,6 +10,8 @@ type CatalogDetailGalleryProps = {
   subtitle?: string;
   popularLabel?: string;
   isPopular?: boolean;
+  exclusiveLabel?: string;
+  isExclusive?: boolean;
 };
 
 type GridImageCellProps = {
@@ -58,11 +60,15 @@ function TitleOverlay({
   subtitle,
   popularLabel,
   isPopular,
+  exclusiveLabel,
+  isExclusive,
 }: {
   title: string;
   subtitle?: string;
   popularLabel?: string;
   isPopular?: boolean;
+  exclusiveLabel?: string;
+  isExclusive?: boolean;
 }) {
   return (
     <>
@@ -71,10 +77,19 @@ function TitleOverlay({
         aria-hidden
       />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 sm:p-7 md:p-8">
-        {isPopular && popularLabel ? (
-          <span className="mb-3 inline-flex rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black shadow-sm sm:text-[11px]">
-            {popularLabel}
-          </span>
+        {(isPopular && popularLabel) || (isExclusive && exclusiveLabel) ? (
+          <div className="mb-3 flex flex-wrap gap-2">
+            {isExclusive && exclusiveLabel ? (
+              <span className="inline-flex rounded-full bg-amber-400 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-black shadow-sm sm:px-4 sm:py-2 sm:text-[12px]">
+                {exclusiveLabel}
+              </span>
+            ) : null}
+            {isPopular && popularLabel ? (
+              <span className="inline-flex rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black shadow-sm sm:text-[11px]">
+                {popularLabel}
+              </span>
+            ) : null}
+          </div>
         ) : null}
         <h1 className="font-afacad max-w-4xl text-left text-[26px] font-semibold leading-[1.15] text-white sm:text-[2.25rem] md:text-[2.75rem]">
           {title}
@@ -96,6 +111,8 @@ export default function CatalogDetailGallery({
   subtitle,
   popularLabel,
   isPopular = false,
+  exclusiveLabel,
+  isExclusive = false,
 }: CatalogDetailGalleryProps) {
   const t = useTranslations("Gallery");
 
@@ -135,6 +152,8 @@ export default function CatalogDetailGallery({
                     subtitle={subtitle}
                     popularLabel={popularLabel}
                     isPopular={isPopular}
+                    exclusiveLabel={exclusiveLabel}
+                    isExclusive={isExclusive}
                   />
                 }
               />
@@ -165,6 +184,8 @@ export default function CatalogDetailGallery({
                     subtitle={subtitle}
                     popularLabel={popularLabel}
                     isPopular={isPopular}
+                    exclusiveLabel={exclusiveLabel}
+                    isExclusive={isExclusive}
                   />
                 }
               />

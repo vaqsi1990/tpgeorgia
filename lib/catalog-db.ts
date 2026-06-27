@@ -198,6 +198,7 @@ export async function listTours(): Promise<StoredTourRecord[]> {
       minPeople: tour.minPeople,
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
+      exclusive: tour.exclusive,
     },
     images: tour.images,
     content: buildTourContentMap(tour.translations),
@@ -221,6 +222,7 @@ export async function getTourById(id: string): Promise<StoredTourRecord | null> 
       minPeople: tour.minPeople,
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
+      exclusive: tour.exclusive,
     },
     images: tour.images,
     content: buildTourContentMap(tour.translations),
@@ -240,6 +242,7 @@ export async function createTour(input: StoredTourInput): Promise<StoredTourReco
       minPeople: input.meta.minPeople,
       startTime: input.meta.startTime ?? null,
       popular: input.meta.popular ?? false,
+      exclusive: input.meta.exclusive ?? false,
       images: input.images ?? [],
       translations: {
         create: routing.locales.map((locale) =>
@@ -259,6 +262,7 @@ export async function createTour(input: StoredTourInput): Promise<StoredTourReco
       minPeople: tour.minPeople,
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
+      exclusive: tour.exclusive,
     },
     images: tour.images,
     content: buildTourContentMap(tour.translations),
@@ -285,6 +289,7 @@ export async function updateTour(
         minPeople: input.meta.minPeople,
         startTime: input.meta.startTime ?? null,
         popular: input.meta.popular ?? false,
+        exclusive: input.meta.exclusive ?? false,
         images: input.images ?? [],
       },
     });
@@ -313,6 +318,7 @@ export async function updateTour(
       minPeople: tour.minPeople,
       startTime: tour.startTime ?? undefined,
       popular: tour.popular,
+      exclusive: tour.exclusive,
     },
     images: tour.images,
     content: buildTourContentMap(tour.translations),

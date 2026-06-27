@@ -92,6 +92,7 @@
     "priceFrom": "From {price} GEL",
     "priceOnRequest": "Price on request",
     "popularBadge": "Top",
+    "exclusiveBadge": "Exclusive",
     "minPeople": "Min. group",
     "minPeopleValue": "{count} people",
     "outlineTitle": "Route overview",

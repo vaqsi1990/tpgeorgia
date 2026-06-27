@@ -29,6 +29,7 @@ model Tour {
   minPeople   Int              @default(0)
   startTime   String?
   popular     Boolean          @default(false)
+  exclusive   Boolean          @default(false)
   /// string[] — image URLs
   images      String[]         @default([])
   createdAt   DateTime         @default(now())

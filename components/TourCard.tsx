@@ -49,6 +49,14 @@ export default function TourCard({
           {t("popularBadge")}
         </span>
       ) : null}
+      {tour.exclusive ? (
+        <span
+          className="absolute -left-1.5 -top-4 z-10 inline-flex items-center justify-center rounded-full bg-amber-400 px-3.5 py-2 text-center text-[9px] font-bold uppercase leading-tight tracking-wide text-black shadow-[0_2px_8px_rgba(245,158,11,0.4)] ring-2 ring-white sm:px-4 sm:py-2.5 sm:text-[10px]"
+          aria-label={t("exclusiveBadge")}
+        >
+          {t("exclusiveBadge")}
+        </span>
+      ) : null}
 
       <div className="flex shrink-0 items-center justify-between rounded-t-2xl bg-[#DC2626] px-5 py-3 sm:px-6">
         <span className="font-afacad text-lg font-semibold text-white/90">

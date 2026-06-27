@@ -65,6 +65,8 @@ export default async function TourDetailPage({
         subtitle={content.routeLabel}
         popularLabel={t("popularBadge")}
         isPopular={meta.popular}
+        exclusiveLabel={t("exclusiveBadge")}
+        isExclusive={meta.exclusive}
         meta={detailMeta}
         images={tour.images}
         imageAlt={content.title}

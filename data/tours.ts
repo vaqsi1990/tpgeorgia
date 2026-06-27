@@ -31,6 +31,7 @@ export type TourMeta = {
   minPeople: number;
   startTime?: string;
   popular?: boolean;
+  exclusive?: boolean;
 };
 
 export const tourMeta: TourMeta[] = [

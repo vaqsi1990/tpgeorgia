@@ -15,6 +15,8 @@ type CatalogDetailPageProps = {
   subtitle?: string;
   popularLabel?: string;
   isPopular?: boolean;
+  exclusiveLabel?: string;
+  isExclusive?: boolean;
   meta: MetaItem[];
   images: string[];
   imageAlt: string;
@@ -31,6 +33,8 @@ export default function CatalogDetailPage({
   subtitle,
   popularLabel,
   isPopular = false,
+  exclusiveLabel,
+  isExclusive = false,
   meta,
   images,
   imageAlt,
@@ -77,6 +81,8 @@ export default function CatalogDetailPage({
         subtitle={subtitle}
         popularLabel={popularLabel}
         isPopular={isPopular}
+        exclusiveLabel={exclusiveLabel}
+        isExclusive={isExclusive}
       />
 
       <div className="mt-8 grid items-start gap-8 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_360px] xl:gap-12">
