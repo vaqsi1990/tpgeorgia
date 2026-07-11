@@ -22,9 +22,9 @@ enum TourDestination {
 
 /// Admin-created and future DB-backed tours (slug id, e.g. wine-tour-kakheti)
 model Tour {
-  id          String           @id
-  destination TourDestination?
-  durationKey String
+  id           String             @id
+  destinations TourDestination[]  @default([])
+  durationKey  String
   priceFrom   Int              @default(0)
   minPeople   Int              @default(0)
   startTime   String?
@@ -66,8 +66,9 @@ model TourTranslation {
 
 /// Admin-created and future DB-backed excursions (slug id)
 model Excursion {
-  id          String   @id
-  durationKey String
+  id           String             @id
+  destinations TourDestination[]  @default([])
+  durationKey  String
   priceFrom   Int      @default(0)
   grades      String
   popular     Boolean  @default(false)

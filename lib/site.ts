@@ -35,6 +35,32 @@ export const publicPaths = [
 
 export type PublicPath = (typeof publicPaths)[number];
 
+export type PagePath = PublicPath | `/${string}`;
+
+export function localizedUrlForPath(locale: AppLocale, pathname: PagePath): string {
+  if ((publicPaths as readonly string[]).includes(pathname)) {
+    return localizedUrl(locale, pathname as PublicPath);
+  }
+
+  const normalized = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return absoluteUrl(`/${locale}${normalized}`);
+}
+
+export function hreflangMapForPath(pathname: PagePath): Record<string, string> {
+  if ((publicPaths as readonly string[]).includes(pathname)) {
+    return hreflangMap(pathname as PublicPath);
+  }
+
+  const languages: Record<string, string> = {};
+
+  for (const locale of routing.locales) {
+    languages[locale] = localizedUrlForPath(locale, pathname);
+  }
+
+  languages["x-default"] = localizedUrlForPath(routing.defaultLocale, pathname);
+  return languages;
+}
+
 export function getSiteUrl(): string {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
   if (configured) return configured;

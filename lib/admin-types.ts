@@ -9,7 +9,7 @@ export type LocaleContentMap<T> = Record<AppLocale, T>;
 
 export type StoredTourRecord = {
   id: string;
-  destination: TourDestination | null;
+  destinations: TourDestination[];
   meta: Omit<TourMeta, "id">;
   content: LocaleContentMap<TourContent>;
   images: string[];
@@ -18,6 +18,7 @@ export type StoredTourRecord = {
 
 export type StoredExcursionRecord = {
   id: string;
+  destinations: TourDestination[];
   meta: Omit<ExcursionMeta, "id">;
   content: LocaleContentMap<ExcursionContent>;
   images: string[];
@@ -26,7 +27,7 @@ export type StoredExcursionRecord = {
 
 export type StoredTourInput = {
   id?: string;
-  destination: TourDestination | null;
+  destinations?: TourDestination[];
   meta: Omit<TourMeta, "id">;
   content: LocaleContentMap<TourContent>;
   images?: string[];
@@ -34,6 +35,7 @@ export type StoredTourInput = {
 
 export type StoredExcursionInput = {
   id?: string;
+  destinations?: TourDestination[];
   meta: Omit<ExcursionMeta, "id">;
   content: LocaleContentMap<ExcursionContent>;
   images?: string[];

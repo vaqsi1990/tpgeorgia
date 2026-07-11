@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import {
   business,
   getSiteUrl,
-  hreflangMap,
+  hreflangMapForPath,
   localizedUrl,
+  localizedUrlForPath,
   siteName,
+  type PagePath,
   type PublicPath,
 } from "@/lib/site";
 import type { AppLocale } from "@/i18n/routing";
@@ -13,7 +15,7 @@ const defaultOgImage = "/images/1.png";
 
 type PageMetadataInput = {
   locale: AppLocale;
-  pathname: PublicPath;
+  pathname: PagePath;
   title: string;
   description: string;
   ogImage?: string;
@@ -28,7 +30,7 @@ export function buildPageMetadata({
   ogImage = defaultOgImage,
   noIndex = false,
 }: PageMetadataInput): Metadata {
-  const canonical = localizedUrl(locale, pathname);
+  const canonical = localizedUrlForPath(locale, pathname);
   const imageUrl = ogImage.startsWith("http")
     ? ogImage
     : `${getSiteUrl()}${ogImage}`;
@@ -44,7 +46,7 @@ export function buildPageMetadata({
     description,
     alternates: {
       canonical,
-      languages: hreflangMap(pathname),
+      languages: hreflangMapForPath(pathname),
     },
     openGraph: {
       type: "website",

@@ -1,6 +1,7 @@
 import {
   tourDestinationIds,
   toursByDestination,
+  tourMatchesDestination,
   type TourDestination,
 } from "@/data/tour-destinations";
 import {
@@ -108,14 +109,25 @@ export function sortToursForDisplay<T extends TourDisplaySortable>(
   return [...tours].sort(compareToursForDisplay);
 }
 
-const tourDestinationById = new Map<TourId, TourDestination>(
-  tourDestinationIds.flatMap((destination) =>
-    toursByDestination[destination].map((id) => [id, destination] as const),
-  ),
-);
+const tourDestinationsById = new Map<TourId, TourDestination[]>();
 
+for (const destination of tourDestinationIds) {
+  for (const id of toursByDestination[destination]) {
+    const existing = tourDestinationsById.get(id) ?? [];
+    if (!existing.includes(destination)) {
+      existing.push(destination);
+    }
+    tourDestinationsById.set(id, existing);
+  }
+}
+
+export function getTourDestinations(id: TourId): TourDestination[] {
+  return tourDestinationsById.get(id) ?? [];
+}
+
+/** @deprecated Use getTourDestinations */
 export function getTourDestination(id: TourId): TourDestination | null {
-  return tourDestinationById.get(id) ?? null;
+  return getTourDestinations(id)[0] ?? null;
 }
 
 function matchesPriceRange(
@@ -145,11 +157,11 @@ function matchesPriceRange(
 export function matchesTourFilters(
   tour: TourMeta,
   filters: TourFilters,
-  destinationOverride?: TourDestination | null,
+  destinationsOverride?: TourDestination[] | null,
 ): boolean {
   if (filters.destination !== "all") {
-    const destination = destinationOverride ?? getTourDestination(tour.id);
-    if (destination !== filters.destination) {
+    const destinations = destinationsOverride ?? getTourDestinations(tour.id);
+    if (!tourMatchesDestination(destinations, filters.destination)) {
       return false;
     }
   }
@@ -192,7 +204,7 @@ export function getTourPriceBoundsFromCatalog(
 export function matchesStoredTourFilters(
   stored: {
     id: string;
-    destination: TourDestination | null;
+    destinations: TourDestination[];
     meta: { durationKey: TourDurationKey | string; priceFrom: number };
   },
   filters: TourFilters,
@@ -200,7 +212,7 @@ export function matchesStoredTourFilters(
   return matchesTourFilters(
     { id: stored.id as TourId, ...stored.meta } as TourMeta,
     filters,
-    stored.destination,
+    stored.destinations,
   );
 }
 

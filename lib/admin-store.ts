@@ -56,6 +56,7 @@ export function addStoredTour(input: StoredTourInput): StoredTourRecord {
   const record: StoredTourRecord = {
     ...input,
     id,
+    destinations: input.destinations ?? [],
     images: input.images ?? [],
     createdAt: new Date().toISOString(),
   };
@@ -76,6 +77,7 @@ export function addStoredExcursion(
   const record: StoredExcursionRecord = {
     ...input,
     id,
+    destinations: input.destinations ?? [],
     images: input.images ?? [],
     createdAt: new Date().toISOString(),
   };

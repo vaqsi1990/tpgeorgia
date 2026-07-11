@@ -1,5 +1,6 @@
 "use client";
 
+import DestinationCheckboxes from "@/components/admin/DestinationCheckboxes";
 import {
   AdminInput,
   AdminSelect,
@@ -14,6 +15,7 @@ import TourProgramEditor, {
   type TourSectionForm,
 } from "@/components/admin/TourProgramEditor";
 import type { TourContent } from "@/data/tour-content";
+import type { TourDestination } from "@/data/tour-destinations";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { tourDurationLabels } from "@/lib/admin-form-options";
 import { tourDurationKeys, type StoredTourRecord } from "@/lib/admin-types";
@@ -95,8 +97,8 @@ export default function TourForm({
   const isEditing = Boolean(initialTour);
   const recordId = initialTour?.id;
   const [locale, setLocale] = useState<AppLocale>("ka");
-  const [destination, setDestination] = useState<string>(
-    initialTour ? (initialTour.destination ?? "none") : "batumi",
+  const [destinations, setDestinations] = useState<TourDestination[]>(
+    initialTour?.destinations ?? ["batumi"],
   );
   const [durationKey, setDurationKey] = useState(
     initialTour?.meta.durationKey ?? tourDurationKeys[0],
@@ -155,7 +157,7 @@ export default function TourForm({
 
     const payload = {
       ...(isEditing && recordId ? { id: recordId } : {}),
-      destination: destination === "none" ? null : destination,
+      destinations,
       meta: {
         durationKey,
         priceFrom: Number(priceFrom) || 0,
@@ -203,18 +205,8 @@ export default function TourForm({
             ID: <span className="font-medium text-black/80">{recordId}</span>
           </p>
         ) : null}
+        <DestinationCheckboxes value={destinations} onChange={setDestinations} />
         <div className="grid gap-4 sm:grid-cols-2">
-          <AdminSelect
-            label="მიმართულება"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-            options={[
-              { value: "none", label: "ფილტრის გარეშე" },
-              { value: "batumi", label: "ბათუმი" },
-              { value: "tbilisi", label: "თბილისი" },
-              { value: "kutaisi", label: "ქუთაისი" },
-            ]}
-          />
           <AdminSelect
             label="ხანგრძლივობა"
             value={durationKey}

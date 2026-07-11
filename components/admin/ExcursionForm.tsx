@@ -1,5 +1,6 @@
 "use client";
 
+import DestinationCheckboxes from "@/components/admin/DestinationCheckboxes";
 import {
   AdminInput,
   AdminSelect,
@@ -9,6 +10,7 @@ import {
 import ImageUploadForProduct from "@/components/productimage";
 import LocaleTabs from "@/components/admin/LocaleTabs";
 import type { ExcursionContent } from "@/data/excursion-content";
+import type { TourDestination } from "@/data/tour-destinations";
 import { routing, type AppLocale } from "@/i18n/routing";
 import {
   excursionDurationLabels,
@@ -68,6 +70,9 @@ export default function ExcursionForm({
   const isEditing = Boolean(initialExcursion);
   const recordId = initialExcursion?.id;
   const [locale, setLocale] = useState<AppLocale>("ka");
+  const [destinations, setDestinations] = useState<TourDestination[]>(
+    initialExcursion?.destinations ?? [],
+  );
   const [durationKey, setDurationKey] = useState(
     initialExcursion?.meta.durationKey ?? excursionDurationKeys[0],
   );
@@ -128,6 +133,7 @@ export default function ExcursionForm({
 
     const payload = {
       ...(isEditing && recordId ? { id: recordId } : {}),
+      destinations,
       meta: {
         durationKey,
         priceFrom: Number(priceFrom) || 0,
@@ -175,6 +181,7 @@ export default function ExcursionForm({
             ID: <span className="font-medium text-black/80">{recordId}</span>
           </p>
         ) : null}
+        <DestinationCheckboxes value={destinations} onChange={setDestinations} />
         <div className="grid gap-4 sm:grid-cols-2">
           <AdminSelect
             label="ხანგრძლივობა"

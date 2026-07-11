@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props) {
 
   return buildPageMetadata({
     locale: locale as AppLocale,
-    pathname: "" as "/",
+    pathname: `/blog/${id}`,
     title: post.title,
     description: post.excerpt || post.body.slice(0, 160),
     ogImage: post.coverImage ?? undefined,

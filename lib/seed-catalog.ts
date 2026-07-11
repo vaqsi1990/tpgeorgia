@@ -20,6 +20,7 @@ const excursionContentByLocale: Record<
 export function buildSeedExcursions(): Array<StoredExcursionInput & { id: string }> {
   return excursionMeta.map((meta) => ({
     id: meta.id,
+    destinations: [],
     meta: {
       durationKey: meta.durationKey,
       priceFrom: meta.priceFrom,

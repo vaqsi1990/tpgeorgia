@@ -13,6 +13,11 @@ import { Prisma } from "@/lib/generated/prisma/client";
 import type { Locale } from "@/lib/generated/prisma/enums";
 import { resolveUniqueSlug, slugFromTitles } from "@/lib/slug";
 
+function parseDestinations(value: TourDestination[] | null | undefined): TourDestination[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is TourDestination => typeof item === "string");
+}
+
 function parseImages(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
   return value.filter((item): item is string => typeof item === "string");
@@ -191,7 +196,7 @@ export async function listTours(): Promise<StoredTourRecord[]> {
 
   return tours.map((tour) => ({
     id: tour.id,
-    destination: tour.destination as TourDestination | null,
+    destinations: parseDestinations(tour.destinations),
     meta: {
       durationKey: tour.durationKey as StoredTourRecord["meta"]["durationKey"],
       priceFrom: tour.priceFrom,
@@ -215,7 +220,7 @@ export async function getTourById(id: string): Promise<StoredTourRecord | null> 
 
   return {
     id: tour.id,
-    destination: tour.destination as TourDestination | null,
+    destinations: parseDestinations(tour.destinations),
     meta: {
       durationKey: tour.durationKey as StoredTourRecord["meta"]["durationKey"],
       priceFrom: tour.priceFrom,
@@ -236,7 +241,7 @@ export async function createTour(input: StoredTourInput): Promise<StoredTourReco
   const tour = await prisma.tour.create({
     data: {
       id,
-      destination: input.destination,
+      destinations: input.destinations ?? [],
       durationKey: input.meta.durationKey,
       priceFrom: input.meta.priceFrom,
       minPeople: input.meta.minPeople,
@@ -255,7 +260,7 @@ export async function createTour(input: StoredTourInput): Promise<StoredTourReco
 
   return {
     id: tour.id,
-    destination: tour.destination as TourDestination | null,
+    destinations: parseDestinations(tour.destinations),
     meta: {
       durationKey: tour.durationKey as StoredTourRecord["meta"]["durationKey"],
       priceFrom: tour.priceFrom,
@@ -283,7 +288,7 @@ export async function updateTour(
     await tx.tour.update({
       where: { id },
       data: {
-        destination: input.destination,
+        destinations: input.destinations ?? [],
         durationKey: input.meta.durationKey,
         priceFrom: input.meta.priceFrom,
         minPeople: input.meta.minPeople,
@@ -311,7 +316,7 @@ export async function updateTour(
 
   return {
     id: tour.id,
-    destination: tour.destination as TourDestination | null,
+    destinations: parseDestinations(tour.destinations),
     meta: {
       durationKey: tour.durationKey as StoredTourRecord["meta"]["durationKey"],
       priceFrom: tour.priceFrom,
@@ -343,6 +348,7 @@ export async function listExcursions(): Promise<StoredExcursionRecord[]> {
 
   return excursions.map((excursion) => ({
     id: excursion.id,
+    destinations: parseDestinations(excursion.destinations),
     meta: {
       durationKey: excursion.durationKey as StoredExcursionRecord["meta"]["durationKey"],
       priceFrom: excursion.priceFrom,
@@ -366,6 +372,7 @@ export async function getExcursionById(
 
   return {
     id: excursion.id,
+    destinations: parseDestinations(excursion.destinations),
     meta: {
       durationKey: excursion.durationKey as StoredExcursionRecord["meta"]["durationKey"],
       priceFrom: excursion.priceFrom,
@@ -386,6 +393,7 @@ export async function createExcursion(
   const excursion = await prisma.excursion.create({
     data: {
       id,
+      destinations: input.destinations ?? [],
       durationKey: input.meta.durationKey,
       priceFrom: input.meta.priceFrom,
       grades: input.meta.grades,
@@ -402,6 +410,7 @@ export async function createExcursion(
 
   return {
     id: excursion.id,
+    destinations: parseDestinations(excursion.destinations),
     meta: {
       durationKey: excursion.durationKey as StoredExcursionRecord["meta"]["durationKey"],
       priceFrom: excursion.priceFrom,
@@ -427,6 +436,7 @@ export async function updateExcursion(
     await tx.excursion.update({
       where: { id },
       data: {
+        destinations: input.destinations ?? [],
         durationKey: input.meta.durationKey,
         priceFrom: input.meta.priceFrom,
         grades: input.meta.grades,
@@ -452,6 +462,7 @@ export async function updateExcursion(
 
   return {
     id: excursion.id,
+    destinations: parseDestinations(excursion.destinations),
     meta: {
       durationKey: excursion.durationKey as StoredExcursionRecord["meta"]["durationKey"],
       priceFrom: excursion.priceFrom,

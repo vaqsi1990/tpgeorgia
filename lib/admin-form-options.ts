@@ -31,3 +31,12 @@ export const excursionGradeOptions = [
   "VIII–XII",
   "IX–XII",
 ] as const;
+
+export const tourDestinationLabels: Record<
+  import("@/data/tour-destinations").TourDestination,
+  string
+> = {
+  batumi: "ბათუმი",
+  tbilisi: "თბილისი",
+  kutaisi: "ქუთაისი",
+};

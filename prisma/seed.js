@@ -34,12 +34,14 @@ async function seedExcursions() {
         where: { id: excursion.id },
         create: {
           id: excursion.id,
+          destinations: excursion.destinations ?? [],
           durationKey: excursion.meta.durationKey,
           priceFrom: excursion.meta.priceFrom,
           grades: excursion.meta.grades,
           popular: excursion.meta.popular ?? false,
         },
         update: {
+          destinations: excursion.destinations ?? [],
           durationKey: excursion.meta.durationKey,
           priceFrom: excursion.meta.priceFrom,
           grades: excursion.meta.grades,

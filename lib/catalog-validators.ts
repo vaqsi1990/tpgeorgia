@@ -1,6 +1,6 @@
 import type { StoredExcursionInput, StoredTourInput } from "@/lib/admin-types";
 import { excursionDurationKeys, tourDurationKeys } from "@/lib/admin-types";
-import { isTourDestination } from "@/data/tour-destinations";
+import { isTourDestination, isTourDestinationList } from "@/data/tour-destinations";
 import { routing } from "@/i18n/routing";
 
 const kebabSlugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -33,15 +33,18 @@ export function isValidTourInput(body: unknown): body is StoredTourInput {
   if (!body || typeof body !== "object") return false;
   const data = body as StoredTourInput;
   if (!isValidOptionalId(data.id)) return false;
-  if (data.destination !== null && data.destination !== undefined && !isTourDestination(data.destination)) {
-    return false;
-  }
+  if (!isValidDestinations(data.destinations)) return false;
   if (!data.meta || typeof data.meta !== "object") return false;
   if (!tourDurationKeys.includes(data.meta.durationKey)) return false;
   if (!data.content || typeof data.content !== "object") return false;
   if (!hasTitle(data.content)) return false;
   if (!isValidImages(data.images)) return false;
   return true;
+}
+
+function isValidDestinations(destinations: unknown): boolean {
+  if (destinations === undefined) return true;
+  return isTourDestinationList(destinations);
 }
 
 export function isValidExcursionInput(body: unknown): body is StoredExcursionInput {
@@ -51,6 +54,7 @@ export function isValidExcursionInput(body: unknown): body is StoredExcursionInp
   if (!data.meta || typeof data.meta !== "object") return false;
   if (!excursionDurationKeys.includes(data.meta.durationKey)) return false;
   if (typeof data.meta.grades !== "string" || !data.meta.grades.trim()) return false;
+  if (!isValidDestinations(data.destinations)) return false;
   if (!data.content || typeof data.content !== "object") return false;
   if (!hasTitle(data.content)) return false;
   if (!isValidImages(data.images)) return false;
