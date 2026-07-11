@@ -158,3 +158,32 @@ model Review {
   @@index([createdAt(sort: Desc)])
   @@map("reviews")
 }
+
+/// Admin-managed blog posts (slug id)
+model BlogPost {
+  id         String   @id
+  coverImage String?
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  translations BlogPostTranslation[]
+
+  @@index([createdAt(sort: Desc)])
+  @@map("blog_posts")
+}
+
+/// Localized blog content (ka, en, ru)
+model BlogPostTranslation {
+  id         String @id @default(cuid())
+  blogPostId String
+  locale     Locale
+  title      String
+  excerpt    String @default("")
+  body       String @default("")
+
+  blogPost BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+
+  @@unique([blogPostId, locale])
+  @@map("blog_post_translations")
+}

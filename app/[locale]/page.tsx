@@ -1,3 +1,4 @@
+import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Excursions from "@/components/Excursions";
 import Hero from "@/components/Hero";
@@ -6,6 +7,7 @@ import Tours from "@/components/Tours";
 import Transfers from "@/components/Transfers";
 import WhyUs from "@/components/WhyUs";
 import type { AppLocale } from "@/i18n/routing";
+import { listPublishedBlogPosts } from "@/lib/blog-db";
 import { listExcursions, listTours } from "@/lib/catalog-db";
 import { getPublishedReviewStatsRecord, listPublishedReviews } from "@/lib/review-db";
 import { buildPageMetadata } from "@/lib/seo";
@@ -33,9 +35,10 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [tours, excursions, reviewStats, reviews] = await Promise.all([
+  const [tours, excursions, blogPosts, reviewStats, reviews] = await Promise.all([
     listTours(),
     listExcursions(),
+    listPublishedBlogPosts(locale as AppLocale),
     getPublishedReviewStatsRecord(),
     listPublishedReviews(),
   ]);
@@ -47,6 +50,7 @@ export default async function HomePage({ params }: Props) {
       <Tours tours={tours} reviewStats={reviewStats} />
       <Excursions excursions={excursions} reviewStats={reviewStats} />
       <Transfers />
+      <Blog posts={blogPosts} />
       <Contact tours={tours} excursions={excursions} />
      
     </>

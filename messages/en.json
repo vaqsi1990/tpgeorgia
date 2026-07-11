@@ -283,6 +283,12 @@
     "submitSuccess": "Your message has been sent. We will get back to you soon.",
     "submitError": "We could not send your message. Please try again or contact us by phone."
   },
+  "Blog": {
+    "title": "Blog",
+    "description": "Travel tips, stories, and updates from Tour Provider Georga.",
+    "readMore": "Read",
+    "backToHome": "Back to home"
+  },
   "Reviews": {
     "sectionTitle": "Traveler reviews",
     "homeDescription": "What our guests say after traveling with us.",

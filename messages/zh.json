@@ -283,6 +283,12 @@
     "submitSuccess": "消息已发送，我们会尽快回复您。",
     "submitError": "消息发送失败，请重试或通过电话联系。"
   },
+  "Blog": {
+    "title": "博客",
+    "description": "来自 Tour Provider Georga 的旅行建议、故事与动态。",
+    "readMore": "阅读",
+    "backToHome": "返回首页"
+  },
   "Reviews": {
     "sectionTitle": "游客评价",
     "homeDescription": "与我们一起旅行后，客人们怎么说。",
