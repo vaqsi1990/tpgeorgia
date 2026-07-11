@@ -32,6 +32,7 @@ export const toursByDestination: Record<TourDestination, TourId[]> = {
     "greenLake",
     "machakhela",
     "svaneti3day",
+    "racha-signature-horseback",
   ],
   tbilisi: ["vardzia", "svaneti12day"],
   kutaisi: ["imereti"],

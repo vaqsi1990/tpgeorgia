@@ -10,6 +10,7 @@ export const tourIds = [
   "svaneti3day",
   "vardzia",
   "svaneti12day",
+  "racha-signature-horseback",
 ] as const;
 
 export type TourId = (typeof tourIds)[number];
@@ -46,4 +47,5 @@ export const tourMeta: TourMeta[] = [
   { id: "svaneti3day", durationKey: "2nights3days", priceFrom: 395, minPeople: 4, startTime: "07:00" },
   { id: "vardzia", durationKey: "11nights12days", priceFrom: 0, minPeople: 0 },
   { id: "svaneti12day", durationKey: "11nights12days", priceFrom: 0, minPeople: 0, popular: true },
+  { id: "racha-signature-horseback", durationKey: "fullDay", priceFrom: 150, minPeople: 1, startTime: "10:00" },
 ];

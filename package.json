@@ -12,6 +12,8 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.js",
+    "db:migrate-destinations": "tsx scripts/migrate-destinations.ts",
+    "db:seed:racha-horseback": "tsx scripts/seed-racha-horseback-tour.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -41,9 +43,4 @@
     "eslint-config-next": "16.2.7",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
-    "typescript": "^5"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.js"
-  }
-}
+    "typescript"
