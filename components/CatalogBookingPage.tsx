@@ -1,5 +1,6 @@
 import CatalogDetailBooking from "@/components/CatalogDetailBooking";
 import ParallaxSection from "@/components/ParallaxSection";
+import type { TourBookingOption } from "@/data/tour-content";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 
@@ -8,6 +9,7 @@ type CatalogBookingPageProps = {
   itemId: string;
   itemTitle: string;
   backHref: string;
+  bookingOptions?: TourBookingOption[];
   tone?: "mint" | "warm";
 };
 
@@ -16,6 +18,7 @@ export default async function CatalogBookingPage({
   itemId,
   itemTitle,
   backHref,
+  bookingOptions,
   tone = "mint",
 }: CatalogBookingPageProps) {
   const t = await getTranslations("Booking");
@@ -50,6 +53,7 @@ export default async function CatalogBookingPage({
           itemId={itemId}
           itemTitle={itemTitle}
           backHref={backHref}
+          bookingOptions={bookingOptions}
         />
       </div>
     </ParallaxSection>

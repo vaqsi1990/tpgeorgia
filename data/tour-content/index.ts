@@ -1,1 +1,6 @@
-export type { TourContent, TourDay, TourSection } from "./types";
+export type {
+  TourBookingOption,
+  TourContent,
+  TourDay,
+  TourSection,
+} from "./types";

@@ -15,7 +15,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
   return (
     <div className="space-y-4 sm:space-y-5">
       {content.subtitle ? (
-        <p className="rounded-2xl border border-[#38ab8a]/20 bg-gradient-to-r from-[#38ab8a]/[0.07] to-transparent px-5 py-4 text-[16px] leading-[1.75] text-black md:text-[18px]">
+        <p className="whitespace-pre-line rounded-2xl border border-[#38ab8a]/20 bg-gradient-to-r from-[#38ab8a]/[0.07] to-transparent px-5 py-4 text-[16px] leading-[1.75] text-black md:text-[18px]">
           {content.subtitle}
         </p>
       ) : null}
@@ -71,7 +71,7 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
                           {day.label}
                         </p>
                       ) : null}
-                      <p className="text-[16px] leading-[1.8] text-black/80 md:text-[18px]">
+                      <p className="whitespace-pre-line text-[16px] leading-[1.8] text-black/80 md:text-[18px]">
                         {day.description}
                       </p>
                     </div>

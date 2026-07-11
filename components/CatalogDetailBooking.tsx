@@ -2,6 +2,7 @@
 
 import BookingForm from "@/components/BookingForm";
 import WhatsAppBookButton from "@/components/WhatsAppBookButton";
+import type { TourBookingOption } from "@/data/tour-content";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
@@ -10,6 +11,7 @@ type CatalogDetailBookingProps = {
   itemId: string;
   itemTitle: string;
   backHref: string;
+  bookingOptions?: TourBookingOption[];
 };
 
 export default function CatalogDetailBooking({
@@ -17,6 +19,7 @@ export default function CatalogDetailBooking({
   itemId,
   itemTitle,
   backHref,
+  bookingOptions,
 }: CatalogDetailBookingProps) {
   const t = useTranslations("Booking");
   const router = useRouter();
@@ -45,6 +48,7 @@ export default function CatalogDetailBooking({
           bookingType={bookingType}
           itemId={itemId}
           itemTitle={itemTitle}
+          bookingOptions={bookingOptions}
           onBack={() => router.push(backHref)}
         />
       </div>

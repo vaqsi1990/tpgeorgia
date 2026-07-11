@@ -1,167 +1,450 @@
-import type { TourContent } from "@/data/tour-content";
+import type { TourBookingOption, TourContent } from "@/data/tour-content";
 import type { AppLocale } from "@/i18n/routing";
 import type { StoredTourInput } from "@/lib/admin-types";
 
 export const rachaHorsebackTourId = "racha-signature-horseback";
 
-const routeOptions = {
+type RouteOption = {
+  id: string;
+  label: string;
+  description: string;
+  kind: "route" | "addon";
+};
+
+const routeOptionIds = [
+  "kvashkhieti-panorama",
+  "five-villages",
+  "pockhvrebi",
+  "mravaldzali-panorama",
+  "shoda-glacier",
+  "racha-picnic",
+] as const;
+
+const routeOptions: Record<AppLocale, RouteOption[]> = {
   en: [
     {
-      label: "Scenic Village Ride · 2–3 hours · from 150 GEL / person",
+      id: routeOptionIds[0],
+      kind: "route",
+      label: "Scenic Village Ride",
       description:
-        "A gentle horseback ride through the peaceful landscapes surrounding Kvashkhieti village. Ideal for beginners and travelers looking for a relaxing introduction to horseback riding.",
+        "Duration: 2–3 hours\nPrice: from 150 GEL / person\nA gentle horseback ride through the peaceful landscapes surrounding Kvashkhieti village. Ideal for beginners and travelers looking for a relaxing introduction to horseback riding.",
     },
     {
-      label: "Five Villages Trail · 5 hours · from 250 GEL / person",
+      id: routeOptionIds[1],
+      kind: "route",
+      label: "Five Villages Trail",
       description:
-        "Ride through authentic mountain villages, visit the historic Joisubani Shrine, and discover the traditions and rural beauty of Racha.",
+        "Duration: approx. 5 hours\nPrice: from 250 GEL / person\nRide through Kvashkhieti, Seva, Parakheti, Zudali and Chordi, visit the historic Joisubani Shrine, and discover the traditions and rural beauty of Racha.",
     },
     {
-      label: "Pockhvrebi Mountain Adventure · 5–6 hours · from 350 GEL / person",
+      id: routeOptionIds[2],
+      kind: "route",
+      label: "Pockhvrebi Mountain Adventure",
       description:
-        "An exciting ride across remote mountain trails near Shkmeri with spectacular alpine scenery.",
+        "Duration: 5–6 hours\nPrice: from 350 GEL / person\nAn unforgettable route through the highlands near Shkmeri with wild nature, alpine scenery and spectacular views.",
     },
     {
-      label: "Signature Tour – Mravaldzali Panorama Ride · 6 hours · from 350 GEL / person",
+      id: routeOptionIds[3],
+      kind: "route",
+      label: "Signature Tour – Mravaldzali Panorama Ride",
       description:
-        "Our most scenic horseback experience. Ride through high mountain landscapes to the picturesque village of Mravaldzali, visit its tranquil mountain lake, and admire breathtaking panoramic views of the Greater Caucasus.",
+        "Duration: 6 hours\nPrice: from 350 GEL / person\nOne of the most impressive horseback routes in Racha.\nRide toward Mravaldzali, visit the mountain lake and enjoy breathtaking panoramic views of the Greater Caucasus.",
     },
     {
-      label: "Shoda Glacier Expedition · 5–6 hours · from 350 GEL / person",
+      id: routeOptionIds[4],
+      kind: "route",
+      label: "Shoda Glacier Expedition",
       description:
-        "Journey through dramatic mountain terrain toward the magnificent Shoda Glacier and its alpine lake — an unforgettable adventure for nature lovers.",
+        "Duration: 5–6 hours\nPrice: from 350 GEL / person\nJourney toward the magnificent Shoda Glacier and its alpine lake — dramatic mountain landscapes and untouched nature create one of Georgia's most impressive experiences.",
     },
     {
-      label: "Optional Mountain Picnic · 70 GEL / person",
+      id: routeOptionIds[5],
+      kind: "addon",
+      label: "Optional Mountain Picnic",
       description:
-        "Complete your adventure with a traditional picnic prepared from fresh local ingredients. Enjoy homemade dishes surrounded by the peaceful nature of Racha — during your ride or at the end of your journey.",
+        "Enhance your adventure with a traditional picnic prepared from fresh local ingredients.\nEnjoy homemade dishes surrounded by the peaceful nature of Racha — during your ride or at the end of your journey.\nPrice: 70 GEL / person",
     },
   ],
   ka: [
     {
-      label: "კვაშხიეთის პანორამული მარშრუტი · 2–3 საათი · 150 ლარიდან / 1 ადამიანი",
+      id: routeOptionIds[0],
+      kind: "route",
+      label: "კვაშხიეთის პანორამული მარშრუტი",
       description:
-        "მშვიდი და სასიამოვნო გასეირნება კვაშხიეთის ულამაზეს შემოგარენში. იდეალურია დამწყებთათვის და მათთვის, ვისაც სურს რაჭის ბუნების გაცნობა ცხენით, მშვიდ გარემოში.",
+        "ხანგრძლივობა: 2–3 საათი\nფასი: 150 ლარიდან / 1 ადამიანი\nმშვიდი და სასიამოვნო გასეირნება კვაშხიეთის ულამაზეს შემოგარენში. იდეალურია დამწყებთათვის და მათთვის, ვისაც სურს რაჭის ბუნების გაცნობა ცხენით, მშვიდ გარემოში.",
     },
     {
-      label: "ხუთი სოფლის მარშრუტი · 5 საათი · 250 ლარიდან / 1 ადამიანი",
+      id: routeOptionIds[1],
+      kind: "route",
+      label: "ხუთი სოფლის მარშრუტი",
       description:
-        "გაიარეთ კვაშხიეთი, სევა, ფარახეთი, ზუდალი და ჩორდი, ეწვიეთ ჯოისუბნის ისტორიულ სალოცავს და აღმოაჩინეთ რაჭის სოფლების ავთენტური ცხოვრება და ტრადიციები.",
+        "ხანგრძლივობა: დაახლოებით 5 საათი\nფასი: 250 ლარიდან / 1 ადამიანი\nგაიარეთ კვაშხიეთი, სევა, ფარახეთი, ზუდალი და ჩორდი, ეწვიეთ ჯოისუბნის ისტორიულ სალოცავს და აღმოაჩინეთ რაჭის სოფლების ავთენტური ცხოვრება და ტრადიციები.",
     },
     {
-      label: "ფოცხვრებით მთების თავგადასავალი · 5–6 საათი · 350 ლარიდან / 1 ადამიანი",
+      id: routeOptionIds[2],
+      kind: "route",
+      label: "ფოცხვრებით მთების თავგადასავალი",
       description:
-        "დაუვიწყარი მარშრუტი შქმერის მიმდებარე მაღალმთიანეთში, სადაც დაგხვდებათ ველური ბუნება, ალპური პეიზაჟები და შთამბეჭდავი ხედები.",
+        "ხანგრძლივობა: 5–6 საათი\nფასი: 350 ლარიდან / 1 ადამიანი\nდაუვიწყარი მარშრუტი შქმერის მიმდებარე მაღალმთიანეთში, სადაც დაგხვდებათ ველური ბუნება, ალპური პეიზაჟები და შთამბეჭდავი ხედები.",
     },
     {
-      label: "განსაკუთრებული გამოცდილება – მრავალძალის პანორამული ტური · 6 საათი · 350 ლარიდან / 1 ადამიანი",
+      id: routeOptionIds[3],
+      kind: "route",
+      label: "განსაკუთრებული გამოცდილება – მრავალძალის პანორამული ტური",
       description:
-        "ერთ-ერთი ყველაზე შთამბეჭდავი საცხენოსნო მარშრუტი რაჭაში. იმოგზაურეთ მრავალძალის მიმართულებით, მოინახულეთ მთის ტბა და დატკბით კავკასიონის პანორამული ხედებით.",
+        "ხანგრძლივობა: 6 საათი\nფასი: 350 ლარიდან / 1 ადამიანი\nერთ-ერთი ყველაზე შთამბეჭდავი საცხენოსნო მარშრუტი რაჭაში.\nიმოგზაურეთ მრავალძალის მიმართულებით, მოინახულეთ მთის ტბა და დატკბით კავკასიონის პანორამული ხედებით, რომლებიც ამ მოგზაურობას ნამდვილად დაუვიწყარს გახდის.",
     },
     {
-      label: "შოდას მყინვარის ექსპედიცია · 5–6 საათი · 350 ლარიდან / 1 ადამიანი",
+      id: routeOptionIds[4],
+      kind: "route",
+      label: "შოდას მყინვარის ექსპედიცია",
       description:
-        "გაემართეთ შოდას მყინვარისა და ალპური ტბისკენ, სადაც დრამატული მთის ლანდშაფტები და ხელუხლებელი ბუნება ერთ-ერთ ყველაზე შთამბეჭდავ გამოცდილებას ქმნის საქართველოში.",
+        "ხანგრძლივობა: 5–6 საათი\nფასი: 350 ლარიდან / 1 ადამიანი\nგაემართეთ შოდას მყინვარისა და ალპური ტბისკენ, სადაც დრამატული მთის ლანდშაფტები და ხელუხლებელი ბუნება ერთ-ერთ ყველაზე შთამბეჭდავ გამოცდილებას ქმნის საქართველოში.",
     },
     {
-      label: "სურვილისამებრ – რაჭული პიკნიკი · 70 ლარი / 1 ადამიანი",
+      id: routeOptionIds[5],
+      kind: "addon",
+      label: "სურვილისამებრ – რაჭული პიკნიკი",
       description:
-        "გაამდიდრეთ თქვენი მოგზაურობა ტრადიციული რაჭული პიკნიკით, რომელიც მზადდება ადგილობრივი, ნატურალური პროდუქტებით. მიირთვით ხელნაკეთი კერძები მთის ბუნების საოცარ გარემოში.",
+        "გაამდიდრეთ თქვენი მოგზაურობა ტრადიციული რაჭული პიკნიკით, რომელიც მზადდება ადგილობრივი, ნატურალური პროდუქტებით.\nმიირთვით ხელნაკეთი კერძები მთის ბუნების საოცარ გარემოში — მარშრუტის განმავლობაში ან ტურის დასრულების შემდეგ.\nფასი: 70 ლარი / 1 ადამიანი",
     },
   ],
   ru: [
     {
-      label: "Живописная прогулка по деревне · 2–3 часа · от 150 GEL / человек",
+      id: routeOptionIds[0],
+      kind: "route",
+      label: "Живописная прогулка по деревне",
       description:
-        "Спокойная верховая прогулка по живописным окрестностям села Квашхиети. Идеально для новичков и тех, кто хочет познакомиться с природой Рачи в комфортном темпе.",
+        "Длительность: 2–3 часа\nЦена: от 150 GEL с человека\nСпокойная верховая прогулка по мирным ландшафтам в окрестностях села Квашхиети. Идеально для новичков и тех, кто ищет расслабляющее знакомство с верховой ездой.",
     },
     {
-      label: "Маршрут пяти деревень · 5 часов · от 250 GEL / человек",
+      id: routeOptionIds[1],
+      kind: "route",
+      label: "Маршрут пяти деревень",
       description:
-        "Проедьте через аутентичные горные сёла, посетите историческое святилище Джоисубани и откройте для себя традиции и сельскую красоту Рачи.",
+        "Длительность: около 5 часов\nЦена: от 250 GEL с человека\nПроедьте через Квашхиети, Сева, Парахети, Зудали и Чорди, посетите историческое святилище Джоисубани и откройте для себя традиции и сельскую красоту Рачи.",
     },
     {
-      label: "Горное приключение Поцхvrebi · 5–6 часов · от 350 GEL / человек",
+      id: routeOptionIds[2],
+      kind: "route",
+      label: "Горное приключение Pockhvrebi",
       description:
-        "Захватывающая поездка по удалённым горным тропам недалеко от Шкмери с потрясающими альпийскими пейзажами.",
+        "Длительность: 5–6 часов\nЦена: от 350 GEL с человека\nНезабываемый маршрут по высокогорью недалеко от Шкмери с дикой природой, альпийскими пейзажами и захватывающими видами.",
     },
     {
-      label: "Фирменный тур – панорамная прогулка Mravaldzali · 6 часов · от 350 GEL / человек",
+      id: routeOptionIds[3],
+      kind: "route",
+      label: "Фирменный тур – панорамная прогулка Mravaldzali",
       description:
-        "Наш самый живописный конный маршрут. Проедьте через высокогорные ландшафты к живописной деревне Mravaldzali, посетите горное озеро и полюбуйтесь панорамными видами на Большой Кавказ.",
+        "Длительность: 6 часов\nЦена: от 350 GEL с человека\nОдин из самых впечатляющих конных маршрутов в Раче.\nПроедьте в направлении Mravaldzali, посетите горное озеро и полюбуйтесь панорамными видами на Большой Кавказ.",
     },
     {
-      label: "Экспедиция к леднику Shoda · 5–6 часов · от 350 GEL / человек",
+      id: routeOptionIds[4],
+      kind: "route",
+      label: "Экспедиция к леднику Shoda",
       description:
-        "Путешествие через драматичный горный рельеф к величественному леднику Shoda и его альпийскому озеру — незабываемое приключение для любителей природы.",
+        "Длительность: 5–6 часов\nЦена: от 350 GEL с человека\nОтправьтесь к величественному леднику Shoda и его альпийскому озеру, где драматичные горные ландшафты и нетронутая природа создают одно из самых впечатляющих впечатлений в Грузии.",
     },
     {
-      label: "По желанию – горный пикник · 70 GEL / человек",
+      id: routeOptionIds[5],
+      kind: "addon",
+      label: "По желанию – горный пикник",
       description:
-        "Дополните приключение традиционным рачинским пикником из свежих местных продуктов. Домашние блюда на фоне спокойной горной природы — во время поездки или в конце маршрута.",
+        "Дополните приключение традиционным пикником из свежих местных продуктов.\nНасладитесь домашними блюдами на фоне спокойной природы Рачи — во время поездки или в конце маршрута.\nЦена: 70 GEL с человека",
     },
   ],
   zh: [
     {
-      label: "村庄风景骑行 · 2–3 小时 · 每人 150 GEL 起",
+      id: routeOptionIds[0],
+      kind: "route",
+      label: "克瓦什希埃蒂村庄风景骑行",
       description:
-        "在 Kvashkhieti 村周围宁静的风景中轻松骑马。适合初学者和希望以放松方式初识拉查马术的旅行者。",
+        "时长：2–3 小时\n价格：每人 150 GEL 起\n在克瓦什希埃蒂村周围宁静的风景中轻松骑马。适合初学者和希望以放松方式初识马术的旅行者。",
     },
     {
-      label: "五村路线 · 5 小时 · 每人 250 GEL 起",
+      id: routeOptionIds[1],
+      kind: "route",
+      label: "五村路线",
       description:
-        "骑马穿越真实的山村，参观历史悠久的 Joisubani 圣所，感受拉查的传统与乡村之美。",
+        "时长：约 5 小时\n价格：每人 250 GEL 起\n骑马穿越克瓦什希埃蒂、塞瓦、帕拉赫蒂、祖达利和乔尔迪，参观历史悠久的乔伊苏巴尼圣所，感受拉查的传统与乡村之美。",
     },
     {
-      label: "Pockhvrebi 山地探险 · 5–6 小时 · 每人 350 GEL 起",
+      id: routeOptionIds[2],
+      kind: "route",
+      label: "波茨赫夫雷比山地探险",
       description:
-        "在 Shkmeri 附近偏远山道上激情骑行，欣赏壮丽的高山风光。",
+        "时长：5–6 小时\n价格：每人 350 GEL 起\n在什克梅里附近的高山中体验难忘路线，欣赏原始自然、高山风光与壮丽景观。",
     },
     {
-      label: "招牌线路 – Mravaldzali 全景骑行 · 6 小时 · 每人 350 GEL 起",
+      id: routeOptionIds[3],
+      kind: "route",
+      label: "招牌线路 – 姆拉瓦尔德扎利全景骑行",
       description:
-        "我们最具风景的马术体验。穿越高山景观前往 Mravaldzali 村，参观山间湖泊，俯瞰高加索山脉的壮丽全景。",
+        "时长：6 小时\n价格：每人 350 GEL 起\n拉查最具震撼力的马术路线之一。\n前往姆拉瓦尔德扎利，参观山间湖泊，俯瞰大高加索山脉令人叹为观止的全景。",
     },
     {
-      label: "Shoda 冰川探险 · 5–6 小时 · 每人 350 GEL 起",
+      id: routeOptionIds[4],
+      kind: "route",
+      label: "绍达冰川探险",
       description:
-        "穿越壮丽的山地地形前往 Shoda 冰川及其 alpine 湖——自然爱好者的难忘冒险。",
+        "时长：5–6 小时\n价格：每人 350 GEL 起\n前往绍达冰川及其高山湖泊，壮丽的山地景观与原始自然共同构成格鲁吉亚最难忘的体验之一。",
     },
     {
-      label: "可选山地野餐 · 每人 70 GEL",
+      id: routeOptionIds[5],
+      kind: "addon",
+      label: "可选山地野餐",
       description:
-        "以当地新鲜食材准备的传统野餐为您的旅程画上句号。在拉查宁静的自然中享用 homemade 美食。",
+        "以当地新鲜食材准备的传统野餐为您的旅程增色。\n在拉查宁静的自然中享用家常美食——骑行途中或旅程结束时。\n价格：70 GEL / 每人",
     },
   ],
-} as const;
+};
+
+const closingOutline: Record<AppLocale, string[]> = {
+  ka: [
+    "არსებობს ადგილები, რომელთა სილამაზეს მანქანის ფანჯრიდან ვერასოდეს შეიგრძნობთ.",
+    "შეანელეთ ტემპი, ჩაისუნთქეთ რაჭის სუფთა მთის ჰაერი და აღმოაჩინეთ ეს უნიკალური მხარე ისე, როგორც მას ადგილობრივები საუკუნეების განმავლობაში იცნობდნენ ცხენზე ამხედრებულებმა.",
+  ],
+  en: [
+    "Some places are too beautiful to discover through a car window.",
+    "Slow down, breathe the fresh mountain air, and experience Racha the way locals have for generations on horseback.",
+  ],
+  ru: [
+    "Есть места, слишком прекрасные, чтобы увидеть их из окна автомобиля.",
+    "Замедлите темп, вдохните свежий горный воздух Рачи и познайте этот край верхом, как местные жители делают это поколениями.",
+  ],
+  zh: [
+    "有些地方的美丽，永远无法从车窗中感受。",
+    "放慢脚步，呼吸拉查洁净的山间空气，像当地人几个世纪以来骑马所认识的那样，发现这一独特的一面。",
+  ],
+};
+
+const whyChooseTitles: Record<AppLocale, string> = {
+  ka: "რატომ აირჩიოთ ეს გამოცდილება?",
+  en: "Why choose this experience?",
+  ru: "Почему стоит выбрать это приключение?",
+  zh: "为什么选择这次体验？",
+};
+
+const routeSectionTitles: Record<AppLocale, string> = {
+  ka: "აირჩიეთ თქვენი თავგადასავალი",
+  en: "Choose your adventure",
+  ru: "Выберите приключение",
+  zh: "选择您的冒险路线",
+};
+
+const whyChooseItems: Record<
+  AppLocale,
+  Array<{ label: string; description: string }>
+> = {
+  ka: [
+    {
+      label: "აღმოაჩინეთ ტურისტებისთვის ჯერ კიდევ უცნობი რაჭა",
+      description:
+        "იმოგზაურეთ საქართველოს ერთ-ერთ ყველაზე ნაკლებად აღმოჩენილ რეგიონში, სადაც ბუნება კვლავ ხელუხლებელია, ხოლო სოფლის ცხოვრება საუკუნეების განმავლობაში თითქმის უცვლელად შემორჩა.",
+    },
+    {
+      label: "დაუვიწყარი საცხენოსნო თავგადასავალი",
+      description:
+        "გაიარეთ იმ მთის ბილიკებით, რომლებსაც ადგილობრივები საუკუნეების განმავლობაში იყენებდნენ. ეს არის შესაძლებლობა, რაჭა ისე გაიცნოთ, როგორც მას ადგილობრივები იცნობენ.",
+    },
+    {
+      label: "დაუვიწყარი მთის პეიზაჟები",
+      description:
+        "ტყეები, ალპური მდელოები, ტრადიციული სოფლები, მთის ტბები და კავკასიონის პანორამული ხედები თითოეული მარშრუტი განსხვავებულ შთაბეჭდილებას გპირდებათ.",
+    },
+    {
+      label: "მცირე ჯგუფები",
+      description:
+        "გასეირნებები ტარდება მცირე ჯგუფებში, რაც უზრუნველყოფს კომფორტულ, უსაფრთხო და ინდივიდუალურ გამოცდილებას.",
+    },
+    {
+      label: "სურვილისამებრ ტრადიციული რაჭული პიკნიკი",
+      description:
+        "დაასრულეთ თქვენი მოგზაურობა ან შეისვენეთ მარშრუტის განმავლობაში ტრადიციული რაჭული კერძებით, ბუნების საოცარ გარემოში.",
+    },
+  ],
+  en: [
+    {
+      label: "Discover Racha before the crowds",
+      description:
+        "Travel through one of Georgia's least-discovered regions, where nature remains untouched and village life has changed little over the centuries.",
+    },
+    {
+      label: "Unforgettable horseback adventure",
+      description:
+        "Follow mountain trails used by locals for generations — a chance to experience Racha the way its people know it.",
+    },
+    {
+      label: "Spectacular mountain scenery",
+      description:
+        "Forests, alpine meadows, traditional villages, mountain lakes and panoramic Caucasus views — each route offers a different impression.",
+    },
+    {
+      label: "Small groups",
+      description:
+        "Rides are run in small groups for a comfortable, safe and personal experience.",
+    },
+    {
+      label: "Optional traditional Racha picnic",
+      description:
+        "Finish your ride or pause along the trail with traditional Racha dishes in a spectacular natural setting.",
+    },
+  ],
+  ru: [
+    {
+      label: "Откройте для себя малоизвестную Рачу",
+      description:
+        "Путешествуйте по одному из наименее известных регионов Грузии, где природа остаётся нетронутой, а деревенская жизнь почти не изменилась за века.",
+    },
+    {
+      label: "Незабываемое конное приключение",
+      description:
+        "Проедьте по горным тропам, которыми местные жители пользовались поколениями — познайте Рачу так, как её знают местные.",
+    },
+    {
+      label: "Потрясающие горные пейзажи",
+      description:
+        "Леса, альпийские луга, традиционные сёла, горные озёра и панорамные виды на Кавказ — каждый маршрут дарит своё впечатление.",
+    },
+    {
+      label: "Небольшие группы",
+      description:
+        "Прогулки проходят в небольших группах для комфортного, безопасного и персонального опыта.",
+    },
+    {
+      label: "По желанию — традиционный рачинский пикник",
+      description:
+        "Завершите поездку или отдохните по пути с традиционными рачинскими блюдами на фоне потрясающей природы.",
+    },
+  ],
+  zh: [
+    {
+      label: "发现游客尚未熟知的拉查",
+      description:
+        "探索格鲁吉亚最少被发现的地区之一，这里的自然仍保持原始风貌，乡村生活世代相传，几乎未曾改变。",
+    },
+    {
+      label: "难忘的马术冒险",
+      description:
+        "沿着当地人几个世纪以来使用的山路前行——以当地人的方式认识拉查。",
+    },
+    {
+      label: "壮丽的山地景观",
+      description:
+        "森林、高山草甸、传统村庄、山间湖泊与高加索全景——每条路线都带来不同的感受。",
+    },
+    {
+      label: "小型团体",
+      description:
+        "骑行以小团体进行，确保舒适、安全且个性化的体验。",
+    },
+    {
+      label: "可选传统拉查野餐",
+      description:
+        "在壮丽的自然环境中，以传统拉查美食结束旅程或在途中休息。",
+    },
+  ],
+};
+
+function toBookingOptions(locale: AppLocale): TourBookingOption[] {
+  return routeOptions[locale].map(({ id, label, description, kind }) => ({
+    id,
+    label,
+    description,
+    kind,
+  }));
+}
+
+function buildRouteDays(locale: AppLocale) {
+  return routeOptions[locale]
+    .filter((option) => option.kind === "route")
+    .map(({ label, description }) => ({ label, description }));
+}
+
+function buildProgramSections(locale: AppLocale) {
+  const addon = routeOptions[locale].find((option) => option.kind === "addon");
+
+  return [
+    {
+      title: whyChooseTitles[locale],
+      days: whyChooseItems[locale],
+    },
+    {
+      title: routeSectionTitles[locale],
+      days: buildRouteDays(locale),
+    },
+    ...(addon
+      ? [
+          {
+            title: addon.label,
+            days: [{ label: "", description: addon.description }],
+          },
+        ]
+      : []),
+  ];
+}
+
+function buildKaContent(): TourContent {
+  return {
+    title: "რაჭის ფარული ბილიკები - საცხენოსნო თავგადასავლები",
+    routeLabel: "რაჭა · კვაშხიეთი · ერთი დღე",
+    subtitle:
+      "გაიარეთ ცხენით ხელუხლებელ მთის ბილიკებზე, უძველეს სოფლებში, ალპურ მინდვრებსა და კავკასიონის შთამბეჭდავი ხედების ფონზე. ადგილობრივი გამოცდილი მეგზურების თანხლებით აღმოაჩენთ რაჭას სულ სხვა რაკურსით, რაც ერთეულების ხვედრია.\n\nდაივიწყეთ ხმაურიანი ტურისტული მარშრუტები და შეიგრძენით საქართველოს ერთ-ერთი ყველაზე ავთენტური და მშვიდი რეგიონი შერგებულად, ბუნებასთან სრულ ჰარმონიაში.",
+    outline: closingOutline.ka,
+    highlights: [],
+    includes: [
+      "გამოცდილი ადგილობრივი მეგზურები",
+      "მომზადებული ცხენები თქვენი დონის მიხედვით",
+      "მცირე ჯგუფური გასეირნებები",
+      "რაჭის ულამაზესი მთის მარშრუტები",
+    ],
+    clothingNote:
+      "საცხენოსნო გასეირნებისთვის რეკომენდებულია კომფორტული ტანისაცმელი და დახურული ფეხსაცმელი.",
+    bookingOptions: toBookingOptions("ka"),
+    sections: buildProgramSections("ka"),
+  };
+}
+
+function buildZhContent(): TourContent {
+  return {
+    title: "隐秘拉查马术探险",
+    routeLabel: "拉查 · 克瓦什希埃蒂 · 1 天",
+    subtitle:
+      "在当地向导的带领下，骑马穿越未经破坏的山地景观、古老村庄、高山草甸和令人叹为观止的高加索观景点，体验正宗的马术冒险。远离人群，发现少数旅行者才能领略的格鲁吉亚独特一面。",
+    outline: closingOutline.zh,
+    highlights: [],
+    includes: [
+      "经验丰富的当地向导",
+      "根据骑术水平匹配的训练马匹",
+      "小型私人团",
+      "拉查风景山地路线",
+    ],
+    clothingNote: "建议穿着舒适服装和封闭式鞋履进行马术活动。",
+    bookingOptions: toBookingOptions("zh"),
+    sections: buildProgramSections("zh"),
+  };
+}
 
 function buildContent(locale: AppLocale): TourContent {
-  const sectionTitles: Record<AppLocale, string> = {
-    ka: "აირჩიეთ თქვენი თავგადასავალი",
-    en: "Which Adventure Will You Choose?",
-    ru: "Какое приключение вы выберете?",
-    zh: "选择您的冒险路线",
-  };
+  if (locale === "ka") {
+    return buildKaContent();
+  }
+
+  if (locale === "zh") {
+    return buildZhContent();
+  }
 
   const contentByLocale: Record<
-    AppLocale,
-    Omit<TourContent, "sections"> & { sectionTitle: string }
+    Exclude<AppLocale, "ka" | "zh">,
+    Omit<TourContent, "sections">
   > = {
     en: {
       title: "Horse Riding Adventures in Hidden Racha",
-      routeLabel: "Racha · Kvashkhieti",
+      routeLabel: "Racha · Kvashkhieti · 1 day",
       subtitle:
-        "Ride through untouched mountain landscapes, ancient villages, alpine meadows and breathtaking Caucasus viewpoints on an authentic horseback adventure led by local guides. Escape the crowds and discover a side of Georgia that few travelers ever experience.",
-      outline: [
-        "Some places are too beautiful to discover through a car window…",
-        "Slow down, breathe the fresh mountain air, and experience Racha the way locals have for generations on horseback.",
-      ],
-      highlights: [
-        "Off-the-Beaten-Path Experience — explore one of Georgia's least-discovered regions",
-        "Authentic Horseback Adventure — trails inaccessible by ordinary vehicles",
-        "Spectacular Mountain Landscapes — forests, meadows, villages and Caucasus views",
-        "Small Private Groups — relaxed pace with personalized attention",
-      ],
+        "Ride through untouched mountain landscapes, ancient villages, alpine meadows and breathtaking Caucasus viewpoints on an authentic one-day horseback adventure led by local guides.",
+      outline: closingOutline.en,
+      highlights: [],
       includes: [
         "Experienced local guides",
         "Well-trained horses suited to your riding level",
@@ -170,48 +453,14 @@ function buildContent(locale: AppLocale): TourContent {
       ],
       clothingNote:
         "Comfortable clothing and closed shoes are recommended for horseback riding.",
-      sectionTitle: sectionTitles.en,
-    },
-    ka: {
-      title: "რაჭის ფარული ბილიკები — საცხენოსნო თავგადასავლები",
-      routeLabel: "რაჭა · კვაშხიეთი",
-      subtitle:
-        "გაიარეთ ცხენით ხელუხლებელ მთის ბილიკებზე, უძველეს სოფლებში, ალპურ მინდვრებსა და კავკასიონის შთამბეჭდავი ხედების ფონზე. ადგილობრივი გამოცდილი მეგზურების თანხლებით აღმოაჩენთ რაჭას სულ სხვა რაკურსით.",
-      outline: [
-        "არსებობს ადგილები, რომელთა სილამაზეს მანქანის ფანჯრიდან ვერასოდეს შეიგრძნობთ.",
-        "შეანელეთ ტემპი, ჩაისუნთქეთ რაჭის სუფთა მთის ჰაერი და აღმოაჩინეთ ეს უნიკალური მხარე ცხენზე.",
-      ],
-      highlights: [
-        "აღმოაჩინეთ ტურისტებისთვის ჯერ კიდევ უცნობი რაჭა",
-        "დაუვიწყარი საცხენოსნო თავგადასავალი ადგილობრივი ბილიკებით",
-        "დაუვიწყარი მთის პეიზაჟები — ტყეები, მდელოები, სოფლები და კავკასიონი",
-        "მცირე ჯგუფები — კომფორტული და ინდივიდუალური გამოცდილება",
-      ],
-      includes: [
-        "გამოცდილი ადგილობრივი მეგზურები",
-        "მომზადებული ცხენები თქვენი დონის მიხედვით",
-        "მცირე ჯგუფური გასეირნებები",
-        "რაჭის ულამაზესი მთის მარშრუტები",
-      ],
-      clothingNote:
-        "საცხენოსნო გასეირნებისთვის რეკომენდებულია კომფორტული ტანისაცმელი და დახურული ფეხსაცმელი.",
-      sectionTitle: sectionTitles.ka,
     },
     ru: {
       title: "Конные приключения в скрытой Раче",
-      routeLabel: "Рача · Квашхиети",
+      routeLabel: "Рача · Квашхиети · 1 день",
       subtitle:
-        "Проедьте по нетронутым горным тропам, древним сёлам, альпийским лугам и захватывающим видам на Кавказ с опытными местными гидами. Откройте Грузию, которую мало кто из путешественников когда-либо видит.",
-      outline: [
-        "Есть места, слишком прекрасные, чтобы увидеть их из окна автомобиля…",
-        "Замедлите темп, вдохните свежий горный воздух Рачи и познайте этот край верхом, как местные жители делают это поколениями.",
-      ],
-      highlights: [
-        "Маршрут вне массового туризма — один из наименее известных регионов Грузии",
-        "Аутентичное конное приключение по тропам, недоступным для обычных машин",
-        "Потрясающие горные пейзажи — леса, луга, сёла и виды на Кавказ",
-        "Небольшие частные группы — комфортный и персональный темп",
-      ],
+        "Проедьте по нетронутым горным ландшафтам, древним сёлам, альпийским лугам и захватывающим смотровым площадкам Кавказа в аутентичном конном приключении с местными гидами. Уйдите от толп и откройте для себя сторону Грузии, которую редко видят путешественники.",
+      outline: closingOutline.ru,
+      highlights: [],
       includes: [
         "Опытные местные гиды",
         "Подготовленные лошади с учётом вашего уровня",
@@ -220,31 +469,6 @@ function buildContent(locale: AppLocale): TourContent {
       ],
       clothingNote:
         "Для верховой езды рекомендуется удобная одежда и закрытая обувь.",
-      sectionTitle: sectionTitles.ru,
-    },
-    zh: {
-      title: "隐秘拉查马术探险",
-      routeLabel: "拉查 · Kvashkhieti",
-      subtitle:
-        "在当地向导带领下，骑马穿越未受破坏的山地、古老村庄、高山草甸与高加索壮丽景观。远离人群，发现少数旅行者见过的格鲁吉亚另一面。",
-      outline: [
-        "有些地方的美丽，无法透过车窗真正感受……",
-        "放慢脚步，呼吸拉查清新的山风，像当地人世代相传那样在马背上认识这片土地。",
-      ],
-      highlights: [
-        "小众秘境体验——探索格鲁吉亚最少被发现的地区之一",
-        "正宗马术冒险——普通车辆无法到达的山道",
-        "壮丽山地景观——森林、草甸、村庄与高加索全景",
-        "小型私人团——舒适节奏与个性化服务",
-      ],
-      includes: [
-        "经验丰富的当地向导",
-        "根据骑术水平匹配的训练马匹",
-        "小型私人团",
-        "拉查风景山地路线",
-      ],
-      clothingNote: "建议穿着舒适服装和封闭式鞋履进行马术活动。",
-      sectionTitle: sectionTitles.zh,
     },
   };
 
@@ -258,13 +482,15 @@ function buildContent(locale: AppLocale): TourContent {
     highlights: base.highlights,
     includes: base.includes,
     clothingNote: base.clothingNote,
-    sections: [
-      {
-        title: base.sectionTitle,
-        days: [...routeOptions[locale]],
-      },
-    ],
+    bookingOptions: toBookingOptions(locale),
+    sections: buildProgramSections(locale),
   };
+}
+
+export function getRachaHorsebackBookingOptions(
+  locale: AppLocale,
+): TourBookingOption[] {
+  return toBookingOptions(locale);
 }
 
 export function buildRachaHorsebackTourInput(): StoredTourInput & { id: string } {

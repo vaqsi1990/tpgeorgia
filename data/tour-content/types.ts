@@ -10,6 +10,13 @@ export type TourSection = {
   days: TourDay[];
 };
 
+export type TourBookingOption = {
+  id: string;
+  label: string;
+  description?: string;
+  kind: "route" | "addon";
+};
+
 export type TourContent = {
   title: string;
   routeLabel: string;
@@ -19,6 +26,7 @@ export type TourContent = {
   includes: string[];
   highlights?: string[];
   clothingNote?: string;
+  bookingOptions?: TourBookingOption[];
 };
 
 export type TourContentCatalog = Record<TourId, TourContent>;

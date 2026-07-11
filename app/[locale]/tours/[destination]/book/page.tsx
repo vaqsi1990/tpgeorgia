@@ -1,5 +1,6 @@
 import CatalogBookingPage from "@/components/CatalogBookingPage";
 import { isTourDestination } from "@/data/tour-destinations";
+import { resolveTourBookingOptions } from "@/data/tours/booking-options";
 import { buildPageMetadata } from "@/lib/seo";
 import type { AppLocale } from "@/i18n/routing";
 import { getTourById } from "@/lib/catalog-db";
@@ -49,6 +50,11 @@ export default async function TourBookRoute({ params }: Props) {
   }
 
   const content = tour.content[locale as AppLocale] ?? tour.content.ka;
+  const bookingOptions = resolveTourBookingOptions(
+    tour.id,
+    locale as AppLocale,
+    content.bookingOptions,
+  );
 
   return (
     <CatalogBookingPage
@@ -56,6 +62,7 @@ export default async function TourBookRoute({ params }: Props) {
       itemId={tour.id}
       itemTitle={content.title}
       backHref={`/tours/${tour.id}`}
+      bookingOptions={bookingOptions}
       tone="mint"
     />
   );
