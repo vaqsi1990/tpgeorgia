@@ -1,10 +1,12 @@
 "use client";
 
 import { AdminInput, AdminTextarea } from "@/components/admin/AdminField";
+import ImageUploadForProduct from "@/components/productimage";
 
 export type TourDayForm = {
   label: string;
   description: string;
+  images: string[];
 };
 
 export type TourSectionForm = {
@@ -17,7 +19,11 @@ type TourProgramEditorProps = {
   onChange: (sections: TourSectionForm[]) => void;
 };
 
-const emptyDay = (): TourDayForm => ({ label: "", description: "" });
+const emptyDay = (): TourDayForm => ({
+  label: "",
+  description: "",
+  images: [],
+});
 
 const emptySection = (): TourSectionForm => ({
   title: "ტურის პროგრამა",
@@ -29,7 +35,10 @@ export function createDefaultSections(): TourSectionForm[] {
 }
 
 export function sectionsFromContent(
-  sections: { title: string; days: TourDayForm[] }[],
+  sections: {
+    title: string;
+    days: { label: string; description: string; images?: string[] }[];
+  }[],
 ): TourSectionForm[] {
   if (sections.length === 0) return createDefaultSections();
   return sections.map((section) => ({
@@ -39,6 +48,7 @@ export function sectionsFromContent(
         ? section.days.map((day) => ({
             label: day.label,
             description: day.description,
+            images: day.images ?? [],
           }))
         : [emptyDay()],
   }));
@@ -171,6 +181,20 @@ export default function TourProgramEditor({
                     })
                   }
                 />
+                <div>
+                  <p className="mb-1.5 text-[16px] font-medium text-black md:text-[18px]">
+                    დღის სურათები
+                  </p>
+                  <p className="mb-2 text-[14px] text-black/60">
+                    ამ დღისთვის ცალკე სურათები — ყველა ენაზე ერთნაირად გამოჩნდება.
+                  </p>
+                  <ImageUploadForProduct
+                    value={day.images}
+                    onChange={(images) =>
+                      updateDay(sectionIndex, dayIndex, { images })
+                    }
+                  />
+                </div>
               </div>
             ))}
           </div>

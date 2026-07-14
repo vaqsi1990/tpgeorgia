@@ -50,7 +50,7 @@ model TourTranslation {
   subtitle     String?
   /// string[] — outline bullet points
   outline      Json
-  /// TourSection[] — { title, days: { label, description }[] }
+  /// TourSection[] — { title, days: { label, description, images? }[] }
   sections     Json
   /// string[]
   includes     Json

@@ -50,6 +50,7 @@ export default async function HomePage({ params }: Props) {
       <Tours tours={tours} reviewStats={reviewStats} />
       <Excursions excursions={excursions} reviewStats={reviewStats} />
       <Transfers />
+      
       <Blog posts={blogPosts} />
       <Contact tours={tours} excursions={excursions} />
      

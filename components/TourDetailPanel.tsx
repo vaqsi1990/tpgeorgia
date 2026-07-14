@@ -1,6 +1,7 @@
 "use client";
 
 import CollapsibleDetailSection from "@/components/CollapsibleDetailSection";
+import { GalleryLightbox } from "@/components/GalleryLightbox";
 import type { TourContent } from "@/data/tour-content";
 import { useTranslations } from "next-intl";
 
@@ -8,6 +9,54 @@ type TourDetailPanelProps = {
   content: TourContent;
   tourId: string;
 };
+
+function DayImages({
+  images,
+  altPrefix,
+}: {
+  images: string[];
+  altPrefix: string;
+}) {
+  const tGallery = useTranslations("Gallery");
+  const lightboxImages = images.map((src, index) => ({
+    id: index,
+    src,
+    alt: `${altPrefix} ${index + 1}`,
+  }));
+
+  return (
+    <GalleryLightbox
+      images={lightboxImages}
+      closeLabel={tGallery("lightbox.close")}
+      prevLabel={tGallery("lightbox.prev")}
+      nextLabel={tGallery("lightbox.next")}
+      counterLabel={(current, total) =>
+        tGallery("lightbox.counter", { current, total })
+      }
+    >
+      {(open) => (
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {images.map((src, index) => (
+            <button
+              key={`${src}-${index}`}
+              type="button"
+              onClick={() => open(index)}
+              className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-[#f3f4f4]"
+              aria-label={`${altPrefix} ${index + 1}`}
+            >
+              <img
+                src={src}
+                alt={`${altPrefix} ${index + 1}`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </GalleryLightbox>
+  );
+}
 
 export default function TourDetailPanel({ content, tourId }: TourDetailPanelProps) {
   const t = useTranslations("Tours");
@@ -71,9 +120,17 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
                           {day.label}
                         </p>
                       ) : null}
-                      <p className="whitespace-pre-line text-[16px] leading-[1.8] text-black/80 md:text-[18px]">
-                        {day.description}
-                      </p>
+                      {day.description ? (
+                        <p className="whitespace-pre-line text-[16px] leading-[1.8] text-black/80 md:text-[18px]">
+                          {day.description}
+                        </p>
+                      ) : null}
+                      {day.images && day.images.length > 0 ? (
+                        <DayImages
+                          images={day.images}
+                          altPrefix={day.label || t("programTitle")}
+                        />
+                      ) : null}
                     </div>
                   ))}
                 </div>

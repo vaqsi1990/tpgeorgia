@@ -3,6 +3,8 @@ import type { TourId } from "@/data/tours";
 export type TourDay = {
   label: string;
   description: string;
+  /** Optional photos specific to this day (shared across locales). */
+  images?: string[];
 };
 
 export type TourSection = {

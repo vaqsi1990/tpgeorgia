@@ -71,8 +71,9 @@ function buildLocaleContent(form: LocaleTourForm): TourContent {
         .map((day) => ({
           label: day.label.trim(),
           description: day.description.trim(),
+          ...(day.images.length > 0 ? { images: day.images } : {}),
         }))
-        .filter((day) => day.label || day.description),
+        .filter((day) => day.label || day.description || day.images?.length),
     }))
     .filter((section) => section.title || section.days.length > 0);
 
@@ -144,6 +145,33 @@ export default function TourForm({
       ...prev,
       [locale]: { ...prev[locale], [key]: value },
     }));
+  }
+
+  /** Day photos are shared — sync image URLs to matching day slots in every locale. */
+  function updateProgramSections(sections: TourSectionForm[]) {
+    setLocaleForms((prev) => {
+      const next = {
+        ...prev,
+        [locale]: { ...prev[locale], sections },
+      };
+
+      for (const loc of routing.locales) {
+        if (loc === locale) continue;
+        next[loc] = {
+          ...next[loc],
+          sections: next[loc].sections.map((section, sectionIndex) => ({
+            ...section,
+            days: section.days.map((day, dayIndex) => ({
+              ...day,
+              images:
+                sections[sectionIndex]?.days[dayIndex]?.images ?? day.images,
+            })),
+          })),
+        };
+      }
+
+      return next;
+    });
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -308,7 +336,7 @@ export default function TourForm({
           </div>
           <TourProgramEditor
             sections={form.sections}
-            onChange={(sections) => updateLocaleField("sections", sections)}
+            onChange={updateProgramSections}
           />
         </div>
 
