@@ -1,6 +1,7 @@
 "use client";
 
 import type { BookingRecord, BookingStatus } from "@/lib/booking-types";
+import { GEORGIA_IANA_TIME_ZONE } from "@/lib/georgia-time";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,10 +11,16 @@ const statusLabels: Record<BookingStatus, string> = {
   cancelled: "გაუქმებული",
 };
 
+/** Fixed en-GB parts — ka-GE dateStyle can differ between Node and browsers. */
 function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("ka-GE", {
-    dateStyle: "medium",
-    timeStyle: "short",
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone: GEORGIA_IANA_TIME_ZONE,
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
   }).format(new Date(iso));
 }
 
@@ -23,9 +30,11 @@ function formatBookingEnd(booking: BookingRecord): string | null {
   }
 
   const [year, month, day] = booking.endDate.split("-").map(Number);
-  const formatted = new Intl.DateTimeFormat("ka-GE", {
-    dateStyle: "long",
-    timeZone: "Asia/Tbilisi",
+  const formatted = new Intl.DateTimeFormat("en-GB", {
+    timeZone: GEORGIA_IANA_TIME_ZONE,
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
   }).format(new Date(Date.UTC(year, month - 1, day, 8, 0, 0)));
 
   return `${formatted}, ${booking.endTime}`;

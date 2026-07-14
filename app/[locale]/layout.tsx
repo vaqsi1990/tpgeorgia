@@ -8,6 +8,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { GEORGIA_IANA_TIME_ZONE } from "@/lib/georgia-time";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -66,7 +67,10 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body className="flex min-h-full flex-col overflow-x-hidden bg-white text-black">
         <SiteJsonLd locale={locale as AppLocale} />
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider
+          messages={messages}
+          timeZone={GEORGIA_IANA_TIME_ZONE}
+        >
           <div className="relative flex min-h-screen flex-col bg-white">
             <Header featuredReviews={featuredReviews} />
             <div className="flex-1">{children}</div>

@@ -2,14 +2,20 @@
 
 import StarRating from "@/components/StarRating";
 import type { ReviewRecord } from "@/lib/review-types";
+import { GEORGIA_IANA_TIME_ZONE } from "@/lib/georgia-time";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+/** Fixed en-GB parts — ka-GE dateStyle can differ between Node and browsers. */
 function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("ka-GE", {
-    dateStyle: "medium",
-    timeStyle: "short",
-    timeZone: "Asia/Tbilisi",
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone: GEORGIA_IANA_TIME_ZONE,
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
   }).format(new Date(iso));
 }
 

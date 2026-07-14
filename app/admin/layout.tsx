@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { NextIntlClientProvider } from "next-intl";
 import { extractRouterConfig } from "uploadthing/server";
+import { GEORGIA_IANA_TIME_ZONE } from "@/lib/georgia-time";
+import kaMessages from "@/messages/ka.json";
 import "./uploadthing.css";
 import "../globals.css";
 
@@ -53,7 +56,13 @@ export default function AdminLayout({
       </head>
       <body className="min-h-full bg-white text-black">
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        {children}
+        <NextIntlClientProvider
+          locale="ka"
+          messages={kaMessages}
+          timeZone={GEORGIA_IANA_TIME_ZONE}
+        >
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
