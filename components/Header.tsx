@@ -16,9 +16,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
-import type { IconType } from "react-icons";
-import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
-
 const navLinkClass =
   "text-black whitespace-nowrap font-figtree text-[16px] md:text-[18px] font-semibold transition-opacity hover:opacity-70";
 
@@ -223,38 +220,6 @@ const tourDestinations = [
 
 const dropdownItemClass =
   "block rounded-lg px-4 py-2.5 text-[16px] font-semibold text-black transition-colors hover:bg-brand/5 md:text-[18px]";
-
-const socialLinks: {
-  name: string;
-  href: string;
-  Icon: IconType;
-  colorClass: string;
-}[] = [
-  {
-    name: "Facebook",
-    href: "https://www.facebook.com/profile.php?id=61591168508430",
-    Icon: FaFacebook,
-    colorClass: "text-[#1877F2]",
-  },
-  {
-    name: "Instagram",
-    href: business.instagram,
-    Icon: FaInstagram,
-    colorClass: "text-[#E4405F]",
-  },
-  {
-    name: "TikTok",
-    href: business.tiktok,
-    Icon: FaTiktok,
-    colorClass: "text-black",
-  },
-  {
-    name: "Whatsapp",
-    href: "https://wa.me/995555338807",
-    Icon: FaWhatsapp,
-    colorClass: "text-[#25D366]",
-  },
-];
 
 function IconButton({
   label,
@@ -499,28 +464,12 @@ export default function Header({
             </Link>
           </nav>
           <div className="flex items-center gap-1 sm:gap-2">
-            <div className={`${isDesktop ? "flex" : "hidden"} flex-col items-end gap-1`}>
-              <div className="flex items-center gap-0.5">
-                {socialLinks.map(({ name, href, Icon, colorClass }) => (
-                  <a
-                    key={name}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={name}
-                    className="flex h-11 w-11 items-center justify-center rounded-full transition-opacity hover:opacity-80"
-                  >
-                    <Icon className={`h-10 w-10 ${colorClass}`} aria-hidden />
-                  </a>
-                ))}
-              </div>
-              <a
-                href={`tel:${business.phone}`}
-                className="whitespace-nowrap font-figtree text-[16px] font-medium text-brand transition-opacity hover:opacity-80 md:text-[18px]"
-              >
-                {business.phoneDisplay}
-              </a>
-            </div>
+            <a
+              href={`tel:${business.phone}`}
+              className={`${isDesktop ? "inline" : "hidden"} whitespace-nowrap font-figtree text-[16px] font-medium text-brand transition-opacity hover:opacity-80 md:text-[18px]`}
+            >
+              {business.phoneDisplay}
+            </a>
 
             {isDesktop ? (
               <div>
@@ -708,20 +657,6 @@ export default function Header({
                 <div className="border-t border-black/10 px-5 py-5">
                   <div className="flex flex-col gap-4">
                     <LocaleSwitcher variant="mobile" />
-                    <div className="flex items-center gap-1">
-                      {socialLinks.map(({ name, href, Icon, colorClass }) => (
-                        <a
-                          key={name}
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={name}
-                          className="flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-80"
-                        >
-                          <Icon className={`h-7 w-7 ${colorClass}`} aria-hidden />
-                        </a>
-                      ))}
-                    </div>
                     <a
                       href={`tel:${business.phone}`}
                       className="font-medium text-brand hover:underline"
