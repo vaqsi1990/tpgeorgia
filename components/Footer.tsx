@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import { business } from "@/lib/site";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 const tourLinks = [
@@ -39,9 +40,18 @@ export default async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 border-t border-black/10 bg-white px-4 py-10 text-black sm:px-6 sm:py-12 lg:px-10">
-      <div className="mx-auto w-full max-w-7xl">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
+    <footer className="relative z-10 overflow-hidden border-t border-black/10 bg-white px-4 py-10 text-black sm:px-6 sm:py-12 lg:px-10">
+      <div className="relative mx-auto w-full max-w-7xl">
+        <Image
+          src="/bgimages/pitcher.svg"
+          alt=""
+          width={260}
+          height={260}
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-36 -translate-x-1/2 -translate-y-1/2 opacity-70 sm:w-44 lg:w-52"
+        />
+
+        <div className="relative z-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
           <div className="space-y-3">
             <p className="font-afacad text-lg font-semibold sm:text-xl">
               {business.name}
@@ -133,8 +143,6 @@ export default async function Footer() {
             </div>
           </div>
         </div>
-
-        
       </div>
     </footer>
   );
