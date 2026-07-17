@@ -32,7 +32,7 @@ export default async function Tours({ tours, reviewStats }: ToursProps) {
             width={360}
             height={360}
             aria-hidden
-            className="pointer-events-none absolute left-[calc(50%+8rem)] -top-14 z-0 w-40 rotate-90 mix-blend-multiply opacity-70 sm:left-[calc(50%+11rem)] sm:-top-16 sm:w-52 lg:left-[calc(50%+14rem)] lg:-top-20 lg:w-64"
+            className="pointer-events-none absolute left-[calc(50%+8rem)] -top-16 z-0 w-40 mix-blend-multiply opacity-70 sm:left-[calc(50%+11rem)] sm:-top-16 sm:w-52 lg:left-[calc(50%+14rem)] md:-top-[50px] lg:w-64"
           />
         </div>
         <ToursHomeList initialTours={tours} limit={6} showAllLink reviewStats={reviewStats} />
