@@ -1,5 +1,5 @@
 import type { PlaceId } from "@/data/places";
-import { places } from "@/data/places";
+import { placeAttractionNameKey, placeFieldKey, places } from "@/data/places";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -47,14 +47,12 @@ export default async function PlacePage({ place }: PlacePageProps) {
         </div>
 
         <h2 className="font-afacad mt-10 mb-6 text-center text-xl font-semibold leading-snug text-black sm:text-2xl md:mt-12 md:mb-8">
-          {t(`items.${place}.attractionsTitle`)}
+          {t(placeFieldKey(place, "attractionsTitle"))}
         </h2>
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {placeData.attractions.map((attraction) => {
-            const name = t(
-              `items.${place}.attractions.${attraction.id}` as "items.tbilisi.attractions.narikala",
-            );
+            const name = t(placeAttractionNameKey(place, attraction.id));
 
             return (
               <li key={attraction.id}>
@@ -75,13 +73,12 @@ export default async function PlacePage({ place }: PlacePageProps) {
                       <h3 className="font-afacad text-xl font-semibold leading-snug text-white sm:text-2xl">
                         {name}
                       </h3>
-                     
                     </div>
                     <Link
                       href={`/places/${place}/${attraction.slug}`}
                       className="inline-flex w-full items-center justify-center rounded-xl border border-[#991B1B] bg-[#DC2626] px-4 py-2.5 text-center text-[15px] font-medium text-white transition-colors hover:bg-[#B91C1C] hover:shadow-[0_4px_16px_rgba(220,38,38,0.35)] sm:text-[16px] md:text-[18px]"
                     >
-                      {t("details" as "explore")}
+                      {t("details")}
                     </Link>
                   </div>
                 </article>

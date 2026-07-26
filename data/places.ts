@@ -6,11 +6,64 @@ export function isPlaceId(value: string): value is PlaceId {
   return (placeIds as readonly string[]).includes(value);
 }
 
+export const tbilisiAttractionIds = [
+  "oldTbilisi",
+  "narikala",
+  "abanotubani",
+  "metekhi",
+  "kartlisDeda",
+  "rikeParkPeaceBridge",
+  "mtatsminda",
+  "botanicalGarden",
+  "chronicleMonument",
+  "gudiashviliSquare",
+  "sameba",
+  "meidanBazaar",
+  "dryBridgeMarket",
+  "clockTower",
+  "sionCathedral",
+  "nationalMuseum",
+  "historicEntrances",
+] as const;
+
+export type TbilisiAttractionId = (typeof tbilisiAttractionIds)[number];
+
+export type PlaceAttractionId = TbilisiAttractionId;
+
 export type PlaceAttraction = {
-  id: string;
+  id: PlaceAttractionId;
   slug: string;
   image: string;
 };
+
+export type PlaceAttractionNameKey =
+  `items.${PlaceId}.attractions.${PlaceAttractionId}`;
+
+export type PlaceContentField =
+  | "name"
+  | "imageAlt"
+  | "lead"
+  | "p1"
+  | "p2"
+  | "p3"
+  | "attractionsTitle";
+
+export type PlaceFieldKey<Field extends PlaceContentField> =
+  `items.${PlaceId}.${Field}`;
+
+export function placeAttractionNameKey(
+  place: PlaceId,
+  attractionId: PlaceAttractionId,
+): PlaceAttractionNameKey {
+  return `items.${place}.attractions.${attractionId}`;
+}
+
+export function placeFieldKey<Field extends PlaceContentField>(
+  place: PlaceId,
+  field: Field,
+): PlaceFieldKey<Field> {
+  return `items.${place}.${field}`;
+}
 
 export function getPlaceAttraction(
   place: PlaceId,

@@ -1,4 +1,5 @@
 import type { PlaceAttraction, PlaceId } from "@/data/places";
+import { placeAttractionNameKey, placeFieldKey } from "@/data/places";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -13,10 +14,8 @@ export default async function AttractionPage({
   attraction,
 }: AttractionPageProps) {
   const t = await getTranslations("Destinations");
-  const name = t(
-    `items.${place}.attractions.${attraction.id}` as "items.tbilisi.attractions.narikala",
-  );
-  const placeName = t(`items.${place}.name` as "items.tbilisi.name");
+  const name = t(placeAttractionNameKey(place, attraction.id));
+  const placeName = t(placeFieldKey(place, "name"));
 
   return (
     <main className="bg-white text-black">
@@ -45,13 +44,13 @@ export default async function AttractionPage({
 
       <div className="mx-auto w-full max-w-3xl px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-12 lg:px-10">
         <p className="mb-8 text-center text-[15px] leading-relaxed text-black/80 md:text-[18px]">
-          {t(`items.${place}.attractionsTitle` as "items.tbilisi.attractionsTitle")}
+          {t(placeFieldKey(place, "attractionsTitle"))}
         </p>
         <Link
           href={`/places/${place}`}
           className="mx-auto flex w-full max-w-xs items-center justify-center rounded-xl border border-[#991B1B] bg-[#DC2626] px-4 py-2.5 text-center text-[16px] font-medium text-white transition-colors hover:bg-[#B91C1C] md:text-[18px]"
         >
-          {t("backToPlace" as "explore", { place: placeName })}
+          {t("backToPlace", { place: placeName })}
         </Link>
       </div>
     </main>
