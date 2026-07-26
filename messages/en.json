@@ -163,6 +163,44 @@
       }
     }
   },
+  "Destinations": {
+    "title": "Destinations",
+    "description": "Discover Georgia's finest secrets — a country full of surprises and hidden treasures waiting to be found. Get ready to journey to Georgia's most fascinating and unique places. From the breathtaking landscapes of Svaneti to the charming towns of Kazbegi and Sighnaghi, you'll find inspiration for your next adventure.",
+    "explore": "Explore",
+    "items": {
+      "tbilisi": {
+        "name": "Tbilisi",
+        "imageAlt": "Tbilisi",
+        "lead": "Tbilisi — a city where centuries of history, diverse cultures, and the rhythm of modern life come together as one unique experience.",
+        "p1": "Founded in the 5th century around warm sulfur springs, the city was for centuries an important link between East and West. This rich and varied history shaped Tbilisi's distinctive character — a place where different eras, cultures, and traditions live side by side.",
+        "p2": "The narrow streets of Old Tbilisi, houses adorned with wooden balconies, ancient bathhouses, fortress walls, and historic neighborhoods bring the city's past to life, while contemporary architecture, art, cafés, and lively streets create its new energy.",
+        "p3": "What makes Tbilisi special is its atmosphere — here history is not only read in books; it is felt in the streets, flavors, sounds, and the hospitality of the people.",
+        "attractionsTitle": "Main attractions of Tbilisi",
+        "attractions": {
+          "oldTbilisi": "Old Tbilisi",
+          "narikala": "Narikala Fortress",
+          "abanotubani": "Abanotubani",
+          "metekhi": "Metekhi Church",
+          "kartlisDeda": "Mother of Kartli",
+          "rikeParkPeaceBridge": "Rike Park & Peace Bridge",
+          "mtatsminda": "Mtatsminda",
+          "botanicalGarden": "Tbilisi Botanical Garden & Leghvtakhevi Waterfall",
+          "chronicleMonument": "Chronicle of Georgia",
+          "gudiashviliSquare": "Lado Gudiashvili Square",
+          "sameba": "Holy Trinity Cathedral",
+          "meidanBazaar": "Meidan Bazaar",
+          "dryBridgeMarket": "Dry Bridge Market",
+          "clockTower": "Rezo Gabriadze Clock Tower",
+          "sionCathedral": "Sioni Cathedral",
+          "nationalMuseum": "Georgian National Museum",
+          "historicEntrances": "Historic entrances of Tbilisi"
+        }
+      }
+    },
+    "details": "View details",
+    "backToPlace": "Back to {place}",
+    "attractionLabel": "Attraction"
+  },
   "About": {
     "metadata": {
       "title": "About Us | Tour Provider Georga",

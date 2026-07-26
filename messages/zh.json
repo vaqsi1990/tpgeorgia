@@ -163,6 +163,44 @@
       }
     }
   },
+  "Destinations": {
+    "title": "目的地",
+    "description": "发现格鲁吉亚最美的秘密——一个充满惊喜与隐藏宝藏、等待被发掘的国度。准备启程前往格鲁吉亚最迷人、最独特的地方。从斯瓦涅季壮丽的风景到卡兹别吉与锡格纳吉迷人的小镇，你会找到下一次冒险的灵感。",
+    "explore": "浏览",
+    "items": {
+      "tbilisi": {
+        "name": "第比利斯",
+        "imageAlt": "第比利斯",
+        "lead": "第比利斯——一座将数世纪历史、多元文化与现代生活节奏融为独特体验的城市。",
+        "p1": "这座建于公元5世纪、围绕温暖硫磺泉发展起来的城市，数百年来一直是连接东西方的重要中心。正是这段多彩的历史造就了第比利斯独特的性格——不同时代、文化与传统在这里并肩共存。",
+        "p2": "老城狭窄的街道、带木阳台的房屋、古老的浴场、城堡城墙与历史街区让城市的过去鲜活起来，而当代建筑、艺术、咖啡馆与充满活力的街道则造就了它的新能量。",
+        "p3": "第比利斯的特别之处在于它的氛围——在这里，历史不只写在书里，更可以在街道、味道、声音与人们的好客中感受到。",
+        "attractionsTitle": "第比利斯主要景点",
+        "attractions": {
+          "oldTbilisi": "老第比利斯",
+          "narikala": "纳里卡拉要塞",
+          "abanotubani": "阿巴诺图巴尼",
+          "metekhi": "梅泰希教堂",
+          "kartlisDeda": "卡特利母亲像",
+          "rikeParkPeaceBridge": "里克公园与和平桥",
+          "mtatsminda": "姆塔茨明达",
+          "botanicalGarden": "第比利斯植物园与莱格夫塔赫维瀑布",
+          "chronicleMonument": "格鲁吉亚编年史纪念碑",
+          "gudiashviliSquare": "拉多·古迪亚什维利广场",
+          "sameba": "圣三一主教座堂",
+          "meidanBazaar": "梅丹集市",
+          "dryBridgeMarket": "干桥跳蚤市场",
+          "clockTower": "加布里亚泽钟楼",
+          "sionCathedral": "锡安主教座堂",
+          "nationalMuseum": "格鲁吉亚国家博物馆",
+          "historicEntrances": "第比利斯历史门廊"
+        }
+      }
+    },
+    "details": "查看详情",
+    "backToPlace": "返回{place}",
+    "attractionLabel": "景点"
+  },
   "About": {
     "metadata": {
       "title": "关于我们 | Tour Provider Georga",

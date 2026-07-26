@@ -12,7 +12,7 @@ import { listExcursions, listTours } from "@/lib/catalog-db";
 import { getPublishedReviewStatsRecord, listPublishedReviews } from "@/lib/review-db";
 import { buildPageMetadata } from "@/lib/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-
+import Destinations from "@/components/Destinations";
 export const dynamic = "force-dynamic";
 
 type Props = {
@@ -47,6 +47,7 @@ export default async function HomePage({ params }: Props) {
     <>
       <Hero />
       <WhyUs />
+      <Destinations />    
       <Tours tours={tours} reviewStats={reviewStats} />
       <Excursions excursions={excursions} reviewStats={reviewStats} />
       <Transfers />
