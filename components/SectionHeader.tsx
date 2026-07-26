@@ -43,7 +43,7 @@ export default function SectionHeader({
     >
       <Heading className={headingClassName}>{title}</Heading>
       {description ? (
-        <p className="mx-auto max-w-2xl text-[15px] leading-relaxed text-black md:text-[18px]">
+        <p className="mx-auto max-w-5xl text-[15px] leading-relaxed text-black md:text-[18px]">
           {description}
         </p>
       ) : null}
