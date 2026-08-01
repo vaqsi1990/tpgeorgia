@@ -2,6 +2,7 @@ import AttractionPage from "@/components/AttractionPage";
 import {
   getPlaceAttraction,
   isPlaceId,
+  placeAttractionDescriptionKey,
   placeAttractionNameKey,
   placeFieldKey,
   placeIds,
@@ -38,12 +39,15 @@ export async function generateMetadata({ params }: Props) {
   }
 
   const t = await getTranslations({ locale, namespace: "Destinations" });
+  const description =
+    t(placeAttractionDescriptionKey(place, attraction.id)) ||
+    t(placeFieldKey(place, "attractionsTitle"));
 
   return buildPageMetadata({
     locale: locale as AppLocale,
     pathname: `/places/${place}/${attraction.slug}`,
     title: t(placeAttractionNameKey(place, attraction.id)),
-    description: t(placeFieldKey(place, "attractionsTitle")),
+    description,
   });
 }
 

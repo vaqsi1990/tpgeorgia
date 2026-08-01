@@ -171,35 +171,87 @@
       "tbilisi": {
         "name": "Tbilisi",
         "imageAlt": "Tbilisi",
-        "lead": "Tbilisi — a city where centuries of history, diverse cultures, and the rhythm of modern life come together as one unique experience.",
-        "p1": "Founded in the 5th century around warm sulfur springs, the city was for centuries an important link between East and West. This rich and varied history shaped Tbilisi's distinctive character — a place where different eras, cultures, and traditions live side by side.",
+        "lead": "Tbilisi a city where centuries of history, diverse cultures, and the rhythm of modern life come together as one unique experience.",
+        "p1": "Founded in the 5th century around warm sulfur springs, the city was for centuries an important link between East and West. This rich and varied history shaped Tbilisi's distinctive character a place where different eras, cultures, and traditions live side by side.",
         "p2": "The narrow streets of Old Tbilisi, houses adorned with wooden balconies, ancient bathhouses, fortress walls, and historic neighborhoods bring the city's past to life, while contemporary architecture, art, cafés, and lively streets create its new energy.",
-        "p3": "What makes Tbilisi special is its atmosphere — here history is not only read in books; it is felt in the streets, flavors, sounds, and the hospitality of the people.",
+        "p3": "What makes Tbilisi special is its atmosphere here history is not only read in books; it is felt in the streets, flavors, sounds, and the hospitality of the people.",
         "attractionsTitle": "Main attractions of Tbilisi",
         "attractions": {
-          "oldTbilisi": "Old Tbilisi",
-          "narikala": "Narikala Fortress",
-          "abanotubani": "Abanotubani",
-          "metekhi": "Metekhi Church",
-          "kartlisDeda": "Mother of Kartli",
-          "rikeParkPeaceBridge": "Rike Park & Peace Bridge",
-          "mtatsminda": "Mtatsminda",
-          "botanicalGarden": "Tbilisi Botanical Garden & Leghvtakhevi Waterfall",
-          "chronicleMonument": "Chronicle of Georgia",
-          "gudiashviliSquare": "Lado Gudiashvili Square",
-          "sameba": "Holy Trinity Cathedral",
-          "meidanBazaar": "Meidan Bazaar",
-          "dryBridgeMarket": "Dry Bridge Market",
-          "clockTower": "Rezo Gabriadze Clock Tower",
-          "sionCathedral": "Sioni Cathedral",
-          "nationalMuseum": "Georgian National Museum",
-          "historicEntrances": "Historic entrances of Tbilisi"
+          "oldTbilisi": {
+            "name": "Old Tbilisi",
+            "description": "Walking through Old Tbilisi feels like a journey through the city's centuries-old history. It is the place where the past and present of the capital naturally coexist, with every street, courtyard, and traditional balcony preserving stories from different periods of the city's development. It was here that the unique character of Tbilisi was formed a city shaped by the coexistence of different cultures, religions, and traditions.\r\n\r\nCobblestone streets, carved wooden balconies, colourful façades, and historic buildings create the distinctive atmosphere of Old Tbilisi. Within this historic district, visitors can find Orthodox churches, a synagogue, a mosque, and Armenian churches standing close to one another a reflection of the city's multicultural heritage. For centuries, this diversity contributed to Tbilisi's role as an important centre of trade, culture, and social life in the Caucasus.\r\n\r\nToday, Old Tbilisi is not only a historical district but also a vibrant part of the modern city, where traditional architecture blends with contemporary life. Charming cafés, wine cellars, local craft workshops, and small galleries add to its unique atmosphere, allowing visitors to experience Tbilisi not only through its landmarks but also through its everyday life.\r\n\r\nExploring Old Tbilisi means discovering the essence of the city a place where history, culture, and local traditions come together to create an unforgettable experience."
+          },
+          "narikala": {
+            "name": "Narikala Fortress",
+            "description": "Rising above the historic heart of Tbilisi, Narikala Fortress is one of the city's oldest and most iconic landmarks. For almost 1,700 years, its ancient walls have watched over the capital, witnessing the rise and transformation of a city shaped by different civilisations, cultures, and historical events.\n\nThe origins of Narikala date back to the 4th century, when the fortress was first established under the name Shuris-tsikhe as a key defensive stronghold of the Kingdom of Iberia. Over the centuries, it was expanded and strengthened by Georgian rulers, Persians, and Arabs, reflecting the many layers of history that have shaped Tbilisi. Today, Narikala stands as a remarkable reminder of the city's complex and multicultural past.\n\nBuilt on a strategic hill overlooking the Mtkvari River valley, the fortress once controlled the main routes entering the city and protected one of the most important crossroads between Europe and Asia. Although earthquakes and wars have damaged parts of the original structure, Narikala has remained a powerful symbol of Tbilisi's resilience and enduring spirit.\n\nToday, Narikala offers one of the most spectacular viewpoints in the city. From its walls, visitors can admire sweeping views of Old Tbilisi, the sulphur baths of Abanotubani, the Mtkvari River, the Bridge of Peace, and the modern districts stretching beyond the historic centre. Within the fortress complex stands the restored Church of St. Nicholas, dating back to the 12th-13th centuries, decorated with frescoes inspired by Georgia's religious and historical heritage.\n\nVisiting Narikala is more than exploring an ancient fortress it is an opportunity to see Tbilisi as a living story, where centuries of history unfold in front of your eyes. From this remarkable viewpoint, visitors can understand how the city grew, survived, and became one of the most significant cultural centres of the Caucasus.\n\nJoin our tour and discover the centuries-old history of Narikala Fortress, its breathtaking views, and the legends of Tbilisi with a local guide who will bring the stories of this iconic landmark to life."
+          },
+          "abanotubani": {
+            "name": "Abanotubani",
+            "description": "Located in the heart of Old Tbilisi, Abanotubani is one of the city's oldest and most distinctive historic districts a place where the story of the Georgian capital begins.\n\nAccording to legend, in the 5th century, King Vakhtang Gorgasali discovered natural hot sulphur springs while hunting in the area. Impressed by the warm waters, he decided to establish a city around them. These springs are believed to have given Tbilisi its name, derived from the Georgian word \"tbili\", meaning \"warm\".\n\nArchaeological evidence shows that the sulphur springs were used as early as ancient times, while most of the bathhouses that remain today date back to the 17th-19th centuries. Built with distinctive brick domes and partially set below ground level, these structures reflect the influence of Persian bathhouse architecture and have become one of the most recognisable symbols of Tbilisi.\n\nFor centuries, Abanotubani was much more than a place for bathing and relaxation. It served as an important social gathering point where merchants, travellers, writers, and local residents met. The famous French writer Alexandre Dumas visited Tbilisi in the 19th century and described the city's sulphur baths with great admiration in his travel writings.\n\nToday, Abanotubani represents a unique combination of history, architecture, and living tradition. Visitors can explore the historic bathhouses, experience the natural mineral waters, and continue their journey through the nearby landmarks from Narikala Fortress and Leghvtakhevi Waterfall to the narrow streets of Old Tbilisi.\n\nJoin our tour and discover the place where the history of Georgia's capital began a district where ancient traditions, remarkable architecture, and the spirit of Tbilisi come together."
+          },
+          "metekhi": {
+            "name": "Metekhi Church",
+            "description": ""
+          },
+          "kartlisDeda": {
+            "name": "Mother of Kartli",
+            "description": ""
+          },
+          "rikeParkPeaceBridge": {
+            "name": "Rike Park & Peace Bridge",
+            "description": ""
+          },
+          "mtatsminda": {
+            "name": "Mtatsminda",
+            "description": ""
+          },
+          "botanicalGarden": {
+            "name": "Tbilisi Botanical Garden & Leghvtakhevi Waterfall",
+            "description": ""
+          },
+          "chronicleMonument": {
+            "name": "Chronicle of Georgia",
+            "description": ""
+          },
+          "gudiashviliSquare": {
+            "name": "Lado Gudiashvili Square",
+            "description": ""
+          },
+          "sameba": {
+            "name": "Holy Trinity Cathedral",
+            "description": ""
+          },
+          "meidanBazaar": {
+            "name": "Meidan Bazaar",
+            "description": ""
+          },
+          "dryBridgeMarket": {
+            "name": "Dry Bridge Market",
+            "description": ""
+          },
+          "clockTower": {
+            "name": "Rezo Gabriadze Clock Tower",
+            "description": ""
+          },
+          "sionCathedral": {
+            "name": "Sioni Cathedral",
+            "description": ""
+          },
+          "nationalMuseum": {
+            "name": "Georgian National Museum",
+            "description": ""
+          },
+          "historicEntrances": {
+            "name": "Historic entrances of Tbilisi",
+            "description": ""
+          }
         }
       }
     },
     "details": "View details",
     "backToPlace": "Back to {place}",
-    "attractionLabel": "Attraction"
+    "attractionLabel": "Attraction",
+    "openInMaps": "View on Google Maps"
   },
   "About": {
     "metadata": {
