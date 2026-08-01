@@ -1,0 +1,234 @@
+{
+  "tbilisi": {
+    "_place": {
+      "path": "/dest/tbilisi/_place.jpg",
+      "sourceTitle": "File:2014 Tbilisi, Widoki z Twierdzy Narikala (41).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2014_Tbilisi,_Widoki_z_Twierdzy_Narikala_(41).jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "oldTbilisi": {
+      "path": "/dest/tbilisi/oldTbilisi.jpg",
+      "sourceTitle": "File:Old Tbilisi 2022.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Old_Tbilisi_2022.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "narikala": {
+      "path": "/dest/tbilisi/narikala.jpg",
+      "sourceTitle": "File:Narikala fortress, Tbilisi, Georgia.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Narikala_fortress,_Tbilisi,_Georgia.jpg",
+      "license": "CC BY-SA 3.0"
+    },
+    "abanotubani": {
+      "path": "/dest/tbilisi/abanotubani.jpg",
+      "sourceTitle": "File:2014 Tbilisi, Łaźnie siarkowe w Abanotubani (01).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2014_Tbilisi,_%C5%81a%C5%BAnie_siarkowe_w_Abanotubani_(01).jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "metekhi": {
+      "path": "/dest/tbilisi/metekhi.jpg",
+      "sourceTitle": "File:Tbilisi The Metekhi Church of Assumption IMG 8842 1920.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tbilisi_The_Metekhi_Church_of_Assumption_IMG_8842_1920.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "kartlisDeda": {
+      "path": "/dest/tbilisi/kartlisDeda.jpg",
+      "sourceTitle": "File:Kartlis Deda - Mother of a Kartli or Mother of a Georgian - Photo by Mostafa Meraji 02.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kartlis_Deda_-_Mother_of_a_Kartli_or_Mother_of_a_Georgian_-_Photo_by_Mostafa_Meraji_02.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "rikeParkPeaceBridge": {
+      "path": "/dest/tbilisi/rikeParkPeaceBridge.jpg",
+      "sourceTitle": "File:Tbilisi Peace Bridge and Kura River by Falco.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tbilisi_Peace_Bridge_and_Kura_River_by_Falco.jpg",
+      "license": "CC0"
+    },
+    "mtatsminda": {
+      "path": "/dest/tbilisi/mtatsminda.jpg",
+      "sourceTitle": "File:Tbilisi - Mtatsminda Park (9460953464).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tbilisi_-_Mtatsminda_Park_(9460953464).jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "botanicalGarden": {
+      "path": "/dest/tbilisi/botanicalGarden.jpg",
+      "sourceTitle": "File:Ruin in arabe finded in the National Botanical Garden of Georgia (Tbilissi).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ruin_in_arabe_finded_in_the_National_Botanical_Garden_of_Georgia_(Tbilissi).jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "chronicleMonument": {
+      "path": "/dest/tbilisi/chronicleMonument.jpg",
+      "sourceTitle": "File:Chronicle of Georgia - Fragment.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chronicle_of_Georgia_-_Fragment.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "gudiashviliSquare": {
+      "path": "/dest/tbilisi/gudiashviliSquare.jpg",
+      "sourceTitle": "File:Gudiashvili Square - renovated (2021).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gudiashvili_Square_-_renovated_(2021).jpg",
+      "license": "CC BY 2.0"
+    },
+    "sameba": {
+      "path": "/dest/tbilisi/sameba.jpg",
+      "sourceTitle": "File:Kura River in the central part of Tbilisi, 2007-09-28.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kura_River_in_the_central_part_of_Tbilisi,_2007-09-28.jpg",
+      "license": "CC BY 2.5"
+    },
+    "meidanBazaar": {
+      "path": "/dest/tbilisi/meidanBazaar.jpg",
+      "sourceTitle": "File:Hakobian. Meidan Square, Tbilisi. 1937.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hakobian._Meidan_Square,_Tbilisi._1937.jpg",
+      "license": "Public domain"
+    },
+    "dryBridgeMarket": {
+      "path": "/dest/tbilisi/dryBridgeMarket.jpg",
+      "sourceTitle": "File:2025-03-30 Dry Bridge Market, Tbilisi 1.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2025-03-30_Dry_Bridge_Market,_Tbilisi_1.jpg",
+      "license": "CC BY 4.0"
+    },
+    "clockTower": {
+      "path": "/dest/tbilisi/clockTower.jpg",
+      "sourceTitle": "File:Rezo Gabriadze Marionette Theater Clock Tower (7).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rezo_Gabriadze_Marionette_Theater_Clock_Tower_(7).jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "sionCathedral": {
+      "path": "/dest/tbilisi/sionCathedral.jpg",
+      "sourceTitle": "File:Sioni Cathedral (Tbilisi) 01.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sioni_Cathedral_(Tbilisi)_01.jpg",
+      "license": "CC BY 4.0"
+    },
+    "nationalMuseum": {
+      "path": "/dest/tbilisi/nationalMuseum.jpg",
+      "sourceTitle": "File:Georgian National Museum موزه ملی تفلیس- گرجستان 08.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Georgian_National_Museum_%D9%85%D9%88%D8%B2%D9%87_%D9%85%D9%84%DB%8C_%D8%AA%D9%81%D9%84%DB%8C%D8%B3-_%DA%AF%D8%B1%D8%AC%D8%B3%D8%AA%D8%A7%D9%86_08.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "historicEntrances": {
+      "path": "/dest/tbilisi/historicEntrances.jpg",
+      "sourceTitle": "File:2014 Tbilisi, Courtyard Marriott.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:2014_Tbilisi,_Courtyard_Marriott.jpg",
+      "license": "CC BY-SA 4.0"
+    }
+  },
+  "guria": {
+    "_place": {
+      "path": "/dest/guria/_place.jpg",
+      "sourceTitle": "File:Guria, Region in Georgia.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Guria,_Region_in_Georgia.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "gomismta": {
+      "path": "/dest/guria/gomismta.jpg",
+      "sourceTitle": "File:Gomismta and the Lesser Caucasus mountains.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gomismta_and_the_Lesser_Caucasus_mountains.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "bakhmaro": {
+      "path": "/dest/guria/bakhmaro.jpg",
+      "sourceTitle": "File:Bakhmaroview.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bakhmaroview.jpg",
+      "license": "CC BY-SA 3.0"
+    },
+    "nabeglavi": {
+      "path": "/dest/guria/nabeglavi.jpg",
+      "sourceTitle": "File:Nabeghlavi Mineral Water.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nabeghlavi_Mineral_Water.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "anaseuliTeaFactory": {
+      "path": "/dest/guria/anaseuliTeaFactory.jpg",
+      "sourceTitle": "File:Georgian Woman in a Tea Farm.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Georgian_Woman_in_a_Tea_Farm.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "ureki": {
+      "path": "/dest/guria/ureki.jpg",
+      "sourceTitle": "File:Ureki.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ureki.jpg",
+      "license": "CC BY 3.0"
+    },
+    "wineCulture": {
+      "path": "/dest/guria/wineCulture.jpg",
+      "sourceTitle": "File:A terracotta Kvevri used to ferment and age wine decorated with depictions of bunches of grapes, First half of the 6th millennium BC, from Khramis Didid Gora, National Museum of Georgia, Tbilisi, Georgia.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_terracotta_Kvevri_used_to_ferment_and_age_wine_decorated_with_depictions_of_bunches_of_grapes,_First_half_of_the_6th_millennium_BC,_from_Khramis_Didid_Gora,_National_Museum_of_Georgia,_Tbilisi,_Georgia.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "askaneliEstate": {
+      "path": "/dest/guria/askaneliEstate.jpg",
+      "sourceTitle": "File:Askana church.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Askana_church.JPG",
+      "license": "CC BY-SA 3.0"
+    },
+    "rtoWinery": {
+      "path": "/dest/guria/rtoWinery.jpg",
+      "sourceTitle": "File:Winery in Georgia.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Winery_in_Georgia.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "sharashidzeWinery": {
+      "path": "/dest/guria/sharashidzeWinery.jpg",
+      "sourceTitle": "File:Georgia Hardstark at 2015 Taste Awards.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Georgia_Hardstark_at_2015_Taste_Awards.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "menabdeWinery": {
+      "path": "/dest/guria/menabdeWinery.jpg",
+      "sourceTitle": "File:Vineyard in Georgia USA 2008.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vineyard_in_Georgia_USA_2008.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "babasMarani": {
+      "path": "/dest/guria/babasMarani.jpg",
+      "sourceTitle": "File:A terracotta Kvevri used to ferment and age wine decorated with depictions of bunches of grapes, First half of the 6th millennium BC, from Khramis Didid Gora, National Museum of Georgia, Tbilisi, Georgia.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_terracotta_Kvevri_used_to_ferment_and_age_wine_decorated_with_depictions_of_bunches_of_grapes,_First_half_of_the_6th_millennium_BC,_from_Khramis_Didid_Gora,_National_Museum_of_Georgia,_Tbilisi,_Georgia.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "armunji": {
+      "path": "/dest/guria/armunji.jpg",
+      "sourceTitle": "File:Farm in oconee county georgia.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Farm_in_oconee_county_georgia.jpg",
+      "license": "Public domain"
+    },
+    "kalasFarm": {
+      "path": "/dest/guria/kalasFarm.jpg",
+      "sourceTitle": "File:Goat Farm Arts Center Brewers Lantern Fall 2015.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Goat_Farm_Arts_Center_Brewers_Lantern_Fall_2015.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "shekvetili": {
+      "path": "/dest/guria/shekvetili.jpg",
+      "sourceTitle": "File:Fridrich Dubois de Montpereux. Shekvetili fort.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fridrich_Dubois_de_Montpereux._Shekvetili_fort.jpg",
+      "license": "Public domain"
+    },
+    "erketiMonastery": {
+      "path": "/dest/guria/erketiMonastery.jpg",
+      "sourceTitle": "File:Erketi monastery near Chokhatauri, Georgia. August 2022 6.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erketi_monastery_near_Chokhatauri,_Georgia._August_2022_6.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "udabnoMonastery": {
+      "path": "/dest/guria/udabnoMonastery.jpg",
+      "sourceTitle": "File:Mount Gareja 2, Georgia.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mount_Gareja_2,_Georgia.jpg",
+      "license": "CC BY 4.0"
+    },
+    "zhgentiSisters": {
+      "path": "/dest/guria/zhgentiSisters.jpg",
+      "sourceTitle": "File:Group of workers harvesting tea Chakva Prokudin-Gorsky.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Group_of_workers_harvesting_tea_Chakva_Prokudin-Gorsky.jpg",
+      "license": "Public domain"
+    },
+    "tsitsinatela": {
+      "path": "/dest/guria/tsitsinatela.jpg",
+      "sourceTitle": "File:Tsitsinatela Park.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tsitsinatela_Park.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "jumatiMonastery": {
+      "path": "/dest/guria/jumatiMonastery.jpg",
+      "sourceTitle": "File:Jumati view from Konchkati.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jumati_view_from_Konchkati.jpg",
+      "license": "CC BY-SA 4.0"
+    }
+  }
+}

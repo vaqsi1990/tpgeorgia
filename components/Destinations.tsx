@@ -21,16 +21,16 @@ export default async function Destinations() {
           className="mb-4 sm:mb-6"
         />
 
-        <ul className="flex flex-wrap justify-center gap-4">
+        <ul className="grid grid-cols-3 gap-3 sm:gap-4">
           {placeIds.map((id) => (
-            <li key={id} className="w-full max-w-[380px] sm:max-w-[420px]">
+            <li key={id} className="min-w-0">
               <article className="group relative overflow-hidden rounded-2xl border border-black/10 shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow,transform] duration-300  hover:shadow-[0_12px_40px_rgba(15,79,79,0.14)]">
                 <div className="relative aspect-[4/3] w-full">
                   <Image
                     src={places[id].image}
                     alt={t(`items.${id}.imageAlt`)}
                     fill
-                    sizes="420px"
+                    sizes="(max-width: 640px) 33vw, 400px"
                     className="object-cover object-center"
                   />
                   <div

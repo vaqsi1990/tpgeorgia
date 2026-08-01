@@ -33,6 +33,7 @@ export const publicPaths = [
   "/places",
   "/places/tbilisi",
   "/places/guria",
+  "/places/adjara",
   "/excursions",
 ] as const;
 

@@ -1,5 +1,5 @@
 import type { PlaceId } from "@/data/places";
-import { placeAttractionNameKey, placeFieldKey, places } from "@/data/places";
+import { places } from "@/data/places";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -47,12 +47,14 @@ export default async function PlacePage({ place }: PlacePageProps) {
         </div>
 
         <h2 className="font-afacad mt-10 mb-6 text-center text-xl font-semibold leading-snug text-black sm:text-2xl md:mt-12 md:mb-8">
-          {t(placeFieldKey(place, "attractionsTitle"))}
+          {t(`items.${place}.attractionsTitle`)}
         </h2>
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {placeData.attractions.map((attraction) => {
-            const name = t(placeAttractionNameKey(place, attraction.id));
+            const name = t(
+              `items.${place}.attractions.${attraction.id}.name` as never,
+            );
 
             return (
               <li key={attraction.id}>

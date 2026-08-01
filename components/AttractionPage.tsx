@@ -1,9 +1,5 @@
 import type { PlaceAttraction, PlaceId } from "@/data/places";
-import {
-  placeAttractionDescriptionKey,
-  placeAttractionNameKey,
-  placeFieldKey,
-} from "@/data/places";
+import { places } from "@/data/places";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -18,9 +14,11 @@ export default async function AttractionPage({
   attraction,
 }: AttractionPageProps) {
   const t = await getTranslations("Destinations");
-  const name = t(placeAttractionNameKey(place, attraction.id));
-  const placeName = t(placeFieldKey(place, "name"));
-  const description = t(placeAttractionDescriptionKey(place, attraction.id));
+  const name = t(`items.${place}.attractions.${attraction.id}.name` as never);
+  const placeName = t(`items.${place}.name`);
+  const description = t(
+    `items.${place}.attractions.${attraction.id}.description` as never,
+  );
   const mapEmbedUrl =
     attraction.mapEmbedUrl ??
     (attraction.mapCoords

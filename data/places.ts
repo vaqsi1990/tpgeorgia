@@ -1,4 +1,4 @@
-export const placeIds = ["tbilisi", "guria"] as const;
+export const placeIds = ["tbilisi", "guria", "adjara"] as const;
 
 export type PlaceId = (typeof placeIds)[number];
 
@@ -52,7 +52,24 @@ export const guriaAttractionIds = [
 
 export type GuriaAttractionId = (typeof guriaAttractionIds)[number];
 
-export type PlaceAttractionId = TbilisiAttractionId | GuriaAttractionId;
+export const adjaraAttractionIds = [
+  "batumi",
+  "khelvachauri",
+  "keda",
+  "shuakhevi",
+  "khulo",
+  "kobuleti",
+  "machakhela",
+  "goderdzi",
+  "adjaraCoastline",
+] as const;
+
+export type AdjaraAttractionId = (typeof adjaraAttractionIds)[number];
+
+export type PlaceAttractionId =
+  | TbilisiAttractionId
+  | GuriaAttractionId
+  | AdjaraAttractionId;
 
 export type PlaceAttraction = {
   id: PlaceAttractionId;
@@ -66,12 +83,6 @@ export type PlaceAttraction = {
   };
 };
 
-export type PlaceAttractionNameKey =
-  `items.${PlaceId}.attractions.${PlaceAttractionId}.name`;
-
-export type PlaceAttractionDescriptionKey =
-  `items.${PlaceId}.attractions.${PlaceAttractionId}.description`;
-
 export type PlaceContentField =
   | "name"
   | "imageAlt"
@@ -81,27 +92,24 @@ export type PlaceContentField =
   | "p3"
   | "attractionsTitle";
 
-export type PlaceFieldKey<Field extends PlaceContentField> =
-  `items.${PlaceId}.${Field}`;
-
 export function placeAttractionNameKey(
   place: PlaceId,
   attractionId: PlaceAttractionId,
-): PlaceAttractionNameKey {
+): string {
   return `items.${place}.attractions.${attractionId}.name`;
 }
 
 export function placeAttractionDescriptionKey(
   place: PlaceId,
   attractionId: PlaceAttractionId,
-): PlaceAttractionDescriptionKey {
+): string {
   return `items.${place}.attractions.${attractionId}.description`;
 }
 
 export function placeFieldKey<Field extends PlaceContentField>(
   place: PlaceId,
   field: Field,
-): PlaceFieldKey<Field> {
+): string {
   return `items.${place}.${field}`;
 }
 
@@ -434,6 +442,97 @@ export const places: Record<
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Jumati%20Monastery%2C%20Guria%2C%20Georgia&z=14&output=embed",
         mapCoords: { lat: 42.029767, lng: 41.985092 },
+      },
+    ],
+  },
+  adjara: {
+    image: "/dest/adjara.png",
+    attractions: [
+      {
+        id: "batumi",
+        slug: "batumi",
+        image: "/dest/adjara.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Batumi%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Batumi%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.6168, lng: 41.6367 },
+      },
+      {
+        id: "khelvachauri",
+        slug: "khelvachauri",
+        image: "/dest/adjara.png",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Khelvachauri%2C%20Adjara%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Khelvachauri%2C%20Adjara%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.5867, lng: 41.9144 },
+      },
+      {
+        id: "keda",
+        slug: "keda",
+        image: "/dest/adjara.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Keda%2C%20Adjara%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Keda%2C%20Adjara%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.5983, lng: 41.87 },
+      },
+      {
+        id: "shuakhevi",
+        slug: "shuakhevi",
+        image: "/dest/adjara.png",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Shuakhevi%2C%20Adjara%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Shuakhevi%2C%20Adjara%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.64, lng: 42.1711 },
+      },
+      {
+        id: "khulo",
+        slug: "khulo",
+        image: "/dest/adjara.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Khulo%2C%20Adjara%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Khulo%2C%20Adjara%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.64, lng: 42.3144 },
+      },
+      {
+        id: "kobuleti",
+        slug: "kobuleti",
+        image: "/dest/adjara.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Kobuleti%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Kobuleti%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.8214, lng: 41.7756 },
+      },
+      {
+        id: "machakhela",
+        slug: "machakhela",
+        image: "/dest/adjara.png",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Machakhela%20National%20Park%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Machakhela%20National%20Park%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.5736, lng: 41.7492 },
+      },
+      {
+        id: "goderdzi",
+        slug: "goderdzi",
+        image: "/dest/adjara.png",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Goderdzi%20Pass%2C%20Adjara%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Goderdzi%20Pass%2C%20Adjara%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.8236, lng: 42.1861 },
+      },
+      {
+        id: "adjaraCoastline",
+        slug: "adjara-coastline",
+        image: "/dest/adjara.png",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Kvariati%2C%20Adjara%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Kvariati%2C%20Adjara%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.5578, lng: 41.5747 },
       },
     ],
   },
