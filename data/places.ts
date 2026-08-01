@@ -1,4 +1,4 @@
-export const placeIds = ["tbilisi"] as const;
+export const placeIds = ["tbilisi", "guria"] as const;
 
 export type PlaceId = (typeof placeIds)[number];
 
@@ -28,7 +28,31 @@ export const tbilisiAttractionIds = [
 
 export type TbilisiAttractionId = (typeof tbilisiAttractionIds)[number];
 
-export type PlaceAttractionId = TbilisiAttractionId;
+export const guriaAttractionIds = [
+  "gomismta",
+  "bakhmaro",
+  "nabeglavi",
+  "anaseuliTeaFactory",
+  "ureki",
+  "wineCulture",
+  "askaneliEstate",
+  "rtoWinery",
+  "sharashidzeWinery",
+  "menabdeWinery",
+  "babasMarani",
+  "armunji",
+  "kalasFarm",
+  "shekvetili",
+  "erketiMonastery",
+  "udabnoMonastery",
+  "zhgentiSisters",
+  "tsitsinatela",
+  "jumatiMonastery",
+] as const;
+
+export type GuriaAttractionId = (typeof guriaAttractionIds)[number];
+
+export type PlaceAttractionId = TbilisiAttractionId | GuriaAttractionId;
 
 export type PlaceAttraction = {
   id: PlaceAttractionId;
@@ -234,6 +258,182 @@ export const places: Record<
         image: "/dest/tb.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=41.6930,44.8010",
         mapCoords: { lat: 41.693, lng: 44.801 },
+      },
+    ],
+  },
+  guria: {
+    image: "/dest/guria.png",
+    attractions: [
+      {
+        id: "gomismta",
+        slug: "gomismta",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Gomismta%2C%20Guria%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Gomismta%2C%20Guria%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.823921, lng: 42.160955 },
+      },
+      {
+        id: "bakhmaro",
+        slug: "bakhmaro",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Bakhmaro%2C%20Guria%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Bakhmaro%2C%20Guria%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.851272, lng: 42.32448 },
+      },
+      {
+        id: "nabeglavi",
+        slug: "nabeglavi",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Nabeghlavi%2C%20Guria%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Nabeghlavi%2C%20Guria%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.944861, lng: 42.356615 },
+      },
+      {
+        id: "anaseuliTeaFactory",
+        slug: "anaseuli-tea-factory",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Anaseuli%2C%20Ozurgeti%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Anaseuli%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.908649, lng: 41.984226 },
+      },
+      {
+        id: "ureki",
+        slug: "ureki",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Ureki%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Ureki%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.996936, lng: 41.779346 },
+      },
+      {
+        id: "wineCulture",
+        slug: "wine-culture",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Ozurgeti%2C%20Guria%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Ozurgeti%2C%20Guria%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.923098, lng: 42.005926 },
+      },
+      {
+        id: "askaneliEstate",
+        slug: "askaneli-estate",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Askana%2C%20Ozurgeti%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Askana%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.95115, lng: 42.152927 },
+      },
+      {
+        id: "rtoWinery",
+        slug: "rto-winery",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Jvartskhma%2C%20Chokhatauri%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Jvartskhma%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.991286, lng: 42.226149 },
+      },
+      {
+        id: "sharashidzeWinery",
+        slug: "sharashidze-winery",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Ozurgeti%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Ozurgeti%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.923098, lng: 42.005926 },
+      },
+      {
+        id: "menabdeWinery",
+        slug: "menabde-winery",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Shemokmedi%2C%20Ozurgeti%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Shemokmedi%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.909344, lng: 42.066901 },
+      },
+      {
+        id: "babasMarani",
+        slug: "babas-marani",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.004948, lng: 42.207351 },
+      },
+      {
+        id: "armunji",
+        slug: "armunji",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.004948, lng: 42.207351 },
+      },
+      {
+        id: "kalasFarm",
+        slug: "kalas-farm",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Chokhatauri%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Chokhatauri%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.01921, lng: 42.239947 },
+      },
+      {
+        id: "shekvetili",
+        slug: "shekvetili",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Shekvetili%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Shekvetili%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.928883, lng: 41.769331 },
+      },
+      {
+        id: "erketiMonastery",
+        slug: "erketi-monastery",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Erketi%20Monastery%2C%20Chokhatauri%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Erketi%20Monastery%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.983197, lng: 42.273377 },
+      },
+      {
+        id: "udabnoMonastery",
+        slug: "udabno-monastery",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Udabno%20Monastery%2C%20Chokhatauri%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Udabno%20Monastery%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.058912, lng: 42.218413 },
+      },
+      {
+        id: "zhgentiSisters",
+        slug: "zhgenti-sisters",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Melekeduri%2C%20Ozurgeti%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Melekeduri%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.948946, lng: 42.02562 },
+      },
+      {
+        id: "tsitsinatela",
+        slug: "tsitsinatela",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Tsitsinatela%2C%20Shekvetili%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Tsitsinatela%2C%20Shekvetili%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 41.906849, lng: 41.776861 },
+      },
+      {
+        id: "jumatiMonastery",
+        slug: "jumati-monastery",
+        image: "/dest/guria.png",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Jumati%20Monastery%2C%20Guria%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Jumati%20Monastery%2C%20Guria%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.029767, lng: 41.985092 },
       },
     ],
   },
