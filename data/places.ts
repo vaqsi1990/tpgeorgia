@@ -257,7 +257,7 @@ export const places: Record<
       {
         id: "gomismta",
         slug: "gomismta",
-        image: "/dest/guria.png",
+        image: "/dest/guria/gomismta.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Gomismta%2C%20Guria%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Gomismta%2C%20Guria%2C%20Georgia&z=14&output=embed",
@@ -266,7 +266,7 @@ export const places: Record<
       {
         id: "bakhmaro",
         slug: "bakhmaro",
-        image: "/dest/guria.png",
+        image: "/dest/guria/bakhmaro.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Bakhmaro%2C%20Guria%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Bakhmaro%2C%20Guria%2C%20Georgia&z=14&output=embed",
@@ -275,7 +275,7 @@ export const places: Record<
       {
         id: "nabeglavi",
         slug: "nabeglavi",
-        image: "/dest/guria.png",
+        image: "/dest/guria/nabeghlavi.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Nabeghlavi%2C%20Guria%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Nabeghlavi%2C%20Guria%2C%20Georgia&z=14&output=embed",
@@ -284,7 +284,7 @@ export const places: Record<
       {
         id: "anaseuliTeaFactory",
         slug: "anaseuli-tea-factory",
-        image: "/dest/guria.png",
+        image: "/dest/guria/chai.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Anaseuli%2C%20Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Anaseuli%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
@@ -293,7 +293,7 @@ export const places: Record<
       {
         id: "ureki",
         slug: "ureki",
-        image: "/dest/guria.png",
+        image: "/dest/guria/ureki.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Ureki%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Ureki%2C%20Georgia&z=14&output=embed",
@@ -302,7 +302,7 @@ export const places: Record<
       {
         id: "wineCulture",
         slug: "wine-culture",
-        image: "/dest/guria.png",
+        image: "/dest/guria/gvino.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Ozurgeti%2C%20Guria%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Ozurgeti%2C%20Guria%2C%20Georgia&z=14&output=embed",
@@ -311,7 +311,7 @@ export const places: Record<
       {
         id: "askaneliEstate",
         slug: "askaneli-estate",
-        image: "/dest/guria.png",
+        image: "/dest/guria/gvino.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Askana%2C%20Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Askana%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
@@ -320,7 +320,7 @@ export const places: Record<
       {
         id: "rtoWinery",
         slug: "rto-winery",
-        image: "/dest/guria.png",
+        image: "/dest/guria/aranirto.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Jvartskhma%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Jvartskhma%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
@@ -329,7 +329,7 @@ export const places: Record<
       {
         id: "sharashidzeWinery",
         slug: "sharashidze-winery",
-        image: "/dest/guria.png",
+        image: "/dest/guria/sharashizemarani.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Ozurgeti%2C%20Georgia&z=14&output=embed",
@@ -338,7 +338,7 @@ export const places: Record<
       {
         id: "menabdeWinery",
         slug: "menabde-winery",
-        image: "/dest/guria.png",
+        image: "/dest/guria/menabde.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Shemokmedi%2C%20Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Shemokmedi%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
@@ -347,7 +347,7 @@ export const places: Record<
       {
         id: "babasMarani",
         slug: "babas-marani",
-        image: "/dest/guria.png",
+        image: "/dest/guria/baba.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
@@ -356,7 +356,7 @@ export const places: Record<
       {
         id: "armunji",
         slug: "armunji",
-        image: "/dest/guria.png",
+        image: "/dest/guria/baba.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
@@ -365,7 +365,7 @@ export const places: Record<
       {
         id: "kalasFarm",
         slug: "kalas-farm",
-        image: "/dest/guria.png",
+        image: "/dest/guria/debi.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Chokhatauri%2C%20Georgia&z=14&output=embed",
@@ -374,7 +374,7 @@ export const places: Record<
       {
         id: "shekvetili",
         slug: "shekvetili",
-        image: "/dest/guria.png",
+        image: "/dest/guria/shekvetili.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Shekvetili%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Shekvetili%2C%20Georgia&z=14&output=embed",
@@ -383,7 +383,7 @@ export const places: Record<
       {
         id: "erketiMonastery",
         slug: "erketi-monastery",
-        image: "/dest/guria.png",
+        image: "/dest/guria/erketi.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Erketi%20Monastery%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Erketi%20Monastery%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
@@ -392,7 +392,7 @@ export const places: Record<
       {
         id: "udabnoMonastery",
         slug: "udabno-monastery",
-        image: "/dest/guria.png",
+        image: "/dest/guria/udabno.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Udabno%20Monastery%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Udabno%20Monastery%2C%20Chokhatauri%2C%20Georgia&z=14&output=embed",
@@ -401,7 +401,7 @@ export const places: Record<
       {
         id: "zhgentiSisters",
         slug: "zhgenti-sisters",
-        image: "/dest/guria.png",
+        image: "/dest/guria/debi.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Melekeduri%2C%20Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Melekeduri%2C%20Ozurgeti%2C%20Georgia&z=14&output=embed",
@@ -410,7 +410,7 @@ export const places: Record<
       {
         id: "tsitsinatela",
         slug: "tsitsinatela",
-        image: "/dest/guria.png",
+        image: "/dest/guria/cicinatela.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Tsitsinatela%2C%20Shekvetili%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Tsitsinatela%2C%20Shekvetili%2C%20Georgia&z=14&output=embed",
@@ -419,7 +419,7 @@ export const places: Record<
       {
         id: "jumatiMonastery",
         slug: "jumati-monastery",
-        image: "/dest/guria.png",
+        image: "/dest/guria/jumati.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Jumati%20Monastery%2C%20Guria%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Jumati%20Monastery%2C%20Guria%2C%20Georgia&z=14&output=embed",
@@ -433,7 +433,7 @@ export const places: Record<
       {
         id: "batumi",
         slug: "batumi",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/batumi.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Batumi%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Batumi%2C%20Georgia&z=14&output=embed",
@@ -442,7 +442,7 @@ export const places: Record<
       {
         id: "khelvachauri",
         slug: "khelvachauri",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/khelvachauri.jpg",
         mapUrl:
           "https://www.google.com/maps/search/?api=1&query=Khelvachauri%2C%20Adjara%2C%20Georgia",
         mapEmbedUrl:
@@ -452,7 +452,7 @@ export const places: Record<
       {
         id: "keda",
         slug: "keda",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/keda.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Keda%2C%20Adjara%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Keda%2C%20Adjara%2C%20Georgia&z=14&output=embed",
@@ -461,7 +461,7 @@ export const places: Record<
       {
         id: "shuakhevi",
         slug: "shuakhevi",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/shuakhevi.jpg",
         mapUrl:
           "https://www.google.com/maps/search/?api=1&query=Shuakhevi%2C%20Adjara%2C%20Georgia",
         mapEmbedUrl:
@@ -471,7 +471,7 @@ export const places: Record<
       {
         id: "khulo",
         slug: "khulo",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/khulo.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Khulo%2C%20Adjara%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Khulo%2C%20Adjara%2C%20Georgia&z=14&output=embed",
@@ -480,7 +480,7 @@ export const places: Record<
       {
         id: "kobuleti",
         slug: "kobuleti",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/kobuleti.webp",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Kobuleti%2C%20Georgia",
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Kobuleti%2C%20Georgia&z=14&output=embed",
@@ -489,7 +489,7 @@ export const places: Record<
       {
         id: "machakhela",
         slug: "machakhela",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/machakhela.jpg",
         mapUrl:
           "https://www.google.com/maps/search/?api=1&query=Machakhela%20National%20Park%2C%20Georgia",
         mapEmbedUrl:
@@ -499,7 +499,7 @@ export const places: Record<
       {
         id: "goderdzi",
         slug: "goderdzi",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/goderdzi.webp",
         mapUrl:
           "https://www.google.com/maps/search/?api=1&query=Goderdzi%20Pass%2C%20Adjara%2C%20Georgia",
         mapEmbedUrl:
@@ -509,7 +509,7 @@ export const places: Record<
       {
         id: "adjaraCoastline",
         slug: "adjara-coastline",
-        image: "/dest/adjara.png",
+        image: "/dest/adjara/adjara.jpg",
         mapUrl:
           "https://www.google.com/maps/search/?api=1&query=Kvariati%2C%20Adjara%2C%20Georgia",
         mapEmbedUrl:
