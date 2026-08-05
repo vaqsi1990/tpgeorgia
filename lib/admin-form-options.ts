@@ -9,6 +9,8 @@ export const tourDurationLabels: Record<TourDurationKey, string> = {
   "12hours": "12 საათი",
   fullDay: "სრული დღე",
   "2nights3days": "2 ღამე / 3 დღე",
+  "6nights7days": "7 დღე / 6 ღამე",
+  "5nights6days": "6 დღე / 5 ღამე",
   "11nights12days": "11 ღამე / 12 დღე",
 };
 

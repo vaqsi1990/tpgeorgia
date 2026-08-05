@@ -25,16 +25,16 @@ export default async function Destinations() {
           {placeIds.map((id) => (
             <li key={id} className="min-w-0">
               <article className="group relative overflow-hidden rounded-2xl border border-black/10 shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow,transform] duration-300  hover:shadow-[0_12px_40px_rgba(15,79,79,0.14)]">
-                <div className="relative aspect-[4/3] w-full">
+                <div className="relative aspect-square w-full">
                   <Image
                     src={places[id].image}
                     alt={t(`items.${id}.imageAlt`)}
                     fill
                     sizes="(max-width: 640px) 33vw, 400px"
-                    className="object-cover object-center"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent"
                     aria-hidden
                   />
                   <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 p-4">

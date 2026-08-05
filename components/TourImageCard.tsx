@@ -68,24 +68,20 @@ export default function TourImageCard({
         </span>
       ) : null}
 
-      <Link href={href} className="relative block aspect-[4/3] shrink-0 overflow-hidden">
+      <Link href={href} className="relative block aspect-square shrink-0 overflow-hidden">
         <CatalogCardHeroImage images={images} alt={content.title} index={index} />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"
+          className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/15"
           aria-hidden
         />
-        <span
-          className={`absolute left-4 rounded-full bg-white/20 px-3 py-1 text-[14px] font-medium text-white backdrop-blur-sm md:text-[15px] ${
-            tour.exclusive ? "top-14 sm:top-16" : "top-4"
-          }`}
-        >
-          {durationLabel}
-        </span>
-        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-          <h3 className="font-afacad text-xl font-semibold leading-snug text-white sm:text-2xl">
+        <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5">
+          <span className="mb-2 w-fit rounded-full bg-white/20 px-3 py-1 text-[14px] font-medium text-white backdrop-blur-sm md:text-[15px]">
+            {durationLabel}
+          </span>
+          <h3 className="line-clamp-3 font-afacad text-xl font-semibold leading-snug text-white sm:text-2xl">
             {content.title}
           </h3>
-          <p className="mt-1 text-[14px] font-medium text-white/85 md:text-[15px]">
+          <p className="mt-1 line-clamp-1 text-[14px] font-medium text-white/85 md:text-[15px]">
             {content.routeLabel}
           </p>
         </div>

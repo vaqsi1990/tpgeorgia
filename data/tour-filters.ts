@@ -54,6 +54,8 @@ const longDayDurations = new Set<TourDurationKey>([
 
 const multiDayDurations = new Set<TourDurationKey>([
   "2nights3days",
+  "6nights7days",
+  "5nights6days",
   "11nights12days",
 ]);
 

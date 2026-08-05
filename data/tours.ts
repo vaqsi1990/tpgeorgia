@@ -11,6 +11,9 @@ export const tourIds = [
   "vardzia",
   "svaneti12day",
   "racha-signature-horseback",
+  "batumi-western-georgia-6n",
+  "batumi-georgia-discovery-6n",
+  "adjara-must-see-5n",
 ] as const;
 
 export type TourId = (typeof tourIds)[number];
@@ -23,6 +26,8 @@ export type TourDurationKey =
   | "12hours"
   | "fullDay"
   | "2nights3days"
+  | "6nights7days"
+  | "5nights6days"
   | "11nights12days";
 
 export type TourMeta = {
@@ -48,4 +53,7 @@ export const tourMeta: TourMeta[] = [
   { id: "vardzia", durationKey: "11nights12days", priceFrom: 0, minPeople: 0 },
   { id: "svaneti12day", durationKey: "11nights12days", priceFrom: 0, minPeople: 0, popular: true },
   { id: "racha-signature-horseback", durationKey: "fullDay", priceFrom: 150, minPeople: 1, startTime: "10:00" },
+  { id: "batumi-western-georgia-6n", durationKey: "6nights7days", priceFrom: 1750, minPeople: 3, startTime: "10:00" },
+  { id: "batumi-georgia-discovery-6n", durationKey: "6nights7days", priceFrom: 2076, minPeople: 3, startTime: "10:00" },
+  { id: "adjara-must-see-5n", durationKey: "5nights6days", priceFrom: 1150, minPeople: 3, startTime: "10:00" },
 ];

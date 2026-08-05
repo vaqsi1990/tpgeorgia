@@ -49,6 +49,8 @@ export const tourDurationKeys: TourDurationKey[] = [
   "12hours",
   "fullDay",
   "2nights3days",
+  "6nights7days",
+  "5nights6days",
   "11nights12days",
 ];
 

@@ -14,6 +14,8 @@
     "db:seed": "tsx prisma/seed.js",
     "db:migrate-destinations": "tsx scripts/migrate-destinations.ts",
     "db:seed:racha-horseback": "tsx scripts/seed-racha-horseback-tour.ts",
+    "db:seed:batumi-6n": "tsx scripts/seed-batumi-6n-tours.ts",
+    "db:seed:adjara-5n": "tsx scripts/seed-adjara-5n-tour.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
