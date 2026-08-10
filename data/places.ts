@@ -75,6 +75,7 @@ export type PlaceAttraction = {
   id: PlaceAttractionId;
   slug: string;
   image: string;
+  parentId?: PlaceAttractionId;
   mapUrl?: string;
   mapEmbedUrl?: string;
   mapCoords?: {
@@ -118,6 +119,19 @@ export function getPlaceAttraction(
   slug: string,
 ): PlaceAttraction | undefined {
   return places[place].attractions.find((attraction) => attraction.slug === slug);
+}
+
+export function getTopLevelPlaceAttractions(place: PlaceId): PlaceAttraction[] {
+  return places[place].attractions.filter((attraction) => !attraction.parentId);
+}
+
+export function getChildPlaceAttractions(
+  place: PlaceId,
+  parentId: PlaceAttractionId,
+): PlaceAttraction[] {
+  return places[place].attractions.filter(
+    (attraction) => attraction.parentId === parentId,
+  );
 }
 
 export function isPlaceAttractionSlug(place: PlaceId, slug: string): boolean {
@@ -311,6 +325,7 @@ export const places: Record<
       {
         id: "askaneliEstate",
         slug: "askaneli-estate",
+        parentId: "wineCulture",
         image: "/dest/guria/gvino.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Askana%2C%20Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
@@ -320,6 +335,7 @@ export const places: Record<
       {
         id: "rtoWinery",
         slug: "rto-winery",
+        parentId: "wineCulture",
         image: "/dest/guria/aranirto.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Jvartskhma%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
@@ -329,6 +345,7 @@ export const places: Record<
       {
         id: "sharashidzeWinery",
         slug: "sharashidze-winery",
+        parentId: "wineCulture",
         image: "/dest/guria/sharashizemarani.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
@@ -338,6 +355,7 @@ export const places: Record<
       {
         id: "menabdeWinery",
         slug: "menabde-winery",
+        parentId: "wineCulture",
         image: "/dest/guria/menabde.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Shemokmedi%2C%20Ozurgeti%2C%20Georgia",
         mapEmbedUrl:
@@ -347,6 +365,7 @@ export const places: Record<
       {
         id: "babasMarani",
         slug: "babas-marani",
+        parentId: "wineCulture",
         image: "/dest/guria/baba.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:
@@ -356,6 +375,7 @@ export const places: Record<
       {
         id: "armunji",
         slug: "armunji",
+        parentId: "wineCulture",
         image: "/dest/guria/baba.jpg",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Goraberezhouli%2C%20Chokhatauri%2C%20Georgia",
         mapEmbedUrl:

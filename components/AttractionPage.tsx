@@ -1,5 +1,5 @@
 import type { PlaceAttraction, PlaceId } from "@/data/places";
-import { places } from "@/data/places";
+import { getChildPlaceAttractions, places } from "@/data/places";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -19,6 +19,16 @@ export default async function AttractionPage({
   const description = t(
     `items.${place}.attractions.${attraction.id}.description` as never,
   );
+  const childAttractions = getChildPlaceAttractions(place, attraction.id);
+  const parentAttraction = attraction.parentId
+    ? places[place].attractions.find((item) => item.id === attraction.parentId)
+    : undefined;
+  const backHref = parentAttraction
+    ? `/places/${place}/${parentAttraction.slug}`
+    : `/places/${place}`;
+  const backLabel = parentAttraction
+    ? t(`items.${place}.attractions.${parentAttraction.id}.name` as never)
+    : t("backToPlace", { place: placeName });
   const mapEmbedUrl =
     attraction.mapEmbedUrl ??
     (attraction.mapCoords
@@ -50,11 +60,63 @@ export default async function AttractionPage({
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-3xl px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-12 lg:px-10">
+      <div
+        className={
+          childAttractions.length > 0
+            ? "mx-auto w-full max-w-7xl px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-12 lg:px-10"
+            : "mx-auto w-full max-w-3xl px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-12 lg:px-10"
+        }
+      >
         {description ? (
           <div className="mb-10 space-y-5 whitespace-pre-line text-[15px] leading-relaxed text-black/90 md:text-[18px]">
             {description}
           </div>
+        ) : null}
+
+        {childAttractions.length > 0 ? (
+          <section className="mb-10">
+            <h2 className="font-afacad mb-6 text-center text-xl font-semibold leading-snug text-black sm:text-2xl md:mb-8">
+              {t("wineriesTitle")}
+            </h2>
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+              {childAttractions.map((child) => {
+                const childName = t(
+                  `items.${place}.attractions.${child.id}.name` as never,
+                );
+
+                return (
+                  <li key={child.id}>
+                    <article className="group relative aspect-[3/4] overflow-hidden rounded-2xl shadow-[0_4px_24px_rgba(15,79,79,0.1)]">
+                      <Image
+                        src={child.image}
+                        alt={childName}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                      <div
+                        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"
+                        aria-hidden
+                      />
+                      <div className="absolute inset-x-0 bottom-0 z-[1] flex flex-col gap-3 p-4 sm:p-5">
+                        <div>
+                          <h3 className="font-afacad text-xl font-semibold leading-snug text-white sm:text-2xl">
+                            {childName}
+                          </h3>
+                        </div>
+                        <Link
+                          href={`/places/${place}/${child.slug}`}
+                          className="inline-flex w-full items-center justify-center rounded-xl border border-[#991B1B] bg-[#DC2626] px-4 py-2.5 text-center text-[15px] font-medium text-white transition-colors hover:bg-[#B91C1C] hover:shadow-[0_4px_16px_rgba(220,38,38,0.35)] sm:text-[16px] md:text-[18px]"
+                        >
+                          {t("details")}
+                        </Link>
+                      </div>
+                    </article>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
         ) : null}
 
         {mapEmbedUrl ? (
@@ -81,10 +143,10 @@ export default async function AttractionPage({
         ) : null}
 
         <Link
-          href={`/places/${place}`}
+          href={backHref}
           className="mx-auto flex w-full max-w-xs items-center justify-center rounded-xl border border-[#991B1B] bg-[#DC2626] px-4 py-2.5 text-center text-[16px] font-medium text-white transition-colors hover:bg-[#B91C1C] md:text-[18px]"
         >
-          {t("backToPlace", { place: placeName })}
+          {backLabel}
         </Link>
       </div>
     </main>

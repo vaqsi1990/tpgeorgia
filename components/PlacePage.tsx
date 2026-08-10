@@ -1,5 +1,5 @@
 import type { PlaceId } from "@/data/places";
-import { places } from "@/data/places";
+import { getTopLevelPlaceAttractions, places } from "@/data/places";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -13,6 +13,7 @@ type PlacePageProps = {
 export default async function PlacePage({ place }: PlacePageProps) {
   const t = await getTranslations("Destinations");
   const placeData = places[place];
+  const attractions = getTopLevelPlaceAttractions(place);
 
   return (
     <main className="bg-white text-black">
@@ -51,7 +52,7 @@ export default async function PlacePage({ place }: PlacePageProps) {
         </h2>
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-          {placeData.attractions.map((attraction) => {
+          {attractions.map((attraction) => {
             const name = t(
               `items.${place}.attractions.${attraction.id}.name` as never,
             );
