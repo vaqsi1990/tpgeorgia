@@ -21,24 +21,24 @@ export default async function Destinations() {
           className="mb-4 sm:mb-6"
         />
 
-        <ul className="grid grid-cols-3 gap-3 sm:gap-4">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
           {placeIds.map((id) => (
             <li key={id} className="min-w-0">
-              <article className="group relative overflow-hidden rounded-2xl border border-black/10 shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow,transform] duration-300  hover:shadow-[0_12px_40px_rgba(15,79,79,0.14)]">
-                <div className="relative aspect-square w-full">
+              <article className="group relative overflow-hidden rounded-2xl border border-black/10 shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow,transform] duration-300 hover:shadow-[0_12px_40px_rgba(15,79,79,0.14)]">
+                <div className="relative aspect-[4/3] w-full sm:aspect-square">
                   <Image
                     src={places[id].image}
                     alt={t(`items.${id}.imageAlt`)}
                     fill
-                    sizes="(max-width: 640px) 33vw, 400px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                   <div
                     className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent"
                     aria-hidden
                   />
-                  <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 p-4">
-                    <h3 className="font-afacad text-2xl font-semibold text-white sm:text-[1.65rem]">
+                  <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-2.5 p-3 sm:gap-3 sm:p-4">
+                    <h3 className="font-afacad text-xl font-semibold text-white sm:text-2xl lg:text-[1.65rem]">
                       {t(`items.${id}.name`)}
                     </h3>
                     <Link
