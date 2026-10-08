@@ -188,3 +188,76 @@ model BlogPostTranslation {
   @@unique([blogPostId, locale])
   @@map("blog_post_translations")
 }
+
+/// Admin-managed destination (slug id, e.g. adjara)
+model Place {
+  id         String   @id
+  image      String
+  published  Boolean  @default(true)
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  translations PlaceTranslation[]
+  attractions  PlaceAttraction[]
+
+  @@index([sortOrder])
+  @@map("places")
+}
+
+/// Localized place page content (ka, en, ru, zh)
+model PlaceTranslation {
+  id               String @id @default(cuid())
+  placeId          String
+  locale           Locale
+  name             String
+  imageAlt         String @default("")
+  lead             String @default("")
+  p1               String @default("")
+  p2               String @default("")
+  p3               String @default("")
+  attractionsTitle String @default("")
+
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@unique([placeId, locale])
+  @@map("place_translations")
+}
+
+/// A sight inside a place. parentId groups child sights (for example wineries).
+model PlaceAttraction {
+  id        String  @id @default(cuid())
+  placeId   String
+  slug      String
+  image     String
+  parentId  String?
+  mapUrl    String?
+  mapLat    Float?
+  mapLng    Float?
+  sortOrder Int     @default(0)
+
+  place        Place                         @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  parent       PlaceAttraction?              @relation("PlaceAttractionChildren", fields: [parentId], references: [id], onDelete: SetNull)
+  children     PlaceAttraction[]             @relation("PlaceAttractionChildren")
+  translations PlaceAttractionTranslation[]
+
+  @@unique([placeId, slug])
+  @@index([placeId, sortOrder])
+  @@map("place_attractions")
+}
+
+/// Localized attraction name and description
+model PlaceAttractionTranslation {
+  id           String @id @default(cuid())
+  attractionId String
+  locale       Locale
+  name         String
+  description  String @default("")
+  /// Heading shown above child attractions, e.g. wineries
+  groupTitle   String @default("")
+
+  attraction PlaceAttraction @relation(fields: [attractionId], references: [id], onDelete: Cascade)
+
+  @@unique([attractionId, locale])
+  @@map("place_attraction_translations")
+}

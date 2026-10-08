@@ -1,12 +1,16 @@
 import ParallaxSection from "@/components/ParallaxSection";
 import SectionHeader from "@/components/SectionHeader";
-import { placeIds, places } from "@/data/places";
 import { Link } from "@/i18n/navigation";
+import { getLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
+import type { AppLocale } from "@/i18n/routing";
+import { listPublishedPlaceCards } from "@/lib/places-db";
 import Image from "next/image";
 
 export default async function Destinations() {
   const t = await getTranslations("Destinations");
+  const locale = (await getLocale()) as AppLocale;
+  const places = await listPublishedPlaceCards(locale);
 
   return (
     <ParallaxSection
@@ -22,13 +26,13 @@ export default async function Destinations() {
         />
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
-          {placeIds.map((id) => (
-            <li key={id} className="min-w-0">
+          {places.map((place) => (
+            <li key={place.id} className="min-w-0">
               <article className="group relative overflow-hidden rounded-2xl border border-black/10 shadow-[0_4px_24px_rgba(15,79,79,0.06)] transition-[box-shadow,transform] duration-300 hover:shadow-[0_12px_40px_rgba(15,79,79,0.14)]">
                 <div className="relative aspect-[4/3] w-full sm:aspect-square">
                   <Image
-                    src={places[id].image}
-                    alt={t(`items.${id}.imageAlt`)}
+                    src={place.image}
+                    alt={place.imageAlt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
@@ -39,10 +43,10 @@ export default async function Destinations() {
                   />
                   <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-2.5 p-3 sm:gap-3 sm:p-4">
                     <h3 className="font-afacad text-xl font-semibold text-white sm:text-2xl lg:text-[1.65rem]">
-                      {t(`items.${id}.name`)}
+                      {place.name}
                     </h3>
                     <Link
-                      href={`/places/${id}`}
+                      href={`/places/${place.id}`}
                       className="inline-flex w-full items-center justify-center rounded-xl border border-[#991B1B] bg-[#DC2626] px-4 py-2.5 text-center text-[16px] font-medium text-white transition-colors hover:bg-[#B91C1C] hover:shadow-[0_4px_16px_rgba(220,38,38,0.35)] md:text-[18px]"
                     >
                       {t("explore")}

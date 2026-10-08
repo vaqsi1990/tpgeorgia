@@ -1,15 +1,17 @@
 import { AdminCreateLink } from "@/components/admin/StoredTourList";
 import { listBookings } from "@/lib/booking-db";
 import { listExcursions, listTours } from "@/lib/catalog-db";
+import { listPlaces } from "@/lib/places-db";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
-  const [tours, excursions, bookings] = await Promise.all([
+  const [tours, excursions, bookings, places] = await Promise.all([
     listTours(),
     listExcursions(),
     listBookings(),
+    listPlaces(),
   ]);
   const pendingBookings = bookings.filter((b) => b.status === "pending").length;
 
@@ -18,11 +20,11 @@ export default async function AdminDashboardPage() {
       <div>
         <h1 className="font-afacad text-3xl font-semibold">ადმინის პანელი</h1>
         <p className="mt-1 text-[16px] text-black md:text-[18px]">
-        შექმენი და მართეთ ტურები და ექსკურსიები ყველა ენაზე.
+        შექმენი და მართეთ ადგილები, ტურები და ექსკურსიები ყველა ენაზე.
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl border border-black/10 bg-white p-5">
           <p className="text-[16px] font-medium uppercase tracking-wide text-black md:text-[18px]">
           ჯავშნები
@@ -39,6 +41,21 @@ export default async function AdminDashboardPage() {
               className="rounded-xl border border-black/15 px-4 py-2.5 text-[16px] font-medium hover:bg-brand/5 md:text-[18px]"
             >
               ყველას ნახვა
+            </Link>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-black/10 bg-white p-5">
+          <p className="text-[16px] font-medium uppercase tracking-wide text-black md:text-[18px]">
+          ადგილები
+          </p>
+          <p className="font-afacad mt-1 text-3xl font-semibold">{places.length}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <AdminCreateLink href="/admin/places/new">ახალი ადგილი</AdminCreateLink>
+            <Link
+              href="/admin/places"
+              className="rounded-xl border border-black/15 px-4 py-2.5 text-[16px] font-medium hover:bg-brand/5 md:text-[18px]"
+            >
+             ყველას ნახვა
             </Link>
           </div>
         </div>
