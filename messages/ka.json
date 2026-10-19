@@ -530,6 +530,7 @@
     "headerTickerAriaLabel": "ბოლო შეფასებები",
     "headerTickerLabel": "შეფასებები",
     "viewProgram": "პროგრამის ნახვა",
+    "viewOnGoogle": "ყველა შეფასება Google-ზე",
     "prevSlide": "წინა შეფასება",
     "nextSlide": "შემდეგი შეფასება",
     "goToSlide": "შეფასება {number}",

@@ -528,6 +528,7 @@
     "headerTickerAriaLabel": "Последние отзывы",
     "headerTickerLabel": "Отзывы",
     "viewProgram": "Смотреть программу",
+    "viewOnGoogle": "Все отзывы в Google",
     "prevSlide": "Предыдущий отзыв",
     "nextSlide": "Следующий отзыв",
     "goToSlide": "Отзыв {number}",

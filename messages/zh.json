@@ -528,6 +528,7 @@
     "headerTickerAriaLabel": "最新评价",
     "headerTickerLabel": "评价",
     "viewProgram": "查看项目",
+    "viewOnGoogle": "在 Google 上查看全部评价",
     "prevSlide": "上一条评价",
     "nextSlide": "下一条评价",
     "goToSlide": "评价 {number}",

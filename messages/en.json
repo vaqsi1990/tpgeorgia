@@ -528,6 +528,7 @@
     "headerTickerAriaLabel": "Latest reviews",
     "headerTickerLabel": "Reviews",
     "viewProgram": "View program",
+    "viewOnGoogle": "All reviews on Google",
     "prevSlide": "Previous review",
     "nextSlide": "Next review",
     "goToSlide": "Review {number}",

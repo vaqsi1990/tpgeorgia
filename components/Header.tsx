@@ -3,7 +3,6 @@
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 
 import { Link, usePathname } from "@/i18n/navigation";
-import type { ReviewRecord } from "@/lib/review-types";
 import { business } from "@/lib/site";
 import {
   AnimatePresence,
@@ -260,11 +259,7 @@ function getDesktopMediaQueryServerSnapshot() {
   return true;
 }
 
-export default function Header({
-  featuredReviews = [],
-}: {
-  featuredReviews?: ReviewRecord[];
-}) {
+export default function Header() {
   const t = useTranslations("Header");
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -457,6 +452,9 @@ export default function Header({
             <Link href="/#transfers" className={navLinkClass}>
               {t("nav.transfers")}
             </Link>
+            <Link href="/#reviews" className={navLinkClass}>
+              {t("nav.reviews")}
+            </Link>
            
             <SchoolExcursionsNavItem label={t("nav.schoolExcursions")} />
             <Link href="/#contact" className={navLinkClass}>
@@ -626,15 +624,13 @@ export default function Header({
                   >
                     {t("nav.transfers")}
                   </Link>
-                  {featuredReviews.length > 0 ? (
-                    <Link
-                      href="/#reviews"
-                      onClick={() => setMobileOpen(false)}
-                      className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
-                    >
-                      {t("nav.reviews")}
-                    </Link>
-                  ) : null}
+                  <Link
+                    href="/#reviews"
+                    onClick={() => setMobileOpen(false)}
+                    className=" rounded-lg px-3 py-3 text-[15px] font-medium text-black transition-colors hover:bg-brand/5"
+                  >
+                    {t("nav.reviews")}
+                  </Link>
                   <SchoolExcursionsNavItem
                     label={t("nav.schoolExcursions")}
                     variant="mobile"
