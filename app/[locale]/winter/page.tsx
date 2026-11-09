@@ -1,7 +1,8 @@
 import WinterPage from "@/components/WinterPage";
+import { winterTour } from "@/data/winter-tour";
 import { buildPageMetadata } from "@/lib/seo";
 import type { AppLocale } from "@/i18n/routing";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -9,13 +10,13 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "WinterSpecial" });
+  const copy = winterTour[locale as AppLocale] ?? winterTour.ka;
 
   return buildPageMetadata({
     locale: locale as AppLocale,
     pathname: "/winter",
-    title: t("title"),
-    description: t("description"),
+    title: copy.title,
+    description: copy.intro[0],
     ogImage: "/winter.png",
   });
 }
