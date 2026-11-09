@@ -66,10 +66,31 @@ export const adjaraAttractionIds = [
 
 export type AdjaraAttractionId = (typeof adjaraAttractionIds)[number];
 
+export const samegreloAttractionIds = [
+  "dadianiPalaces",
+  "paliastomi",
+  "martviliCanyon",
+  "nokalakevi",
+  "nokalakeviHotSprings",
+  "salkhino",
+  "chkondidi",
+  "khobiMonastery",
+  "tsalenjikha",
+  "tobavarchkhili",
+  "poti",
+  "potiCathedral",
+  "potiLighthouse",
+  "megrelianOda",
+  "anaklia",
+] as const;
+
+export type SamegreloAttractionId = (typeof samegreloAttractionIds)[number];
+
 export type PlaceAttractionId =
   | TbilisiAttractionId
   | GuriaAttractionId
-  | AdjaraAttractionId;
+  | AdjaraAttractionId
+  | SamegreloAttractionId;
 
 export type PlaceAttraction = {
   id: PlaceAttractionId;

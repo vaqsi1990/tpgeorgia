@@ -26,10 +26,10 @@ export default async function WinterSpecial() {
               aria-hidden
             />
             <div className="absolute inset-x-0 bottom-0 hidden flex-col items-start gap-2 p-4 text-white sm:flex sm:gap-3 sm:p-8 lg:p-10">
-              <p className="text-[15px] font-medium tracking-wide text-white/90 sm:text-[17px]">
+              <p className="font-afacad mb-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[3rem]  ">
                 {t("title")}
               </p>
-              <h2 className="font-afacad text-3xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h2 className="text-[15px] font-medium tracking-wide text-white/90 sm:text-[17px]">
                 {t("headline")}
               </h2>
               <p className="max-w-2xl text-[15px] leading-relaxed text-white/95 md:text-[18px]">
