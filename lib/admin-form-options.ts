@@ -2,6 +2,8 @@ import type { DurationKey } from "@/data/excursions";
 import type { TourDurationKey } from "@/data/tours";
 
 export const tourDurationLabels: Record<TourDurationKey, string> = {
+  "2hours": "2 საათი",
+  "3hours": "3 საათი",
   "4hours": "4 საათი",
   "6hours": "6 საათი",
   "7hours": "7 საათი",

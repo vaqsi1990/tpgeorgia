@@ -41,6 +41,8 @@ export const tourPriceBounds = {
 };
 
 const shortDurations = new Set<TourDurationKey>([
+  "2hours",
+  "3hours",
   "4hours",
   "6hours",
   "7hours",

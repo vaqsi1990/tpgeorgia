@@ -136,6 +136,8 @@
       }
     },
     "durations": {
+      "2hours": "2 hours",
+      "3hours": "3 hours",
       "4hours": "4 hours",
       "6hours": "6 hours",
       "7hours": "7 hours",

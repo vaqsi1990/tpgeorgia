@@ -19,6 +19,8 @@ export const tourIds = [
 export type TourId = (typeof tourIds)[number];
 
 export type TourDurationKey =
+  | "2hours"
+  | "3hours"
   | "4hours"
   | "6hours"
   | "7hours"

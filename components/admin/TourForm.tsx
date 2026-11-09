@@ -102,7 +102,7 @@ export default function TourForm({
     initialTour?.destinations ?? ["batumi"],
   );
   const [durationKey, setDurationKey] = useState(
-    initialTour?.meta.durationKey ?? tourDurationKeys[0],
+    initialTour?.meta.durationKey ?? "4hours",
   );
   const [priceFrom, setPriceFrom] = useState(
     String(initialTour?.meta.priceFrom ?? 0),
