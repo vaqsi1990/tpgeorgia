@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
     pathname: "/winter",
     title: copy.title,
     description: copy.intro[0],
-    ogImage: "/winter.png",
+    ogImage: "/winter2.png",
   });
 }
 

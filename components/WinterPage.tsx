@@ -15,7 +15,7 @@ export default async function WinterPage() {
     <main className="bg-white pb-20 text-black sm:pb-24 lg:pb-28">
       <div className="relative h-[46svh] min-h-[300px] w-full sm:h-[54svh]">
         <Image
-          src="/winter.png"
+          src="/winter2.png"
           alt={copy.title}
           fill
           priority
