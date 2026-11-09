@@ -25,9 +25,12 @@ export default async function WinterSpecial() {
               className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10"
               aria-hidden
             />
-            <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 p-4 sm:gap-4 sm:p-8 lg:p-10">
-              <h2 className="font-afacad text-3xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-2 p-4 sm:gap-3 sm:p-8 lg:p-10">
+              <p className="text-[15px] font-medium tracking-wide text-white/90 sm:text-[17px]">
                 {t("title")}
+              </p>
+              <h2 className="font-afacad text-3xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                {t("headline")}
               </h2>
               <p className="max-w-2xl text-[15px] leading-relaxed text-white/95 md:text-[18px]">
                 {t("description")}
