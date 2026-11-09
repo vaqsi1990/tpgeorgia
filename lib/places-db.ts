@@ -254,13 +254,15 @@ async function resolvePlaceId(input: StoredPlaceInput, content: PlaceLocaleConte
 let seedTask: Promise<void> | null = null;
 
 async function seedStaticPlaces(): Promise<void> {
-  const count = await prisma.place.count();
-  if (count > 0) return;
-
   const records = staticPlaceRecords();
+  const existing = await prisma.place.findMany({ select: { id: true } });
+  const existingIds = new Set(existing.map((place) => place.id));
+  const missing = records.filter((place) => !existingIds.has(place.id));
+  if (missing.length === 0) return;
+
   await prisma.$transaction(
     async (tx) => {
-      for (const place of records) {
+      for (const place of missing) {
         await tx.place.create({
           data: {
             id: place.id,
@@ -288,7 +290,7 @@ async function seedStaticPlaces(): Promise<void> {
         });
       }
 
-      for (const place of records) {
+      for (const place of missing) {
         for (const attraction of place.attractions) {
           if (!attraction.parentId) continue;
           await tx.placeAttraction.update({

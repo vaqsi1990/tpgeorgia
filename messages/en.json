@@ -179,6 +179,10 @@
     "title": "Destinations",
     "description": "Georgia's true uniqueness lies in its extraordinary diversity.\n\nThis is a small country where ancient history, breathtaking nature, and a vibrant living culture come together in one remarkable destination. It is here that the earliest Europeans were discovered, on a land that has connected different civilisations for thousands of years while preserving its own unique identity.\n\nTravelling through Georgia means discovering completely different worlds within a single country the timeless peaks of the Caucasus Mountains, the shores of the Black Sea, wild rivers, mysterious caves, dramatic canyons, and landscapes that amaze with their incredible variety.\n\nYet Georgia's greatest treasure is not only its scenery. It is a country where centuries-old history, unique folklore, polyphonic singing, traditions, culture, and legendary hospitality continue to live and thrive.\n\nGeorgia is a place where every region tells its own story, every road leads to a new discovery, and every visitor leaves with a special memory that lasts a lifetime.",
     "explore": "Explore",
+    "carouselAriaLabel": "Destinations",
+    "prevSlide": "Previous destination",
+    "nextSlide": "Next destination",
+    "goToSlide": "Destination {number}",
     "items": {
       "tbilisi": {
         "name": "Tbilisi",
@@ -390,6 +394,77 @@
           "adjaraCoastline": {
             "name": "Coastline of Adjara",
             "description": "Stretching south from Batumi along the Black Sea coast, Sarpi, Gonio, and Kvariati form one of Adjara's most attractive seaside areas, known for their beautiful beaches, warm waters, and ideal atmosphere for relaxation.\n\nThese neighbouring coastal destinations are especially popular among travellers who seek a true seaside experience. Here, visitors can enjoy the beauty of the Black Sea, spend peaceful days on the beach, and take part in a variety of marine activities.\n\nSarpi, Gonio, and Kvariati offer diverse coastal experiences from exciting water activities such as jet skiing, parasailing, and other sea adventures to fishing and relaxing moments by the shore. For those who wish to experience the sea in a different way, various water activities provide the opportunity to explore the open waters and enjoy unforgettable views of the coastline.\n\nKvariati is particularly known for its clean sea water and distinctive beach atmosphere. Compared with Batumi's central coastline, Kvariati features smaller and more comfortable pebbles, clearer waters, and a more peaceful environment. This makes it one of the favourite destinations for visitors seeking a comfortable and relaxing seaside holiday.\n\nKvariati is an excellent choice both for families and groups of friends. The area offers a variety of seaside facilities, including coastal cafes, bars, bungalows, and entertainment spaces, allowing visitors to enjoy both relaxing days and lively evenings by the sea.\n\nGonio combines seaside relaxation with an active resort atmosphere. Its spacious beach, comfortable environment, and close location to Batumi make it one of the most popular summer destinations in Adjara. At the same time, the historic Gonio Fortress offers visitors the opportunity to combine a beach holiday with a journey into the ancient history of the region.\n\nSarpi, the southernmost coastal settlement of Adjara, is distinguished by its unique natural scenery. The close connection between the sea and mountains, rocky coastline, and dramatic landscapes give this place a special character and atmosphere.\n\nTogether, Sarpi, Gonio, and Kvariati represent the southern coastline of Adjara a place where clear waters, beautiful beaches, and modern seaside facilities create the perfect environment for relaxation and unforgettable memories.\n\nDiscover the southern coast of Adjara with us enjoy the beauty of the Black Sea, experience exciting marine activities, relax on comfortable beaches, and feel the unique summer atmosphere of Sarpi, Gonio, and Kvariati."
+          }
+        }
+      },
+      "samegrelo": {
+        "name": "Samegrelo",
+        "imageAlt": "Samegrelo",
+        "lead": "Samegrelo is one of Georgia's most distinctive regions, where remarkable natural diversity meets the heritage of ancient Colchis and the history of Georgian nobility. Lake Paliastomi, Colchic wetland forests, dramatic canyons, and rivers shimmering in blue and turquoise give this part of western Georgia its character. Travelling inland, the landscape rises from reed-lined waterways and wooded foothills to the Egrisi Mountains, where the Tobavarchkhili Lakes reveal another side of Samegrelo.",
+        "p1": "These are the historic lands of Colchis, associated with Medea, the Argonauts, and the legend of the Golden Fleece. Nokalakevi's fortress walls, archaeological discoveries, and medieval monasteries bring the region's past into view. The Dadiani palaces, gardens, and collections tell a later story of princely life, cultural ambition, and connections with Europe.",
+        "p2": "Samegrelo's identity is equally vivid beyond its historic monuments. It lives in the Megrelian language, polyphonic songs, wooden oda houses, and beautifully tended gardens and courtyards. A shaded veranda, a conversation with your host, and a table laid for guests offer an intimate introduction to local life. Freshly prepared elarji, mint-scented gebzhalia, Megrelian khachapuri, and the bold flavours of adjika make food an essential part of the experience.",
+        "p3": "Tour Provider Georgia brings these encounters together through boat trips in the Colchic wetlands, visits to historic landmarks, Ojaleshi wine tastings, and time spent with Megrelian families. Our guests prepare traditional dishes alongside their hosts, hear their stories, and participate in authentic cultural activities discovering Samegrelo through its people and living traditions.",
+        "attractionsTitle": "Main sights of Samegrelo",
+        "attractions": {
+          "dadianiPalaces": {
+            "name": "Dadiani Palaces and Botanical Garden",
+            "description": "The Dadiani Palaces preserve an important part of Georgia's history sacred relics, manuscripts, works of art, and personal belongings of the family that once ruled Samegrelo. These nineteenth-century residences offer a glimpse into Georgian aristocratic life and the cultural world of the principality.\n\nAn unexpected connection leads to France: through the marriage of the Dadiani and Murat families, objects associated with Napoleon Bonaparte, including a cast of his death mask, became part of the collection.\n\nAfter exploring the palaces, stroll through the neighbouring Botanical Garden. Established in 1840, its shaded paths, mature trees, and plants brought from distant countries form an enduring part of the Dadiani estate."
+          },
+          "paliastomi": {
+            "name": "Lake Paliastomi and Kolkheti National Park",
+            "description": "Located on Georgia's Black Sea coast, Kolkheti National Park protects the unique wetland forests, peatlands, and aquatic ecosystems of the Colchic lowlands. It also provides an important refuge for migratory birds. Selected areas of the park became part of the UNESCO World Heritage-listed Colchic Rainforests and Wetlands in 2021.\n\nOne of the most rewarding ways to explore the park is a pontoon boat trip across Lake Paliastomi and along the Pichori River, passing forests, reed beds, and waterbirds. For a more personal experience, a private motorboat excursion takes you along beautiful forest-lined waterways, offering a closer encounter with the nature of Colchis."
+          },
+          "martviliCanyon": {
+            "name": "Martvili Canyon",
+            "description": "Turquoise water, moss-covered cliffs, and cascading waterfalls make Martvili Canyon one of Samegrelo's most captivating natural sights. Carved by the Abasha River and surrounded by lush Colchic forest, the gorge reveals a different view at every turn.\n\nOpened with dedicated visitor facilities in 2016, it has become one of Georgia's most visited natural attractions, welcoming more than 275,000 visitors in 2025.\n\nA 700-metre circular walking trail follows the historic Dadiani walkway, with bridges and viewpoints overlooking the river and waterfalls. For a closer encounter, take a short boat ride along the Abasha, gliding between limestone walls to discover the canyon from the water."
+          },
+          "nokalakevi": {
+            "name": "Nokalakevi",
+            "description": "Set within a bend of the Tekhuri River, Nokalakevi is one of Georgia's most important early medieval fortress cities. Known to Byzantine writers as Archaeopolis, it played a crucial role in the sixth-century conflicts between Byzantium and Persia, when the future of the Kingdom of Egrisi and the wider region hung in the balance.\n\nToday, defensive walls and the remains of palaces, churches, and bathhouses offer glimpses of life in the ancient city. Among its most intriguing features is a tunnel descending to the Tekhuri River, which allowed the defenders to reach water during a siege. Walking among the fortifications brings the city's history vividly into view, with the river below revealing why this site was so strategically important."
+          },
+          "nokalakeviHotSprings": {
+            "name": "Nokalakevi Hot Springs",
+            "description": "Near the ancient fortress city of Nokalakevi, in the Tekhuri River valley, a hot sulphur spring creates an unusual sight: steaming water cascades over travertine terraces before joining the river.\n\nVisitors are especially drawn to soaking in naturally warm water under the open sky. Surrounded by woodland, the meeting of the hot spring and the cool Tekhuri River adds a relaxing experience to a visit to Nokalakevi."
+          },
+          "salkhino": {
+            "name": "Salkhino",
+            "description": "Set beside the Tsachkhura River, Salkhino was the summer residence of the Dadiani family, the rulers of Samegrelo. Its nineteenth-century palace, historic wine cellar, and green surroundings reveal another side of aristocratic life one shaped by leisure, hospitality, and winemaking.\n\nSalkhino's particular pride is Ojaleshi, a native Megrelian grape traditionally trained to climb trees. In a letter dated 1852, David Dadiani praised the wine made from vines growing high into Salkhino's persimmon trees.\n\nA visit to the estate can be complemented by an Ojaleshi tasting in the historic cellar, arranged in advance - a chance to discover a wine closely connected to the Dadiani family's story."
+          },
+          "chkondidi": {
+            "name": "Martvili-Chkondidi Monastery",
+            "description": "Standing on a hill above Martvili, Chkondidi Monastery was an important centre of Georgian learning and spiritual life for centuries. The seventh-century church is associated with Giorgi Chkondideli, tutor and adviser to King David the Builder. Members of the Dadiani family, including David Dadiani and Ekaterine Chavchavadze, are also buried here.\n\nThe name \"Chkondidi\" means \"great oak\" in Megrelian and, according to local tradition, recalls a sacred tree that once stood on this site. Carved stone reliefs, historic frescoes, and sweeping hilltop views make the monastery one of Samegrelo's distinctive cultural landmarks.\n\nAn old Soviet-era cable car also connects the town centre with the monastery. The small cabin's ascent offers views over Martvili and the surrounding green hills, adding another memorable experience to the visit."
+          },
+          "khobiMonastery": {
+            "name": "Khobi Monastery",
+            "description": "Located in the village of Nojikhevi, Khobi Monastery was one of western Georgia's important repositories of sacred relics for centuries. Among its treasures was a relic traditionally revered as the robe of the Virgin Mary, recorded in the accounts of foreign travellers to Georgia.\n\nThe church largely acquired its present form at the turn of the thirteenth and fourteenth centuries. Carved stone decoration, surviving frescoes, and portraits of the Dadiani family make it a fascinating place to discover Georgian art and Samegrelo's history. Within the monastery walls, a bell tower and the remains of a palace recall a time when religious and secular life were closely intertwined."
+          },
+          "tsalenjikha": {
+            "name": "Tsalenjikha Cathedral",
+            "description": "Tsalenjikha Cathedral's greatest treasure survives on its walls: fourteenth-century frescoes painted by Manuel Eugenikos, an artist invited from Constantinople by Vameq I Dadiani, ruler of Samegrelo. An inscription inside records the master's name and the story of his arrival in Georgia a rare opportunity to discover the person behind the medieval paintings.\n\nBehind its restrained exterior, the cathedral reveals a richly decorated interior. Its frescoes bear witness to the cultural connections between Georgia and Byzantium, making Tsalenjikha a rewarding stop for visitors drawn to art and history."
+          },
+          "tobavarchkhili": {
+            "name": "Tobavarchkhili Lakes",
+            "description": "Beyond Samegrelo's green lowlands, the Tobavarchkhili Lakes lie hidden among the rocky peaks of the Egrisi Mountains. The main lake sits at approximately 2,650 metres above sea level. Its Megrelian name means \"Silver Lake\" a fitting description when the surrounding mountains and sky are reflected on its surface.\n\nAccording to local legend, disturbing the lake's tranquillity brings rain and thunder. A story that reflects the deep respect this mountain landscape has inspired for generations.\n\nGetting here is an adventure in itself: multi-day trekking routes cross forests, alpine meadows, and mountain passes. Tobavarchkhili rewards physically prepared travellers who enjoy hiking, camping, and discovering a less familiar side of Samegrelo. With Tour Provider Georgia, this journey can be planned around your hiking experience, fitness level, and available time, helping you find the right route to the Silver Lakes."
+          },
+          "poti": {
+            "name": "Poti",
+            "description": "In Poti, Georgia's maritime history meets the vision of a European-style city. Niko Nikoladze, mayor from 1894 to 1912, played a defining role in shaping modern Poti. Its developing port, planned streets, and historic buildings recall an era when the city was becoming an important link between Georgia and Europe."
+          },
+          "potiCathedral": {
+            "name": "Poti Cathedral",
+            "description": "Built in 1906-1907, the cathedral stands at the heart of the city. Its broad dome and Byzantine architecture recall Hagia Sophia in Constantinople. An unexpected chapter followed during the Soviet period, when the building served as a theatre. Today, it is once again a place of worship and one of Poti's most distinctive architectural landmarks."
+          },
+          "potiLighthouse": {
+            "name": "Poti Lighthouse",
+            "description": "Manufactured in England and first lit in 1864, Poti Lighthouse has long been part of the city's maritime life. Its metal tower reflects the engineering achievements of its time and the growth of navigation on the Black Sea. A visit reveals another side of Poti a city whose daily rhythm has been shaped by the sea, ships, and its harbour for more than a century."
+          },
+          "megrelianOda": {
+            "name": "The Megrelian Oda",
+            "description": "In Samegrelo's villages, beautifully kept courtyards immediately catch the eye neatly trimmed lawns, flowers, and fruit trees surrounding a traditional Oda house. Built of wood, with a raised floor and a spacious veranda, the oda is a distinctive example of a home adapted to western Georgia's humid climate.\n\nThe veranda connects the house with its garden, extending family life outdoors a place to rest, share stories, and welcome guests. Wooden railings, decorative details, and carefully tended grounds reveal the care and pride families take in their homes.\n\nExperiencing this hospitality firsthand is a distinctive part of Tour Provider Georgia's tours. Our guests visit Megrelian families, prepare traditional dishes alongside their hosts, hear family stories, and take part in authentic cultural activities. Through these encounters, local culture becomes a personal experience shaped by shared knowledge, conversation, and time spent together."
+          },
+          "anaklia": {
+            "name": "Anaklia",
+            "description": "Anaklia is at its most beautiful at sunset, when the sea reflects the golden sky, soft light settles over the Enguri estuary, and an evening stroll becomes something you want to linger over.\n\nFrom the Anaklia-Ganmukhuri pedestrian bridge, the river flows beneath you while the open Black Sea stretches towards the horizon. Sandy shores, sea air, and expansive views give Anaklia its particular charm a place for travellers who enjoy leaving room in their journey simply to pause.\n\nNear the waterfront, the remains of an eighteenth-century fortress tell another story: this peaceful coastal setting was once an important centre of trade and strategic interest.\n\nAfter discovering Samegrelo's palaces, monasteries, and villages, stay a little longer here. Walk barefoot along the sand, watch the river meet the sea from the bridge, and let the sunset bring your day to a gentle close."
           }
         }
       }

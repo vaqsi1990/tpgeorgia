@@ -1,4 +1,4 @@
-export const placeIds = ["tbilisi", "guria", "adjara"] as const;
+export const placeIds = ["tbilisi", "guria", "adjara", "samegrelo"] as const;
 
 export type PlaceId = (typeof placeIds)[number];
 
@@ -535,6 +535,159 @@ export const places: Record<
         mapEmbedUrl:
           "https://maps.google.com/maps?q=Kvariati%2C%20Adjara%2C%20Georgia&z=14&output=embed",
         mapCoords: { lat: 41.5578, lng: 41.5747 },
+      },
+    ],
+  },
+  samegrelo: {
+    image: "/dest/samegrelo.jpg",
+    attractions: [
+      {
+        id: "dadianiPalaces",
+        slug: "dadiani-palaces",
+        image: "/dest/samegrelo/dadiani.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Dadiani%20Palace%2C%20Zugdidi%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Dadiani%20Palace%2C%20Zugdidi%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.5117, lng: 41.8725 },
+      },
+      {
+        id: "paliastomi",
+        slug: "paliastomi",
+        image: "/dest/samegrelo/paliastomi.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Lake%20Paliastomi%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Lake%20Paliastomi%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.126, lng: 41.735 },
+      },
+      {
+        id: "martviliCanyon",
+        slug: "martvili-canyon",
+        image: "/dest/samegrelo/martvili.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Martvili%20Canyon%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Martvili%20Canyon%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.4572, lng: 42.3774 },
+      },
+      {
+        id: "nokalakevi",
+        slug: "nokalakevi",
+        image: "/dest/samegrelo/nokalakevi.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Nokalakevi%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Nokalakevi%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.3592, lng: 42.1945 },
+      },
+      {
+        id: "nokalakeviHotSprings",
+        slug: "nokalakevi-hot-springs",
+        image: "/dest/samegrelo/hotsprings.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Nokalakevi%20hot%20springs%2C%20Tekhuri%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Nokalakevi%20hot%20springs%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.358, lng: 42.1928 },
+      },
+      {
+        id: "salkhino",
+        slug: "salkhino",
+        image: "/dest/samegrelo/salkhino.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Salkhino%20Palace%2C%20Martvili%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Salkhino%20Palace%2C%20Martvili%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.4556, lng: 42.0903 },
+      },
+      {
+        id: "chkondidi",
+        slug: "chkondidi",
+        image: "/dest/samegrelo/chkondidi.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Martvili%20Monastery%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Martvili%20Monastery%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.4556, lng: 42.3792 },
+      },
+      {
+        id: "khobiMonastery",
+        slug: "khobi-monastery",
+        image: "/dest/samegrelo/khobi.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Khobi%20Monastery%2C%20Nojikhevi%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Khobi%20Monastery%2C%20Nojikhevi%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.3161, lng: 41.8983 },
+      },
+      {
+        id: "tsalenjikha",
+        slug: "tsalenjikha",
+        image: "/dest/samegrelo/tsalenjikha.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Tsalenjikha%20Cathedral%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Tsalenjikha%20Cathedral%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.6047, lng: 42.0772 },
+      },
+      {
+        id: "tobavarchkhili",
+        slug: "tobavarchkhili",
+        image: "/dest/samegrelo/tobavarchkhili.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Tobavarchkhili%20Lakes%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Tobavarchkhili%20Lakes%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.7836, lng: 42.3786 },
+      },
+      {
+        id: "poti",
+        slug: "poti",
+        image: "/dest/samegrelo/poti.jpg",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Poti%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Poti%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.146, lng: 41.672 },
+      },
+      {
+        id: "potiCathedral",
+        slug: "poti-cathedral",
+        image: "/dest/samegrelo/poti-cathedral.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Poti%20Cathedral%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Poti%20Cathedral%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.1417, lng: 41.6725 },
+      },
+      {
+        id: "potiLighthouse",
+        slug: "poti-lighthouse",
+        image: "/dest/samegrelo/poti-lighthouse.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Poti%20Lighthouse%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Poti%20Lighthouse%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.1508, lng: 41.6433 },
+      },
+      {
+        id: "megrelianOda",
+        slug: "megrelian-oda",
+        image: "/dest/samegrelo/oda.jpg",
+        mapUrl:
+          "https://www.google.com/maps/search/?api=1&query=Abasha%2C%20Samegrelo%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Abasha%2C%20Samegrelo%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.2047, lng: 42.2083 },
+      },
+      {
+        id: "anaklia",
+        slug: "anaklia",
+        image: "/dest/samegrelo/anaklia.jpg",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Anaklia%2C%20Georgia",
+        mapEmbedUrl:
+          "https://maps.google.com/maps?q=Anaklia%2C%20Georgia&z=14&output=embed",
+        mapCoords: { lat: 42.394, lng: 41.567 },
       },
     ],
   },
