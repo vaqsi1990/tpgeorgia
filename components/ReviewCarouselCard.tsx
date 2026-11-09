@@ -29,7 +29,7 @@ export default function ReviewCarouselCard({
         <StarRating value={review.rating} size="sm" />
         <p className="min-w-0 truncate text-[13px] text-black/80 sm:text-[14px]">
           <span className="font-medium text-black">{review.authorName}</span>
-          <span className="text-black/40"> — </span>
+          <span className="text-black/40"> - </span>
           <span className="italic">&ldquo;{review.text}&rdquo;</span>
         </p>
       </div>

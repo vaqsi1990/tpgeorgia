@@ -186,7 +186,7 @@ export default function TourProgramEditor({
                     დღის სურათები
                   </p>
                   <p className="mb-2 text-[14px] text-black/60">
-                    ამ დღისთვის ცალკე სურათები — ყველა ენაზე ერთნაირად გამოჩნდება.
+                    ამ დღისთვის ცალკე სურათები - ყველა ენაზე ერთნაირად გამოჩნდება.
                   </p>
                   <ImageUploadForProduct
                     value={day.images}

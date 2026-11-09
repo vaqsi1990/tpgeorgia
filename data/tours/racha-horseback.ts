@@ -55,14 +55,14 @@ const routeOptions: Record<AppLocale, RouteOption[]> = {
       kind: "route",
       label: "Shoda Glacier Expedition",
       description:
-        "Duration: 5–6 hours\nPrice: from 350 GEL / person\nJourney toward the magnificent Shoda Glacier and its alpine lake — dramatic mountain landscapes and untouched nature create one of Georgia's most impressive experiences.",
+        "Duration: 5–6 hours\nPrice: from 350 GEL / person\nJourney toward the magnificent Shoda Glacier and its alpine lake - dramatic mountain landscapes and untouched nature create one of Georgia's most impressive experiences.",
     },
     {
       id: routeOptionIds[5],
       kind: "addon",
       label: "Optional Mountain Picnic",
       description:
-        "Enhance your adventure with a traditional picnic prepared from fresh local ingredients.\nEnjoy homemade dishes surrounded by the peaceful nature of Racha — during your ride or at the end of your journey.\nPrice: 70 GEL / person",
+        "Enhance your adventure with a traditional picnic prepared from fresh local ingredients.\nEnjoy homemade dishes surrounded by the peaceful nature of Racha - during your ride or at the end of your journey.\nPrice: 70 GEL / person",
     },
   ],
   ka: [
@@ -106,7 +106,7 @@ const routeOptions: Record<AppLocale, RouteOption[]> = {
       kind: "addon",
       label: "სურვილისამებრ – რაჭული პიკნიკი",
       description:
-        "გაამდიდრეთ თქვენი მოგზაურობა ტრადიციული რაჭული პიკნიკით, რომელიც მზადდება ადგილობრივი, ნატურალური პროდუქტებით.\nმიირთვით ხელნაკეთი კერძები მთის ბუნების საოცარ გარემოში — მარშრუტის განმავლობაში ან ტურის დასრულების შემდეგ.\nფასი: 70 ლარი / 1 ადამიანი",
+        "გაამდიდრეთ თქვენი მოგზაურობა ტრადიციული რაჭული პიკნიკით, რომელიც მზადდება ადგილობრივი, ნატურალური პროდუქტებით.\nმიირთვით ხელნაკეთი კერძები მთის ბუნების საოცარ გარემოში - მარშრუტის განმავლობაში ან ტურის დასრულების შემდეგ.\nფასი: 70 ლარი / 1 ადამიანი",
     },
   ],
   ru: [
@@ -150,7 +150,7 @@ const routeOptions: Record<AppLocale, RouteOption[]> = {
       kind: "addon",
       label: "По желанию – горный пикник",
       description:
-        "Дополните приключение традиционным пикником из свежих местных продуктов.\nНасладитесь домашними блюдами на фоне спокойной природы Рачи — во время поездки или в конце маршрута.\nЦена: 70 GEL с человека",
+        "Дополните приключение традиционным пикником из свежих местных продуктов.\nНасладитесь домашними блюдами на фоне спокойной природы Рачи - во время поездки или в конце маршрута.\nЦена: 70 GEL с человека",
     },
   ],
   zh: [
@@ -194,7 +194,7 @@ const routeOptions: Record<AppLocale, RouteOption[]> = {
       kind: "addon",
       label: "可选山地野餐",
       description:
-        "以当地新鲜食材准备的传统野餐为您的旅程增色。\n在拉查宁静的自然中享用家常美食——骑行途中或旅程结束时。\n价格：70 GEL / 每人",
+        "以当地新鲜食材准备的传统野餐为您的旅程增色。\n在拉查宁静的自然中享用家常美食--骑行途中或旅程结束时。\n价格：70 GEL / 每人",
     },
   ],
 };
@@ -272,12 +272,12 @@ const whyChooseItems: Record<
     {
       label: "Unforgettable horseback adventure",
       description:
-        "Follow mountain trails used by locals for generations — a chance to experience Racha the way its people know it.",
+        "Follow mountain trails used by locals for generations - a chance to experience Racha the way its people know it.",
     },
     {
       label: "Spectacular mountain scenery",
       description:
-        "Forests, alpine meadows, traditional villages, mountain lakes and panoramic Caucasus views — each route offers a different impression.",
+        "Forests, alpine meadows, traditional villages, mountain lakes and panoramic Caucasus views - each route offers a different impression.",
     },
     {
       label: "Small groups",
@@ -299,12 +299,12 @@ const whyChooseItems: Record<
     {
       label: "Незабываемое конное приключение",
       description:
-        "Проедьте по горным тропам, которыми местные жители пользовались поколениями — познайте Рачу так, как её знают местные.",
+        "Проедьте по горным тропам, которыми местные жители пользовались поколениями - познайте Рачу так, как её знают местные.",
     },
     {
       label: "Потрясающие горные пейзажи",
       description:
-        "Леса, альпийские луга, традиционные сёла, горные озёра и панорамные виды на Кавказ — каждый маршрут дарит своё впечатление.",
+        "Леса, альпийские луга, традиционные сёла, горные озёра и панорамные виды на Кавказ - каждый маршрут дарит своё впечатление.",
     },
     {
       label: "Небольшие группы",
@@ -312,7 +312,7 @@ const whyChooseItems: Record<
         "Прогулки проходят в небольших группах для комфортного, безопасного и персонального опыта.",
     },
     {
-      label: "По желанию — традиционный рачинский пикник",
+      label: "По желанию - традиционный рачинский пикник",
       description:
         "Завершите поездку или отдохните по пути с традиционными рачинскими блюдами на фоне потрясающей природы.",
     },
@@ -326,12 +326,12 @@ const whyChooseItems: Record<
     {
       label: "难忘的马术冒险",
       description:
-        "沿着当地人几个世纪以来使用的山路前行——以当地人的方式认识拉查。",
+        "沿着当地人几个世纪以来使用的山路前行--以当地人的方式认识拉查。",
     },
     {
       label: "壮丽的山地景观",
       description:
-        "森林、高山草甸、传统村庄、山间湖泊与高加索全景——每条路线都带来不同的感受。",
+        "森林、高山草甸、传统村庄、山间湖泊与高加索全景--每条路线都带来不同的感受。",
     },
     {
       label: "小型团体",

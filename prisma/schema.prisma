@@ -30,7 +30,7 @@ model Tour {
   startTime   String?
   popular     Boolean          @default(false)
   exclusive   Boolean          @default(false)
-  /// string[] — image URLs
+  /// string[] - image URLs
   images      String[]         @default([])
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
@@ -48,9 +48,9 @@ model TourTranslation {
   title        String
   routeLabel   String
   subtitle     String?
-  /// string[] — outline bullet points
+  /// string[] - outline bullet points
   outline      Json
-  /// TourSection[] — { title, days: { label, description, images? }[] }
+  /// TourSection[] - { title, days: { label, description, images? }[] }
   sections     Json
   /// string[]
   includes     Json
@@ -72,7 +72,7 @@ model Excursion {
   priceFrom   Int      @default(0)
   grades      String
   popular     Boolean  @default(false)
-  /// string[] — image URLs
+  /// string[] - image URLs
   images      Json     @default("[]")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

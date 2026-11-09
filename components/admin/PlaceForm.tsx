@@ -377,7 +377,7 @@ export default function PlaceForm({
                         }
                         className="w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-[14px] text-black outline-none"
                       >
-                        <option value="">არ აქვს — მთავარ სიაში ჩანს</option>
+                        <option value="">არ აქვს - მთავარ სიაში ჩანს</option>
                         {attractions
                           .filter((item) => item.id !== attraction.id)
                           .map((item) => (

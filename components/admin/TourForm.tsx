@@ -147,7 +147,7 @@ export default function TourForm({
     }));
   }
 
-  /** Day photos are shared — sync image URLs to matching day slots in every locale. */
+  /** Day photos are shared - sync image URLs to matching day slots in every locale. */
   function updateProgramSections(sections: TourSectionForm[]) {
     setLocaleForms((prev) => {
       const next = {

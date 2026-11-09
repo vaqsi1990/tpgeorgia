@@ -20,7 +20,7 @@ type ReminderEmailCopy = {
 
 const copy: Record<AppLocale, ReminderEmailCopy> = {
   ka: {
-    subject: (title) => `შეხსენება: ხვალ — ${title}`,
+    subject: (title) => `შეხსენება: ხვალ - ${title}`,
     headlineTour: "თქვენი ტური ხვალაა",
     headlineExcursion: "თქვენი ექსკურსია ხვალაა",
     introTour:
@@ -37,7 +37,7 @@ const copy: Record<AppLocale, ReminderEmailCopy> = {
     footer: "გმადლობთ, რომ აირჩიეთ {siteName}. ნახვამდის!",
   },
   en: {
-    subject: (title) => `Reminder: tomorrow — ${title}`,
+    subject: (title) => `Reminder: tomorrow - ${title}`,
     headlineTour: "Your tour is tomorrow",
     headlineExcursion: "Your excursion is tomorrow",
     introTour:
@@ -54,7 +54,7 @@ const copy: Record<AppLocale, ReminderEmailCopy> = {
     footer: "Thank you for choosing {siteName}. See you soon!",
   },
   ru: {
-    subject: (title) => `Напоминание: завтра — ${title}`,
+    subject: (title) => `Напоминание: завтра - ${title}`,
     headlineTour: "Ваш тур завтра",
     headlineExcursion: "Ваша экскурсия завтра",
     introTour:
@@ -71,7 +71,7 @@ const copy: Record<AppLocale, ReminderEmailCopy> = {
     footer: "Спасибо, что выбрали {siteName}. До встречи!",
   },
   zh: {
-    subject: (title) => `提醒：明天 — ${title}`,
+    subject: (title) => `提醒：明天 - ${title}`,
     headlineTour: "您的行程明天开始",
     headlineExcursion: "您的研学明天开始",
     introTour:
@@ -134,7 +134,7 @@ export function buildBookingReminderEmail(booking: BookingRecord) {
   const footer = t.footer.replace("{siteName}", siteName);
   const formattedDate = booking.preferredDate
     ? formatPreferredDate(booking.preferredDate, locale)
-    : "—";
+    : "-";
 
   const detailLines = [
     `${t.labels.program}: ${booking.itemTitle}`,

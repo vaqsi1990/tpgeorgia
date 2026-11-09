@@ -14,7 +14,7 @@ type ReviewEmailCopy = {
 
 const copy: Record<AppLocale, ReviewEmailCopy> = {
   ka: {
-    subject: (title) => `გაგვიზიარეთ გამოცდილება — ${title}`,
+    subject: (title) => `გაგვიზიარეთ გამოცდილება - ${title}`,
     headline: "როგორ გაგივიდათ ტური?",
     intro:
       "გამარჯოთ, {name}! დღეს თქვენი პროგრამის ბოლო დღეა. გთხოვთ, რამდენიმე წუთი დაგვითმოთ და მოგვიყევით თქვენი შთაბეჭდილება.",
@@ -23,7 +23,7 @@ const copy: Record<AppLocale, ReviewEmailCopy> = {
     footer: "გმადლობთ, რომ აირჩიეთ {siteName}.",
   },
   en: {
-    subject: (title) => `Share your experience — ${title}`,
+    subject: (title) => `Share your experience - ${title}`,
     headline: "How was your trip?",
     intro:
       "Hello, {name}! Today is the last day of your program. Please take a moment to tell us about your experience.",
@@ -32,7 +32,7 @@ const copy: Record<AppLocale, ReviewEmailCopy> = {
     footer: "Thank you for choosing {siteName}.",
   },
   ru: {
-    subject: (title) => `Поделитесь впечатлениями — ${title}`,
+    subject: (title) => `Поделитесь впечатлениями - ${title}`,
     headline: "Как прошла поездка?",
     intro:
       "Здравствуйте, {name}! Сегодня последний день вашей программы. Пожалуйста, расскажите о своих впечатлениях.",
@@ -41,7 +41,7 @@ const copy: Record<AppLocale, ReviewEmailCopy> = {
     footer: "Спасибо, что выбрали {siteName}.",
   },
   zh: {
-    subject: (title) => `分享您的体验 — ${title}`,
+    subject: (title) => `分享您的体验 - ${title}`,
     headline: "行程怎么样？",
     intro:
       "您好，{name}！今天是您行程的最后一天。请花一点时间告诉我们您的感受。",

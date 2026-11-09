@@ -3,11 +3,11 @@ import type { ExcursionContent } from "./ka";
 
 export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
   machakhela: {
-    title: "马恰赫拉山谷遗产——历史与传统",
+    title: "马恰赫拉山谷遗产--历史与传统",
     highlights: [
       "米尔韦蒂瀑布",
       "马恰赫拉山谷",
-      "马恰赫拉蜂蜜——民族志博物馆",
+      "马恰赫拉蜂蜜--民族志博物馆",
       "马恰赫拉枪支工厂",
       "在农户家用午餐",
     ],
@@ -61,7 +61,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
       "古里亚荒野父修道院或埃尔凯蒂女修道院",
       "地方志博物馆",
       "诺达尔·杜姆巴泽故居博物馆",
-      "Skiji House——生态旅游区与教堂绳工厂",
+      "Skiji House--生态旅游区与教堂绳工厂",
     ],
     includes: [
       "舒适小巴交通",
@@ -77,7 +77,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
     highlights: [
       "金奇哈峡谷",
       "奥卡采峡谷",
-      "糖果工厂——体验课",
+      "糖果工厂--体验课",
       "传统伊梅雷蒂环境午餐",
     ],
     includes: [
@@ -90,7 +90,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
     ],
   },
   samegrelo: {
-    title: "追随达迪亚尼王朝——萨梅格雷洛",
+    title: "追随达迪亚尼王朝--萨梅格雷洛",
     highlights: [
       "达迪亚尼宫",
       "马尔特维利峡谷",
@@ -106,7 +106,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
       "传统梅格雷利亚午餐",
       "总结性「任务」活动",
     ],
-    optionalNote: "可选乘船游览——20 拉里（自愿）",
+    optionalNote: "可选乘船游览--20 拉里（自愿）",
   },
   kolkhida: {
     title: "科尔基斯的宝藏",
@@ -176,7 +176,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
     ],
   },
   varzia: {
-    title: "瓦尔齐亚——石头诉说历史",
+    title: "瓦尔齐亚--石头诉说历史",
     highlights: [
       "第一天：绿色修道院",
       "赫尔特维西",
@@ -205,7 +205,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
       "博尔尼西锡奥尼",
       "圣乔治教堂",
       "楚格鲁阿舍尼修道院",
-      "阿苏雷蒂——德国定居点",
+      "阿苏雷蒂--德国定居点",
       "第比利斯晚餐与过夜",
       "第二天：酒店早餐",
       "格鲁吉亚国家博物馆",
@@ -275,7 +275,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
     ],
   },
   taoKlarjeti: {
-    title: "历史 Tao——克拉尔杰季",
+    title: "历史 Tao--克拉尔杰季",
     highlights: [
       "第一天：格鲁吉亚-土耳其边境过境",
       "阿尔文大坝观景点与全景",
@@ -302,14 +302,14 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
     ],
   },
   kazbegi: {
-    title: "山中之国——卡兹别吉",
+    title: "山中之国--卡兹别吉",
     highlights: [
       "第一天：08:00 从巴统出发",
       "金瓦利水库",
       "阿纳努里要塞",
       "古达乌里全景观景点",
       "赫维锡奥尼教堂",
-      "斯诺——巨型雕塑",
+      "斯诺--巨型雕塑",
       "斯泰潘茨明达过夜",
       "第二天：格尔盖蒂三位一体教堂",
       "矿泉水",

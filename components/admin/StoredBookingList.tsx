@@ -11,7 +11,7 @@ const statusLabels: Record<BookingStatus, string> = {
   cancelled: "გაუქმებული",
 };
 
-/** Fixed en-GB parts — ka-GE dateStyle can differ between Node and browsers. */
+/** Fixed en-GB parts - ka-GE dateStyle can differ between Node and browsers. */
 function formatDate(iso: string) {
   return new Intl.DateTimeFormat("en-GB", {
     timeZone: GEORGIA_IANA_TIME_ZONE,
