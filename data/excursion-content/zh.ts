@@ -27,7 +27,7 @@ export const excursionContentZh: Record<ExcursionId, ExcursionContent> = {
       "塔玛尔桥",
       "马洪采蒂瀑布",
       "兹瓦雷教堂",
-      "传统格鲁吉亚家庭——酒窖（marani）",
+      "传统格鲁吉亚家庭 - 酒窖（marani）",
     ],
     includes: [
       "舒适小巴交通",

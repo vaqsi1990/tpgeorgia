@@ -25,6 +25,7 @@ export const business = {
 export const publicPaths = [
   "",
   "/about",
+  "/winter",
   "/gallery",
   "/tours",
   "/tours/batumi",
