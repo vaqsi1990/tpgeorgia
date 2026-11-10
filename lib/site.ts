@@ -10,7 +10,8 @@ export const business = {
   phone: "+995555338807",
   phoneDisplay: "+995 555 33 88 07",
   whatsapp: "https://wa.me/995555338807",
-  facebook: "https://www.facebook.com/profile.php?id=61583758856391",
+  facebook:
+    "https://www.facebook.com/profile.php?id=61591168508430&mibextid=wwXIfr&rdid=Xx2OjXZX94vHv98X&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1KTpzLE2ax%2F%3Fmibextid%3DwwXIfr#",
   instagram:
     "https://www.instagram.com/tourprovidergeorgia1?igsh=MW01Y25waWNoanY4ZQ==",
   tiktok: "https://www.tiktok.com/@tourprovidergeorgia",
