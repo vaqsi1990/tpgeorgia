@@ -28,24 +28,28 @@ export default async function ExcursionsPage() {
           trigger="load"
           className="relative mb-8 flex justify-center sm:mb-10"
         >
-          <Image
-            src="/bgimages/map.svg"
-            alt=""
-            width={880}
-            height={494}
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 top-[70%] z-0 w-[min(100%,28rem)] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-80 sm:w-[36rem] lg:w-[42rem]"
-          />
-          <ParallaxImage
-            src="/background.png"
-            alt={t("title")}
-            width={300}
-            height={100}
-            className="relative z-10 mx-auto object-cover"
-            wrapperClassName="relative z-10 rounded-2xl"
-          />
+          <div className="relative w-[min(100%,28rem)] sm:w-[36rem] lg:w-[42rem]">
+            <Image
+              src="/bgimages/map.svg"
+              alt=""
+              width={880}
+              height={494}
+              aria-hidden
+              className="pointer-events-none h-auto w-full opacity-80"
+            />
+            <div className="absolute left-1/2 top-[66%] z-10 w-[min(18.75rem,78%)] -translate-x-1/2 -translate-y-1/2">
+              <ParallaxImage
+                src="/background.png"
+                alt={t("title")}
+                width={300}
+                height={300}
+                className="mx-auto h-auto w-full object-contain"
+                wrapperClassName="relative rounded-2xl"
+              />
+            </div>
+          </div>
         </FadeUp>
- <div className="mt-24">
+ <div className="mt-10 sm:mt-12">
 
         <SectionHeader
           as="h1"
