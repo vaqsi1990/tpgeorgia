@@ -1,6 +1,6 @@
 import type { ExcursionContent } from "@/data/excursion-content";
 import type { TourContent, TourSection } from "@/data/tour-content/types";
-import type { TourDestination } from "@/data/tour-destinations";
+import { isTourDestination, type TourDestination } from "@/data/tour-destinations";
 import { routing, type AppLocale } from "@/i18n/routing";
 import type {
   StoredExcursionInput,
@@ -29,18 +29,22 @@ function titlesFromContent(
   return routing.locales.map((locale) => content[locale]?.title?.trim() ?? "").filter(Boolean);
 }
 
+async function tourSlugTaken(slug: string): Promise<boolean> {
+  if (isTourDestination(slug)) return true;
+  const existing = await prisma.tour.findUnique({ where: { id: slug } });
+  return existing !== null;
+}
+
 async function resolveTourId(input: StoredTourInput): Promise<string> {
-  if (input.id?.trim()) return input.id.trim();
+  const requested = input.id?.trim();
+  if (requested && !isTourDestination(requested)) return requested;
 
   const base = slugFromTitles(titlesFromContent(input.content));
   if (!base) {
     throw new Error("Tour title is required to generate an ID.");
   }
 
-  return resolveUniqueSlug(base, async (slug) => {
-    const existing = await prisma.tour.findUnique({ where: { id: slug } });
-    return existing !== null;
-  });
+  return resolveUniqueSlug(base, tourSlugTaken);
 }
 
 async function resolveExcursionId(input: StoredExcursionInput): Promise<string> {

@@ -69,33 +69,36 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
         </p>
       ) : null}
 
-      <CollapsibleDetailSection
-        title={t("outlineTitle")}
-        expandLabel={t("showMore")}
-        collapseLabel={t("showLess")}
-      >
-        <ol className="space-y-3">
-          {content.outline.map((item, index) => (
-            <li
-              key={`${tourId}-outline-${index}`}
-              className="flex items-start gap-4 rounded-2xl border border-black/6 bg-[#fafcfb] px-4 py-3.5 sm:px-5"
-            >
-              <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#DC2626] text-sm font-semibold text-white">
-                {index + 1}
-              </span>
-              <span className="pt-1 text-[16px] leading-relaxed text-black md:text-[18px]">
-                {item}
-              </span>
-            </li>
-          ))}
-        </ol>
-      </CollapsibleDetailSection>
+      {content.outline.some((item) => item.trim().length > 0) ? (
+        <CollapsibleDetailSection
+          title={t("outlineTitle")}
+          expandLabel={t("showMore")}
+          collapseLabel={t("showLess")}
+        >
+          <ol className="space-y-3">
+            {content.outline.map((item, index) => (
+              <li
+                key={`${tourId}-outline-${index}`}
+                className="flex items-start gap-4 rounded-2xl border border-black/6 bg-[#fafcfb] px-4 py-3.5 sm:px-5"
+              >
+                <span className="font-afacad flex size-8 shrink-0 items-center justify-center rounded-full bg-[#DC2626] text-sm font-semibold text-white">
+                  {index + 1}
+                </span>
+                <span className="pt-1 text-[16px] leading-relaxed text-black md:text-[18px]">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </CollapsibleDetailSection>
+      ) : null}
 
       {content.sections.length > 0 ? (
         <CollapsibleDetailSection
           title={t("programTitle")}
           expandLabel={t("showMore")}
           collapseLabel={t("showLess")}
+          defaultOpen
         >
           <div className="space-y-6">
             {content.sections.map((section, sectionIndex) => (
@@ -140,28 +143,30 @@ export default function TourDetailPanel({ content, tourId }: TourDetailPanelProp
         </CollapsibleDetailSection>
       ) : null}
 
-      <CollapsibleDetailSection
-        title={t("includesTitle")}
-        expandLabel={t("showMore")}
-        collapseLabel={t("showLess")}
-      >
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {content.includes.map((item, index) => (
-            <li
-              key={`${tourId}-include-${index}`}
-              className="flex items-start gap-3 rounded-2xl border border-[#991B1B] bg-[#DC2626] px-4 py-3 text-[15px] text-white md:text-[18px]"
-            >
-              <span
-                className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#DC2626] text-[11px] text-white"
-                aria-hidden
+      {content.includes.some((item) => item.trim().length > 0) ? (
+        <CollapsibleDetailSection
+          title={t("includesTitle")}
+          expandLabel={t("showMore")}
+          collapseLabel={t("showLess")}
+        >
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {content.includes.map((item, index) => (
+              <li
+                key={`${tourId}-include-${index}`}
+                className="flex items-start gap-3 rounded-2xl border border-[#991B1B] bg-[#DC2626] px-4 py-3 text-[15px] text-white md:text-[18px]"
               >
-                ✓
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </CollapsibleDetailSection>
+                <span
+                  className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#DC2626] text-[11px] text-white"
+                  aria-hidden
+                >
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </CollapsibleDetailSection>
+      ) : null}
 
       {content.highlights && content.highlights.length > 0 ? (
         <CollapsibleDetailSection
